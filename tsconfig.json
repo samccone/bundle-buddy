@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": true,
+        "inlineSourceMap": true,
+        "noEmitOnError": false,
+        "strictNullChecks": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "lib": ["es2017"]
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "*.ts"
+    ]
+}
