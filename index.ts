@@ -47,7 +47,7 @@ function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
 
   for (const fileName of hitTracks.keys()) {
     Object.keys(hitTracks.get(fileName)!.inUse).forEach(lineNumber => {
-      sourceToLineMapping.add(`${fileName}-${lineNumber}`);
+      sourceToLineMapping.add(`${fileName}||||${lineNumber}`);
     });
   }
 
@@ -97,16 +97,16 @@ function extractHitInto(sourcePath: string) {
     incrementInUse(realFilePath, m);
   });
 
-  /** 
+  /**
    * Potentially we could be smart and actually detect duplicated subexpressions inside of a single file
    * This was a naive approach.. did not really work since something like
-   * 
+   *
    * () => ... gets turned into multiple expressions when compiled.. we would need someway to join things
    * back up.
-   * 
+   *
   for (const track of usedSourceInfo.values()) {
     track.linesInUse = Object.values(track.inUse).length;
-    // walk over each column... determine the MIN number of times the column was hit, and that is a 
+    // walk over each column... determine the MIN number of times the column was hit, and that is a
     // how many times the line showed up in the compiled code.
 
     // walk over each line
@@ -168,14 +168,14 @@ for (const sourceMap of process.argv.slice(2)) {
 for (const lineHash of lineHitMap.keys()) {
   const match = lineHitMap.get(lineHash)!;
 
-  if (match.count > 1) {
-    console.log(`
-    ------ Duplicated line found ------
+  if (match.count <= 1) continue;
 
-    File: ${lineHash.split("-")[0]}
-    Line: ${lineHash.split("-")[1]}
+  console.log(`
+  ------ Duplicated line found ------
 
-    Was found in the following bundles:`);
-    console.log(match.from);
-  }
+  File: ${lineHash.split("||||")[0]}
+  Line: ${lineHash.split("||||")[1]}
+
+  Was found in the following bundles:`);
+  console.log(match.from);
 }
