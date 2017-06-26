@@ -1,6 +1,9 @@
 # Bundle Buddy
 
-Bundle buddy helps you to understand what code you are shipping in your javascript bundles.
+Bundle buddy helps you find **dulpicated** code across your bundle splits.
+
+![11111](https://user-images.githubusercontent.com/883126/27545691-4edb6178-5a45-11e7-96c2-a248c94a0370.jpg)
+
 
 ### Why?
 
