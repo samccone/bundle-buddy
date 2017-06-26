@@ -1,6 +1,6 @@
 # Bundle Buddy
 
-Bundle buddy helps you find **dulpicated** code across your bundle splits.
+Bundle buddy helps you find **duplicated** code across your bundle splits.
 
 ![11111](https://user-images.githubusercontent.com/883126/27545691-4edb6178-5a45-11e7-96c2-a248c94a0370.jpg)
 
@@ -13,7 +13,7 @@ As code splitting becomes more and more common, there is not enough visibility i
 
 #### Detecting duplicated code across bundles:
 
-To detect duplicared code across bundles, bundle buddy uses source maps from each of our chuncks to extract the overlap. Run bundle buddy with a path to each of your source maps to run the analysis.
+To detect duplicated code across bundles, bundle buddy uses source maps from each of our chunks to extract the overlap. Run bundle buddy with a path to each of your source maps to run the analysis.
 
 ##### Example run using the attached test data in the project:
 
