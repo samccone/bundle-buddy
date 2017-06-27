@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/gm;
+const HASH_SPLITTER = "||||";
 
 interface InUseColumns {
   generatedLine: number;
@@ -27,19 +28,33 @@ interface SourceTrack {
   };
 }
 
-function getOriginalFilePath(
+const getOriginalFilePathMemoizeMap = new Map<string, string>();
+
+/**
+ * Since the sourcemap file name does not always === the real file name
+ * we need to do some cleanup work (specifically for webpack).
+ */
+function getOriginalFileNameFromSourceName(
   sourceName: string,
   sourceMapConsumer: sourceMap.SourceMapConsumer
-) {
+): string {
+  if (getOriginalFilePathMemoizeMap.has(sourceName)) {
+    return getOriginalFilePathMemoizeMap.get(sourceName)!;
+  }
+
   const contents = sourceMapConsumer.sourceContentFor(sourceName);
   // https://twitter.com/samccone/status/878773452169027588
   const match = WEBPACK_MATCHER.exec(contents);
+  let ret = "";
 
   if (match) {
-    return match[1];
+    ret = match[1];
   }
 
-  return sourceName;
+  ret = sourceName;
+
+  getOriginalFilePathMemoizeMap.set(sourceName, ret);
+  return ret;
 }
 
 function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
@@ -47,7 +62,7 @@ function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
 
   for (const fileName of hitTracks.keys()) {
     Object.keys(hitTracks.get(fileName)!.inUse).forEach(lineNumber => {
-      sourceToLineMapping.add(`${fileName}||||${lineNumber}`);
+      sourceToLineMapping.add(hashFileLineNumber(fileName, lineNumber));
     });
   }
 
@@ -55,14 +70,30 @@ function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
 }
 
 function extractHitInto(sourcePath: string) {
-  const map = fs.readFileSync(path.join(__dirname, sourcePath), "utf-8");
+  const map = fs.readFileSync(path.resolve(sourcePath), "utf-8");
   const sourceMapConsumer = new sourceMap.SourceMapConsumer(map);
   sourceMapConsumer.computeColumnSpans();
 
   const usedSourceInfo = new Map<string, SourceTrack>();
 
-  function incrementInUse(realPath: string, info: sourceMap.MappingItem) {
-    const prev = usedSourceInfo.get(realPath)!.inUse[info.originalLine] || {
+  sourceMapConsumer.eachMapping(info => {
+    const realFilePath = getOriginalFileNameFromSourceName(
+      info.source,
+      sourceMapConsumer
+    );
+
+    // If this is the first time we are seeing the file, setup the tracking object.
+    if (!usedSourceInfo.has(realFilePath)) {
+      usedSourceInfo.set(realFilePath, {
+        sourceName: info.source,
+        //sourceContent: sourceMapConsumer.sourceContentFor(m.source),
+        totalLines: sourceMapConsumer.sourceContentFor(info.source).split("\n")
+          .length,
+        inUse: {}
+      });
+    }
+
+    const prev = usedSourceInfo.get(realFilePath)!.inUse[info.originalLine] || {
       line: info.originalLine,
       columns: {},
       lineHits: 1
@@ -77,24 +108,7 @@ function extractHitInto(sourcePath: string) {
       generatedLine: info.generatedLine
     });
 
-    usedSourceInfo.get(realPath)!.inUse[info.originalLine] = prev;
-  }
-
-  sourceMapConsumer.eachMapping(m => {
-    const realFilePath = getOriginalFilePath(m.source, sourceMapConsumer);
-
-    // If this is the first time we are seeing the file, setup the tracking object.
-    if (!usedSourceInfo.has(realFilePath)) {
-      usedSourceInfo.set(realFilePath, {
-        sourceName: m.source,
-        //sourceContent: sourceMapConsumer.sourceContentFor(m.source),
-        totalLines: sourceMapConsumer.sourceContentFor(m.source).split("\n")
-          .length,
-        inUse: {}
-      });
-    }
-
-    incrementInUse(realFilePath, m);
+    usedSourceInfo.get(realFilePath)!.inUse[info.originalLine] = prev;
   });
 
   /**
@@ -140,6 +154,17 @@ function extractHitInto(sourcePath: string) {
   return usedSourceInfo;
 }
 
+function hashFileLineNumber(fileName: string, lineNumber: number | string) {
+  return `${fileName}${HASH_SPLITTER}${lineNumber}`;
+}
+
+function hashToFileAndLineNumber(hash: string) {
+  return {
+    fileName: hash.split(HASH_SPLITTER)[0],
+    lineNumber: hash.split(HASH_SPLITTER)[1]
+  };
+}
+
 const lineHitMap = new Map<
   string,
   {
@@ -170,11 +195,13 @@ for (const lineHash of lineHitMap.keys()) {
 
   if (match.count <= 1) continue;
 
+  const details = hashToFileAndLineNumber(lineHash);
+
   console.log(`
   ------ Duplicated line found ------
 
-  File: ${lineHash.split("||||")[0]}
-  Line: ${lineHash.split("||||")[1]}
+  File: ${details.fileName}
+  Line: ${details.lineNumber}
 
   Was found in the following bundles:`);
   console.log(match.from);
