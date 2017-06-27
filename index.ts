@@ -2,8 +2,14 @@ import * as sourceMap from "source-map";
 import * as fs from "fs";
 import * as path from "path";
 
-const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/gm;
+const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/m;
 const HASH_SPLITTER = "||||";
+
+interface FileDetail {
+  sourceFile: string;
+  sourceLine: number;
+  inBundles: string[];
+}
 
 interface InUseColumns {
   generatedLine: number;
@@ -19,16 +25,11 @@ interface InUseLine {
 }
 
 interface SourceTrack {
-  sourceContent?: string;
   sourceName: string;
-  totalLines: number;
-  linesInUse?: number;
   inUse: {
     [key: number]: InUseLine;
   };
 }
-
-const getOriginalFilePathMemoizeMap = new Map<string, string>();
 
 /**
  * Since the sourcemap file name does not always === the real file name
@@ -38,23 +39,17 @@ function getOriginalFileNameFromSourceName(
   sourceName: string,
   sourceMapConsumer: sourceMap.SourceMapConsumer
 ): string {
-  if (getOriginalFilePathMemoizeMap.has(sourceName)) {
-    return getOriginalFilePathMemoizeMap.get(sourceName)!;
-  }
-
   const contents = sourceMapConsumer.sourceContentFor(sourceName);
   // https://twitter.com/samccone/status/878773452169027588
   const match = WEBPACK_MATCHER.exec(contents);
-  let ret = "";
-
+  if (sourceName.indexOf("hi.js") !== -1 && match === null) {
+    debugger;
+  }
   if (match) {
-    ret = match[1];
+    return match[1];
   }
 
-  ret = sourceName;
-
-  getOriginalFilePathMemoizeMap.set(sourceName, ret);
-  return ret;
+  return sourceName;
 }
 
 function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
@@ -84,11 +79,13 @@ function extractHitInto(sourcePath: string) {
 
     // If this is the first time we are seeing the file, setup the tracking object.
     if (!usedSourceInfo.has(realFilePath)) {
+      sourceFiles[realFilePath] = {
+        sourceLines: sourceMapConsumer.sourceContentFor(info.source).split("\n")
+          .length
+      };
+
       usedSourceInfo.set(realFilePath, {
-        sourceName: info.source,
-        //sourceContent: sourceMapConsumer.sourceContentFor(m.source),
-        totalLines: sourceMapConsumer.sourceContentFor(info.source).split("\n")
-          .length,
+        sourceName: realFilePath,
         inUse: {}
       });
     }
@@ -107,50 +104,9 @@ function extractHitInto(sourcePath: string) {
       generatedColumn: info.generatedColumn,
       generatedLine: info.generatedLine
     });
-
     usedSourceInfo.get(realFilePath)!.inUse[info.originalLine] = prev;
   });
 
-  /**
-   * Potentially we could be smart and actually detect duplicated subexpressions inside of a single file
-   * This was a naive approach.. did not really work since something like
-   *
-   * () => ... gets turned into multiple expressions when compiled.. we would need someway to join things
-   * back up.
-   *
-  for (const track of usedSourceInfo.values()) {
-    track.linesInUse = Object.values(track.inUse).length;
-    // walk over each column... determine the MIN number of times the column was hit, and that is a
-    // how many times the line showed up in the compiled code.
-
-    // walk over each line
-    Object.values(track.inUse).forEach((line: InUseLine) => {
-
-      let minHits: number|undefined = undefined;
-
-      // find the min column hit count per line
-      Object.values(line.columns).forEach((columnHits: InUseColumns[]) => {
-        if (minHits === undefined || columnHits.length < minHits) {
-          minHits = columnHits.length;
-        }
-      });
-
-      line.lineHits = minHits || -1;
-    });
-  }
-
-  for(const inuseFile of usedSourceInfo.values()) {
-    const multiuse: {[key: number]: InUseLine} = {};
-
-    for (const lineNumber of Object.keys(inuseFile.inUse)) {
-      if (inuseFile.inUse[parseInt(lineNumber, 10)].lineHits > 1) {
-        multiuse[parseInt(lineNumber, 10)] = inuseFile.inUse[parseInt(lineNumber, 10)];
-      }
-    }
-
-    inuseFile.inUse = multiuse;
-  }
-*/
   return usedSourceInfo;
 }
 
@@ -161,8 +117,12 @@ function hashFileLineNumber(fileName: string, lineNumber: number | string) {
 function hashToFileAndLineNumber(hash: string) {
   return {
     fileName: hash.split(HASH_SPLITTER)[0],
-    lineNumber: hash.split(HASH_SPLITTER)[1]
+    lineNumber: parseInt(hash.split(HASH_SPLITTER)[1], 10)
   };
+}
+
+function hashBundlesToKey(files: string[]) {
+  return Array.from(files).sort().join(HASH_SPLITTER);
 }
 
 const lineHitMap = new Map<
@@ -173,8 +133,12 @@ const lineHitMap = new Map<
   }
 >();
 
-for (const sourceMap of process.argv.slice(2)) {
-  const bundleHits = sourceMapToLineHits(extractHitInto(sourceMap));
+const outputFiles = process.argv.slice(2);
+const sourceFiles: { [key: string]: { sourceLines: number } } = {};
+
+for (const sourceMap of outputFiles) {
+  const hitInfo = extractHitInto(sourceMap);
+  const bundleHits = sourceMapToLineHits(hitInfo);
 
   for (let hit of bundleHits) {
     if (lineHitMap.get(hit) === undefined) {
@@ -184,25 +148,50 @@ for (const sourceMap of process.argv.slice(2)) {
       });
     }
 
-    lineHitMap.get(hit)!.from.push(sourceMap);
+    lineHitMap.get(hit)!.from.push(path.basename(sourceMap));
     lineHitMap.get(hit)!.count++;
   }
 }
 
-// Walk all line hits and find the hits that are > 1 hit.. this means there is duplication :D
+const sourceFileGroups = new Map<string, { [key: number]: FileDetail }>();
+const sourceFileToGrouped = new Map<
+  string,
+  { [key: string]: { count: number; files: number } }
+>();
+
 for (const lineHash of lineHitMap.keys()) {
   const match = lineHitMap.get(lineHash)!;
-
-  if (match.count <= 1) continue;
-
   const details = hashToFileAndLineNumber(lineHash);
 
-  console.log(`
-  ------ Duplicated line found ------
+  if (!sourceFileGroups.has(details.fileName)) {
+    sourceFileGroups.set(details.fileName, {});
+  }
 
-  File: ${details.fileName}
-  Line: ${details.lineNumber}
+  if (!sourceFileToGrouped.has(details.fileName)) {
+    sourceFileToGrouped.set(details.fileName, {});
+  }
 
-  Was found in the following bundles:`);
-  console.log(match.from);
+  const prevBundleCount = (sourceFileToGrouped.get(details.fileName)![
+    hashBundlesToKey(match.from)
+  ] || { count: 0 })!.count;
+
+  sourceFileToGrouped.get(details.fileName)![hashBundlesToKey(match.from)] = {
+    count: prevBundleCount + 1,
+    files: match.from.length
+  };
+
+  sourceFileGroups.get(details.fileName)![details.lineNumber] = {
+    sourceFile: details.fileName,
+    sourceLine: details.lineNumber,
+    inBundles: Array.from(match.from)
+  };
 }
+
+console.log(
+  JSON.stringify({
+    sourceFiles,
+    outputFiles: outputFiles.map(f => path.basename(f)),
+    groupedBundleStats: [...sourceFileToGrouped],
+    stats: [...sourceFileGroups]
+  })
+);
