@@ -153,6 +153,16 @@ for (const sourceMap of outputFiles) {
   }
 }
 
+const bundleToSources = new Map<
+  string,
+  {
+    [srcFile: string]: {
+      inBundleCount: number;
+      count: number;
+    };
+  }
+>();
+
 const sourceFileGroups = new Map<string, { [key: number]: FileDetail }>();
 const sourceFileToGrouped = new Map<
   string,
@@ -169,6 +179,25 @@ for (const lineHash of lineHitMap.keys()) {
 
   if (!sourceFileToGrouped.has(details.fileName)) {
     sourceFileToGrouped.set(details.fileName, {});
+  }
+
+  for (const bundle of match.from) {
+    const bundleStats = bundleToSources.get(bundle);
+
+    if (!bundleStats) {
+      bundleToSources.set(bundle, {});
+    }
+
+    const bundleFileStats = bundleToSources.get(bundle)![details.fileName];
+
+    if (!bundleFileStats) {
+      bundleToSources.get(bundle)![details.fileName] = {
+        inBundleCount: Array.from(match.from).length,
+        count: 0
+      };
+    }
+
+    bundleToSources.get(bundle)![details.fileName]!.count++;
   }
 
   const prevBundleCount = (sourceFileToGrouped.get(details.fileName)![
@@ -190,6 +219,8 @@ for (const lineHash of lineHitMap.keys()) {
 console.log(
   JSON.stringify({
     sourceFiles,
+    // Bundle  to source file line use
+    bundleFileStats: [...bundleToSources],
     outputFiles: outputFiles.map(f => path.basename(f)),
     groupedBundleStats: [...sourceFileToGrouped],
     stats: [...sourceFileGroups]
