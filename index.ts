@@ -1,9 +1,12 @@
 import * as sourceMap from "source-map";
 import * as fs from "fs";
 import * as path from "path";
+import { buildGraph } from "./graph_builder";
 
 const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/m;
 const HASH_SPLITTER = "||||";
+
+type SourceToBundles = { [source: string]: Set<string> };
 
 interface FileDetail {
   sourceFile: string;
@@ -30,6 +33,8 @@ interface SourceTrack {
     [key: number]: InUseLine;
   };
 }
+
+const sourceToBundles: SourceToBundles = {};
 
 /**
  * Since the sourcemap file name does not always === the real file name
@@ -214,15 +219,30 @@ for (const lineHash of lineHitMap.keys()) {
     sourceLine: details.lineNumber,
     inBundles: Array.from(match.from)
   };
+
+  if (!sourceToBundles[details.fileName]) {
+    sourceToBundles[details.fileName] = new Set(Array.from(match.from));
+  } else {
+    sourceToBundles[details.fileName] = new Set(
+      Array.from(match.from).concat(
+        Array.from(sourceToBundles[details.fileName])
+      )
+    );
+  }
 }
 
 console.log(
-  JSON.stringify({
-    sourceFiles,
-    // Bundle  to source file line use
-    bundleFileStats: [...bundleToSources],
-    outputFiles: outputFiles.map(f => path.basename(f)),
-    groupedBundleStats: [...sourceFileToGrouped],
-    stats: [...sourceFileGroups]
-  })
+  JSON.stringify(
+    {
+      graph: buildGraph(sourceFileToGrouped, bundleToSources, sourceToBundles),
+      sourceFiles,
+      // Bundle  to source file line use
+      bundleFileStats: [...bundleToSources],
+      outputFiles: outputFiles.map(f => path.basename(f)),
+      groupedBundleStats: [...sourceFileToGrouped],
+      stats: [...sourceFileGroups]
+    },
+    null,
+    2
+  )
 );
