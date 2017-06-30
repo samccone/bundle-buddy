@@ -47,10 +47,7 @@ function getOriginalFileNameFromSourceName(
   const contents = sourceMapConsumer.sourceContentFor(sourceName);
   // https://twitter.com/samccone/status/878773452169027588
   const match = WEBPACK_MATCHER.exec(contents);
-  if (sourceName.indexOf("hi.js") !== -1 && match === null) {
-    debugger;
-  }
-  if (match) {
+  if (match && match[1]) {
     return match[1];
   }
 
@@ -77,6 +74,11 @@ function extractHitInto(sourcePath: string) {
   const usedSourceInfo = new Map<string, SourceTrack>();
 
   sourceMapConsumer.eachMapping(info => {
+    // sometimes source is null, which is strange... skip it for now.
+    if (info.source === null) {
+      return;
+    }
+
     const realFilePath = getOriginalFileNameFromSourceName(
       info.source,
       sourceMapConsumer
