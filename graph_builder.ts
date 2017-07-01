@@ -1,27 +1,4 @@
-//{
-// nodes: [
-// for every input file
-// {
-//   id: input_filename
-//   type: 'input'
-//   size: 'number of used lines in file',
-//   in_bundle_files: [bundle_file_name, bundle_file_name]
-// }
-// for every output file
-// {
-//   id: output_filename
-//   type: 'output'
-//   size: 'number of input file lines contained',
-// ],
-// links: [{source: input_filename, target: output_filename, strength: number of input lines going into outputfile}]
-// }
-
-interface Node {
-  id: string;
-  type: string;
-  size: number;
-  inBundleFiles?: string[];
-}
+import { Node } from "./types";
 
 function sumLines(obj: { [key: string]: { count: number } }) {
   return Object.keys(obj).map(k => obj[k]!.count).reduce((p, c) => {
