@@ -1,3 +1,4 @@
+viz/src/data/*
 .DS_STORE
 node_modules
 *.js
