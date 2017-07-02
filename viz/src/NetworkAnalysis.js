@@ -80,7 +80,7 @@ function drawNetwork({
     simulation.force("link").links(links);
 
     simulation.restart();
-    for (let i = 0; i < 50; i++) simulation.tick();
+    for (let i = 0; i < 150; i++) simulation.tick();
     simulation.stop();
 
     cachedPositions[`${selectedBundles}-${window.innerWidth}`] = {
