@@ -3,7 +3,6 @@ import "./flexboxgrid.min.css";
 import Overview from "./Overview";
 import NetworkAnalysis from "./NetworkAnalysis";
 import data from "./data/output.json";
-import network from "./data/network.json";
 import { max, sum } from "d3-array";
 import { nest } from "d3-collection";
 
@@ -55,7 +54,7 @@ relatedNodes = relatedNodes.map(d => d[0]);
 orphanNodes = orphanNodes.map(d => d[0]);
 const overlapFilesCount = relatedNodes.length;
 //Filter out only links that are reated to source nodes with shared bundle code
-const networkLinks = network.graph.links.filter(
+const networkLinks = data.graph.links.filter(
   d => relatedNodes.indexOf(d.target) !== -1
 );
 
@@ -69,7 +68,7 @@ networkLinks.forEach(d => {
 const outputNodesSummary = {};
 outputFiles.forEach(d => (outputNodesSummary[d[0]] = d[3]));
 
-const networkNodes = network.graph.nodes.filter(
+const networkNodes = data.graph.nodes.filter(
   d => relatedNodes.indexOf(d.id) !== -1
 );
 
@@ -139,28 +138,15 @@ class App extends Component {
 
     return (
       <div className="App wrap container-fluid">
-        <div className="App-header">
-          <div className="row">
-            <div className="col-xs-12">
-              <h1>Bundle Buddy</h1>
-            </div>
-          </div>
-        </div>
         <div className="App-body">
           <div className="row">
-            <div className="col-xs-12">
-              <h2>{`${Object.keys(data.sourceFiles)
-                .length} files were bundled into ${outputFiles.length} bundles. Of those, ${overlapFilesCount} bundles have overlaps`}</h2>
-            </div>
-          </div>
+            <div className="col-xs-4 col-md-3 sidebar">
+              <h1>Bundle Buddy</h1>
 
-          <div className="row">
-            <div className="col-xs-4 col-md-3">
               <Overview
                 inputFiles={Object.keys(data.sourceFiles)}
                 outputFiles={outputFiles}
                 updateSelectedBundles={updateSelectedBundles}
-                selectedBundles={state.selectedBundles}
                 selectedBundles={state.selectedBundles}
               />
             </div>
@@ -169,8 +155,15 @@ class App extends Component {
                 nodes={nodes}
                 links={links}
                 selectedBundles={state.selectedBundles}
+                updateSelectedBundles={updateSelectedBundles}
                 outputNodeSummary={outputNodesSummary}
               />
+              <div className="row bottombar">
+                <div className="col-xs-12">
+                  <h2>{`${Object.keys(data.sourceFiles)
+                    .length} files were bundled into ${outputFiles.length} bundles. Of those, ${overlapFilesCount} bundles have overlaps`}</h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>

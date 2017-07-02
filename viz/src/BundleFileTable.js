@@ -19,37 +19,6 @@ const styles = {
   }
 };
 
-const tableData = [
-  {
-    name: "John Smith",
-    status: "Employed"
-  },
-  {
-    name: "Randal White",
-    status: "Unemployed"
-  },
-  {
-    name: "Stephanie Sanders",
-    status: "Employed"
-  },
-  {
-    name: "Steve Brown",
-    status: "Employed"
-  },
-  {
-    name: "Joyce Whitten",
-    status: "Employed"
-  },
-  {
-    name: "Samuel Roberts",
-    status: "Employed"
-  },
-  {
-    name: "Adam Moore",
-    status: "Employed"
-  }
-];
-
 export default class BundleFileTable extends Component {
   render() {
     const { rows } = this.props;

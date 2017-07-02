@@ -42,17 +42,17 @@ class Files extends Component {
       marginTop: 2
     };
 
-    let sourceFileTable;
+    // let sourceFileTable;
 
-    if (className) {
-      sourceFileTable = (
-        <div className="row">
-          <div className="col-xs-12">
-            <BundleFileTable rows={sourceFiles} />
-          </div>
-        </div>
-      );
-    }
+    // if (className) {
+    //   sourceFileTable = (
+    //     <div className="row">
+    //       <div className="col-xs-12">
+    //         <BundleFileTable rows={sourceFiles} />
+    //       </div>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div className={`bundle-file-info ${className}`}>
@@ -89,7 +89,6 @@ class Files extends Component {
             </p>
           </div>
         </div>
-        {sourceFileTable}
       </div>
     );
   }

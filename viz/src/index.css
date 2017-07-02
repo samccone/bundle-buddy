@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  height: 100vh;
 }
 
 .active-filter .bundle-file-info {
@@ -28,4 +29,19 @@ body {
 td.left-ellipse {
   text-align: left;
   direction: rtl;
+}
+
+.inactive {
+  opacity: .1;
+}
+
+.sidebar {
+  border-right: solid 1px #d3d3d3;
+  padding-right: 25px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.bottombar {
+  border-top: solid 1px #d3d3d3;
 }

@@ -17,9 +17,11 @@ class AppState extends Component {
   }
 
   updateSelectedBundles(newBundle) {
-    this.setState({
-      selectedBundles: newBundle
-    });
+    if (newBundle === this.state.selectedBundles) {
+      this.setState({ selectedBundles: null });
+    } else {
+      this.setState({ selectedBundles: newBundle });
+    }
   }
 
   clearSelectedBundles() {
