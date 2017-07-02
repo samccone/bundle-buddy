@@ -14,13 +14,9 @@
     "numeral": "^2.0.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
-    "react-router-redux": "next",
     "react-scripts": "1.0.10",
-    "react-tap-event-plugin": "^2.0.1",
-    "redux": "^3.7.1",
-    "redux-thunk": "^2.2.0"
+    "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
     "husky": "^0.14.1",
@@ -34,9 +30,6 @@
     "eject": "react-scripts eject"
   },
   "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.ts": ["prettier --write", "git add"]
   }
 }

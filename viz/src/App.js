@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./flexboxgrid.min.css";
-import "./App.css";
 import Overview from "./Overview";
 import NetworkAnalysis from "./NetworkAnalysis";
 import data from "./data/output.json";
@@ -11,7 +10,7 @@ import { nest } from "d3-collection";
 //TODO move this data transformation into the scripts
 let relatedNodes = [];
 let orphanNodes = [];
-
+console.log(data);
 data.bundleFileStats.forEach(d => {
   const files = Object.values(d[1]);
   const stats = {
@@ -39,7 +38,7 @@ const outputFiles = data.bundleFileStats
     );
   })
   .map(d => {
-    d[1] = nest()
+    d[3] = nest()
       .key(d => d.inBundleCount)
       .rollup(leaves => sum(leaves, l => l.count))
       .entries(Object.values(d[1]))
@@ -67,15 +66,77 @@ networkLinks.forEach(d => {
   }
 });
 
-console.log("data", data, outputFiles);
 const outputNodesSummary = {};
-outputFiles.forEach(d => (outputNodesSummary[d[0]] = d[1]));
+outputFiles.forEach(d => (outputNodesSummary[d[0]] = d[3]));
 
 const networkNodes = network.graph.nodes.filter(
   d => relatedNodes.indexOf(d.id) !== -1
 );
+
+const filterNetwork = (name, nodes, links) => {
+  if (!name) {
+    return { nodes, links };
+  }
+
+  const filteredNodeKeys = [name];
+
+  const children = [];
+  const childrenLinks = links.filter(d => {
+    const match =
+      d.target.id === name &&
+      d.source.inBundleFiles &&
+      d.source.inBundleFiles.length > 1;
+
+    if (match) {
+      children.push(d.source.id);
+    }
+
+    return match;
+  });
+
+  const rootBundle = nodes.find(d => d.id === name);
+  const bundleChildren = nodes.filter(
+    d =>
+      d.inBundleFiles &&
+      d.inBundleFiles.length > 1 &&
+      children.indexOf(d.id) !== -1
+  );
+
+  const bundleChildrenIds = new Set(bundleChildren.map(child => child.id));
+
+  const grandchildrenLinks = links.filter(d => {
+    return bundleChildrenIds.has(d.source.id);
+  });
+
+  const grandchildrenNodesKeys = new Set(
+    grandchildrenLinks.map(v => v.target.id)
+  );
+
+  const grandchildrenNodes = nodes.filter(d =>
+    grandchildrenNodesKeys.has(d.id)
+  );
+
+  return {
+    nodes: [rootBundle, ...bundleChildren, ...grandchildrenNodes],
+    links: childrenLinks.concat(grandchildrenLinks)
+  };
+};
+
 class App extends Component {
   render() {
+    const {
+      updateSelectedBundles,
+      clearSelectedBundles,
+      state
+    } = this.props.appState;
+    console.log("STATE", state);
+
+    const { nodes, links } = filterNetwork(
+      state.selectedBundles,
+      networkNodes,
+      networkLinks
+    );
+
     return (
       <div className="App wrap container-fluid">
         <div className="App-header">
@@ -98,12 +159,16 @@ class App extends Component {
               <Overview
                 inputFiles={Object.keys(data.sourceFiles)}
                 outputFiles={outputFiles}
+                updateSelectedBundles={updateSelectedBundles}
+                selectedBundles={state.selectedBundles}
+                selectedBundles={state.selectedBundles}
               />
             </div>
             <div className="col-xs-8 col-md-9">
               <NetworkAnalysis
-                nodes={networkNodes}
-                links={networkLinks}
+                nodes={nodes}
+                links={links}
+                selectedBundles={state.selectedBundles}
                 outputNodeSummary={outputNodesSummary}
               />
             </div>

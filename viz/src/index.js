@@ -1,23 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { ConnectedRouter } from "react-router-redux";
-import store, { history } from "./stores/configureStore";
+import AppState from "./AppState";
 import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
-
 import "./index.css";
+import injectTapEventPlugin from "react-tap-event-plugin";
 
 const target = document.querySelector("#root");
-
-render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <App />
-      </div>
-    </ConnectedRouter>
-  </Provider>,
-  target
-);
-registerServiceWorker();
+injectTapEventPlugin();
+render(<AppState />, target);

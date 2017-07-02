@@ -1,16 +1,8 @@
 import React, { Component } from "react";
-import { sum } from "d3-array";
 import { scaleLinear, scaleQuantize } from "d3-scale";
 import numeral from "numeral";
-import {
-  blueGrey100,
-  deepPurple200,
-  deepPurple400,
-  deepPurple600,
-  deepPurple900,
-  redA400,
-  teal100
-} from "material-ui/styles/colors";
+import { teal100 } from "material-ui/styles/colors";
+import BundleFileTable from "./BundleFileTable";
 
 class Files extends Component {
   createSlices(slices, totalLines) {
@@ -33,7 +25,14 @@ class Files extends Component {
   }
 
   render() {
-    const { slices, stats } = this.props;
+    const {
+      name,
+      slices,
+      stats,
+      updateSelectedBundles,
+      sourceFiles,
+      className
+    } = this.props;
 
     const fileStyle = {
       height: 20
@@ -43,10 +42,27 @@ class Files extends Component {
       marginTop: 2
     };
 
-    return (
-      <div>
+    let sourceFileTable;
+
+    if (className) {
+      sourceFileTable = (
         <div className="row">
           <div className="col-xs-12">
+            <BundleFileTable rows={sourceFiles} />
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={`bundle-file-info ${className}`}>
+        <div className="row" onClick={() => updateSelectedBundles(name)}>
+          <div className="col-xs-12">
+            <div className="row">
+              <div className="col-xs-12 bundle-file-name">
+                {name}
+              </div>
+            </div>
             <div className="file" style={fileStyle}>
               {this.createSlices(slices, stats.totalLines)}
             </div>
@@ -73,6 +89,7 @@ class Files extends Component {
             </p>
           </div>
         </div>
+        {sourceFileTable}
       </div>
     );
   }

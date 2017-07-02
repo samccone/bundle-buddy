@@ -3,3 +3,29 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.active-filter .bundle-file-info {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.active-filter .selected.bundle-file-info {
+  opacity: 1;
+  filter: grayscale(0);
+}
+.bundle-file-info {
+  cursor: pointer;
+}
+
+.bundle-file-name {
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+  text-align: left;
+}
+
+td.left-ellipse {
+  text-align: left;
+  direction: rtl;
+}
