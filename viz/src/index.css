@@ -40,8 +40,18 @@ td.left-ellipse {
   padding-right: 25px;
   height: 100vh;
   overflow-y: scroll;
+  padding-left: 2rem;
 }
 
 .bottombar {
   border-top: solid 1px #d3d3d3;
+}
+
+.main-panel {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.App.container-fluid {
+  padding: 0;
 }

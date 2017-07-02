@@ -150,7 +150,7 @@ class App extends Component {
                 selectedBundles={state.selectedBundles}
               />
             </div>
-            <div className="col-xs-8 col-md-9">
+            <div className="col-xs-8 col-md-9 main-panel">
               <NetworkAnalysis
                 nodes={nodes}
                 links={links}
