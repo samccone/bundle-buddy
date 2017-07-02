@@ -15,8 +15,10 @@
   },
   "scripts": {
     "start": "ts-node index.ts",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "build": "tsc"
   },
+  "bin": "bin.js",
   "lint-staged": {
     "*.ts": [
       "prettier --write",
