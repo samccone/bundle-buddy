@@ -36,9 +36,10 @@ function extractHitInto(sourceFiles: SourceFiles, sourcePath: string) {
 
     // If this is the first time we are seeing the file, setup the tracking object.
     if (!usedSourceInfo.has(realFilePath)) {
+      const sourceLines = sourceMapConsumer.sourceContentFor(info.source).split("\n"); 
       sourceFiles[realFilePath] = {
-        sourceLines: sourceMapConsumer.sourceContentFor(info.source).split("\n")
-          .length
+        sourceLines: sourceLines.length,
+        source: sourceLines 
       };
 
       usedSourceInfo.set(realFilePath, {
