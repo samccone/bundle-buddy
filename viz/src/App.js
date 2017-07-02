@@ -6,7 +6,7 @@ import data from "./data/output.json";
 import numeral from "numeral";
 import { max, sum } from "d3-array";
 import { nest } from "d3-collection";
-
+import { forceSimulation, forceLink } from "d3-force";
 //TODO move this data transformation into the scripts
 let relatedNodes = [];
 let orphanNodes = [];
@@ -85,6 +85,15 @@ const networkNodes = data.graph.nodes.filter(
 const filterNetwork = (name, nodes, links) => {
   if (!name) {
     return { nodes, links };
+  }
+
+  if (!links[0].target.id) {
+    const simulation = forceSimulation().force(
+      "link",
+      forceLink().id(d => d.id)
+    );
+    simulation.nodes(nodes);
+    simulation.force("link").links(links);
   }
 
   const filteredNodeKeys = [name];

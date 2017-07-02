@@ -11,16 +11,25 @@ class AppState extends Component {
     this.updateSelectedBundles = this.updateSelectedBundles.bind(this);
     this.clearSelectedBundles = this.clearSelectedBundles.bind(this);
 
+    const match = props.match.params;
     this.state = {
-      selectedBundles: null
+      selectedBundles: (match && match.id) || null
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.setState({
+        selectedBundles: this.props.match.params.id || null
+      });
+    }
   }
 
   updateSelectedBundles(newBundle) {
     if (newBundle === this.state.selectedBundles) {
-      this.setState({ selectedBundles: null });
+      this.props.history.push("");
     } else {
-      this.setState({ selectedBundles: newBundle });
+      this.props.history.push(newBundle);
     }
   }
 
@@ -31,6 +40,7 @@ class AppState extends Component {
   }
 
   render() {
+    console.log("in app state", this.props);
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
         <App appState={this} />
