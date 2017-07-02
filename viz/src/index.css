@@ -31,6 +31,10 @@ td.left-ellipse {
   direction: rtl;
 }
 
+.light-font {
+  font-weight: 100;
+}
+
 .inactive {
   opacity: .1;
 }

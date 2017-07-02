@@ -3,6 +3,7 @@ import "./flexboxgrid.min.css";
 import Overview from "./Overview";
 import NetworkAnalysis from "./NetworkAnalysis";
 import data from "./data/output.json";
+import numeral from "numeral";
 import { max, sum } from "d3-array";
 import { nest } from "d3-collection";
 
@@ -145,6 +146,34 @@ class App extends Component {
       networkLinks
     );
 
+    let summarySentence;
+
+    if (state.selectedBundles) {
+      const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
+
+      summarySentence = (
+        <h2 className="light-font">
+          Bundle <b>{state.selectedBundles} </b>
+          has
+          <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
+          overlapping lines across
+          <b> {nodes.filter(d => d.type === "output").length - 2} </b>
+          bundles
+        </h2>
+      );
+    } else {
+      summarySentence = (
+        <h2 className="light-font">
+          <b>{Object.keys(data.sourceFiles).length} </b>
+          files were bundled into
+          <b>{outputFiles.length} </b>
+          bundles. Of those,
+          <b> {overlapFilesCount} </b>
+          lightbundles have overlaps
+        </h2>
+      );
+    }
+
     return (
       <div className="App wrap container-fluid">
         <div className="App-body">
@@ -169,8 +198,7 @@ class App extends Component {
               />
               <div className="row bottombar">
                 <div className="col-xs-12">
-                  <h2>{`${Object.keys(data.sourceFiles)
-                    .length} files were bundled into ${outputFiles.length} bundles. Of those, ${overlapFilesCount} bundles have overlaps`}</h2>
+                  {summarySentence}
                 </div>
               </div>
             </div>
