@@ -13,6 +13,9 @@ import { max } from "d3-array";
 import { scaleSqrt, scaleQuantize } from "d3-scale";
 import { pie, arc } from "d3-shape";
 import { blueGrey100, teal100 } from "material-ui/styles/colors";
+import { legendColor, legendSize } from "d3-svg-legend";
+import * as d3 from "d3-transition";
+import numeral from "numeral";
 
 const width = 800;
 const height = 500;
@@ -29,7 +32,7 @@ function drawNetwork({
   const filtered = selectedBundles !== null;
   const svg = select("svg#network");
   const maxLines = max(nodes, d => d.size);
-  const size = scaleSqrt().domain([0, maxLines]).range([0, filtered ? 60 : 30]);
+  const size = scaleSqrt().domain([1, maxLines]).range([1, filtered ? 60 : 30]);
 
   const cacheMatch = cachedPositions[`${selectedBundles}-${window.innerWidth}`];
   if (cacheMatch) {
@@ -185,6 +188,33 @@ function drawNetwork({
     .select("g.nodes")
     .selectAll("g.node")
     .attr("transform", d => `translate(${d.x}, ${d.y})`);
+
+  const colorLegend = legendColor()
+    .scale(color)
+    .orient("horizontal")
+    .shapeWidth(50)
+    .shapeHeight(10)
+    .shapePadding(5)
+    .labelWrap(50)
+    .title("Number of bundles source code appers in")
+    .labels(["No shared code", "2", "3", "4", "Code in 5+ bundles"]);
+
+  svg.select("g.colorLegend").call(colorLegend);
+
+  const sizeLegend = legendSize()
+    .scale(size)
+    .shape("circle")
+    .shapePadding(15)
+    .labelFormat(d => numeral(d).format("0a"))
+    .cells([
+      Math.round(maxLines * 0.1),
+      Math.round(maxLines * 0.25),
+      Math.round(maxLines * 0.5),
+      maxLines
+    ])
+    .orient("horizontal");
+
+  svg.select("g.sizeLegend").call(sizeLegend);
 }
 
 class NetworkAnalysis extends Component {
@@ -209,6 +239,14 @@ class NetworkAnalysis extends Component {
         <svg id="network" width={width} height={height}>
           <g className="links" />
           <g className="nodes" />
+          <g
+            className="colorLegend legend"
+            transform={`translate(20, ${height - 80})`}
+          />
+          <g
+            className="sizeLegend legend"
+            transform={`translate(${width - 200}, ${height - 80})`}
+          />
         </svg>
       </div>
     );

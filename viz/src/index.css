@@ -59,3 +59,15 @@ td.left-ellipse {
 .App.container-fluid {
   padding: 0;
 }
+
+.legend {
+  font-size: 11px;
+}
+
+.legend .legendTitle {
+  font-weight: 900;
+}
+
+.sizeLegend circle {
+  fill: #cfd8dc;
+}
