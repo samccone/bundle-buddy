@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { scaleLinear, scaleQuantize } from "d3-scale";
 import numeral from "numeral";
 import { teal100 } from "material-ui/styles/colors";
-import BundleFileTable from "./BundleFileTable";
 
 class Files extends Component {
   createSlices(slices, totalLines) {
@@ -42,18 +41,6 @@ class Files extends Component {
       marginTop: 2
     };
 
-    // let sourceFileTable;
-
-    // if (className) {
-    //   sourceFileTable = (
-    //     <div className="row">
-    //       <div className="col-xs-12">
-    //         <BundleFileTable rows={sourceFiles} />
-    //       </div>
-    //     </div>
-    //   );
-    // }
-
     return (
       <div className={`bundle-file-info ${className}`}>
         <div className="row" onClick={() => updateSelectedBundles(name)}>
@@ -77,7 +64,7 @@ class Files extends Component {
                     "0.0%"
                   )}
                 </b>{" "}
-                overlap
+                lines shared with {stats.containedInBundles.length - 1} bundles.
               </small>
             </p>
           </div>

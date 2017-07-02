@@ -9,13 +9,22 @@ import { nest } from "d3-collection";
 //TODO move this data transformation into the scripts
 let relatedNodes = [];
 let orphanNodes = [];
-console.log(data);
 data.bundleFileStats.forEach(d => {
   const files = Object.values(d[1]);
+
+  const uniqueBundles = Array.from(files.reduce((accum, file) => {
+    for (const bundleIn of file.containedInBundles) {
+      accum.add(bundleIn);
+    }
+
+    return accum;
+  }, new Set([])));
+
   const stats = {
     highestBundle: max(files, v => v.inBundleCount),
     totalLines: sum(files, v => v.count),
-    totalOverlapLines: sum(files, v => (v.inBundleCount > 1 ? v.count : 0))
+    totalOverlapLines: sum(files, v => (v.inBundleCount > 1 ? v.count : 0)),
+    containedInBundles: uniqueBundles,
   };
 
   stats.pctOverlap = stats.totalOverlapLines / stats.totalLines;

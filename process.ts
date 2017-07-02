@@ -78,6 +78,7 @@ export function processSourceMaps(outputFiles: string[]) {
     {
       [srcFile: string]: {
         inBundleCount: number;
+        containedInBundles: string[];
         count: number;
       };
     }
@@ -130,6 +131,7 @@ export function processSourceMaps(outputFiles: string[]) {
       if (!bundleFileStats) {
         bundleToSources.get(bundle)![details.fileName] = {
           inBundleCount: Array.from(match.from).length,
+          containedInBundles: Array.from(match.from),
           count: 0
         };
       }
