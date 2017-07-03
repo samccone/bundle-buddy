@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { select } from 'd3-selection';
 import { scaleLinear, scaleQuantize } from 'd3-scale';
 import { colorScale } from './color';
+import SourceView from './SourceView';
 
 const width = 200;
 const height = 500;
@@ -47,7 +48,7 @@ class BottomPanel extends Component {
 	}
 
 	render() {
-		const { summarySentence, sourceView } = this.props;
+		const { summarySentence } = this.props;
 
 		return (
 			<div className="col-xs-12">
@@ -57,9 +58,16 @@ class BottomPanel extends Component {
 						<g className="chunks" />
 						<g className="annotations" />
 					</svg>
-          <div className="source-container">
-					{sourceView}
-          </div>
+					<div
+						className="source-container"
+						style={{ display: this.props.selectedSource === null ? 'none' : 'block' }}
+					>
+						<SourceView
+							selectedSource={this.props.selectedSource}
+							perFileStats={this.props.perFileStats}
+							sourceFiles={this.props.sourceFiles}
+						/>
+					</div>
 				</div>
 			</div>
 		);

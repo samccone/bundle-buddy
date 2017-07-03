@@ -114,5 +114,21 @@ g.links line.activeSource {
 
 .source-container { 
   height: 500px;
+  width: 100%;
   overflow: scroll;
+}
+
+.viewing-file-header {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  padding-left: 34px;
+  margin-bottom: 10px;
+  position: sticky;
+  background: #f7f7f7;
+  display: block;
+  top: 0;
+  border-bottom: dashed 1px #ccc;
+  padding-bottom: 12px;
+  padding-top: 15px;
 }

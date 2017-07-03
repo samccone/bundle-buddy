@@ -5,7 +5,6 @@ import NetworkAnalysis from "./NetworkAnalysis";
 import BottomPanel from "./BottomPanel";
 import numeral from "numeral";
 import { stripHashes } from "./util";
-import { colorScale } from "./color";
 import { forceSimulation, forceLink } from "d3-force";
 
 const filterNetwork = (name, nodes, links) => {
@@ -94,51 +93,16 @@ class App extends Component {
     let sourceView = '';
 
     if (state.selectedBundles) {
-      const matchFile = './lib/components/ui/CardTooltip.js';
-      // const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
-      console.log("matchFile", matchFile);
-
+      const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
       summarySentence = (
         <h2 className="light-font">
-          File <b>{matchFile} </b>
+          File <b>{matchFile[0]} </b>
           is:
-          {/* <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
+          <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
           overlapping lines across
           <b> {nodes.filter(d => d.type === "output").length - 2} </b>
-          bundles */}
+          bundles
         </h2>
-      );
-
-      const fileStats = perFileStats.find(thing => thing[0] === matchFile)[1];
-      const tableRows = sourceFiles[matchFile].source.map((lineContent, i) => {
-        const lineNumber = i + 1;
-        const bundleHits = fileStats[lineNumber] ? fileStats[lineNumber].inBundles : [];
-        const bundleHitsForThisLine = bundleHits.length;
-        return (
-          <tr>
-            <td
-              style={{borderColor: colorScale(bundleHitsForThisLine)}}
-              title={bundleHits.join('\n')}
-              >
-              {bundleHitsForThisLine}
-            </td>
-            <td>
-              <pre>{lineContent}</pre>
-            </td>
-          </tr>
-        );
-      });
-
-      sourceView = (
-        <table className="sourceView">
-          <thead><tr>
-              <th></th>
-              <th></th>
-          </tr></thead>
-          <tbody>
-            {tableRows}
-          </tbody>
-        </table>
       );
     } else {
       summarySentence = (
@@ -182,6 +146,8 @@ class App extends Component {
               </div>
               <div className="row bottombar">
                 <BottomPanel
+                  sourceFiles={sourceFiles}
+                  perFileStats={perFileStats}
                   summarySentence={summarySentence}
                   selectedSource={state.selectedSource}
                   updateSelectedSource={updateSelectedSource}
