@@ -302,7 +302,7 @@ function drawNetwork({
           width: maxSource - minSource + rectPadding * 2,
           height: maxHeight + rectPadding * 2
         },
-        nx: Math.min(nx, minSource - rectPadding),
+        nx: Math.min(nx, minSource - rectPadding - 1),
         x: minSource - rectPadding,
         y: avgY - (maxHeight + rectPadding * 2) / 2,
         dy: (maxHeight + rectPadding * 2) / 2,
