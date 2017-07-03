@@ -89,3 +89,21 @@ g.links line.activeSource {
 .inactive {
   opacity: .2;
 }
+
+.sourceView {
+  table-layout: fixed;
+  width: 100px;
+}
+.sourceView > thead > th:first-child {
+  width: 40px;
+}
+.sourceView pre {
+  margin: 0;
+}
+.sourceView td:first-child {
+  border-right: 3px solid;
+  padding-right: 5px;
+  font-size: 10px;
+  color: #666;
+  text-align: right;
+}

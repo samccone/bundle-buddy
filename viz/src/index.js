@@ -89,6 +89,7 @@ fetch("/output.json").then(v => v.json()).then(data => {
     networkNodes,
     networkLinks,
     outputFiles,
+    perFileStats: data.stats,
     sourceFiles: data.sourceFiles
   };
 

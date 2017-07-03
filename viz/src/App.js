@@ -5,6 +5,7 @@ import NetworkAnalysis from "./NetworkAnalysis";
 import BottomPanel from "./BottomPanel";
 import numeral from "numeral";
 import { stripHashes } from "./util";
+import { colorScale } from "./color";
 import { forceSimulation, forceLink } from "d3-force";
 
 const filterNetwork = (name, nodes, links) => {
@@ -79,7 +80,8 @@ class App extends Component {
       networkNodes,
       networkLinks,
       outputFiles,
-      sourceFiles
+      sourceFiles,
+      perFileStats,
     } = this.props.passedData;
 
     const { nodes, links } = filterNetwork(
@@ -89,26 +91,61 @@ class App extends Component {
     );
 
     let summarySentence;
+    let sourceView = '';
 
     if (state.selectedBundles) {
-      const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
+      const matchFile = './lib/components/ui/CardTooltip.js';
+      // const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
       console.log("matchFile", matchFile);
+
       summarySentence = (
         <h2 className="light-font">
-          Bundle <b>{stripHashes(state.selectedBundles)} </b>
-          has
-          <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
+          File <b>{matchFile} </b>
+          is:
+          {/* <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
           overlapping lines across
           <b> {nodes.filter(d => d.type === "output").length - 2} </b>
-          bundles
+          bundles */}
         </h2>
+      );
+
+      const fileStats = perFileStats.find(thing => thing[0] === matchFile)[1];
+      const tableRows = sourceFiles[matchFile].source.map((lineContent, i) => {
+        const lineNumber = i + 1;
+        const bundleHits = fileStats[lineNumber] ? fileStats[lineNumber].inBundles : [];
+        const bundleHitsForThisLine = bundleHits.length;
+        return (
+          <tr>
+            <td
+              style={{borderColor: colorScale(bundleHitsForThisLine)}}
+              title={bundleHits.join('\n')}
+              >
+              {bundleHitsForThisLine}
+            </td>
+            <td>
+              <pre>{lineContent}</pre>
+            </td>
+          </tr>
+        );
+      });
+
+      sourceView = (
+        <table className="sourceView">
+          <thead><tr>
+              <th></th>
+              <th></th>
+          </tr></thead>
+          <tbody>
+            {tableRows}
+          </tbody>
+        </table>
       );
     } else {
       summarySentence = (
         <h2 className="light-font">
           <b>{Object.keys(sourceFiles).length} </b>
           files were bundled into
-          <b>{outputFiles.length} </b>
+          <b> {outputFiles.length} </b>
           bundles. Of those,
           <b> {overlapFilesCount} </b>
           bundles have overlaps
@@ -131,7 +168,7 @@ class App extends Component {
               />
             </div>
             <div className="col-xs-8 col-md-9 main-panel">
-              <div className="networkAnalysis">
+               <div className="networkAnalysis">
                 <NetworkAnalysis
                   nodes={nodes}
                   links={links}
@@ -148,6 +185,7 @@ class App extends Component {
                   summarySentence={summarySentence}
                   selectedSource={state.selectedSource}
                   updateSelectedSource={updateSelectedSource}
+                  sourceView={sourceView}
                   outputFile={
                     outputFiles.filter(d => d[0] === state.selectedBundles)[0]
                   }

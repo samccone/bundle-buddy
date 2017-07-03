@@ -47,16 +47,16 @@ class BottomPanel extends Component {
   }
 
   render() {
-    const { summarySentence } = this.props;
+    const { summarySentence, sourceView } = this.props;
 
     return (
       <div className="col-xs-12">
         {summarySentence}
-
         <svg id="fileMap" width={width} height={height}>
           <g className="chunks" />
           <g className="annotations" />
         </svg>
+        {sourceView}
       </div>
     );
   }
