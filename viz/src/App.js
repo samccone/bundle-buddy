@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./flexboxgrid.min.css";
 import Overview from "./Overview";
 import NetworkAnalysis from "./NetworkAnalysis";
+import BottomPanel from "./BottomPanel";
 import numeral from "numeral";
+import { stripHashes } from "./util";
 import { forceSimulation, forceLink } from "d3-force";
 
 const filterNetwork = (name, nodes, links) => {
@@ -68,6 +70,7 @@ class App extends Component {
     const {
       updateSelectedBundles,
       clearSelectedBundles,
+      updateSelectedSource,
       state
     } = this.props.appState;
     const {
@@ -89,10 +92,10 @@ class App extends Component {
 
     if (state.selectedBundles) {
       const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
-
+      console.log("matchFile", matchFile);
       summarySentence = (
         <h2 className="light-font">
-          Bundle <b>{state.selectedBundles} </b>
+          Bundle <b>{stripHashes(state.selectedBundles)} </b>
           has
           <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
           overlapping lines across
@@ -134,14 +137,14 @@ class App extends Component {
                   links={links}
                   height={600}
                   selectedBundles={state.selectedBundles}
+                  selectedSource={state.selectedSource}
                   updateSelectedBundles={updateSelectedBundles}
+                  updateSelectedSource={updateSelectedSource}
                   outputNodeSummary={outputNodesSummary}
                 />
               </div>
               <div className="row bottombar">
-                <div className="col-xs-12">
-                  {summarySentence}
-                </div>
+                <BottomPanel summarySentence={summarySentence} />
               </div>
             </div>
           </div>

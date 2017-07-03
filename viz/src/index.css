@@ -76,6 +76,12 @@ g.links line {
   opacity: .1;
 }
 
-g.links line.active {
+g.links line.active,
+g.links line.activeSource {
   opacity: 1;
+}
+
+.inactiveSource,
+.inactive {
+  opacity: .2;
 }

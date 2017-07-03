@@ -28,7 +28,9 @@ function drawNetwork({
   links,
   outputNodeSummary,
   updateSelectedBundles,
+  updateSelectedSource,
   selectedBundles,
+  selectedSource,
   containerWidth
 }) {
   const filtered = selectedBundles !== null;
@@ -121,33 +123,34 @@ function drawNetwork({
       svg
         .selectAll("g.node circle")
         .on("click", function(d) {
-          updateSelectedBundles(d.id);
-        })
-        .on("mouseover", function(hover) {
-          if (hover.id !== selectedBundles) {
-            if (hover.type === "input") {
-              const relevantNodes = new Set(
-                links
-                  .filter(d => d.source.id === hover.id)
-                  .map(d => d.target.id)
-              );
-
-              svg
-                .selectAll("g.node")
-                .filter(d => !relevantNodes.has(d.id) && d.id !== hover.id)
-                .classed("inactive", true);
-
-              svg
-                .selectAll("g.links line")
-                .filter(d => d.source.id !== hover.id)
-                .classed("inactive", true);
-            }
+          if (d.type === "output") {
+            updateSelectedBundles(d.id);
+          } else {
+            updateSelectedSource(d.id);
           }
         })
         .on("mouseout", function() {
           svg.selectAll("g.node").classed("inactive", false);
-          svg.selectAll("g.links line").classed("inactive", false);
+          svg.selectAll("g.links line").classed("active", false);
         });
+
+      if (!selectedSource) {
+        svg.selectAll("g.node circle").on("mouseover", function(hover) {
+          if (hover.id !== selectedBundles) {
+            if (hover.type === "input") {
+              applyClassForHighlight({
+                svg,
+                links,
+                matchID: hover.id,
+                inactiveClass: "inactive",
+                activeClass: "active"
+              });
+            }
+          }
+        });
+      } else {
+        svg.selectAll("g.node circle").on("mouseover", null);
+      }
     }
 
     circle.exit().remove();
@@ -175,6 +178,18 @@ function drawNetwork({
       select(this).selectAll("path.arc").remove();
     }
   });
+
+  svg.selectAll("g.node").classed("inactiveSource", false);
+  svg.selectAll("g.links line").classed("activeSource", false);
+  if (selectedSource) {
+    applyClassForHighlight({
+      svg,
+      links,
+      matchID: selectedSource,
+      inactiveClass: "inactiveSource",
+      activeClass: "activeSource"
+    });
+  }
 
   node.exit().remove();
 
@@ -217,10 +232,31 @@ function drawNetwork({
       maxLines
     ])
     .orient("horizontal");
-
   svg.select("g.sizeLegend").selectAll(".cells").remove();
   svg.select("g.sizeLegend").call(sizeLegend);
   updateNetworkPosition(containerWidth);
+}
+
+function applyClassForHighlight({
+  svg,
+  links,
+  matchID,
+  inactiveClass,
+  activeClass
+}) {
+  const relevantNodes = new Set(
+    links.filter(d => d.source.id === matchID).map(d => d.target.id)
+  );
+
+  svg
+    .selectAll("g.node")
+    .filter(d => !relevantNodes.has(d.id) && d.id !== matchID)
+    .classed(inactiveClass, true);
+
+  svg
+    .selectAll("g.links line")
+    .filter(d => d.source.id === matchID)
+    .classed(activeClass, true);
 }
 
 function updateNetworkPosition(width) {
@@ -255,12 +291,14 @@ class NetworkAnalysis extends Component {
 
   componentDidUpdate(prevProps) {
     deferWork(() => {
-      if (prevProps.selectedBundles !== this.props.selectedBundles) {
+      if (prevProps.selectedSource !== this.props.selectedSource) {
+        drawNetwork(this.props);
+      } else if (prevProps.selectedBundles !== this.props.selectedBundles) {
         drawNetwork(this.props);
       } else if (prevProps.containerWidth !== this.props.containerWidth) {
         updateNetworkPosition(this.props.containerWidth);
       }
-    });
+    }, this);
   }
 
   render() {

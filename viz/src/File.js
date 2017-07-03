@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { scaleLinear } from "d3-scale";
 import { colorScale } from "./color";
 import numeral from "numeral";
+import { stripHashes } from "./util";
 
 class Files extends Component {
   createSlices(slices, totalLines) {
@@ -49,12 +50,15 @@ class Files extends Component {
     //   );
     // }
     return (
-      <div className={`bundle-file-info ${className}`}>
-        <div className="row" onClick={() => updateSelectedBundles(name)}>
+      <div
+        className={`bundle-file-info ${className}`}
+        onClick={() => updateSelectedBundles(name)}
+      >
+        <div className="row">
           <div className="col-xs-12">
             <div className="row">
               <div className="col-xs-12 bundle-file-name">
-                {name}
+                {stripHashes(name)}
               </div>
             </div>
             <div className="file" style={fileStyle}>
