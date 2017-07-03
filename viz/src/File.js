@@ -54,8 +54,11 @@ class Files extends Component {
     //   );
     // }
     return (
-      <div className={`bundle-file-info ${className}`}>
-        <div className="row" onClick={() => updateSelectedBundles(name)}>
+      <div
+        className={`bundle-file-info ${className}`}
+        onClick={() => updateSelectedBundles(name)}
+      >
+        <div className="row">
           <div className="col-xs-12">
             <div className="row">
               <div className="col-xs-12 bundle-file-name">

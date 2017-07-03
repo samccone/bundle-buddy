@@ -101,7 +101,7 @@ fetch("/output.json").then(v => v.json()).then(data => {
           component={props => <AppState {...props} passedData={passedData} />}
         />
         <Route
-          path="/:id"
+          path="/:id/:hover?"
           component={props => <AppState {...props} passedData={passedData} />}
         />
       </div>
