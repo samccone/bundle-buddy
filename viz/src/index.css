@@ -131,4 +131,15 @@ g.links line.activeSource {
   border-bottom: dashed 1px #ccc;
   padding-bottom: 12px;
   padding-top: 15px;
+  font-weight: normal;
+  color: #676767; 
+}
+
+.viewing-file-header .source {
+  color: #111;
+  font-weight: bold;
+}
+
+.sourceView .source.unused {
+  color: #cfd8dc;
 }

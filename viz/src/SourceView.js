@@ -22,7 +22,7 @@ export default class SourceView extends Component {
 					<td style={{ borderColor: colorScale(bundleHitsForThisLine) }} title={bundleHits.join('\n')}>
 						{bundleHitsForThisLine}
 					</td>
-					<td>
+					<td className={`source-line ${bundleHitsForThisLine > 0 ? 'in-use': 'unused'}`}>
 						<pre>{lineContent}</pre>
 					</td>
 				</tr>
@@ -31,7 +31,7 @@ export default class SourceView extends Component {
 
 		return (
 			<div>
-				<h5 className="viewing-file-header">Viewing File {this.props.selectedSource}</h5>
+				<h5 className="viewing-file-header">Viewing File <span className="source">{this.props.selectedSource}</span></h5>
 				<table className="sourceView">
 					<thead>
 						<tr>
