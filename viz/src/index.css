@@ -140,6 +140,6 @@ g.links line.activeSource {
   font-weight: bold;
 }
 
-.sourceView .source.unused {
+.sourceView .source-line.unused {
   color: #cfd8dc;
 }
