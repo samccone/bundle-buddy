@@ -1,22 +1,18 @@
 import React, { Component } from "react";
-import { scaleLinear, scaleQuantize } from "d3-scale";
+import { scaleLinear } from "d3-scale";
+import { colorScale } from "./color";
 import numeral from "numeral";
-import { teal100 } from "material-ui/styles/colors";
 
 class Files extends Component {
   createSlices(slices, totalLines) {
     const pctScale = scaleLinear().domain([0, totalLines]).range([0, 100]);
-    const color = scaleQuantize()
-      .domain([1, 5])
-      .range([teal100, "#ffafb6", "#ff616f", "#d21c5b", "#6d253e"]);
-
     return slices.map((d, i) =>
       <div
         key={`slice-${i}`}
         style={{
           width: `${pctScale(d.value)}%`,
           height: "100%",
-          background: color(d.key),
+          background: colorScale(d.key),
           display: "inline-block"
         }}
       />

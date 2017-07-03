@@ -10,9 +10,9 @@ import {
 } from "d3-force";
 import { select } from "d3-selection";
 import { max } from "d3-array";
-import { scaleSqrt, scaleQuantize } from "d3-scale";
+import { scaleSqrt } from "d3-scale";
+import { colorScale } from "./color";
 import { pie, arc } from "d3-shape";
-import { blueGrey100, teal100 } from "material-ui/styles/colors";
 import { legendColor, legendSize } from "d3-svg-legend";
 import * as d3 from "d3-transition";
 import numeral from "numeral";
@@ -93,10 +93,7 @@ function drawNetwork({
     };
   }
 
-  const color = scaleQuantize()
-    .domain([1, 5])
-    .range([blueGrey100, "#ffafb6", "#ff616f", "#d21c5b", "#6d253e"]);
-
+  const color = colorScale;
   const link = svg.select("g.links").selectAll("line").data(links);
   link.enter().append("line").attr("stroke-width", 1).merge(link);
   link.exit().remove();
@@ -117,7 +114,7 @@ function drawNetwork({
         return size(d.size);
       })
       .attr("fill", function(d) {
-        return d.type === "output" ? teal100 : color(d.inBundleFiles.length);
+        return d.type === "output" ? color(0) : color(d.inBundleFiles.length);
       });
 
     if (selectedBundles) {
