@@ -5,6 +5,10 @@ body {
   height: 100vh;
 }
 
+h1 {
+  font-weight: 100;
+}
+
 .active-filter .bundle-file-info {
   opacity: 0.5;
   filter: grayscale(100%);

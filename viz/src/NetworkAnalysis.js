@@ -9,7 +9,7 @@ import {
   forceY
 } from "d3-force";
 import { select } from "d3-selection";
-import { max } from "d3-array";
+import { max, min, mean } from "d3-array";
 import { scaleSqrt } from "d3-scale";
 import { colorScale } from "./color";
 import { pie, arc } from "d3-shape";
@@ -17,8 +17,11 @@ import { legendColor, legendSize } from "d3-svg-legend";
 import * as d3 from "d3-transition";
 import numeral from "numeral";
 import Dimensions from "react-dimensions";
-import { annotation, annotationLabel } from "d3-svg-annotation";
-import "d3-svg-annotation/d3-annotation.css";
+import {
+  annotation,
+  annotationCallout,
+  annotationCalloutRect
+} from "d3-svg-annotation";
 import { stripHashes } from "./util";
 
 const width = 800;
@@ -245,26 +248,70 @@ function drawNetwork({
   if (selectedBundles) {
     const match = svg.select(".node.selectedBundle");
     const matchBBox = match.node().getBBox();
-    console.log("match", match, match.datum(), match.node().getBBox());
+
+    const nx = min(svg.selectAll(".node").data(), d => d.x - size(d.size)) - 10;
+
+    const sources = svg
+      .selectAll(".node")
+      .data()
+      .filter(d => d.type === "input");
+    const minSource = min(sources, d => d.x);
+    const maxSource = max(sources, d => d.x);
+    const avgY = mean(sources, d => d.y);
+    const maxHeight = size(max(sources, d => d.size));
+    const rectPadding = 20;
+    const wrap = containerWidth / 2 - (match.datum().x - nx);
+
+    const selectedBundlesY = max(svg.selectAll(".node").data(), d => d.y);
+
     annotations = [
       {
         note: {
           title: "Selected Bundle",
-          wrap: 250,
+          wrap,
           label: stripHashes(selectedBundles),
           align: "middle",
-          orientation: "leftRight"
+          lineType: "vertical"
         },
+        type: annotationCallout,
+        nx,
         x: match.datum().x,
-        y: match.datum().y,
-        dx: -(matchBBox.width / 2) - 100
+        y: match.datum().y
+      },
+      {
+        note: {
+          title: "Overlapping Bundles",
+          wrap,
+          align: "middle",
+          lineType: "vertical"
+        },
+        type: annotationCallout,
+        nx,
+        x: nx + 10,
+        y: selectedBundlesY
+      },
+      {
+        note: {
+          title: "Source files",
+          label: "hover and click to select",
+          wrap,
+          align: "middle",
+          lineType: "vertical"
+        },
+        subject: {
+          width: maxSource - minSource + rectPadding * 2,
+          height: maxHeight + rectPadding * 2
+        },
+        nx: Math.min(nx, minSource - rectPadding),
+        x: minSource - rectPadding,
+        y: avgY - (maxHeight + rectPadding * 2) / 2,
+        dy: (maxHeight + rectPadding * 2) / 2,
+        type: annotationCalloutRect
       }
     ];
   }
 
-  const makeAnnotations = annotation()
-    .type(annotationLabel)
-    .annotations(annotations);
+  const makeAnnotations = annotation().annotations(annotations);
 
   svg.select("g.annotations").call(makeAnnotations);
 }
@@ -296,8 +343,10 @@ function updateNetworkPosition(width) {
 
   select("svg#network g.fullNetwork").attr(
     "transform",
-    `translate(${width / 2 - nodeBBox.width / 2 - nodeBBox.x}, ${-nodeBBox.y +
-      20})`
+    `translate(${width / 2 -
+      nodeBBox.width / 2 -
+      nodeBBox.x +
+      40}, ${-nodeBBox.y + 20})`
   );
 
   const sizeLegendBBox = select("svg#network g.sizeLegend").node().getBBox();

@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import AppState from "./AppState";
+import "./annotations.css";
 import "./index.css";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import { BrowserRouter as Router, Route } from "react-router-dom";
