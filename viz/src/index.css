@@ -114,7 +114,7 @@ g.links line.activeSource {
 
 .source-container { 
   height: 500px;
-  width: 100%;
+  flex-grow: 1;
   overflow: scroll;
 }
 
