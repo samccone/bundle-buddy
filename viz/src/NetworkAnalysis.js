@@ -262,14 +262,14 @@ function applyClassForHighlight({
 function updateNetworkPosition(width) {
   const nodeBBox = select("svg g.nodes").node().getBBox();
 
-  select("svg g.fullNetwork").attr(
+  select("svg#network g.fullNetwork").attr(
     "transform",
     `translate(${width / 2 - nodeBBox.width / 2 - nodeBBox.x}, ${-nodeBBox.y +
       20})`
   );
 
-  const sizeLegendBBox = select("svg g.sizeLegend").node().getBBox();
-  select("svg g.sizeLegend").attr(
+  const sizeLegendBBox = select("svg#network g.sizeLegend").node().getBBox();
+  select("svg#network g.sizeLegend").attr(
     "transform",
     `translate(${width - sizeLegendBBox.width}, ${600 - sizeLegendBBox.height})`
   );

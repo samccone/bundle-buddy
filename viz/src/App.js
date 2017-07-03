@@ -144,7 +144,12 @@ class App extends Component {
                 />
               </div>
               <div className="row bottombar">
-                <BottomPanel summarySentence={summarySentence} />
+                <BottomPanel
+                  summarySentence={summarySentence}
+                  outputFile={
+                    outputFiles.filter(d => d[0] === state.selectedBundles)[0]
+                  }
+                />
               </div>
             </div>
           </div>
