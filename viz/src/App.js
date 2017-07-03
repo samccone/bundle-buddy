@@ -108,7 +108,7 @@ class App extends Component {
           <b>{outputFiles.length} </b>
           bundles. Of those,
           <b> {overlapFilesCount} </b>
-          lightbundles have overlaps
+          bundles have overlaps
         </h2>
       );
     }
@@ -128,13 +128,16 @@ class App extends Component {
               />
             </div>
             <div className="col-xs-8 col-md-9 main-panel">
-              <NetworkAnalysis
-                nodes={nodes}
-                links={links}
-                selectedBundles={state.selectedBundles}
-                updateSelectedBundles={updateSelectedBundles}
-                outputNodeSummary={outputNodesSummary}
-              />
+              <div className="networkAnalysis">
+                <NetworkAnalysis
+                  nodes={nodes}
+                  links={links}
+                  height={600}
+                  selectedBundles={state.selectedBundles}
+                  updateSelectedBundles={updateSelectedBundles}
+                  outputNodeSummary={outputNodesSummary}
+                />
+              </div>
               <div className="row bottombar">
                 <div className="col-xs-12">
                   {summarySentence}

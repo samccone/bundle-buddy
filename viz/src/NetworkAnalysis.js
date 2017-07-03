@@ -16,6 +16,7 @@ import { blueGrey100, teal100 } from "material-ui/styles/colors";
 import { legendColor, legendSize } from "d3-svg-legend";
 import * as d3 from "d3-transition";
 import numeral from "numeral";
+import Dimensions from "react-dimensions";
 
 const width = 800;
 const height = 500;
@@ -27,13 +28,13 @@ function drawNetwork({
   links,
   outputNodeSummary,
   updateSelectedBundles,
-  selectedBundles
+  selectedBundles,
+  containerWidth
 }) {
   const filtered = selectedBundles !== null;
   const svg = select("svg#network");
   const maxLines = max(nodes, d => d.size);
   const size = scaleSqrt().domain([1, maxLines]).range([1, filtered ? 60 : 30]);
-
   const cacheMatch = cachedPositions[`${selectedBundles}-${window.innerWidth}`];
   if (cacheMatch) {
     nodes = JSON.parse(cacheMatch.nodes);
@@ -117,33 +118,40 @@ function drawNetwork({
       })
       .attr("fill", function(d) {
         return d.type === "output" ? teal100 : color(d.inBundleFiles.length);
-      })
-      .on("click", function(d) {
-        updateSelectedBundles(d.id);
-      })
-      .on("mouseover", function(hover) {
-        if (hover.id !== selectedBundles) {
-          if (hover.type === "input") {
-            const relevantNodes = new Set(
-              links.filter(d => d.source.id === hover.id).map(d => d.target.id)
-            );
-
-            svg
-              .selectAll("g.node")
-              .filter(d => !relevantNodes.has(d.id) && d.id !== hover.id)
-              .classed("inactive", true);
-
-            svg
-              .selectAll("g.links line")
-              .filter(d => d.source.id !== hover.id)
-              .classed("inactive", true);
-          }
-        }
-      })
-      .on("mouseout", function() {
-        svg.selectAll("g.node").classed("inactive", false);
-        svg.selectAll("g.links line").classed("inactive", false);
       });
+
+    if (selectedBundles) {
+      svg
+        .selectAll("g.node circle")
+        .on("click", function(d) {
+          updateSelectedBundles(d.id);
+        })
+        .on("mouseover", function(hover) {
+          if (hover.id !== selectedBundles) {
+            if (hover.type === "input") {
+              const relevantNodes = new Set(
+                links
+                  .filter(d => d.source.id === hover.id)
+                  .map(d => d.target.id)
+              );
+
+              svg
+                .selectAll("g.node")
+                .filter(d => !relevantNodes.has(d.id) && d.id !== hover.id)
+                .classed("inactive", true);
+
+              svg
+                .selectAll("g.links line")
+                .filter(d => d.source.id !== hover.id)
+                .classed("inactive", true);
+            }
+          }
+        })
+        .on("mouseout", function() {
+          svg.selectAll("g.node").classed("inactive", false);
+          svg.selectAll("g.links line").classed("inactive", false);
+        });
+    }
 
     circle.exit().remove();
 
@@ -172,8 +180,6 @@ function drawNetwork({
   });
 
   node.exit().remove();
-
-  // svg.append("g").attr("class", "annotation-group");
 
   svg
     .select("g.links")
@@ -205,6 +211,7 @@ function drawNetwork({
     .scale(size)
     .shape("circle")
     .shapePadding(15)
+    .title("Lines of code")
     .labelFormat(d => numeral(d).format("0a"))
     .cells([
       Math.round(maxLines * 0.1),
@@ -214,38 +221,68 @@ function drawNetwork({
     ])
     .orient("horizontal");
 
+  svg.select("g.sizeLegend").selectAll(".cells").remove();
   svg.select("g.sizeLegend").call(sizeLegend);
+  updateNetworkPosition(containerWidth);
+}
+
+function updateNetworkPosition(width) {
+  const nodeBBox = select("svg g.nodes").node().getBBox();
+
+  select("svg g.fullNetwork").attr(
+    "transform",
+    `translate(${width / 2 - nodeBBox.width / 2 - nodeBBox.x}, ${-nodeBBox.y +
+      20})`
+  );
+
+  const sizeLegendBBox = select("svg g.sizeLegend").node().getBBox();
+  select("svg g.sizeLegend").attr(
+    "transform",
+    `translate(${width - sizeLegendBBox.width}, ${600 - sizeLegendBBox.height})`
+  );
+}
+
+function deferWork(fn) {
+  (window.requestIdleCallback || window.requestAnimationFrame)(
+    () => {
+      fn();
+    },
+    { timeout: 100 }
+  );
 }
 
 class NetworkAnalysis extends Component {
   componentDidMount() {
-    (window.requestIdleCallback || window.requestAnimationFrame)(
-      () => {
-        drawNetwork(this.props);
-      },
-      { timeout: 100 }
-    );
+    deferWork(() => drawNetwork(this.props));
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.selectedBundles !== this.props.selectedBundles) {
-      drawNetwork(this.props);
-    }
+    deferWork(() => {
+      if (prevProps.selectedBundles !== this.props.selectedBundles) {
+        drawNetwork(this.props);
+      } else if (prevProps.containerWidth !== this.props.containerWidth) {
+        updateNetworkPosition(this.props.containerWidth);
+      }
+    });
   }
 
   render() {
+    const { height, containerWidth } = this.props;
+
     return (
       <div className="row">
-        <svg id="network" width={width} height={height}>
-          <g className="links" />
-          <g className="nodes" />
+        <svg id="network" width={containerWidth} height={600}>
+          <g className="fullNetwork">
+            <g className="links" />
+            <g className="nodes" />
+          </g>
           <g
             className="colorLegend legend"
             transform={`translate(20, ${height - 80})`}
           />
           <g
             className="sizeLegend legend"
-            transform={`translate(${width - 200}, ${height - 80})`}
+            transform={`translate(${containerWidth - 200}, ${height - 80})`}
           />
         </svg>
       </div>
@@ -253,4 +290,4 @@ class NetworkAnalysis extends Component {
   }
 }
 
-export default NetworkAnalysis;
+export default Dimensions()(NetworkAnalysis);

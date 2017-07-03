@@ -75,7 +75,10 @@ class Files extends Component {
                     "0.0%"
                   )}
                 </b>{" "}
-                lines shared with {stats.containedInBundles.length - 1} bundles.
+                lines shared with <b>
+                  {stats.containedInBundles.length - 1}
+                </b>{" "}
+                bundles
               </small>
             </p>
           </div>

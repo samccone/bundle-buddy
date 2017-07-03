@@ -35,10 +35,6 @@ td.left-ellipse {
   font-weight: 100;
 }
 
-.inactive {
-  opacity: .1;
-}
-
 .sidebar {
   border-right: solid 1px #d3d3d3;
   padding-right: 25px;
@@ -70,4 +66,16 @@ td.left-ellipse {
 
 .sizeLegend circle {
   fill: #cfd8dc;
+}
+
+.networkAnalysis {
+  height: 600;
+}
+
+g.links line {
+  opacity: .1;
+}
+
+g.links line.active {
+  opacity: 1;
 }
