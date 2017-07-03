@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/d3-dispatch@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@types/d3-dispatch/-/d3-dispatch-1.0.4.tgz#91b8de6198053efc46788ad5f27182bcc42335b5"
+
 "@types/d3-selection@1.0.10":
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/@types/d3-selection/-/d3-selection-1.0.10.tgz#dcfb0ddfcdfb1ad26aea4351323771e1aea96e84"
@@ -1780,6 +1784,17 @@ d3-dispatch@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.1.tgz#4bd65a43cecff4318deb9df24552aa8bf281a840"
 
+d3-dispatch@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.2.tgz#5b511e79a46a1f89492841c0a8f656687d5daa0a"
+
+d3-drag@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-drag/-/d3-drag-1.0.2.tgz#d634cc3f7689f99dd03fd7eb1af2945c0f4339ad"
+  dependencies:
+    d3-dispatch "1"
+    d3-selection "1"
+
 d3-ease@1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/d3-ease/-/d3-ease-1.0.3.tgz#68bfbc349338a380c44d8acc4fbc3304aa2d8c0e"
@@ -1847,11 +1862,29 @@ d3-selection@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.0.2.tgz#ae662afd4702ac9c5da039b2107a1764fa1c9070"
 
+d3-shape@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.0.4.tgz#145ee100ccbec42f8e3f1996cd05c786f79fe1c6"
+  dependencies:
+    d3-path "1"
+
 d3-shape@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.2.0.tgz#45d01538f064bafd05ea3d6d2cb748fd8c41f777"
   dependencies:
     d3-path "1"
+
+d3-svg-annotation@^1.17.1:
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/d3-svg-annotation/-/d3-svg-annotation-1.17.1.tgz#f5326baf5cc1823651b0a247867230061fdb3bd2"
+  dependencies:
+    "@types/d3-dispatch" "1.0.4"
+    "@types/d3-selection" "1.0.10"
+    d3-dispatch "1.0.2"
+    d3-drag "1.0.2"
+    d3-selection "1.0.2"
+    d3-shape "1.0.4"
+    d3-transition "1.0.3"
 
 d3-svg-legend@^2.24.1:
   version "2.24.1"

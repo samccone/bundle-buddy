@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { select } from "d3-selection";
 import { scaleLinear, scaleQuantize } from "d3-scale";
+import { colorScale } from "./color";
 
 const width = 400;
 const height = 500;
 
-function drawFile({ outputFile }) {
+function drawFile({ outputFile, updateSelectedSource }) {
   const svg = select("svg#fileMap");
-
-  console.log("outputfile", outputFile);
 
   if (outputFile) {
     let totalCount = 0;
@@ -19,24 +18,25 @@ function drawFile({ outputFile }) {
           ...outputFile[1][d]
         };
       })
+      .filter(d => d.inBundleCount > 1)
       .sort((a, b) => b.inBundleCount - a.inBundleCount)
       .map(d => {
         d.totalCount = totalCount;
-        totalCount += d.count;
+        totalCount += d.count + 5;
         return d;
       });
 
     const chunks = svg.select("g.chunks").selectAll("rect").data(files);
 
-    const yScale = scaleLinear()
-      .domain([0, outputFile[2].totalLines])
-      .range([0, height]);
+    const yScale = scaleLinear().domain([0, totalCount]).range([0, height]);
     chunks
       .enter()
       .append("rect")
+      .on("click", d => updateSelectedSource(d.name))
       .merge(chunks)
       .attr("width", 200)
       .attr("y", d => yScale(d.totalCount))
+      .attr("fill", d => colorScale(d.inBundleCount))
       .attr("height", d => yScale(d.count));
   }
 }

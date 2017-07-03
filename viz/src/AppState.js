@@ -26,7 +26,9 @@ class AppState extends Component {
         selectedBundles: this.props.match.params.id || null,
         selectedSource: null
       });
-    } else if (prevProps.match.params.hover !== this.props.match.params.hover) {
+    }
+
+    if (prevProps.match.params.hover !== this.props.match.params.hover) {
       this.setState({
         selectedSource: this.props.match.params.hover
           ? decodeURIComponent(this.props.match.params.hover)
@@ -35,11 +37,11 @@ class AppState extends Component {
     }
   }
 
-  updateSelectedBundles(newBundle, newSource) {
+  updateSelectedBundles(newBundle) {
     if (newBundle === this.state.selectedBundles) {
       this.props.history.push("");
     } else {
-      this.props.history.push(newBundle);
+      this.props.history.push("/" + newBundle);
     }
   }
 

@@ -17,6 +17,9 @@ import { legendColor, legendSize } from "d3-svg-legend";
 import * as d3 from "d3-transition";
 import numeral from "numeral";
 import Dimensions from "react-dimensions";
+import { annotation, annotationLabel } from "d3-svg-annotation";
+import "d3-svg-annotation/d3-annotation.css";
+import { stripHashes } from "./util";
 
 const width = 800;
 const height = 500;
@@ -102,7 +105,9 @@ function drawNetwork({
 
   const node = svg.select("g.nodes").selectAll("g.node").data(nodes);
 
-  node.enter().append("g").attr("class", "node");
+  node.enter().append("g").attr("class", d => {
+    return `node ${d.id === selectedBundles ? "selectedBundle" : d.type}`;
+  });
 
   svg.select("g.nodes").selectAll("g.node").each(function(d) {
     const circle = select(this).selectAll("circle").data([d]);
@@ -110,7 +115,6 @@ function drawNetwork({
     circle
       .enter()
       .append("circle")
-      .attr("class", "node")
       .merge(circle)
       .attr("r", function(d) {
         return size(d.size);
@@ -235,6 +239,34 @@ function drawNetwork({
   svg.select("g.sizeLegend").selectAll(".cells").remove();
   svg.select("g.sizeLegend").call(sizeLegend);
   updateNetworkPosition(containerWidth);
+
+  let annotations = [];
+
+  if (selectedBundles) {
+    const match = svg.select(".node.selectedBundle");
+    const matchBBox = match.node().getBBox();
+    console.log("match", match, match.datum(), match.node().getBBox());
+    annotations = [
+      {
+        note: {
+          title: "Selected Bundle",
+          wrap: 250,
+          label: stripHashes(selectedBundles),
+          align: "middle",
+          orientation: "leftRight"
+        },
+        x: match.datum().x,
+        y: match.datum().y,
+        dx: -(matchBBox.width / 2) - 100
+      }
+    ];
+  }
+
+  const makeAnnotations = annotation()
+    .type(annotationLabel)
+    .annotations(annotations);
+
+  svg.select("g.annotations").call(makeAnnotations);
 }
 
 function applyClassForHighlight({
@@ -308,6 +340,7 @@ class NetworkAnalysis extends Component {
       <div className="row">
         <svg id="network" width={containerWidth} height={600}>
           <g className="fullNetwork">
+            <g className="annotations" />
             <g className="links" />
             <g className="nodes" />
           </g>
