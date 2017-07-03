@@ -3,6 +3,7 @@ import "./flexboxgrid.min.css";
 import Overview from "./Overview";
 import NetworkAnalysis from "./NetworkAnalysis";
 import numeral from "numeral";
+import { stripHashes } from "./util";
 import { forceSimulation, forceLink } from "d3-force";
 
 const filterNetwork = (name, nodes, links) => {
@@ -92,7 +93,7 @@ class App extends Component {
 
       summarySentence = (
         <h2 className="light-font">
-          Bundle <b>{state.selectedBundles} </b>
+          Bundle <b>{stripHashes(state.selectedBundles)} </b>
           has
           <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
           overlapping lines across

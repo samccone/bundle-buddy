@@ -52,7 +52,7 @@ fetch("/output.json").then(v => v.json()).then(data => {
         .rollup(leaves => sum(leaves, l => l.count))
         .entries(Object.values(d[1]))
         .map(d => {
-          d.key = parseInt(d.key);
+          d.key = parseInt(d.key, 10);
           return d;
         })
         .sort((a, b) => b.key - a.key);

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { scaleLinear, scaleQuantize } from "d3-scale";
 import numeral from "numeral";
+import { stripHashes } from "./util";
 import { teal100 } from "material-ui/styles/colors";
 
 class Files extends Component {
@@ -58,7 +59,7 @@ class Files extends Component {
           <div className="col-xs-12">
             <div className="row">
               <div className="col-xs-12 bundle-file-name">
-                {name}
+                {stripHashes(name)}
               </div>
             </div>
             <div className="file" style={fileStyle}>
