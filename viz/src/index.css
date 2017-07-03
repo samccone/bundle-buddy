@@ -107,3 +107,12 @@ g.links line.activeSource {
   color: #666;
   text-align: right;
 }
+
+.source-details {
+  display: flex;
+}
+
+.source-container { 
+  height: 500px;
+  overflow: scroll;
+}
