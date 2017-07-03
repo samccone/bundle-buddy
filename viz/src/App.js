@@ -80,7 +80,7 @@ class App extends Component {
       networkLinks,
       outputFiles,
       sourceFiles,
-      perFileStats,
+      perFileStats
     } = this.props.passedData;
 
     const { nodes, links } = filterNetwork(
@@ -90,7 +90,7 @@ class App extends Component {
     );
 
     let summarySentence;
-    let sourceView = '';
+    let sourceView = "";
 
     if (state.selectedBundles) {
       const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
@@ -132,7 +132,7 @@ class App extends Component {
               />
             </div>
             <div className="col-xs-8 col-md-9 main-panel">
-               <div className="networkAnalysis">
+              <div className="networkAnalysis">
                 <NetworkAnalysis
                   nodes={nodes}
                   links={links}
@@ -150,6 +150,7 @@ class App extends Component {
                   perFileStats={perFileStats}
                   summarySentence={summarySentence}
                   selectedSource={state.selectedSource}
+                  selectedBundles={state.selectedBundles}
                   updateSelectedSource={updateSelectedSource}
                   sourceView={sourceView}
                   outputFile={
