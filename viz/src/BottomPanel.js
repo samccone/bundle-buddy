@@ -2,11 +2,12 @@ import React, { Component } from "react";
 
 class BottomPanel extends Component {
   render() {
-    const { summarySentence } = this.props;
+    const { summarySentence, sourceView } = this.props;
 
     return (
       <div className="col-xs-12">
         {summarySentence}
+        {sourceView}
       </div>
     );
   }
