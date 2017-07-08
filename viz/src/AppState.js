@@ -37,21 +37,25 @@ class AppState extends Component {
     }
   }
 
+  updateRoute(route) {
+    this.props.history.push(`${route}${window.location.search}`);
+  }
+
   updateSelectedBundles(newBundle) {
     if (newBundle === this.state.selectedBundles) {
-      this.props.history.push("");
+      this.updateRoute("/");
     } else {
-      this.props.history.push("/" + newBundle);
+      this.updateRoute("/" + newBundle);
     }
   }
 
   updateSelectedSource(newSource) {
     if (newSource === this.state.selectedSource) {
-      this.props.history.push(
+      this.updateRoute(
         this.state.selectedBundles ? "/" + this.state.selectedBundles : ""
       );
     } else {
-      this.props.history.push(
+      this.updateRoute(
         `/${this.state.selectedBundles}/${encodeURIComponent(newSource)}`
       );
     }
