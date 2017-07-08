@@ -62,6 +62,10 @@ export class Logger {
     console.warn(chalk.white.bgRed.bold(s));
   }
 
+  success(s: string) {
+    console.warn(chalk.white.bgGreen.bold(s));
+  }
+
   info(s: string) {
     if (this.logLevel === "verbose") {
       console.warn(chalk.grey(s));

@@ -41,3 +41,14 @@ export type SourceFiles = {
 };
 
 export type LogLevels = "silent" | "verbose";
+
+export type BundleToSources = Map<
+  string,
+  {
+    [srcFile: string]: {
+      inBundleCount: number;
+      containedInBundles: string[];
+      count: number;
+    };
+  }
+>;

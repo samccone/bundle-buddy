@@ -8,7 +8,8 @@ import {
   SourceTrack,
   FileDetail,
   SourceToBundles,
-  LogLevels
+  LogLevels,
+  BundleToSources
 } from "./types";
 import {
   Logger,
@@ -17,6 +18,18 @@ import {
   hashBundlesToKey,
   getOriginalFileNameFromSourceName
 } from "./utils";
+
+function doBundlesHaveDuplication(bundleToSources: BundleToSources) {
+  for (let bundle of bundleToSources.values()) {
+    for (let sourceFileName of Object.keys(bundle)) {
+      if (bundle[sourceFileName].inBundleCount > 1) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
 
 function extractHitInto(sourceFiles: SourceFiles, sourcePath: string) {
   const map = fs.readFileSync(path.resolve(sourcePath), "utf-8");
@@ -84,16 +97,8 @@ export function processSourceMaps(
   const sourceToBundles: SourceToBundles = {};
   const lineHitMap: LineHitMap = new Map();
   const sourceFiles: SourceFiles = {};
-  const bundleToSources = new Map<
-    string,
-    {
-      [srcFile: string]: {
-        inBundleCount: number;
-        containedInBundles: string[];
-        count: number;
-      };
-    }
-  >();
+  const bundleToSources: BundleToSources = new Map();
+
   const sourceFileGroups = new Map<string, { [key: number]: FileDetail }>();
   const sourceFileToGrouped = new Map<
     string,
@@ -194,6 +199,11 @@ export function processSourceMaps(
 
   if (Array.from(lineHitMap.keys()).length === 0) {
     logger.error("No bundle source maps were processed.");
+    process.exit(1);
+  }
+
+  if (!doBundlesHaveDuplication(bundleToSources)) {
+    logger.success("No bundle duplication detected 📯.");
     process.exit(1);
   }
 
