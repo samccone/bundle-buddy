@@ -108,7 +108,15 @@ export function processSourceMaps(
   // Calculate a source line to bundle mapping hash
   for (const sourceMap of bundleSourceMaps) {
     logger.info(`Processing ${sourceMap}`);
-    const hitInfo = extractHitInto(sourceFiles, sourceMap);
+    let hitInfo: Map<string, SourceTrack>;
+
+    try {
+      hitInfo = extractHitInto(sourceFiles, sourceMap);
+    } catch (e) {
+      logger.error(`Error processing ${sourceMap}, ${e}`);
+      continue;
+    }
+
     const bundleHits = sourceMapToLineHits(hitInfo);
 
     for (let hit of bundleHits) {
@@ -182,6 +190,11 @@ export function processSourceMaps(
         )
       );
     }
+  }
+
+  if (Array.from(lineHitMap.keys()).length === 0) {
+    logger.error("No bundle source maps were processed.");
+    process.exit(1);
   }
 
   return {

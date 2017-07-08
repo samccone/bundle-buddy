@@ -59,7 +59,7 @@ export class Logger {
   }
 
   error(s: string) {
-    console.warn(chalk.red(s));
+    console.warn(chalk.white.bgRed.bold(s));
   }
 
   info(s: string) {
