@@ -26,7 +26,6 @@ class Files extends Component {
       slices,
       stats,
       updateSelectedBundles,
-      sourceFiles,
       className
     } = this.props;
 
@@ -38,17 +37,6 @@ class Files extends Component {
       marginTop: 2
     };
 
-    // let sourceFileTable;
-
-    // if (className) {
-    //   sourceFileTable = (
-    //     <div className="row">
-    //       <div className="col-xs-12">
-    //         <BundleFileTable rows={sourceFiles} />
-    //       </div>
-    //     </div>
-    //   );
-    // }
     return (
       <div
         className={`bundle-file-info ${className}`}

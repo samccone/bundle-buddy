@@ -5,11 +5,10 @@ import {
   forceCollide,
   forceManyBody,
   forceCenter,
-  forceX,
-  forceY
+  forceX
 } from "d3-force";
 import { select } from "d3-selection";
-import { max, min, mean } from "d3-array";
+import { extent, max } from "d3-array";
 import { scaleSqrt } from "d3-scale";
 import { colorScale } from "./color";
 import { pie, arc } from "d3-shape";
@@ -17,12 +16,9 @@ import { legendColor, legendSize } from "d3-svg-legend";
 import * as d3 from "d3-transition";
 import numeral from "numeral";
 import Dimensions from "react-dimensions";
-import {
-  annotation,
-  annotationCallout,
-  annotationCalloutRect
-} from "d3-svg-annotation";
+import { annotation, annotationCalloutCircle } from "d3-svg-annotation";
 import { stripHashes } from "./util";
+import { blueGrey100 } from "material-ui/styles/colors";
 
 const width = 800;
 const height = 500;
@@ -34,68 +30,44 @@ function drawNetwork({
   links,
   outputNodeSummary,
   updateSelectedBundles,
-  updateSelectedSource,
-  selectedBundles,
-  selectedSource,
   containerWidth
 }) {
-  const filtered = selectedBundles !== null;
   const svg = select("svg#network");
   const maxLines = max(nodes, d => d.size);
-  const size = scaleSqrt().domain([1, maxLines]).range([1, filtered ? 60 : 30]);
-  const cacheMatch = cachedPositions[`${selectedBundles}-${window.innerWidth}`];
+  const size = scaleSqrt().domain([1, maxLines]).range([1, 30]);
+  const cacheMatch = cachedPositions[`${window.innerWidth}`];
   if (cacheMatch) {
     nodes = JSON.parse(cacheMatch.nodes);
     links = JSON.parse(cacheMatch.links);
   } else {
     const simulation = forceSimulation()
-      .force("link", forceLink().id(d => d.id).strength(filtered ? 0.06 : 2))
+      .force("link", forceLink().id(d => d.id).strength(2))
       .force("collide", forceCollide().radius(d => size(d.size) + 1))
       .force("forceX", forceX(height / 2).strength(0.05))
-      .force("charge", forceManyBody().strength(filtered ? -50 : -10))
+      .force("charge", forceManyBody().strength(-10))
       .force("center", forceCenter(width / 2, height / 2));
-
-    if (filtered) {
-      simulation.force(
-        "forceY",
-        forceY(
-          d =>
-            d.id === selectedBundles
-              ? height / 4
-              : d.type === "input" ? height / 2 : height * 3 / 4
-        ).strength(2)
-      );
-
-      const totalInputNodes = nodes.filter(d => d.type === "input").length;
-      const inputIncrement = width / (totalInputNodes + 1);
-      const totalOtherBundles = nodes.length - totalInputNodes - 1;
-      const otherBundleIncrement = width / (totalOtherBundles + 1);
-      let inputCounter = 0;
-      let otherBundleCounter = 0;
-
-      simulation.force(
-        "forceX",
-        forceX(d => {
-          if (d.id === selectedBundles) return width / 2;
-          if (d.type === "input") {
-            inputCounter++;
-            return inputIncrement * inputCounter;
-          } else {
-            otherBundleCounter++;
-            return otherBundleIncrement * otherBundleCounter;
-          }
-        }).strength(1.2)
-      );
-    }
 
     simulation.nodes(nodes);
     simulation.force("link").links(links);
-
-    simulation.restart();
-    for (let i = 0; i < 150; i++) simulation.tick();
     simulation.stop();
 
-    cachedPositions[`${selectedBundles}-${window.innerWidth}`] = {
+    for (let i = 0; i < 150; i++) simulation.tick();
+
+    const xExtent = extent(nodes, d => d.x);
+    const yExtent = extent(nodes, d => d.y);
+
+    const xRange = xExtent[1] - xExtent[0];
+    const yRange = yExtent[1] - yExtent[0];
+
+    if (yRange > xRange) {
+      nodes.forEach(d => {
+        const y = parseFloat(d.y);
+        d.y = parseFloat(d.x);
+        d.x = y;
+      });
+    }
+
+    cachedPositions[`${window.innerWidth}`] = {
       nodes: JSON.stringify(nodes),
       links: JSON.stringify(links)
     };
@@ -108,9 +80,34 @@ function drawNetwork({
 
   const node = svg.select("g.nodes").selectAll("g.node").data(nodes);
 
-  node.enter().append("g").attr("class", d => {
-    return `node ${d.id === selectedBundles ? "selectedBundle" : d.type}`;
-  });
+  node
+    .enter()
+    .append("g")
+    .attr("class", d => {
+      return `node ${d.type}`;
+    })
+    .on("mouseover", function(d) {
+      const hoverAnnotations = annotation().annotations([
+        {
+          note: {
+            title: d.type === "input" ? "Source File" : "Bundle File",
+            label: stripHashes(d.id),
+            align: "middle"
+          },
+          type: annotationCalloutCircle,
+          dy: 40 + size(d.size),
+          x: d.x,
+          y: d.y,
+          subject: {
+            radius: size(d.size) + 3
+          }
+        }
+      ]);
+      svg.select("g.hoverAnnotations").call(hoverAnnotations);
+    })
+    .on("mouseout", function(d) {
+      svg.select("g.hoverAnnotations").selectAll("g").remove();
+    });
 
   svg.select("g.nodes").selectAll("g.node").each(function(d) {
     const circle = select(this).selectAll("circle").data([d]);
@@ -123,48 +120,18 @@ function drawNetwork({
         return size(d.size);
       })
       .attr("fill", function(d) {
-        return d.type === "output" ? color(0) : color(d.inBundleFiles.length);
+        return d.type === "output"
+          ? color(0)
+          : d.inBundleFiles.length === 1
+            ? blueGrey100
+            : color(d.inBundleFiles.length);
       });
-
-    if (selectedBundles) {
-      svg
-        .selectAll("g.node circle")
-        .on("click", function(d) {
-          if (d.type === "output") {
-            updateSelectedBundles(d.id);
-          } else {
-            updateSelectedSource(d.id);
-          }
-        })
-        .on("mouseout", function() {
-          svg.selectAll("g.node").classed("inactive", false);
-          svg.selectAll("g.links line").classed("active", false);
-        });
-
-      if (!selectedSource) {
-        svg.selectAll("g.node circle").on("mouseover", function(hover) {
-          if (hover.id !== selectedBundles) {
-            if (hover.type === "input") {
-              applyClassForHighlight({
-                svg,
-                links,
-                matchID: hover.id,
-                inactiveClass: "inactive",
-                activeClass: "active"
-              });
-            }
-          }
-        });
-      } else {
-        svg.selectAll("g.node circle").on("mouseover", null);
-      }
-    }
 
     circle.exit().remove();
 
     const slices = outputNodeSummary[d.id];
     if (slices) {
-      const pieLayout = pie().value(d => d.value);
+      const pieLayout = pie().value(d => d.value).sort((a, b) => b.key - a.key);
       const path = arc().innerRadius(0).outerRadius(size(d.size) - 2);
 
       const pieSlices = select(this)
@@ -188,15 +155,6 @@ function drawNetwork({
 
   svg.selectAll("g.node").classed("inactiveSource", false);
   svg.selectAll("g.links line").classed("activeSource", false);
-  if (selectedSource) {
-    applyClassForHighlight({
-      svg,
-      links,
-      matchID: selectedSource,
-      inactiveClass: "inactiveSource",
-      activeClass: "activeSource"
-    });
-  }
 
   node.exit().remove();
 
@@ -243,72 +201,49 @@ function drawNetwork({
   svg.select("g.sizeLegend").call(sizeLegend);
   updateNetworkPosition(containerWidth);
 
-  let annotations = [];
+  const annotations = [];
 
-  if (selectedBundles) {
-    const match = svg.select(".node.selectedBundle");
-    const matchBBox = match.node().getBBox();
+  const rightBundle = nodes
+    .sort((a, b) => b.x - a.x)
+    .find(d => d.type === "output");
+  const nodeBBox = select("svg g.nodes").node().getBBox();
 
-    const nx = min(svg.selectAll(".node").data(), d => d.x - size(d.size)) - 10;
-
-    const sources = svg
-      .selectAll(".node")
-      .data()
-      .filter(d => d.type === "input");
-    const minSource = min(sources, d => d.x);
-    const maxSource = max(sources, d => d.x);
-    const avgY = mean(sources, d => d.y);
-    const maxHeight = size(max(sources, d => d.size));
-    const rectPadding = 20;
-    const wrap = containerWidth / 2 - (match.datum().x - nx);
-
-    const selectedBundlesY = max(svg.selectAll(".node").data(), d => d.y);
-
-    annotations = [
-      {
-        note: {
-          title: "Selected Bundle",
-          wrap,
-          label: stripHashes(selectedBundles),
-          align: "middle",
-          lineType: "vertical"
-        },
-        type: annotationCallout,
-        nx,
-        x: match.datum().x,
-        y: match.datum().y
+  if (rightBundle) {
+    annotations.push({
+      note: {
+        title: "Bundle File",
+        label: "Inner pie chart shows overlapping code",
+        align: "middle"
       },
-      {
-        note: {
-          title: "Overlapping Bundles",
-          wrap,
-          align: "middle",
-          lineType: "vertical"
-        },
-        type: annotationCallout,
-        nx,
-        x: nx + 10,
-        y: selectedBundlesY
-      },
-      {
-        note: {
-          title: "Source files",
-          label: "hover and click to select",
-          wrap,
-          align: "middle",
-          lineType: "vertical"
-        },
-        subject: {
-          width: maxSource - minSource + rectPadding * 2,
-          height: maxHeight + rectPadding * 2
-        },
-        nx: Math.min(nx, minSource - rectPadding - 1),
-        x: minSource - rectPadding,
-        y: avgY - (maxHeight + rectPadding * 2) / 2,
-        dy: (maxHeight + rectPadding * 2) / 2,
-        type: annotationCalloutRect
+      type: annotationCalloutCircle,
+      x: rightBundle.x,
+      y: rightBundle.y,
+      ny: nodeBBox.y,
+      subject: {
+        radius: size(rightBundle.size) + 3
       }
-    ];
+    });
+  }
+
+  const leftSourceFile = nodes
+    .sort((a, b) => a.x - b.x)
+    .find(d => d.type === "input");
+
+  if (leftSourceFile) {
+    annotations.push({
+      note: {
+        title: "Source File",
+        label: "Grey = no overlapping, otherwise colored by degree of overlap",
+        align: "middle"
+      },
+      type: annotationCalloutCircle,
+      x: leftSourceFile.x,
+      y: leftSourceFile.y,
+      ny: nodeBBox.y,
+      subject: {
+        radius: size(leftSourceFile.size) + 3
+      }
+    });
   }
 
   const makeAnnotations = annotation().annotations(annotations);
@@ -346,9 +281,8 @@ function updateNetworkPosition(width) {
     `translate(${width / 2 -
       nodeBBox.width / 2 -
       nodeBBox.x +
-      40}, ${-nodeBBox.y + 20})`
+      40}, ${-nodeBBox.y + (300 - nodeBBox.height / 2) - 30})`
   );
-
   const sizeLegendBBox = select("svg#network g.sizeLegend").node().getBBox();
   select("svg#network g.sizeLegend").attr(
     "transform",
@@ -372,11 +306,7 @@ class NetworkAnalysis extends Component {
 
   componentDidUpdate(prevProps) {
     deferWork(() => {
-      if (prevProps.selectedSource !== this.props.selectedSource) {
-        drawNetwork(this.props);
-      } else if (prevProps.selectedBundles !== this.props.selectedBundles) {
-        drawNetwork(this.props);
-      } else if (prevProps.containerWidth !== this.props.containerWidth) {
+      if (prevProps.containerWidth !== this.props.containerWidth) {
         updateNetworkPosition(this.props.containerWidth);
       }
     }, this);
@@ -389,9 +319,10 @@ class NetworkAnalysis extends Component {
       <div className="row">
         <svg id="network" width={containerWidth} height={600}>
           <g className="fullNetwork">
-            <g className="annotations" />
             <g className="links" />
             <g className="nodes" />
+            <g className="annotations" />
+            <g className="hoverAnnotations" />
           </g>
           <g
             className="colorLegend legend"

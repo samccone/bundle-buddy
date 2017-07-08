@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./flexboxgrid.min.css";
 import Overview from "./Overview";
 import NetworkAnalysis from "./NetworkAnalysis";
+import NetworkZoom from "./NetworkZoom";
 import BottomPanel from "./BottomPanel";
 import numeral from "numeral";
-import { stripHashes } from "./util";
 import { forceSimulation, forceLink } from "d3-force";
 
 const filterNetwork = (name, nodes, links) => {
@@ -20,8 +20,6 @@ const filterNetwork = (name, nodes, links) => {
     simulation.nodes(nodes);
     simulation.force("link").links(links);
   }
-
-  const filteredNodeKeys = [name];
 
   const children = [];
   const childrenLinks = links.filter(d => {
@@ -69,7 +67,6 @@ class App extends Component {
   render() {
     const {
       updateSelectedBundles,
-      clearSelectedBundles,
       updateSelectedSource,
       state
     } = this.props.appState;
@@ -117,6 +114,8 @@ class App extends Component {
       );
     }
 
+    const Network = state.selectedBundles ? NetworkZoom : NetworkAnalysis;
+
     return (
       <div className="App wrap container-fluid">
         <div className="App-body">
@@ -133,7 +132,7 @@ class App extends Component {
             </div>
             <div className="col-xs-8 col-md-9 main-panel">
               <div className="networkAnalysis">
-                <NetworkAnalysis
+                <Network
                   nodes={nodes}
                   links={links}
                   height={600}

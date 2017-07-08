@@ -13,6 +13,9 @@
 .annotation.callout.rect path.subject {
   fill: var(--annotation-color);
   font-size: .8em;
+}
+
+.networkZoom .annotation text {
   text-anchor: end;
 }
 

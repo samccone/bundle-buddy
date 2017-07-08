@@ -11,12 +11,7 @@ class Overview extends Component {
   }
 
   render() {
-    const {
-      inputFiles,
-      outputFiles,
-      updateSelectedBundles,
-      selectedBundles
-    } = this.props;
+    const { outputFiles, updateSelectedBundles, selectedBundles } = this.props;
     const overlapFiles = outputFiles.filter(d => d[2].highestBundle > 1);
 
     return (
@@ -28,7 +23,6 @@ class Overview extends Component {
             name={d[0]}
             slices={Object.values(d[3])}
             stats={d[2]}
-            sourceFiles={d[1]}
             updateSelectedBundles={updateSelectedBundles}
           />
         )}
