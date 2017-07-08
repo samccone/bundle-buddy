@@ -58,6 +58,10 @@ export class Logger {
     this.logLevel = opts.logLevel;
   }
 
+  error(s: string) {
+    console.warn(chalk.red(s));
+  }
+
   info(s: string) {
     if (this.logLevel === "verbose") {
       console.warn(chalk.grey(s));

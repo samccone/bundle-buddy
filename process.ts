@@ -73,7 +73,7 @@ function extractHitInto(sourceFiles: SourceFiles, sourcePath: string) {
 }
 
 export function processSourceMaps(
-  outputFiles: string[],
+  bundleSourceMaps: string[],
   opts: { logLevel: LogLevels } = { logLevel: "silent" }
 ) {
   opts.logLevel = opts.logLevel || "silent";
@@ -100,8 +100,13 @@ export function processSourceMaps(
     { [key: string]: { count: number; files: number } }
   >();
 
+  if (bundleSourceMaps.length === 0) {
+    logger.error("Fatal Error: no source maps passed :(");
+    process.exit(1);
+  }
+
   // Calculate a source line to bundle mapping hash
-  for (const sourceMap of outputFiles) {
+  for (const sourceMap of bundleSourceMaps) {
     logger.info(`Processing ${sourceMap}`);
     const hitInfo = extractHitInto(sourceFiles, sourceMap);
     const bundleHits = sourceMapToLineHits(hitInfo);
@@ -189,7 +194,7 @@ export function processSourceMaps(
     sourceFiles,
     // Bundle  to source file line use
     bundleFileStats: bundleToSources,
-    outputFiles: outputFiles.map(f => path.basename(f)),
+    outputFiles: bundleSourceMaps.map(f => path.basename(f)),
     groupedBundleStats: sourceFileToGrouped,
     stats: sourceFileGroups
   };
