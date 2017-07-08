@@ -420,7 +420,7 @@ function applyClassForHighlight({
 }
 
 function updateNetworkPosition(width) {
-  const nodeBBox = select("svg g.nodes").node().getBBox();
+  const nodeBBox = select("svg#networkZoom g.nodes").node().getBBox();
 
   select("svg#networkZoom g.fullNetwork").attr(
     "transform",

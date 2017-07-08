@@ -112,7 +112,7 @@ g.links line.activeSource {
   display: flex;
 }
 
-.source-container { 
+.source-container {
   height: 500px;
   flex-grow: 1;
   overflow: scroll;
@@ -132,7 +132,7 @@ g.links line.activeSource {
   padding-bottom: 12px;
   padding-top: 15px;
   font-weight: normal;
-  color: #676767; 
+  color: #676767;
 }
 
 .viewing-file-header .source {
@@ -146,4 +146,10 @@ g.links line.activeSource {
 
 .source-container .overlap-info {
   word-break: break-all;
+}
+svg#fileMap rect.unselected {
+  opacity: .5;
+}
+
+svg#fileMap rect.selected {
 }
