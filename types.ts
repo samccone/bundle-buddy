@@ -33,7 +33,11 @@ export interface Node {
 
 export type SourceToBundles = { [source: string]: Set<string> };
 export type LineHitMap = Map<string, { from: string[]; count: number }>;
-export type SourceFiles = { [sourceFileName: string]: { 
-  sourceLines: number;
-  source: string[];
-} };
+export type SourceFiles = {
+  [sourceFileName: string]: {
+    sourceLines: number;
+    source: string[];
+  };
+};
+
+export type LogLevels = "silent" | "verbose";

@@ -1,4 +1,5 @@
 import { Node } from "./types";
+import { Logger } from "./utils";
 
 function sumLines(obj: { [key: string]: { count: number } }) {
   return Object.keys(obj).map(k => obj[k]!.count).reduce((p, c) => {
@@ -15,8 +16,10 @@ function buildLinks(
         count: number;
       };
     }
-  >
+  >,
+  logger: Logger
 ) {
+  logger.info("Building graph links between bundles.");
   const ret: { source: string; target: string; strength: number }[] = [];
 
   for (const bundleName of groupedOutputFiles.keys()) {
@@ -47,9 +50,12 @@ export function buildGraph(
       };
     }
   >,
-  sourceToBundles: { [sourceName: string]: Set<string> }
+  sourceToBundles: { [sourceName: string]: Set<string> },
+  logger: Logger
 ) {
   const nodes: Node[] = [];
+
+  logger.info("Building graph between bundles.");
 
   // build input nodes
   for (const sourceFileName of groupedSourceFiles.keys()) {
@@ -72,6 +78,6 @@ export function buildGraph(
 
   return {
     nodes,
-    links: buildLinks(groupedOutputFiles)
+    links: buildLinks(groupedOutputFiles, logger)
   };
 }

@@ -7,9 +7,11 @@ import {
   LineHitMap,
   SourceTrack,
   FileDetail,
-  SourceToBundles
+  SourceToBundles,
+  LogLevels
 } from "./types";
 import {
+  Logger,
   hashToFileAndLineNumber,
   sourceMapToLineHits,
   hashBundlesToKey,
@@ -36,10 +38,12 @@ function extractHitInto(sourceFiles: SourceFiles, sourcePath: string) {
 
     // If this is the first time we are seeing the file, setup the tracking object.
     if (!usedSourceInfo.has(realFilePath)) {
-      const sourceLines = sourceMapConsumer.sourceContentFor(info.source).split("\n"); 
+      const sourceLines = sourceMapConsumer
+        .sourceContentFor(info.source)
+        .split("\n");
       sourceFiles[realFilePath] = {
         sourceLines: sourceLines.length,
-        source: sourceLines 
+        source: sourceLines
       };
 
       usedSourceInfo.set(realFilePath, {
@@ -68,7 +72,14 @@ function extractHitInto(sourceFiles: SourceFiles, sourcePath: string) {
   return usedSourceInfo;
 }
 
-export function processSourceMaps(outputFiles: string[]) {
+export function processSourceMaps(
+  outputFiles: string[],
+  opts: { logLevel: LogLevels } = { logLevel: "silent" }
+) {
+  opts.logLevel = opts.logLevel || "silent";
+
+  const logger = new Logger(opts);
+
   // Mapping from Source Files to Bundle files
   const sourceToBundles: SourceToBundles = {};
   const lineHitMap: LineHitMap = new Map();
@@ -91,6 +102,7 @@ export function processSourceMaps(outputFiles: string[]) {
 
   // Calculate a source line to bundle mapping hash
   for (const sourceMap of outputFiles) {
+    logger.info(`Processing ${sourceMap}`);
     const hitInfo = extractHitInto(sourceFiles, sourceMap);
     const bundleHits = sourceMapToLineHits(hitInfo);
 
@@ -168,7 +180,12 @@ export function processSourceMaps(outputFiles: string[]) {
   }
 
   return {
-    graph: buildGraph(sourceFileToGrouped, bundleToSources, sourceToBundles),
+    graph: buildGraph(
+      sourceFileToGrouped,
+      bundleToSources,
+      sourceToBundles,
+      logger
+    ),
     sourceFiles,
     // Bundle  to source file line use
     bundleFileStats: bundleToSources,

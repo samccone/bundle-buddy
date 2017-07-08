@@ -1,4 +1,5 @@
-import { SourceTrack } from "./types";
+import { LogLevels, SourceTrack } from "./types";
+import * as chalk from "chalk";
 
 const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/m;
 const HASH_SPLITTER = "||||";
@@ -49,4 +50,17 @@ export function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
   }
 
   return sourceToLineMapping;
+}
+
+export class Logger {
+  private logLevel: LogLevels;
+  constructor(opts: { logLevel: LogLevels }) {
+    this.logLevel = opts.logLevel;
+  }
+
+  info(s: string) {
+    if (this.logLevel === "verbose") {
+      console.warn(chalk.grey(s));
+    }
+  }
 }
