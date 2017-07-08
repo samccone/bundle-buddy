@@ -17,14 +17,16 @@ const cli = meow(
     alias: {
       o: "stdout",
       v: "verbose"
-    }
+    },
+    boolean: ["stdout", "verbose"]
   }
 );
+
 const processed = processSourceMaps(cli.input, {
-  logLevel: cli.flags["verbose"] ? "verbose" : "silent"
+  logLevel: cli.flags["verbose"] || cli.flags["v"] ? "verbose" : "silent"
 });
 
-if (cli.flags["stdout"]) {
+if (cli.flags["stdout"] || cli.flags["o"]) {
   console.log(
     JSON.stringify({
       graph: processed.graph,
