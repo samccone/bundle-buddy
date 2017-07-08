@@ -8,8 +8,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { max, sum } from "d3-array";
 import { nest } from "d3-collection";
 
+const toLoadPath= new URLSearchParams((window.location.search || '').slice(1)).get('file')  || '/demo.json';
+
 const target = document.querySelector("#root");
-fetch("/output.json").then(v => v.json()).then(data => {
+fetch(toLoadPath, {credentials: 'include'}).then(v => v.json()).then(data => {
   //TODO move this data transformation into the scripts
   let relatedNodes = [];
   let orphanNodes = [];
@@ -36,7 +38,7 @@ fetch("/output.json").then(v => v.json()).then(data => {
     stats.pctOverlap = stats.totalOverlapLines / stats.totalLines;
     d.push(stats);
 
-    if (stats.highestBundle > 1) {
+    if (stats.highestBundle > 1)  {
       relatedNodes.push(d);
     } else {
       orphanNodes.push(d);
@@ -110,4 +112,6 @@ fetch("/output.json").then(v => v.json()).then(data => {
     </Router>,
     target
   );
+}).catch(e => {
+  document.body.textContent = `Error fetching data from ${toLoadPath}, ${e}`;
 });
