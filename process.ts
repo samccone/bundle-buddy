@@ -6,10 +6,11 @@ import {
   SourceFiles,
   LineHitMap,
   SourceTrack,
-  FileDetail,
   SourceToBundles,
   LogLevels,
-  BundleToSources
+  BundleToSources,
+  SourceFileLinesGroupedByCommonBundle,
+  PerFileStats
 } from "./types";
 import {
   Logger,
@@ -18,6 +19,40 @@ import {
   hashBundlesToKey,
   getOriginalFileNameFromSourceName
 } from "./utils";
+
+/*
+ * Generates a mapping from source files to grouped lines by common bundle use. 
+ */
+function generateGroupedFileStats(fileStats: PerFileStats) {
+  const ret: SourceFileLinesGroupedByCommonBundle = {};
+
+  for (const sourceFileName of fileStats.keys()) {
+    if (ret[sourceFileName] === undefined) {
+      ret[sourceFileName] = {};
+    }
+
+    for (const lineNumber of Object.keys(fileStats.get(sourceFileName))) {
+      const lineNumberInt = parseInt(lineNumber, 10);
+      const lineInfo = fileStats.get(sourceFileName)![lineNumberInt];
+
+      if (
+        ret[sourceFileName][hashBundlesToKey(lineInfo.inBundles)] === undefined
+      ) {
+        ret[sourceFileName][hashBundlesToKey(lineInfo.inBundles)] = {
+          lines: [],
+          bundles: lineInfo.inBundles,
+          sourceName: sourceFileName
+        };
+      }
+
+      ret[sourceFileName][hashBundlesToKey(lineInfo.inBundles)].lines.push(
+        lineNumberInt
+      );
+    }
+  }
+
+  return ret;
+}
 
 function doBundlesHaveDuplication(bundleToSources: BundleToSources) {
   for (let bundle of bundleToSources.values()) {
@@ -99,7 +134,7 @@ export function processSourceMaps(
   const sourceFiles: SourceFiles = {};
   const bundleToSources: BundleToSources = new Map();
 
-  const sourceFileGroups = new Map<string, { [key: number]: FileDetail }>();
+  const perFileStats: PerFileStats = new Map();
   const sourceFileToGrouped = new Map<
     string,
     { [key: string]: { count: number; files: number } }
@@ -141,8 +176,8 @@ export function processSourceMaps(
     const match = lineHitMap.get(lineHash)!;
     const details = hashToFileAndLineNumber(lineHash);
 
-    if (!sourceFileGroups.has(details.fileName)) {
-      sourceFileGroups.set(details.fileName, {});
+    if (!perFileStats.has(details.fileName)) {
+      perFileStats.set(details.fileName, {});
     }
 
     if (!sourceFileToGrouped.has(details.fileName)) {
@@ -180,7 +215,7 @@ export function processSourceMaps(
       files: match.from.length
     };
 
-    sourceFileGroups.get(details.fileName)![details.lineNumber] = {
+    perFileStats.get(details.fileName)![details.lineNumber] = {
       sourceFile: details.fileName,
       sourceLine: details.lineNumber,
       inBundles: Array.from(match.from)
@@ -215,10 +250,13 @@ export function processSourceMaps(
       logger
     ),
     sourceFiles,
-    // Bundle  to source file line use
+    perFileStats,
+    sourceFileLinesGroupedByCommonBundle: generateGroupedFileStats(
+      perFileStats
+    ),
+    // Bundle to source file line use
     bundleFileStats: bundleToSources,
     outputFiles: bundleSourceMaps.map(f => path.basename(f)),
-    groupedBundleStats: sourceFileToGrouped,
-    stats: sourceFileGroups
+    groupedBundleStats: sourceFileToGrouped
   };
 }

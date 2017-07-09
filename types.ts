@@ -1,4 +1,4 @@
-export interface FileDetail {
+export interface SourceFileLineInfo {
   sourceFile: string;
   sourceLine: number;
   inBundles: string[];
@@ -52,3 +52,18 @@ export type BundleToSources = Map<
     };
   }
 >;
+
+export type PerFileStats = Map<
+  string,
+  { [sourceFileLine: number]: SourceFileLineInfo }
+>;
+
+export type SourceFileLinesGroupedByCommonBundle = {
+  [sourceName: string]: {
+    [bundleHash: string]: {
+      lines: number[];
+      bundles: string[];
+      sourceName: string;
+    };
+  };
+};

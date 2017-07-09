@@ -91,7 +91,7 @@ fetch(toLoadPath, {credentials: 'include'}).then(v => v.json()).then(data => {
     networkNodes,
     networkLinks,
     outputFiles,
-    perFileStats: data.stats,
+    perFileStats: data.perFileStats,
     sourceFiles: data.sourceFiles
   };
 

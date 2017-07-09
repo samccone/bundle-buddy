@@ -39,7 +39,9 @@ const stringifedData = JSON.stringify({
   bundleFileStats: [...processed.bundleFileStats],
   outputFiles: processed.outputFiles,
   groupedBundleStats: [...processed.groupedBundleStats],
-  stats: [...processed.stats]
+  perFileStats: [...processed.perFileStats],
+  sourceFileLinesGroupedByCommonBundle:
+    processed.sourceFileLinesGroupedByCommonBundle
 });
 
 if (cli.flags["stdout"] || cli.flags["o"]) {
