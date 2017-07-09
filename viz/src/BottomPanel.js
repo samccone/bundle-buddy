@@ -49,7 +49,6 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .range([0, height]);
 
     const createAnnotations = source => {
-      console.log("source", source);
       return files
         .filter((d, i) => {
           console.log("in filter", source, d.name, d.name === source);
@@ -178,6 +177,43 @@ class BottomPanel extends Component {
     }
   }
 
+  buildRangeString(bundleGroup) {
+    const sortedLines = bundleGroup.lines.sort((a, b) => a - b);
+    const ranges = [];
+    const ret = [];
+
+    for (const line of sortedLines) {
+      if (ranges.length === 0) {
+        ranges.push({
+          start: line,
+          end: line
+        });
+
+        continue;
+      }
+
+      if (ranges[ranges.length - 1].end + 1 === line) {
+        ranges[ranges.length - 1].end++;
+        continue;
+      }
+
+      ranges.push({
+        start: line,
+        end: line
+      });
+    }
+
+    for (const range of ranges) {
+      if (range.start === range.end) {
+        ret.push(`${range.start}`);
+      } else {
+        ret.push(`${range.start}-${range.end}`);
+      }
+    }
+
+    return ret.join(",");
+  }
+
   summarizeOverlapInfo(sourceOverlapInfo) {
     let ret = "";
 
@@ -187,9 +223,9 @@ class BottomPanel extends Component {
 
     for (const bundleGroupKey of Object.keys(sourceOverlapInfo)) {
       const bundleGroup = sourceOverlapInfo[bundleGroupKey];
-      ret += `Lines ${bundleGroup.lines
-        .sort((a, b) => a - b)
-        .join(",")} appear in bundles ${bundleGroup.bundles.join(",")}\n`;
+      ret += `Lines ${this.buildRangeString(
+        bundleGroup
+      )} appear in bundles ${bundleGroup.bundles.join(",")}\n`;
     }
 
     return ret;
