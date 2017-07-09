@@ -100,8 +100,10 @@ fetch(toLoadPath, { credentials: "include" })
       networkNodes,
       networkLinks,
       outputFiles,
-      perFileStats: data.stats,
-      sourceFiles: data.sourceFiles
+      perFileStats: data.perFileStats,
+      sourceFiles: data.sourceFiles,
+      sourceFileLinesGroupedByCommonBundle:
+        data.sourceFileLinesGroupedByCommonBundle
     };
 
     injectTapEventPlugin();

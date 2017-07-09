@@ -146,6 +146,9 @@ g.links line.activeSource {
 
 .source-container .overlap-info {
   word-break: break-all;
+  width: 400px;
+  font-size: 10px;
+  margin-left: 35px;
 }
 svg#fileMap rect.unselected {
   opacity: .5;
