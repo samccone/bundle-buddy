@@ -211,6 +211,7 @@ function drawNetwork({
       } else {
         updateSelectedSource(d.id);
       }
+      svg.select("g.hoverAnnotations").selectAll("g").remove();
     })
     .on("mouseout", function() {
       svg.selectAll("g.node").classed("inactive", false);
@@ -352,7 +353,6 @@ function drawNetwork({
 
   if (selectedSource) {
     const selected = sources.find(d => d.id === selectedSource);
-    console.log("selected", selected);
     annotations.push({
       className: createId(selected.id),
       note: {
