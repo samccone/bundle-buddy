@@ -107,6 +107,10 @@ function drawNetwork({
     })
     .on("mouseout", function(d) {
       svg.select("g.hoverAnnotations").selectAll("g").remove();
+    })
+    .filter(d => d.type === "output")
+    .on("click", function(d) {
+      updateSelectedBundles(d.id);
     });
 
   svg.select("g.nodes").selectAll("g.node").each(function(d) {
