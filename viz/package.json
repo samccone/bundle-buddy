@@ -9,7 +9,7 @@
     "d3-scale": "^1.0.6",
     "d3-selection": "^1.1.0",
     "d3-shape": "^1.2.0",
-    "d3-svg-annotation": "^1.17.1",
+    "d3-svg-annotation": "1.18.0",
     "d3-svg-legend": "^2.24.1",
     "d3-transition": "^1.1.0",
     "material-ui": "0.18.5",
@@ -34,9 +34,6 @@
     "eject": "react-scripts eject"
   },
   "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.ts": ["prettier --write", "git add"]
   }
 }

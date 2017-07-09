@@ -1874,9 +1874,9 @@ d3-shape@^1.2.0:
   dependencies:
     d3-path "1"
 
-d3-svg-annotation@^1.17.1:
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/d3-svg-annotation/-/d3-svg-annotation-1.17.1.tgz#f5326baf5cc1823651b0a247867230061fdb3bd2"
+d3-svg-annotation@1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/d3-svg-annotation/-/d3-svg-annotation-1.18.0.tgz#62e992ca61cd788369ddc7272b4a4e1cdc9f8352"
   dependencies:
     "@types/d3-dispatch" "1.0.4"
     "@types/d3-selection" "1.0.10"

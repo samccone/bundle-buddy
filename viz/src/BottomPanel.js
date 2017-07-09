@@ -48,10 +48,9 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .domain([0, totalCount])
       .range([0, height]);
 
-    const createAnnotations = source => {
+    const createAnnotations = (files, source) => {
       return files
         .filter((d, i) => {
-          console.log("in filter", source, d.name, d.name === source);
           return i < 6 || d.name === source;
         })
         .map(d => ({
@@ -69,10 +68,10 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
     };
 
     const sourceLabels = annotation()
-      .annotations(createAnnotations(selectedSource))
+      .annotations(createAnnotations(files, selectedSource))
       .accessors({ y: d => getRectMiddle(yScale, d) });
 
-    svg.select("g.annotations").call(sourceLabels);
+    svg.select("g.labels").call(sourceLabels);
 
     const chunks = svg.select("g.chunks").selectAll("rect").data(files);
 
@@ -80,17 +79,11 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .enter()
       .append("rect")
       .attr("class", "chunk")
+      .merge(chunks)
       .on("click", d => {
         updateSelectedSource(d.name);
-        console.log("here", createAnnotations(d.name));
-        sourceLabels
-          .annotations(createAnnotations(d.name))
-          .update()
-          .updatedAccessors()
-          .updateText();
-        //svg.select("g.annotations").call(sourceLabels);
+        sourceLabels.annotations(createAnnotations(files, d.name));
       })
-      .merge(chunks)
       .attr("width", 100)
       .attr("fill", d => colorScale(d.inBundleCount))
       .attr("x", 100)
@@ -291,7 +284,7 @@ class BottomPanel extends Component {
           <div className="source-details">
             <svg id="fileMap" width={width} height={height}>
               <g className="chunks" />
-              <g className="annotations" />
+              <g className="labels" />
             </svg>
             {sourceFile}
           </div>
