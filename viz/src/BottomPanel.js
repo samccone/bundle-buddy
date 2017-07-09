@@ -86,8 +86,9 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .attr("class", "chunk")
       .merge(chunks)
       .on("click", d => {
+        updateSelectedSource(d.name);
+
         deferWork(() => {
-          updateSelectedSource(d.name);
           sourceLabels.annotations(
             createAnnotations(
               files,
@@ -95,6 +96,7 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
             )
           );
           svg.select("g.hoverAnnotations").selectAll("g").remove();
+          sourceLabels.annotations(createAnnotations(files, d.name));
         });
       })
       .on("mouseover", function(hover) {
@@ -315,6 +317,10 @@ class BottomPanel extends Component {
 
     let sourceFile, bundleInfo, sourceTitles, sourceDetails;
 
+    if (this.sourceContainer != null) {
+      this.sourceContainer.scrollTop = 0;
+    }
+
     if (!selectedBundles) {
       bundleInfo = (
         <div>
@@ -352,6 +358,7 @@ class BottomPanel extends Component {
         sourceFile = (
           <div
             className="source-container"
+            ref={container => (this.sourceContainer = container)}
             style={{
               display: selectedSource === null ? "none" : "block"
             }}

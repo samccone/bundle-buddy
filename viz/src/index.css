@@ -162,6 +162,10 @@ svg#fileMap {
   overflow: visible;
 }
 
+svg#fileMap .chunk {
+  cursor: pointer;
+}
+
 svg#fileMap .annotation {
   font-size: .8em;
   text-anchor: end;
