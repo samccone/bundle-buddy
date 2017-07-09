@@ -1,4 +1,6 @@
 {
+  "name": "bundle-buddy",
+  "version": "0.0.4",
   "dependencies": {
     "chalk": "^2.0.1",
     "http-server": "^0.10.0",
@@ -22,7 +24,8 @@
   "scripts": {
     "start": "ts-node index.ts",
     "precommit": "lint-staged",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare-publish": "yarn run build && cd viz && yarn run build"
   },
   "bin": "bin.js",
   "lint-staged": {
