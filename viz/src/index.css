@@ -151,5 +151,10 @@ svg#fileMap rect.unselected {
   opacity: .5;
 }
 
-svg#fileMap rect.selected {
+svg#fileMap .annotation {
+  font-size: .8em;
+}
+
+svg#fileMap .annotation.selected {
+  font-weight: 900;
 }

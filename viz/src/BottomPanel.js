@@ -5,9 +5,22 @@ import { colorScale } from "./color";
 import SourceView from "./SourceView";
 import { fisheye } from "./util";
 import { annotation, annotationCallout } from "d3-svg-annotation";
+import { stripHashes } from "./util";
 
 const width = 200;
 const height = 500;
+
+function getLastFile(id) {
+  const dirs = id.split("/");
+  return dirs[dirs.length - 1];
+}
+
+function getRectMiddle(yScale, d) {
+  return (
+    yScale(d.totalCount) +
+    (yScale(d.totalCount + d.adjustedCount) - yScale(d.totalCount)) / 2
+  );
+}
 
 function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
   const svg = select("svg#fileMap");
@@ -16,28 +29,68 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
     let totalCount = 0;
     const files = Object.keys(outputFile[1])
       .map(d => {
+        const file = outputFile[1][d];
         return {
           name: d,
-          ...outputFile[1][d]
+          adjustedCount: file.inBundleCount * file.count,
+          ...file
         };
       })
       .filter(d => d.inBundleCount > 1)
-      .sort((a, b) => b.inBundleCount - a.inBundleCount)
+      .sort((a, b) => b.adjustedCount - a.adjustedCount)
       .map(d => {
         d.totalCount = totalCount;
-        totalCount += d.count;
+        totalCount += d.adjustedCount;
         return d;
       });
-
-    const chunks = svg.select("g.chunks").selectAll("rect").data(files);
 
     const yScale = fisheye(scaleLinear())
       .domain([0, totalCount])
       .range([0, height]);
+
+    const createAnnotations = source => {
+      console.log("source", source);
+      return files
+        .filter((d, i) => {
+          console.log("in filter", source, d.name, d.name === source);
+          return i < 6 || d.name === source;
+        })
+        .map(d => ({
+          className: d.name === source ? "selected" : "",
+          note: {
+            label: getLastFile(d.name),
+            align: "middle",
+            lineType: "vertical"
+          },
+          data: d,
+          type: annotationCallout,
+          x: 100,
+          dx: -10
+        }));
+    };
+
+    const sourceLabels = annotation()
+      .annotations(createAnnotations(selectedSource))
+      .accessors({ y: d => getRectMiddle(yScale, d) });
+
+    svg.select("g.annotations").call(sourceLabels);
+
+    const chunks = svg.select("g.chunks").selectAll("rect").data(files);
+
     chunks
       .enter()
       .append("rect")
-      .on("click", d => updateSelectedSource(d.name))
+      .attr("class", "chunk")
+      .on("click", d => {
+        updateSelectedSource(d.name);
+        console.log("here", createAnnotations(d.name));
+        sourceLabels
+          .annotations(createAnnotations(d.name))
+          .update()
+          .updatedAccessors()
+          .updateText();
+        //svg.select("g.annotations").call(sourceLabels);
+      })
       .merge(chunks)
       .attr("width", 100)
       .attr("fill", d => colorScale(d.inBundleCount))
@@ -45,7 +98,7 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .attr("y", d => yScale(d.totalCount))
       .attr(
         "height",
-        d => yScale(d.totalCount + d.count) - yScale(d.totalCount)
+        d => yScale(d.totalCount + d.adjustedCount) - yScale(d.totalCount)
       );
 
     svg.node().addEventListener("mousemove", function(d) {
@@ -53,10 +106,13 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       yScale.distortion(2.5).focus(mouseY);
 
       updateRects(svg, yScale);
+      sourceLabels.updatedAccessors();
     });
     svg.node().addEventListener("mouseout", function(d) {
-      yScale.focus(0);
+      yScale.distortion(3).focus(0);
       updateRects(svg, yScale);
+
+      sourceLabels.updatedAccessors();
     });
 
     chunks.exit().remove();
@@ -76,19 +132,17 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
     lines.exit().remove();
 
     highlightSelected(selectedSource);
-
-    const annotations = [];
-    const sourceLabels = annotation().annotations(annotations);
-
-    svg.select("g.annotations").call(sourceLabels);
   }
 }
 
 function updateRects(svg, yScale) {
   svg
-    .selectAll("rect")
+    .selectAll("rect.chunk")
     .attr("y", d => yScale(d.totalCount))
-    .attr("height", d => yScale(d.totalCount + d.count) - yScale(d.totalCount));
+    .attr(
+      "height",
+      d => yScale(d.totalCount + d.adjustedCount) - yScale(d.totalCount)
+    );
 
   svg
     .selectAll("line")
