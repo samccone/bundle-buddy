@@ -5,7 +5,7 @@ import { colorScale } from "./color";
 import SourceView from "./SourceView";
 import { fisheye } from "./util";
 import { annotation, annotationCallout } from "d3-svg-annotation";
-import { stripHashes, deferWork } from "./util";
+import { stripHashes, deferWork, removeMap } from "./util";
 
 const width = 200;
 const height = 500;
@@ -260,7 +260,7 @@ class BottomPanel extends Component {
         <ul>
           {bundles.map(bundle =>
             <li key={bundle}>
-              {bundle}
+              {removeMap(bundle)}
             </li>
           )}
         </ul>

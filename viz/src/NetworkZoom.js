@@ -123,7 +123,7 @@ function drawNetwork({
 
   const node = svg.select("g.nodes").selectAll("g.node").data(nodes);
 
-  node.enter().append("g").attr("class", d => {
+  node.enter().append("g").merge(node).attr("class", d => {
     return `node ${d.id === selectedBundles ? "selectedBundle" : d.type}`;
   });
 
@@ -144,9 +144,6 @@ function drawNetwork({
             ? blueGrey100
             : color(d.inBundleFiles.length);
       });
-
-    // svg
-    //   .selectAll("g.node circle")
 
     circle.exit().remove();
 
@@ -228,16 +225,17 @@ function drawNetwork({
             note: {
               title: hover.type === "input" ? "Source File" : "Bundle File",
               label: stripHashes(hover.id),
-              lineType:
-                hover.id === selectedBundles ? "vertical" : "horizontal",
+              lineType: hover.id === selectedBundles
+                ? "vertical"
+                : "horizontal",
               align: hover.id === selectedBundles ? "left" : "middle"
             },
             type: annotationCalloutCircle,
             dx: (hover.id === selectedBundles && 20 + size(hover.size)) || 0,
             dy:
               (hover.type === "input" && -20 - size(hover.size)) ||
-              (hover.id !== selectedBundles && 40 + size(hover.size)) ||
-              0,
+                (hover.id !== selectedBundles && 40 + size(hover.size)) ||
+                0,
             x: hover.tx,
             y: hover.ty,
             subject: {
@@ -327,6 +325,7 @@ function drawNetwork({
         lineType: "vertical"
       },
       type: annotationCallout,
+      className: "explainer",
       nx,
       x: nx + 10,
       y: selectedBundlesY
@@ -343,6 +342,7 @@ function drawNetwork({
         width: maxSource - minSource + rectPadding * 2,
         height: maxHeight + rectPadding * 2
       },
+      className: "explainer",
       nx: Math.min(nx, minSource - rectPadding - 1),
       x: minSource - rectPadding,
       y: avgY - (maxHeight + rectPadding * 2) / 2,
@@ -375,13 +375,12 @@ function drawNetwork({
       .map((d, i) => ({
         className: createId(d.id),
         note: {
-          title: "Bundle File",
           label: stripHashes(d.id),
           align: "middle"
         },
         type: annotationCalloutCircle,
         //dy: 40 + size(d.size),
-        ny: selectedBundlesY + 100 + i % 2 * 50,
+        ny: selectedBundlesY + 70 + i % 5 * 20,
         x: d.tx,
         y: d.ty,
         subject: {

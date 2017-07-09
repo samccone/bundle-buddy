@@ -6,6 +6,7 @@ import NetworkZoom from "./NetworkZoom";
 import BottomPanel from "./BottomPanel";
 import numeral from "numeral";
 import { forceSimulation, forceLink } from "d3-force";
+import { removeMap } from "./util";
 
 const filterNetwork = (name, nodes, links) => {
   if (!name) {
@@ -94,7 +95,7 @@ class App extends Component {
       const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
       summarySentence = (
         <h2 className="light-font">
-          Bundle <b>{matchFile[0]}'s </b>
+          Bundle <b>{removeMap(matchFile[0])}'s </b>
           content overlaps
           <b> {numeral(matchFile[2].pctOverlap).format("0.0%")}{" "}
           </b>

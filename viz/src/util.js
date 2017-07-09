@@ -10,7 +10,11 @@ export function stripHashes(string) {
   if (!match) return string;
 
   const shortHash = match[0].slice(0, 7);
-  return string.replace(hashRegex, `${shortHash}…`);
+  return removeMap(string.replace(hashRegex, `${shortHash}…`));
+}
+
+export function removeMap(string) {
+  return string.replace(".js.map", ".js").replace(".css.map", ".css");
 }
 
 //ALL below adapted from @mbostock's fisheye plugin and rebind code in d3.v3

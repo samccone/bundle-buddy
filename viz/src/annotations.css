@@ -71,3 +71,12 @@ circle.handle {
 .note-line {
   display: none;
 }
+
+.annotation.explainer .annotation-connector .connector-dot,
+.annotation.explainer path.connector-arrow,
+.annotation.explainer.callout.rect path.subject {
+  stroke: #ccc;
+}
+.annotation.explainer text {
+  fill: #999;
+}

@@ -219,6 +219,7 @@ function drawNetwork({
         label: "Inner pie chart shows overlapping code",
         align: "middle"
       },
+      className: "explainer",
       type: annotationCalloutCircle,
       x: rightBundle.x,
       y: rightBundle.y,
@@ -240,6 +241,7 @@ function drawNetwork({
         label: "Grey = no overlapping, otherwise colored by degree of overlap",
         align: "middle"
       },
+      className: "explainer",
       type: annotationCalloutCircle,
       x: leftSourceFile.x,
       y: leftSourceFile.y,
