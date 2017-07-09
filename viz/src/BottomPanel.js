@@ -88,7 +88,12 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .on("click", d => {
         deferWork(() => {
           updateSelectedSource(d.name);
-          sourceLabels.annotations(createAnnotations(files, d.name));
+          sourceLabels.annotations(
+            createAnnotations(
+              files,
+              d.name === selectedSource ? undefined : d.name
+            )
+          );
           svg.select("g.hoverAnnotations").selectAll("g").remove();
         });
       })
@@ -97,7 +102,6 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
           .selectAll(".annotation")
           .data()
           .some(d => d.data.name === hover.name);
-        //.node();
 
         if (!existingAnnotation) {
           hoverAnnotations.annotations([
@@ -201,7 +205,7 @@ class BottomPanel extends Component {
     if (prevProps.selectedBundles !== this.props.selectedBundles) {
       drawFile(this.props);
     } else if (prevProps.selectedSource !== this.props.selectedSource) {
-      highlightSelected(this.props.selectedSource);
+      drawFile(this.props);
     }
   }
 
@@ -337,19 +341,6 @@ class BottomPanel extends Component {
         </div>
       );
 
-      sourceDetails = (
-        <div className="col-xs-12">
-          <div className="source-details">
-            <svg id="fileMap" width={width} height={height}>
-              <g className="chunks" />
-              <g className="labels" />
-              <g className="hoverAnnotations" />
-            </svg>
-            {sourceFile}
-          </div>
-        </div>
-      );
-
       if (!selectedSource) {
         sourceFile = (
           <p style={{ marginLeft: 20 }}>
@@ -381,6 +372,18 @@ class BottomPanel extends Component {
           </div>
         );
       }
+      sourceDetails = (
+        <div className="col-xs-12">
+          <div className="source-details">
+            <svg id="fileMap" width={width} height={height}>
+              <g className="chunks" />
+              <g className="labels" />
+              <g className="hoverAnnotations" />
+            </svg>
+            {sourceFile}
+          </div>
+        </div>
+      );
     }
 
     return (
