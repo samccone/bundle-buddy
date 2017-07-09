@@ -154,10 +154,33 @@ svg#fileMap rect.unselected {
   opacity: .5;
 }
 
+svg#fileMap {
+  border-right: 1px solid #ccc;
+}
+
 svg#fileMap .annotation {
   font-size: .8em;
 }
 
 svg#fileMap .annotation.selected {
   font-weight: 900;
+}
+
+.sourceTitles > div {
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+  font-size: .7em;
+}
+
+.sourceTitles {
+  border-bottom: 1px solid #ccc;
+}
+
+.bottomSummary {
+  border-bottom: 1px solid #ccc;
+}
+
+.fullWidth {
+  width: 100%;
 }

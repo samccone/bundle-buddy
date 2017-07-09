@@ -63,7 +63,8 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
           data: d,
           type: annotationCallout,
           x: 100,
-          dx: -10
+          dx: -5,
+          disable: ["connector"]
         }));
     };
 
@@ -233,7 +234,7 @@ class BottomPanel extends Component {
       selectedBundles
     } = this.props;
 
-    let sourceFile, bundleInfo;
+    let sourceFile, bundleInfo, sourceTitles;
 
     if (!selectedBundles) {
       bundleInfo = (
@@ -244,42 +245,62 @@ class BottomPanel extends Component {
           </p>
         </div>
       );
-    } else if (!selectedSource && selectedBundles) {
-      sourceFile = (
-        <p style={{ marginLeft: 20 }}>
-          Click on a file on the left to look at the shared lines of code
-        </p>
-      );
-    } else if (selectedSource) {
-      sourceFile = (
-        <div
-          className="source-container"
-          style={{
-            display: selectedSource === null ? "none" : "block"
-          }}
-        >
-          <p className="overlap-info">
-            {this.summarizeOverlapInfo(
-              this.props.sourceFileLinesGroupedByCommonBundle[
-                this.props.selectedSource
-              ]
-            )}
-          </p>
-          <SourceView
-            selectedSource={selectedSource}
-            perFileStats={perFileStats}
-            sourceFiles={sourceFiles}
-          />
+    } else {
+      sourceTitles = (
+        <div className="col-xs-12 sourceTitles">
+          <div
+            style={{
+              width: 200,
+              borderRight: "1px solid #ccc"
+            }}
+          >
+            <p>Bundle Breakdown</p>
+          </div>
+          <div style={{ paddingLeft: 10 }}>
+            <p>Selected Source</p>
+          </div>
         </div>
       );
+
+      if (!selectedSource) {
+        sourceFile = (
+          <p style={{ marginLeft: 20 }}>
+            Click on a source file on the left to look at the shared lines of
+            code
+          </p>
+        );
+      } else if (selectedSource) {
+        sourceFile = (
+          <div
+            className="source-container"
+            style={{
+              display: selectedSource === null ? "none" : "block"
+            }}
+          >
+            <p className="overlap-info">
+              {this.summarizeOverlapInfo(
+                this.props.sourceFileLinesGroupedByCommonBundle[
+                  this.props.selectedSource
+                ]
+              )}
+            </p>
+            <SourceView
+              selectedSource={selectedSource}
+              perFileStats={perFileStats}
+              sourceFiles={sourceFiles}
+            />
+          </div>
+        );
+      }
     }
 
     return (
-      <div>
-        <div className="col-xs-12">
+      <div className="fullWidth">
+        <div className="col-xs-12 bottomSummary">
           {summarySentence}
           {bundleInfo}
         </div>
+        {sourceTitles}
         <div className="col-xs-12">
           <div className="source-details">
             <svg id="fileMap" width={width} height={height}>
