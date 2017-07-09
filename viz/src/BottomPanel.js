@@ -51,11 +51,12 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
     svg.node().addEventListener("mousemove", function(d) {
       const mouseY = d.layerY - svg.node().getBoundingClientRect().top;
       yScale.distortion(2.5).focus(mouseY);
+
       updateRects(svg, yScale);
     });
     svg.node().addEventListener("mouseout", function(d) {
-      yScale.distortion(0);
-      updateRects(svg, yScale, true);
+      yScale.focus(0);
+      updateRects(svg, yScale);
     });
 
     chunks.exit().remove();
@@ -75,10 +76,15 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
     lines.exit().remove();
 
     highlightSelected(selectedSource);
+
+    const annotations = [];
+    const sourceLabels = annotation().annotations(annotations);
+
+    svg.select("g.annotations").call(sourceLabels);
   }
 }
 
-function updateRects(svg, yScale, transition) {
+function updateRects(svg, yScale) {
   svg
     .selectAll("rect")
     .attr("y", d => yScale(d.totalCount))
