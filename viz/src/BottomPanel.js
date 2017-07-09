@@ -56,9 +56,8 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
         .map(d => ({
           className: d.name === source ? "selected" : "",
           note: {
-            label: getLastFile(d.name),
-            align: "middle",
-            lineType: "vertical"
+            title: d.name === source ? "Selected Source" : null,
+            label: getLastFile(d.name)
           },
           data: d,
           type: annotationCallout,
@@ -74,6 +73,11 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
 
     svg.select("g.labels").call(sourceLabels);
 
+    const hoverAnnotations = annotation().accessors({
+      y: d => getRectMiddle(yScale, d)
+    });
+    svg.select("g.hoverAnnotations").call(hoverAnnotations);
+
     const chunks = svg.select("g.chunks").selectAll("rect").data(files);
 
     chunks
@@ -85,7 +89,33 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
         deferWork(() => {
           updateSelectedSource(d.name);
           sourceLabels.annotations(createAnnotations(files, d.name));
+          svg.select("g.hoverAnnotations").selectAll("g").remove();
         });
+      })
+      .on("mouseover", function(hover) {
+        const existingAnnotation = svg
+          .selectAll(".annotation")
+          .data()
+          .some(d => d.data.name === hover.name);
+        //.node();
+
+        if (!existingAnnotation) {
+          hoverAnnotations.annotations([
+            {
+              note: {
+                label: getLastFile(hover.name)
+              },
+              data: hover,
+              type: annotationCallout,
+              x: 100,
+              dx: -5,
+              disable: ["connector"]
+            }
+          ]);
+        }
+      })
+      .on("mouseout", function() {
+        hoverAnnotations.annotations([]);
       })
       .attr("width", 100)
       .attr("fill", d => colorScale(d.inBundleCount))
@@ -102,11 +132,13 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
 
       updateRects(svg, yScale);
       sourceLabels.updatedAccessors();
+      hoverAnnotations.updatedAccessors();
     });
     svg.node().addEventListener("mouseout", function(d) {
       yScale.distortion(3).focus(0);
       updateRects(svg, yScale);
 
+      svg.select("g.hoverAnnotations").selectAll("g").remove();
       sourceLabels.updatedAccessors();
     });
 
@@ -220,12 +252,18 @@ class BottomPanel extends Component {
           <b>{bundles.length}</b> bundles:{" "}
         </p>
         <ul>
-          {bundles.map(bundle => <li key={bundle}>{bundle}</li>)}
+          {bundles.map(bundle =>
+            <li key={bundle}>
+              {bundle}
+            </li>
+          )}
         </ul>
         {attachLineInfo
           ? <p className="line-info">
               <span className="line-info-title">On The following lines:</span>
-              <p className="raw-lines">{this.buildRangeString(bundle)}</p>
+              <p className="raw-lines">
+                {this.buildRangeString(bundle)}
+              </p>
             </p>
           : null}
       </div>
@@ -271,7 +309,7 @@ class BottomPanel extends Component {
       selectedBundles
     } = this.props;
 
-    let sourceFile, bundleInfo, sourceTitles;
+    let sourceFile, bundleInfo, sourceTitles, sourceDetails;
 
     if (!selectedBundles) {
       bundleInfo = (
@@ -295,6 +333,19 @@ class BottomPanel extends Component {
           </div>
           <div style={{ paddingLeft: 10 }}>
             <p>Selected Source</p>
+          </div>
+        </div>
+      );
+
+      sourceDetails = (
+        <div className="col-xs-12">
+          <div className="source-details">
+            <svg id="fileMap" width={width} height={height}>
+              <g className="chunks" />
+              <g className="labels" />
+              <g className="hoverAnnotations" />
+            </svg>
+            {sourceFile}
           </div>
         </div>
       );
@@ -339,15 +390,7 @@ class BottomPanel extends Component {
           {bundleInfo}
         </div>
         {sourceTitles}
-        <div className="col-xs-12">
-          <div className="source-details">
-            <svg id="fileMap" width={width} height={height}>
-              <g className="chunks" />
-              <g className="labels" />
-            </svg>
-            {sourceFile}
-          </div>
-        </div>
+        {sourceDetails}
       </div>
     );
   }

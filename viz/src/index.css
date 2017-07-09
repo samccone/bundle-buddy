@@ -159,14 +159,20 @@ svg#fileMap rect.unselected {
 
 svg#fileMap {
   border-right: 1px solid #ccc;
+  overflow: visible;
 }
 
 svg#fileMap .annotation {
   font-size: .8em;
+  text-anchor: end;
 }
 
 svg#fileMap .annotation.selected {
   font-weight: 900;
+}
+
+svg#fileMap .annotation:not(.selected) .annotation-note-title {
+  display: none;
 }
 
 .sourceTitles > div {
@@ -200,4 +206,7 @@ svg#fileMap .annotation.selected {
 
 .raw-lines {
   opacity: 0.8;
+}
+.annotation {
+  pointer-events: none;
 }
