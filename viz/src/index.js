@@ -9,11 +9,12 @@ import { max, sum } from "d3-array";
 import { nest } from "d3-collection";
 
 // Default to the demo json if no file is passed.
-const toLoadPath =
-  new URLSearchParams((window.location.search || "").slice(1)).get("file") ||
-  "/demo.json";
-
+const fileParam = new URLSearchParams(
+  (window.location.search || "").slice(1)
+).get("file");
+const toLoadPath = fileParam !== null ? `/${fileParam}` : "/demo.json";
 const target = document.querySelector("#root");
+
 fetch(toLoadPath, { credentials: "include" })
   .then(v => v.json())
   .then(data => {

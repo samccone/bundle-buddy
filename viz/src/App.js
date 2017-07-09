@@ -78,7 +78,7 @@ class App extends Component {
       outputFiles,
       sourceFiles,
       perFileStats,
-      sourceFileLinesGroupedByCommonBundle,
+      sourceFileLinesGroupedByCommonBundle
     } = this.props.passedData;
 
     const { nodes, links } = filterNetwork(
@@ -94,22 +94,27 @@ class App extends Component {
       const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
       summarySentence = (
         <h2 className="light-font">
-          Bundle <b>{matchFile[0]} </b>
-          is:
-          <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
-          overlapping with 
-          <b> {nodes.filter(d => d.type === "output").length - 2} </b>
+          Bundle <b>{matchFile[0]}'s </b>
+          content overlaps
+          <b> {numeral(matchFile[2].pctOverlap).format("0.0%")}{" "}
+          </b>
+          with
+          <b> {nodes.filter(d => d.type === "output").length - 2}{" "}
+          </b>
           other bundles
         </h2>
       );
     } else {
       summarySentence = (
         <h2 className="light-font">
-          <b>{Object.keys(sourceFiles).length} </b>
+          <b>{Object.keys(sourceFiles).length}{" "}
+          </b>
           files were bundled into
-          <b> {outputFiles.length} </b>
+          <b> {outputFiles.length}{" "}
+          </b>
           bundles. Of those,
-          <b> {overlapFilesCount} </b>
+          <b> {overlapFilesCount}{" "}
+          </b>
           bundles have overlaps
         </h2>
       );
@@ -153,7 +158,9 @@ class App extends Component {
                   selectedBundles={state.selectedBundles}
                   updateSelectedSource={updateSelectedSource}
                   sourceView={sourceView}
-                  sourceFileLinesGroupedByCommonBundle={sourceFileLinesGroupedByCommonBundle}
+                  sourceFileLinesGroupedByCommonBundle={
+                    sourceFileLinesGroupedByCommonBundle
+                  }
                   outputFile={
                     outputFiles.filter(d => d[0] === state.selectedBundles)[0]
                   }

@@ -17,7 +17,7 @@ import * as d3 from "d3-transition";
 import numeral from "numeral";
 import Dimensions from "react-dimensions";
 import { annotation, annotationCalloutCircle } from "d3-svg-annotation";
-import { stripHashes } from "./util";
+import { deferWork, stripHashes } from "./util";
 import { blueGrey100 } from "material-ui/styles/colors";
 
 const width = 800;
@@ -291,15 +291,6 @@ function updateNetworkPosition(width) {
   select("svg#network g.sizeLegend").attr(
     "transform",
     `translate(${width - sizeLegendBBox.width}, ${600 - sizeLegendBBox.height})`
-  );
-}
-
-function deferWork(fn) {
-  (window.requestIdleCallback || window.requestAnimationFrame)(
-    () => {
-      fn();
-    },
-    { timeout: 100 }
   );
 }
 

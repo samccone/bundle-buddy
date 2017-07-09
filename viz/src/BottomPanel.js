@@ -5,7 +5,7 @@ import { colorScale } from "./color";
 import SourceView from "./SourceView";
 import { fisheye } from "./util";
 import { annotation, annotationCallout } from "d3-svg-annotation";
-import { stripHashes } from "./util";
+import { stripHashes, deferWork } from "./util";
 
 const width = 200;
 const height = 500;
@@ -82,8 +82,10 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .attr("class", "chunk")
       .merge(chunks)
       .on("click", d => {
-        updateSelectedSource(d.name);
-        sourceLabels.annotations(createAnnotations(files, d.name));
+        deferWork(() => {
+          updateSelectedSource(d.name);
+          sourceLabels.annotations(createAnnotations(files, d.name));
+        });
       })
       .attr("width", 100)
       .attr("fill", d => colorScale(d.inBundleCount))
@@ -208,18 +210,53 @@ class BottomPanel extends Component {
     return ret.join(",");
   }
 
-  summarizeOverlapInfo(sourceOverlapInfo) {
-    let ret = "";
+  buildSingleBundleSummary(selectedSource, bundle, attachLineInfo = false) {
+    const bundles = bundle.bundles;
 
+    return (
+      <div>
+        <p>
+          Duplicated Lines for file <b>{selectedSource}</b> appears in{" "}
+          <b>{bundles.length}</b> bundles:{" "}
+        </p>
+        <ul>
+          {bundles.map(bundle => <li key={bundle}>{bundle}</li>)}
+        </ul>
+        {attachLineInfo
+          ? <p className="line-info">
+              <span className="line-info-title">On The following lines:</span>
+              <p className="raw-lines">{this.buildRangeString(bundle)}</p>
+            </p>
+          : null}
+      </div>
+    );
+  }
+
+  summarizeOverlapInfo(selectedSource, sourceOverlapInfo) {
     if (sourceOverlapInfo === undefined) {
-      return ret;
+      return null;
     }
 
+    const sourceLinesWithOverlaps = {};
     for (const bundleGroupKey of Object.keys(sourceOverlapInfo)) {
-      const bundleGroup = sourceOverlapInfo[bundleGroupKey];
-      ret += `Lines ${this.buildRangeString(
-        bundleGroup
-      )} appear in bundles ${bundleGroup.bundles.join(",")}\n`;
+      if (sourceOverlapInfo[bundleGroupKey].bundles.length > 1) {
+        sourceLinesWithOverlaps[bundleGroupKey] =
+          sourceOverlapInfo[bundleGroupKey];
+      }
+    }
+
+    // If we only have a single common bundle overlap list, no need to list line nums.
+    if (Object.keys(sourceLinesWithOverlaps).length === 1) {
+      return this.buildSingleBundleSummary(
+        selectedSource,
+        Object.values(sourceLinesWithOverlaps)[0]
+      );
+    }
+
+    let ret = [];
+    for (const bundleGroupKey of Object.keys(sourceLinesWithOverlaps)) {
+      const bundle = sourceLinesWithOverlaps[bundleGroupKey];
+      ret.push(this.buildSingleBundleSummary(selectedSource, bundle, true));
     }
 
     return ret;
@@ -279,6 +316,7 @@ class BottomPanel extends Component {
           >
             <p className="overlap-info">
               {this.summarizeOverlapInfo(
+                selectedSource,
                 this.props.sourceFileLinesGroupedByCommonBundle[
                   this.props.selectedSource
                 ]

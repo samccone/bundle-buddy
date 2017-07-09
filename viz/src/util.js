@@ -67,3 +67,12 @@ export function fisheye(scale, d = 3, a = 0) {
   fisheye.range = scale.range;
   return rebind(fisheye, scale, "domain", "range");
 }
+
+export function deferWork(fn) {
+  (window.requestIdleCallback || window.requestAnimationFrame)(
+    () => {
+      fn();
+    },
+    { timeout: 100 }
+  );
+}
