@@ -4,6 +4,7 @@ import { scaleLinear, scaleQuantize } from "d3-scale";
 import { colorScale } from "./color";
 import SourceView from "./SourceView";
 import { fisheye } from "./util";
+import { annotation, annotationCallout } from "d3-svg-annotation";
 
 const width = 200;
 const height = 500;
@@ -40,6 +41,7 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .merge(chunks)
       .attr("width", 100)
       .attr("fill", d => colorScale(d.inBundleCount))
+      .attr("x", 100)
       .attr("y", d => yScale(d.totalCount))
       .attr(
         "height",
@@ -134,33 +136,68 @@ class BottomPanel extends Component {
   }
 
   render() {
-    const { summarySentence } = this.props;
+    const {
+      summarySentence,
+      selectedSource,
+      sourceFiles,
+      perFileStats,
+      selectedBundles
+    } = this.props;
+
+    let sourceFile, bundleInfo;
+
+    if (!selectedBundles) {
+      bundleInfo = (
+        <div>
+          <p>
+            <b>See details by:</b> Clicking on a file in the left nav, or a
+            bundle in the network graph
+          </p>
+        </div>
+      );
+    } else if (!selectedSource && selectedBundles) {
+      sourceFile = (
+        <p style={{ marginLeft: 20 }}>
+          Click on a file on the left to look at the shared lines of code
+        </p>
+      );
+    } else if (selectedSource) {
+      sourceFile = (
+        <div
+          className="source-container"
+          style={{
+            display: selectedSource === null ? "none" : "block"
+          }}
+        >
+          <p className="overlap-info">
+            {this.summarizeOverlapInfo(
+              this.props.sourceFileLinesGroupedByCommonBundle[
+                this.props.selectedSource
+              ]
+            )}
+          </p>
+          <SourceView
+            selectedSource={selectedSource}
+            perFileStats={perFileStats}
+            sourceFiles={sourceFiles}
+          />
+        </div>
+      );
+    }
+
     return (
-      <div className="col-xs-12">
-        {summarySentence}
-        <div className="source-details">
-          <svg id="fileMap" width={width} height={height}>
-            <g className="chunks" />
-            <g className="annotations" />
-          </svg>
-          <div
-            className="source-container"
-            style={{
-              display: this.props.selectedSource === null ? "none" : "block"
-            }}
-          >
-            <p className="overlap-info">
-              {this.summarizeOverlapInfo(
-                this.props.sourceFileLinesGroupedByCommonBundle[
-                  this.props.selectedSource
-                ]
-              )}
-            </p>
-            <SourceView
-              selectedSource={this.props.selectedSource}
-              perFileStats={this.props.perFileStats}
-              sourceFiles={this.props.sourceFiles}
-            />
+      <div>
+        <div className="col-xs-12">
+          {summarySentence}
+          {bundleInfo}
+        </div>
+        <div className="col-xs-12">
+          <div className="source-details">
+            <svg id="fileMap" width={width} height={height}>
+              <g className="chunks" />
+              <g className="annotations" />
+            </svg>
+            {sourceFile}
           </div>
         </div>
       </div>
