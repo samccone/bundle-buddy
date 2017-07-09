@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { max, sum } from "d3-array";
 import { nest } from "d3-collection";
 
+// Default to the demo json if no file is passed.
 const toLoadPath= new URLSearchParams((window.location.search || '').slice(1)).get('file')  || '/demo.json';
 
 const target = document.querySelector("#root");
@@ -92,7 +93,8 @@ fetch(toLoadPath, {credentials: 'include'}).then(v => v.json()).then(data => {
     networkLinks,
     outputFiles,
     perFileStats: data.perFileStats,
-    sourceFiles: data.sourceFiles
+    sourceFiles: data.sourceFiles,
+    sourceFileLinesGroupedByCommonBundle: data.sourceFileLinesGroupedByCommonBundle
   };
 
   injectTapEventPlugin();

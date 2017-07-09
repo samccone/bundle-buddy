@@ -77,7 +77,8 @@ class App extends Component {
       networkLinks,
       outputFiles,
       sourceFiles,
-      perFileStats
+      perFileStats,
+      sourceFileLinesGroupedByCommonBundle,
     } = this.props.passedData;
 
     const { nodes, links } = filterNetwork(
@@ -93,12 +94,12 @@ class App extends Component {
       const matchFile = outputFiles.find(d => d[0] === state.selectedBundles);
       summarySentence = (
         <h2 className="light-font">
-          File <b>{matchFile[0]} </b>
+          Bundle <b>{matchFile[0]} </b>
           is:
           <b> {numeral(matchFile[2].pctOverlap).format("0.0%")} </b>
-          overlapping lines across
+          overlapping with 
           <b> {nodes.filter(d => d.type === "output").length - 2} </b>
-          bundles
+          other bundles
         </h2>
       );
     } else {
@@ -152,6 +153,7 @@ class App extends Component {
                   selectedBundles={state.selectedBundles}
                   updateSelectedSource={updateSelectedSource}
                   sourceView={sourceView}
+                  sourceFileLinesGroupedByCommonBundle={sourceFileLinesGroupedByCommonBundle}
                   outputFile={
                     outputFiles.filter(d => d[0] === state.selectedBundles)[0]
                   }
