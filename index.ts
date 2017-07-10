@@ -16,6 +16,7 @@ const cli = meow(
   Options:
     --verbose -v: Write verbose logging to stderr
     --stdout -o: Write analysis to stdout
+    --demo: View a demo bundle
 
   Example:
     bundle-buddy my_app/dist/*.map
@@ -25,31 +26,11 @@ const cli = meow(
       o: "stdout",
       v: "verbose"
     },
-    boolean: ["stdout", "verbose"]
+    boolean: ["stdout", "verbose", "demo"]
   }
 );
 
-const processed = processSourceMaps(cli.input, {
-  logLevel: cli.flags["verbose"] || cli.flags["v"] ? "verbose" : "silent"
-});
-
-const stringifedData = JSON.stringify({
-  graph: processed.graph,
-  sourceFiles: processed.sourceFiles,
-  bundleFileStats: [...processed.bundleFileStats],
-  outputFiles: processed.outputFiles,
-  groupedBundleStats: [...processed.groupedBundleStats],
-  perFileStats: [...processed.perFileStats],
-  sourceFileLinesGroupedByCommonBundle:
-    processed.sourceFileLinesGroupedByCommonBundle
-});
-
-if (cli.flags["stdout"] || cli.flags["o"]) {
-  console.log(stringifedData);
-} else {
-  const dataPath = `data_${Date.now()}`;
-  fs.writeFileSync(path.join(__dirname, VIZ_PATH, dataPath), stringifedData);
-
+function launchServer(dataPath: string) {
   openPort.find((err: Error, port: number) => {
     if (err != null) {
       console.log(err);
@@ -65,4 +46,36 @@ if (cli.flags["stdout"] || cli.flags["o"]) {
         opn(`http://localhost:${port}?file=${dataPath}`);
       });
   });
+}
+
+if (cli.input.length === 0 && !cli.flags["demo"]) {
+  cli.showHelp();
+  process.exit(2);
+}
+
+if (cli.flags["demo"]) {
+  launchServer("demo.json");
+} else {
+  const processed = processSourceMaps(cli.input, {
+    logLevel: cli.flags["verbose"] || cli.flags["v"] ? "verbose" : "silent"
+  });
+
+  const stringifedData = JSON.stringify({
+    graph: processed.graph,
+    sourceFiles: processed.sourceFiles,
+    bundleFileStats: [...processed.bundleFileStats],
+    outputFiles: processed.outputFiles,
+    groupedBundleStats: [...processed.groupedBundleStats],
+    perFileStats: [...processed.perFileStats],
+    sourceFileLinesGroupedByCommonBundle:
+      processed.sourceFileLinesGroupedByCommonBundle
+  });
+
+  if (cli.flags["stdout"] || cli.flags["o"]) {
+    console.log(stringifedData);
+  } else {
+    const dataPath = `data_${Date.now()}`;
+    fs.writeFileSync(path.join(__dirname, VIZ_PATH, dataPath), stringifedData);
+    launchServer(dataPath);
+  }
 }
