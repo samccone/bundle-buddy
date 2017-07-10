@@ -59,7 +59,7 @@ const filterNetwork = (name, nodes, links) => {
   );
 
   return {
-    nodes: [rootBundle, ...bundleChildren, ...grandchildrenNodes],
+    nodes: [...bundleChildren, ...grandchildrenNodes],
     links: childrenLinks.concat(grandchildrenLinks)
   };
 };
