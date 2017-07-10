@@ -1,6 +1,6 @@
 {
   "name": "bundle-buddy",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "dependencies": {
     "chalk": "^2.0.1",
     "http-server": "^0.10.0",
