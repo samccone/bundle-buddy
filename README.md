@@ -1,11 +1,12 @@
 Bundle Buddy
 ====
 
-Bundle Buddy is a tool to help you find source code duplication across your javascript chunks/splits, enabling you to fine tune your code splitting to reduce bundle invalidation rates as well as improve repeat page load performance \o/. 
+Bundle Buddy is a tool to help you find source code duplication across your javascript chunks/splits. This enables you to fine tune code splitting parameters to reduce bundle invalidation rates as well as improve repeat page load performance \o/. 
 
-<a href="https://build-wryzeystih.now.sh/ ">"<img src="https://user-images.githubusercontent.com/883126/28001744-ed90cef4-64e3-11e7-919a-f27ced92f9b9.png" height="400px"></a>
+<a href="https://build-wryzeystih.now.sh/ ">"<img src="https://user-images.githubusercontent.com/883126/28001744-ed90cef4-64e3-11e7-919a-f27ced92f9b9.png" height="400px"><caption>Example Bundle Buddy UI</caption></a>
 
-Bundly Buddy operates on source maps, meaning that it will work for any content that is source mapped (CSS/JS/TEMPLATES.. ect. ect.) The only limitation here is that the source maps *must* include the source content.
+
+Bundly Buddy operates on any source maps, but you *must* include the source content. It will work for any CSS/JS/TEMPLATES etc. that is mapped.
 
 In webpack this means setting devtool to `source-map`
 https://webpack.github.io/docs/configuration.html#devtool
