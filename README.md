@@ -19,7 +19,7 @@ https://webpack.github.io/docs/configuration.html#devtool
 
 npm install -g bundle-buddy
 
-bundle-buddy <$SOURCE_MAP_GLOB>
+bundle-buddy my-app/public/*.map
 ```
 
 ### Bundle Buddy UI interactions.
