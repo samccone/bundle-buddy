@@ -22,12 +22,34 @@ function getRectMiddle(yScale, d) {
   );
 }
 
+let files;
+let sourceLabels;
+
+function createAnnotations(files, source) {
+  return files
+    .filter((d, i) => {
+      return i < 6 || d.name === source;
+    })
+    .map(d => ({
+      className: d.name === source ? "selected" : "",
+      note: {
+        title: d.name === source ? "Selected Source" : null,
+        label: getLastFile(d.name)
+      },
+      data: d,
+      type: annotationCallout,
+      x: 100,
+      dx: -5,
+      disable: ["connector"]
+    }));
+}
+
 function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
   const svg = select("svg#fileMap");
 
   if (outputFile) {
     let totalCount = 0;
-    const files = Object.keys(outputFile[1])
+    files = Object.keys(outputFile[1])
       .map(d => {
         const file = outputFile[1][d];
         return {
@@ -48,26 +70,7 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
       .domain([0, totalCount])
       .range([0, height]);
 
-    const createAnnotations = (files, source) => {
-      return files
-        .filter((d, i) => {
-          return i < 6 || d.name === source;
-        })
-        .map(d => ({
-          className: d.name === source ? "selected" : "",
-          note: {
-            title: d.name === source ? "Selected Source" : null,
-            label: getLastFile(d.name)
-          },
-          data: d,
-          type: annotationCallout,
-          x: 100,
-          dx: -5,
-          disable: ["connector"]
-        }));
-    };
-
-    const sourceLabels = annotation()
+    sourceLabels = annotation()
       .annotations(createAnnotations(files, selectedSource))
       .accessors({ y: d => getRectMiddle(yScale, d) });
 
@@ -96,7 +99,6 @@ function drawFile({ outputFile, updateSelectedSource, selectedSource }) {
             )
           );
           svg.select("g.hoverAnnotations").selectAll("g").remove();
-          sourceLabels.annotations(createAnnotations(files, d.name));
         });
       })
       .on("mouseover", function(hover) {
@@ -196,6 +198,9 @@ function highlightSelected(selectedSource) {
   } else {
     svg.selectAll("rect").classed("unselected", false);
   }
+
+  sourceLabels.annotations(createAnnotations(files, selectedSource));
+  svg.select("g.hoverAnnotations").selectAll("g").remove();
 }
 
 class BottomPanel extends Component {
@@ -207,7 +212,7 @@ class BottomPanel extends Component {
     if (prevProps.selectedBundles !== this.props.selectedBundles) {
       drawFile(this.props);
     } else if (prevProps.selectedSource !== this.props.selectedSource) {
-      drawFile(this.props);
+      highlightSelected(this.props.selectedSource);
     }
   }
 

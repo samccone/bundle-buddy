@@ -68,7 +68,6 @@ class AppState extends Component {
   }
 
   render() {
-    console.log("in app state", this.props);
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
         <App passedData={this.props.passedData} appState={this} />
