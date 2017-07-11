@@ -137,10 +137,7 @@ export function processSourceMaps(
   const bundleToSources: BundleToSources = new Map();
 
   const perFileStats: PerFileStats = new Map();
-  const sourceFileToGrouped: SourceFileToGrouped = new Map<
-    string,
-    { [key: string]: { count: number; files: number } }
-  >();
+  const sourceFileToGrouped: SourceFileToGrouped = new Map();
 
   if (bundleSourceMaps.length === 0) {
     logger.error("Fatal Error: no source maps passed :(");
