@@ -1,4 +1,4 @@
-import { Node, SourceMapGraph } from "./types";
+import { Node } from "./types";
 import { Logger } from "./utils";
 
 function sumLines(obj: { [key: string]: { count: number } }) {
@@ -52,7 +52,7 @@ export function buildGraph(
   >,
   sourceToBundles: { [sourceName: string]: Set<string> },
   logger: Logger
-): SourceMapGraph {
+) {
   const nodes: Node[] = [];
 
   logger.info("Building graph between bundles.");
