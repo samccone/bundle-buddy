@@ -9,7 +9,7 @@ Bundle Buddy is a tool to help you find source code duplication across your java
 Bundle Buddy operates on any source maps, but you *must* include the source content. It will work for any CSS/JS/TEMPLATES etc. that is mapped.
 
 In webpack this means setting devtool to `source-map`
-https://webpack.github.io/docs/configuration.html#devtool
+https://webpack.js.org/guides/development/#source-maps
 
 -----
 
