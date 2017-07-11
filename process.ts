@@ -10,7 +10,9 @@ import {
   LogLevels,
   BundleToSources,
   SourceFileLinesGroupedByCommonBundle,
-  PerFileStats
+  PerFileStats,
+  SourceFileToGrouped,
+  SourceMapProcessorResults
 } from "./types";
 import {
   Logger,
@@ -123,7 +125,7 @@ function extractHitInto(sourceFiles: SourceFiles, sourcePath: string) {
 export function processSourceMaps(
   bundleSourceMaps: string[],
   opts: { logLevel: LogLevels } = { logLevel: "silent" }
-) {
+): SourceMapProcessorResults {
   opts.logLevel = opts.logLevel || "silent";
 
   const logger = new Logger(opts);
@@ -135,7 +137,7 @@ export function processSourceMaps(
   const bundleToSources: BundleToSources = new Map();
 
   const perFileStats: PerFileStats = new Map();
-  const sourceFileToGrouped = new Map<
+  const sourceFileToGrouped: SourceFileToGrouped = new Map<
     string,
     { [key: string]: { count: number; files: number } }
   >();

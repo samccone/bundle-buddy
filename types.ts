@@ -31,6 +31,26 @@ export interface Node {
   inBundleFiles?: string[];
 }
 
+export interface SourceMapGraph {
+  nodes: Node[];
+  links: { source: string; target: string; strength: number }[];
+}
+
+export interface SourceMapProcessorResults {
+  graph: SourceMapGraph;
+  sourceFiles: SourceFiles;
+  perFileStats: PerFileStats;
+  sourceFileLinesGroupedByCommonBundle: SourceFileLinesGroupedByCommonBundle;
+  bundleFileStats: BundleToSources;
+  outputFiles: string[];
+  groupedBundleStats: SourceFileToGrouped;
+}
+
+export type SourceFileToGrouped = Map<
+  string,
+  { [key: string]: { count: number; files: number } }
+>;
+
 export type SourceToBundles = { [source: string]: Set<string> };
 export type LineHitMap = Map<string, { from: string[]; count: number }>;
 export type SourceFiles = {
