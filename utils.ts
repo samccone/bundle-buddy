@@ -1,8 +1,11 @@
 import { LogLevels, SourceTrack, SourceMapProcessorResults } from "./types";
 import * as chalk from "chalk";
+import * as path from "path";
 
 const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/m;
 const HASH_SPLITTER = "||||";
+
+export const VIZ_PATH = "viz/build";
 
 export function hashFileLineNumber(
   fileName: string,
@@ -65,6 +68,16 @@ export function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
   }
 
   return sourceToLineMapping;
+}
+
+export function getWritePathForSerializedData(
+  visualizationPath?: string,
+  filename?: string
+) {
+  const dataPath = filename || `data_${Date.now()}`;
+  const vizpath = visualizationPath || VIZ_PATH;
+
+  return path.join(__dirname, vizpath, dataPath);
 }
 
 export class Logger {
