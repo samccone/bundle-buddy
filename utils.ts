@@ -24,7 +24,7 @@ export function hashBundlesToKey(files: string[]) {
 
 export function formatProcessedSourceMaps(
   processed: SourceMapProcessorResults
-): string {
+) {
   return JSON.stringify({
     graph: processed.graph,
     sourceFiles: processed.sourceFiles,
