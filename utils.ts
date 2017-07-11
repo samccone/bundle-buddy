@@ -1,4 +1,4 @@
-import { LogLevels, SourceTrack } from "./types";
+import { LogLevels, SourceTrack, SourceMapProcessorResults } from "./types";
 import * as chalk from "chalk";
 
 const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/m;
@@ -20,6 +20,21 @@ export function hashToFileAndLineNumber(hash: string) {
 
 export function hashBundlesToKey(files: string[]) {
   return Array.from(files).sort().join(HASH_SPLITTER);
+}
+
+export function formatProcessedSourceMaps(
+  processed: SourceMapProcessorResults
+) {
+  return JSON.stringify({
+    graph: processed.graph,
+    sourceFiles: processed.sourceFiles,
+    bundleFileStats: [...processed.bundleFileStats],
+    outputFiles: processed.outputFiles,
+    groupedBundleStats: [...processed.groupedBundleStats],
+    perFileStats: [...processed.perFileStats],
+    sourceFileLinesGroupedByCommonBundle:
+      processed.sourceFileLinesGroupedByCommonBundle
+  });
 }
 
 /**

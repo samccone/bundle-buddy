@@ -1,6 +1,7 @@
 const httpServer = require("http-server");
 const openPort = require("openport");
 import { processSourceMaps } from "./process";
+import { formatProcessedSourceMaps } from "./utils";
 import * as path from "path";
 import * as meow from "meow";
 import * as opn from "opn";
@@ -60,16 +61,7 @@ if (cli.flags["demo"]) {
     logLevel: cli.flags["verbose"] || cli.flags["v"] ? "verbose" : "silent"
   });
 
-  const stringifedData = JSON.stringify({
-    graph: processed.graph,
-    sourceFiles: processed.sourceFiles,
-    bundleFileStats: [...processed.bundleFileStats],
-    outputFiles: processed.outputFiles,
-    groupedBundleStats: [...processed.groupedBundleStats],
-    perFileStats: [...processed.perFileStats],
-    sourceFileLinesGroupedByCommonBundle:
-      processed.sourceFileLinesGroupedByCommonBundle
-  });
+  const stringifedData = formatProcessedSourceMaps(processed);
 
   if (cli.flags["stdout"] || cli.flags["o"]) {
     console.log(stringifedData);
