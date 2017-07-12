@@ -70,14 +70,20 @@ export function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
   return sourceToLineMapping;
 }
 
+/**
+ * 
+ * 
+ * @export
+ * @param {string} dataPath Name of file being created.
+ * @param {string} [contextPath=__dirname] Path to be passed in when function is not consumed by bundle-buddy cli process
+ * @returns {string} Absolute path where data will be written to
+ */
 export function getWritePathForSerializedData(
-  visualizationPath?: string,
-  filename?: string
+  dataPath: string,
+  contextPath: string = __dirname
 ) {
-  const dataPath = filename || `data_${Date.now()}`;
-  const vizpath = visualizationPath || VIZ_PATH;
 
-  return path.join(__dirname, vizpath, dataPath);
+  return path.join(contextPath, VIZ_PATH, dataPath || `data_${Date.now()}`);
 }
 
 export class Logger {

@@ -36,7 +36,7 @@ if (cli.input.length === 0 && !cli.flags["demo"]) {
 }
 
 if (cli.flags["demo"]) {
-  launchServer(VIZ_PATH, "demo.json");
+  launchServer("demo.json", VIZ_PATH);
 } else {
   const processed = processSourceMaps(cli.input, {
     logLevel: cli.flags["verbose"] || cli.flags["v"] ? "verbose" : "silent"
