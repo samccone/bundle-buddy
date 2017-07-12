@@ -1,8 +1,11 @@
 import { LogLevels, SourceTrack, SourceMapProcessorResults } from "./types";
 import * as chalk from "chalk";
+import * as path from "path";
 
 const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/m;
 const HASH_SPLITTER = "||||";
+
+export const VIZ_PATH = "viz/build";
 
 export function hashFileLineNumber(
   fileName: string,
@@ -65,6 +68,22 @@ export function sourceMapToLineHits(hitTracks: Map<string, SourceTrack>) {
   }
 
   return sourceToLineMapping;
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {string} dataPath Name of file being created.
+ * @param {string} [contextPath=__dirname] Path to be passed in when function is not consumed by bundle-buddy cli process
+ * @returns {string} Absolute path where data will be written to
+ */
+export function getWritePathForSerializedData(
+  dataPath: string,
+  contextPath: string = __dirname
+) {
+
+  return path.join(contextPath, VIZ_PATH, dataPath || `data_${Date.now()}`);
 }
 
 export class Logger {
