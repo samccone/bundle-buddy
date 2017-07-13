@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "dependencies": {
     "chalk": "^2.0.1",
+    "globby": "^6.1.0",
     "http-server": "^0.10.0",
     "meow": "^3.7.0",
     "openport": "^0.0.4",
@@ -11,6 +12,7 @@
   },
   "devDependencies": {
     "@types/chalk": "^0.4.31",
+    "@types/globby": "^0.6.0",
     "@types/meow": "^3.6.2",
     "@types/node": "^8.0.2",
     "@types/opn": "^3.0.28",
