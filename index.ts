@@ -4,6 +4,7 @@ import { processSourceMaps } from "./process";
 import { formatProcessedSourceMaps } from "./utils";
 import * as path from "path";
 import * as meow from "meow";
+import * as globby from "globby";
 import * as opn from "opn";
 import * as fs from "fs";
 
@@ -57,7 +58,8 @@ if (cli.input.length === 0 && !cli.flags["demo"]) {
 if (cli.flags["demo"]) {
   launchServer("demo.json");
 } else {
-  const processed = processSourceMaps(cli.input, {
+  const bundleSourceMaps = globby.sync(cli.input);
+  const processed = processSourceMaps(bundleSourceMaps, {
     logLevel: cli.flags["verbose"] || cli.flags["v"] ? "verbose" : "silent"
   });
 
