@@ -2,11 +2,11 @@ import { processSourceMaps } from "./process";
 import { launchServer } from "./server";
 import {
   formatProcessedSourceMaps,
-  getWritePathForSerializedData,
-  VIZ_PATH
+  getWritePathForSerializedData
 } from "./utils";
 import * as meow from "meow";
 import * as fs from "fs";
+
 
 const cli = meow(
   `
