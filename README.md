@@ -1,9 +1,9 @@
 Bundle Buddy
 ====
 
-Bundle Buddy is a tool to help you find source code duplication across your javascript chunks/splits. This enables you to fine tune code splitting parameters to reduce bundle invalidation rates as well as improve repeat page load performance \o/. 
+Bundle Buddy is a tool to help you find source code duplication across your javascript chunks/splits. This enables you to fine tune code splitting parameters to reduce bundle invalidation rates as well as improve repeat page load performance \o/.
 
-<a href="https://build-wryzeystih.now.sh/ "><img src="https://user-images.githubusercontent.com/883126/28001744-ed90cef4-64e3-11e7-919a-f27ced92f9b9.png" height="400px"><caption><p><small><b>Example Bundle Buddy UI</b></small></p></caption></a>
+<a href="https://bundle-buddy.firebaseapp.com"><img src="https://user-images.githubusercontent.com/883126/28001744-ed90cef4-64e3-11e7-919a-f27ced92f9b9.png" height="400px"><caption><p><small><b>Example Bundle Buddy UI</b></small></p></caption></a>
 
 
 Bundle Buddy operates on any source maps, but you *must* include the source content. It will work for any CSS/JS/TEMPLATES etc. that is mapped.
@@ -37,12 +37,12 @@ The ideal workflow flow using Bundle Buddy is to first identify what code is mos
 
 ### How does this work?
 
-Bundle Buddy builds up a mapping across every source map of every file and each line in each file that is used. This enables Bundle Buddy to detect common source lines between different project chunks. 
+Bundle Buddy builds up a mapping across every source map of every file and each line in each file that is used. This enables Bundle Buddy to detect common source lines between different project chunks.
 
 ----
 
 
-### Contributing 
+### Contributing
 
 Working on the front end is simple
 
