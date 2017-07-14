@@ -1,13 +1,12 @@
-const httpServer = require("http-server");
-const openPort = require("openport");
 import { processSourceMaps } from "./process";
-import { formatProcessedSourceMaps } from "./utils";
-import * as path from "path";
+import { launchServer } from "./server";
+import {
+  formatProcessedSourceMaps,
+  getWritePathForSerializedData
+} from "./utils";
 import * as meow from "meow";
-import * as opn from "opn";
 import * as fs from "fs";
 
-const VIZ_PATH = "viz/build";
 
 const cli = meow(
   `
@@ -31,24 +30,6 @@ const cli = meow(
   }
 );
 
-function launchServer(dataPath: string) {
-  openPort.find((err: Error, port: number) => {
-    if (err != null) {
-      console.log(err);
-      process.exit(1);
-    }
-    httpServer
-      .createServer({
-        root: path.join(__dirname, VIZ_PATH)
-      })
-      .listen(port, "0.0.0.0", () => {
-        console.log(`Server running on port ${port}`);
-        console.log(`Press Control+C to Quit`);
-        opn(`http://localhost:${port}?file=${dataPath}`);
-      });
-  });
-}
-
 if (cli.input.length === 0 && !cli.flags["demo"]) {
   cli.showHelp();
   process.exit(2);
@@ -67,7 +48,10 @@ if (cli.flags["demo"]) {
     console.log(stringifedData);
   } else {
     const dataPath = `data_${Date.now()}`;
-    fs.writeFileSync(path.join(__dirname, VIZ_PATH, dataPath), stringifedData);
+    const writePath = getWritePathForSerializedData(dataPath);
+
+    fs.writeFileSync(writePath, stringifedData);
+
     launchServer(dataPath);
   }
 }
