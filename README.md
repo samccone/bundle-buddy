@@ -12,7 +12,7 @@ In webpack this means setting devtool to `source-map`
 https://webpack.js.org/guides/development/#source-maps
 
 ### webpack users
-If you are using webpack, you can also try the [bundle-buddy-webpack-plugin](https://github.com/TheLarkInn/bundle-buddy-webpack-plugin). This helps ensure you configure your sourcemaps correctly, and lets you run bundle-buddy directly from a webpack build. You might want to use this if you don't want to use bunlde buddy standalone!
+If you are using webpack, you can also try the [bundle-buddy-webpack-plugin](https://github.com/TheLarkInn/bundle-buddy-webpack-plugin). This helps ensure you configure your sourcemaps correctly, and lets you run bundle-buddy directly from a webpack build. You might want to use this if you don't want to use bundle buddy standalone!
 
 -----
 
