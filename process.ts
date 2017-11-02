@@ -238,7 +238,7 @@ export function processSourceMaps(
 
   if (!doBundlesHaveDuplication(bundleToSources)) {
     logger.success("No bundle duplication detected 📯.");
-    process.exit(1);
+    process.exit(0);
   }
 
   return {
