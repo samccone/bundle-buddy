@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, sans-serif;
+  height: 100vh;
+}
+
+h1 {
+  font-weight: 100;
+}
+
+
+.pointer, a {
+  cursor: pointer;
+}
+
+.margin-bottom {
+  margin-bottom: 40px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
