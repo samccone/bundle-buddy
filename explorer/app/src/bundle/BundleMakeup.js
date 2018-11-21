@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import data from "./prototype/hierarchy.json";
 
-import { stratify } from "d3-hierarchy";
 import { voronoiTreemap } from "d3-voronoi-treemap";
 import { scaleQuantize } from "d3-scale";
 
@@ -11,7 +9,7 @@ import { scaleQuantize } from "d3-scale";
 
 const colorScale = scaleQuantize()
   .domain([0, 8])
-  .range(["#ce8ac8", "#dfc6de", "#e8e8e8", "#a1e2cc"]);
+  .range(["#dff4f2", "#b2dfdb", "#79b9b3"]);
 
 // const colorScaleMap = scaleOrdinal()
 //   // .scaleQuantize()
@@ -24,38 +22,26 @@ class BundleMakeup extends Component {
   constructor(props) {
     super(props);
 
-    const h = stratify()
-      .id(function(d) {
-        return d.name;
-      })
-      .parentId(function(d) {
-        return d.parent;
-      })(data);
-
-    h.sum(d => d.totalBytes);
-
     var mySeededPrng = new Math.seedrandom("hello");
 
     voronoiTreemap()
       .prng(mySeededPrng)
-      .size([width, height])(h);
+      .size([width, height])(props.hierarchy);
 
     this.state = {
-      h
+      h: props.hierarchy
     };
-  }
-
-  shouldComponentUpdate() {
-    return false;
   }
 
   render() {
     const h = this.state.h;
-
+    const { nodeMap, selected } = this.props;
+    // console.log("here", selected)
     const children = h.children;
     // console.log(h.leaves().slice(0, 10))
     const polygons = h.leaves().map((p, i) => {
       const index = p.id.lastIndexOf("/");
+      const unselected = selected && !nodeMap[p.id];
       return (
         <g key={i + "polygon"}>
           <clipPath id={p.id}>
@@ -68,7 +54,7 @@ class BundleMakeup extends Component {
             strokeWidth={2}
             opacity={1}
             onClick={() => this.props.changeSelected(p.id)}
-            fill={colorScale(p.data.asSource || 0)}
+            fill={unselected ? "#eee" : colorScale(p.data.asSource || 0)}
           />
           <text
             pointerEvents="none"
@@ -76,6 +62,7 @@ class BundleMakeup extends Component {
             y={p.polygon.site.y}
             fontSize="11"
             textAnchor="middle"
+            fill={unselected ? "#ccc" : "black"}
             clipPath={`url(#${p.id})`}
           >
             {p.id.slice(index + 1)}
@@ -131,6 +118,12 @@ class BundleMakeup extends Component {
                 {c.children &&
                   c.children.map(d => {
                     const i = d.id.lastIndexOf("/");
+
+                    const sel =
+                      !selected ||
+                      (selected && d.leaves().find(l => nodeMap[l.id]));
+                    // if (selected) console.log(d)
+
                     return (
                       <g key={d.id}>
                         <polygon
@@ -138,7 +131,7 @@ class BundleMakeup extends Component {
                             .map(q => q.join(","))
                             .join(" ")}`}
                           fillOpacity="0"
-                          stroke={"#333"}
+                          stroke={sel ? "black" : "none"}
                           strokeWidth={2}
                           opacity={1}
                         />

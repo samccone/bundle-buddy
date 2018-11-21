@@ -9,8 +9,8 @@ h1 {
   font-weight: 100;
 }
 
-
-.pointer, a {
+.pointer,
+a {
   cursor: pointer;
 }
 
@@ -20,4 +20,16 @@ h1 {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.absolute {
+  position: absolute;
+}
+
+svg {
+  overflow: visible;
 }

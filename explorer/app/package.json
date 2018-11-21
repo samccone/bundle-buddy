@@ -9,7 +9,7 @@
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
-    "semiotic": "1.15.8"
+    "semiotic": "1.15.10"
   },
   "scripts": {
     "start": "react-scripts start",

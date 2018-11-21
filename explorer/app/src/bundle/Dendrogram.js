@@ -1,32 +1,9 @@
 import React from "react";
 import dagre from "dagre";
-import data from "./prototype/network.json";
 import NetworkFrame from "semiotic/lib/NetworkFrame";
 import { scaleLinear } from "d3-scale";
 
-export default function Dendrogram({ selected }) {
-  if (!selected)
-    return (
-      <div>
-        <p />
-      </div>
-    );
-
-  const edges = data.edges.filter(d => {
-    return d.source === selected || d.target === selected;
-  });
-  const nodeMap = edges.reduce((p, c) => {
-    p[c.source] = true;
-    p[c.target] = true;
-
-    return p;
-  }, {});
-
-  const nodes = data.nodes
-    .filter(d => nodeMap[d.id])
-    .sort((a, b) => b.totalBytes - a.totalBytes);
-  // console.log("edges", nodes)
-
+export default function Dendrogram({ edges, nodes }) {
   const heightScale = scaleLinear()
     .domain([0, (nodes[0] && nodes[0].totalBytes) || 1])
     .range([0, 50]);
@@ -57,12 +34,8 @@ export default function Dendrogram({ selected }) {
 
   dagre.layout(g);
 
-  // console.log("HERE", g.nodes(), g)
-
   return (
     <div>
-      <p>{selected}</p>
-
       <NetworkFrame
         size={[1000, 500]}
         graph={g}
