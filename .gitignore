@@ -3,3 +3,4 @@ viz/src/data/*
 node_modules
 /*.js
 output_large.json
+explorer/app/src/prototype/*
