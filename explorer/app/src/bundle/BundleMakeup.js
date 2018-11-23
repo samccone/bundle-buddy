@@ -16,16 +16,16 @@ const colorScale = scaleQuantize()
 //   .range(["#a1e2cc", "#e8e8e8", "#dfc6de", "#ce8ac8"])
 //   .domain(["0-1", "2-3", "4-5", "6+"])
 
-const width = 1200;
-const height = 800;
+const width = 800;
+const height = 500;
 class BundleMakeup extends Component {
   constructor(props) {
     super(props);
 
-    var mySeededPrng = new Math.seedrandom("hello");
+    // var mySeededPrng = new Math.seedrandom("hello");
 
     voronoiTreemap()
-      .prng(mySeededPrng)
+      // .prng(mySeededPrng)
       .size([width, height])(props.hierarchy);
 
     this.state = {

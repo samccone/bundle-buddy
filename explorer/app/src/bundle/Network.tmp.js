@@ -14,11 +14,11 @@ import {
   forceLink
 } from "d3-force";
 const { edges, nodes } = network;
-console.log(edges, nodes);
+// console.log(edges, nodes)
 
 const veryConnected = nodes.reduce((p, c) => {
-  if (c.asSource > 8) {
-    // if (c.asSource > 6) {
+  // if (c.asSource > 6 || c.asTarget > 20) {
+  if (c.asSource > 6) {
     p[c.id] = true;
   }
 
@@ -31,26 +31,17 @@ export default function Dendrogram() {
     .domain([0, (sorted[0] && sorted[0].totalBytes) || 1])
     .range([0, 50]);
 
-  const filteredNodes = nodes.filter(d => !veryConnected[d.id]);
-
-  filteredNodes.forEach(n => {
-    n.r = heightScale(n.totalBytes);
-  });
-
   const filteredEdges = edges.filter(
     d =>
       !veryConnected[d.source] &&
       !veryConnected[d.target] &&
       d.target.indexOf("$") === -1
-    // filteredNodes.find(n => n.id === d.source) &&
-    // filteredNodes.find(n => n.id === d.target)
   );
 
-  // console.log(filteredNodes, filteredEdges)
+  console.log(filteredEdges);
 
-  // const connectedEdges = edges.filter(
-  //   d => veryConnected[d.source] && veryConnected[d.target]
-  // )
+  const filteredNodes = nodes.filter(d => !veryConnected[d.id]);
+
   const connectedNodes = nodes.filter(d => veryConnected[d.id]);
   const simulation = forceSimulation(filteredNodes)
     .force(
@@ -58,20 +49,13 @@ export default function Dendrogram() {
       forceManyBody()
         .strength(0)
         // .distanceMax(100)
-        .strength(d => -d.r * 10)
+        .strength(d => -300 * d.totalBytes)
     )
     // .force("collide", forceCollide(d => d.r * 3).strength(1))
-
-    .force(
-      "link",
-      forceLink(filteredEdges)
-        .id(d => d.id)
-        .strength(d => {
-          // console.log(d)
-          return d.target.asTarget > 6 ? 0.01 : 0.2;
-        })
-    )
-    .stop();
+    //   // .force('x', force)
+    //   // // .force("x", forceX((d => d.fociX))
+    // .force("x", forceX(d => d.xplace).strength(0.5))
+    .force("link", forceLink(filteredEdges).strength(d => d.value || 1));
   // .force("x", d => {})
   // .force("y", forceY(d => d.yplace).strength(0.5))
   // .force("radial", forceRadial(d => d.id.length * 40).strength(0.8))
@@ -85,10 +69,6 @@ export default function Dendrogram() {
   //       d.target.indexOf("$") === -1
   //   )
   // )
-
-  // const iterations = 1000
-  // for (let i = 0; i < iterations; ++i) simulation.tick()
-
   return (
     <div>
       <div>
@@ -123,11 +103,11 @@ export default function Dendrogram() {
                 />
                 <div className="absolute" style={{ top: 0 }}>
                   <p y={-10} fontSize="10" textAnchor="middle">
-                    ↓<small>{d.asTarget}</small> <br />
                     <span>
                       <b>↑</b>
                     </span>{" "}
                     <small>{d.asSource}</small>
+                    <br />↓<small>{d.asTarget}</small>
                     <br />
                     <small>{name}</small>
                   </p>
@@ -138,11 +118,11 @@ export default function Dendrogram() {
         })}
       </div>
       <NetworkFrame
-        size={[900, 600]}
+        size={[600, 600]}
         // graph={g}
-        networkType={{ type: "force", iterations: 500 }}
+        networkType={{ type: "force", iterations: 500, simulation }}
         edges={filteredEdges}
-        nodes={nodes}
+        nodes={filteredNodes}
         nodeStyle={d => {
           return {
             stroke: d.id.indexOf("node_modules") !== -1 ? colors[1] : colors[0],
@@ -157,15 +137,15 @@ export default function Dendrogram() {
         nodeSizeAccessor={d => heightScale(d.totalBytes)}
         edgeStyle={d => {
           return {
-            fill:
+            stroke:
               d.source.id.indexOf("node_modules") !== -1 ? colors[1] : colors[0]
-            // opacity: d.target.asTarget > 6 ? 0.2 : 1
+
             // fillOpacity: 0.75,
             // strokeWidth: 0.5
             //              opacity: isMainPath ? 1 : 0.1
           };
         }}
-        edgeType="arrowhead"
+        // edgeType="arrowhead"
         margin={20}
         nodeLabels={d => {
           // if (d.height < 1500) return null

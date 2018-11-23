@@ -26,6 +26,10 @@ a {
   display: inline-block;
 }
 
+.relative {
+  position: relative;
+}
+
 .absolute {
   position: absolute;
 }

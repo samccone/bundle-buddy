@@ -91,7 +91,7 @@ class App extends Component {
           />
         )}{" "}
         <div>
-          {false && this.state.hierarchy && (
+          {true && this.state.hierarchy && (
             <BundleMakeup
               changeSelected={this.changeSelected}
               nodeMap={nodeMap}
