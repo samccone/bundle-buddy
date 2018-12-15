@@ -2,19 +2,25 @@ import React from "react";
 import dagre from "dagre";
 import NetworkFrame from "semiotic/lib/NetworkFrame";
 import { scaleLinear } from "d3-scale";
+import { colors } from "../theme";
 
-export default function Dendrogram({ edges, nodes }) {
+export default function Dendrogram({ edges, nodes, max, selected }) {
+  // const sorted = nodes.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0))
+  // const max = (sorted[0] && sorted[0].totalBytes) || 0
+
+  const width = 150;
+
   const heightScale = scaleLinear()
-    .domain([0, (nodes[0] && nodes[0].totalBytes) || 1])
-    .range([0, 50]);
+    .domain([0, max])
+    .range([0, width]);
   // let graph = null
 
   var g = new dagre.graphlib.Graph();
-
   g.setGraph({
     rankdir: "LR",
+    align: "UL",
     ranker: "tight-tree",
-    nodesep: 2,
+    nodesep: 25,
     edgesep: 2
   });
 
@@ -22,28 +28,32 @@ export default function Dendrogram({ edges, nodes }) {
     return {};
   });
 
-  nodes.forEach(n =>
+  nodes.forEach(n => {
     g.setNode(n.id, {
       ...n,
-      weight: n.totalBytes,
-      width: 20,
-      height: heightScale(n.totalBytes) || 10
-    })
-  );
-  edges.forEach(e => g.setEdge(e.source, e.target));
+      weight: 1, //n.totalBytes,
+      height: 6,
+      width //heightScale(n.totalBytes || 0)
+    });
+  });
+  edges.forEach(e => {
+    if (e.source === selected || e.target === selected)
+      g.setEdge(e.source, e.target);
+  });
 
   dagre.layout(g);
 
   return (
     <div>
       <NetworkFrame
-        size={[1000, 500]}
+        size={[g.graph().width * 5 + 40, g.graph().height * 2 + 40]}
         graph={g}
-        networkType={{ type: "dagre", zoom: true }}
+        // dataVersion={new Date()}
+        networkType={{ type: "dagre", zoom: false }}
         nodeStyle={d => {
           return {
-            stroke: "#999",
-            fill: "#999",
+            stroke: colors[0],
+            fill: "white",
 
             strokeWidth: 1
           };
@@ -60,8 +70,20 @@ export default function Dendrogram({ edges, nodes }) {
         margin={20}
         nodeLabels={d => {
           // if (d.height < 1500) return null
-
-          return <text>{d.id}</text>;
+          // console.log("here", d)
+          return (
+            <g transform={`translate(-${width / 2}, 0)`}>
+              <rect
+                height="6"
+                y={-3}
+                width={heightScale(d.totalBytes)}
+                fill={colors[0]}
+              />
+              <text y={12} fontSize="10">
+                {d.id}
+              </text>
+            </g>
+          );
         }}
         // hoverAnnotation={true}
       />

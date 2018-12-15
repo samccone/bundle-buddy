@@ -35,5 +35,9 @@ a {
 }
 
 svg {
-  overflow: visible;
+  overflow: hidden;
+}
+
+.overflow-hidden .visualization-layer {
+  position: inherit !important;
 }

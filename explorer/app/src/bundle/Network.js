@@ -1,6 +1,6 @@
 import React from "react";
 // import dagre from "dagre"
-import network from "./prototype/trimmed-network.json";
+import network from "./prototype-algodash/trimmed-network.json";
 import NetworkFrame from "semiotic/lib/NetworkFrame";
 import { scaleSqrt } from "d3-scale";
 import { colors } from "../theme";
@@ -14,7 +14,7 @@ import {
   forceLink
 } from "d3-force";
 const { edges, nodes } = network;
-console.log(edges, nodes);
+// console.log(edges, nodes)
 
 const veryConnected = nodes.reduce((p, c) => {
   if (c.asSource > 8) {
