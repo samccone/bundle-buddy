@@ -101,7 +101,7 @@ function countsFromNetwork(network) {
 
 const counts = countsFromNetwork(network);
 
-class App extends Component {
+class Bundle extends Component {
   constructor(props) {
     super(props);
 
@@ -181,15 +181,13 @@ class App extends Component {
       data.nodes &&
       data.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Bundle Buddy</h1>
+    const totalSize = this.state.byTypeHierarchy.value;
 
-          <p>One Bundle</p>
-          <p>Multiple Bundles</p>
-          <p>Bundles Over Time</p>
-        </header>
+    const mb = 1024 * 1024;
+    const kb = 1024;
+
+    return (
+      <div>
         <ByTypeBarChart
           hierarchy={this.state.byTypeHierarchy}
           network={network}
@@ -227,4 +225,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Bundle;

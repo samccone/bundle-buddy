@@ -1,3 +1,9 @@
+:root {
+  --primary-color: #7AF1E9;
+  --link-color: darkblue;
+  --margin-left: 60px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,10 +13,10 @@ body {
 
 h1 {
   font-weight: 100;
+  font-size: 36px;
 }
 
-.pointer,
-a {
+.pointer, a {
   cursor: pointer;
 }
 
@@ -40,4 +46,40 @@ svg {
 
 .overflow-hidden .visualization-layer {
   position: inherit !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.App-header {
+  height: 170px;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+.panel {
+  width: 260px;
+  min-width: 260px;
+  border-right: 1px solid #ddd;
+  padding-left: var(--margin-left);
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.bottom {
+  justify-content: flex-end;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+a {
+  color: var(--link-color);
 }
