@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // noopener noreferrer
 
-class RollupImport extends Component {
+class WebpackImport extends Component {
   constructor(props: {}) {
     super(props);
   }
@@ -17,3 +17,5 @@ class RollupImport extends Component {
       )
   }
 }
+
+export default WebpackImport;

@@ -199,3 +199,6 @@ button.rollup-import {
   border-top: 1px solid #ddd;
   overflow-y: auto;
 }
+.no-link-underline {
+  text-decoration: none;
+}
