@@ -7,12 +7,10 @@ import { colors } from "../theme";
 export default function Dendrogram({ edges, nodes, max, selected }) {
   // const sorted = nodes.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0))
   // const max = (sorted[0] && sorted[0].totalBytes) || 0
-
+  console.log("test", edges, nodes);
   const width = 150;
 
-  const heightScale = scaleLinear()
-    .domain([0, max])
-    .range([0, width]);
+  const heightScale = scaleLinear().domain([0, max]).range([0, width]);
   // let graph = null
 
   var g = new dagre.graphlib.Graph();
@@ -44,11 +42,14 @@ export default function Dendrogram({ edges, nodes, max, selected }) {
   dagre.layout(g);
 
   return (
-    <div>
+    <div className="bottom-panel padding">
+      <p>
+        Selected File: <b>{selected}</b> is imported directly
+      </p>
+
       <NetworkFrame
         size={[g.graph().width * 5 + 40, g.graph().height * 2 + 40]}
         graph={g}
-        // dataVersion={new Date()}
         networkType={{ type: "dagre", zoom: false }}
         nodeStyle={d => {
           return {
@@ -62,15 +63,10 @@ export default function Dendrogram({ edges, nodes, max, selected }) {
           return {
             stroke: "#ccc",
             fill: "none"
-            // fillOpacity: 0.75,
-            // strokeWidth: 0.5
-            //              opacity: isMainPath ? 1 : 0.1
           };
         }}
         margin={20}
         nodeLabels={d => {
-          // if (d.height < 1500) return null
-          // console.log("here", d)
           return (
             <g transform={`translate(-${width / 2}, 0)`}>
               <rect
@@ -85,7 +81,6 @@ export default function Dendrogram({ edges, nodes, max, selected }) {
             </g>
           );
         }}
-        // hoverAnnotation={true}
       />
     </div>
   );

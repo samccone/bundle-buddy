@@ -35,8 +35,6 @@ export default function OverviewBarChart({
   changeSelected,
   counts
 }) {
-  const nodes = network.nodes.sort((a, b) => b.totalBytes - a.totalBytes);
-
   const totalSize = hierarchy.value;
 
   const fileTypes = hierarchy.leaves().reduce((p, c) => {
@@ -70,6 +68,7 @@ export default function OverviewBarChart({
         <div className="flex">
           <div className="side-panel left padding">
             <p>
+              <img className="icon" alt="file types" src="/img/file.png" />
               <b>
                 <small>File Types</small>
               </b>
@@ -115,6 +114,8 @@ export default function OverviewBarChart({
         <div className="flex">
           <div className="side-panel left padding">
             <p>
+              <img className="icon" alt="directories" src="/img/folder.png" />
+
               <b>
                 <small>Directories</small>
               </b>

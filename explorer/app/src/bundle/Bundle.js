@@ -126,6 +126,7 @@ class Bundle extends Component {
 
     byType.sum(d => d.totalBytes);
 
+    console.log(props.initialState);
     this.state = {
       hierarchy: h,
       byTypeHierarchy: byType,
@@ -182,11 +183,6 @@ class Bundle extends Component {
       data.nodes &&
       data.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
 
-    const totalSize = this.state.byTypeHierarchy.value;
-
-    const mb = 1024 * 1024;
-    const kb = 1024;
-
     return (
       <div>
         <ByTypeBarChart
@@ -217,8 +213,6 @@ class Bundle extends Component {
             />}
         </div>
         <div>
-          <p>{this.state.selected}</p>
-
           {this.state.selected &&
             <Dendrogram
               nodes={nodes}

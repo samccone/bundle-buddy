@@ -66,6 +66,7 @@ export default function OverviewBarChart({
     <div className="relative flex top-border">
       <div className="panel ">
         <p>
+          <img className="icon" alt="details" src="/img/details.png" />
           <b>Details</b>
         </p>
         <p>
@@ -86,11 +87,12 @@ export default function OverviewBarChart({
                 <small>Examine</small>
               </b>
             </p>
+            <p>Placeholder Search bar</p>
           </div>
           <div className="side-panel right padding relative">
             <div className="flex">
               {hierarchy.children.sort((a, b) => b.value - a.value).map(l => {
-                const d = nodes.filter(d => d.id.indexOf(l.id) !== -1);
+                const d = nodes.filter(d => d.id.indexOf(l.id) === 0);
                 return (
                   <div
                     style={{
