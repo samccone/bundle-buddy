@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import OverviewBarChart from "./OverviewBarChart";
 import ByTypeBarChart from "./ByTypeBarChart";
+import FileDetails from "./FileDetails";
 import BundleMakeup from "./BundleMakeup";
 import Dendrogram from "./Dendrogram";
 // import Network from "./Network"
@@ -189,6 +190,12 @@ class Bundle extends Component {
     return (
       <div>
         <ByTypeBarChart
+          hierarchy={this.state.byTypeHierarchy}
+          network={network}
+          changeSelected={this.changeSelected}
+          counts={counts}
+        />
+        <FileDetails
           hierarchy={this.state.byTypeHierarchy}
           network={network}
           changeSelected={this.changeSelected}

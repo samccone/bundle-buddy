@@ -4,7 +4,7 @@
   --margin-left: 90px;
   --panel-width: 260px;
   --side-panel-width: 100px;
-  --total-width: 570px;
+  --total-width: 580px;
 }
 
 body {
@@ -83,6 +83,14 @@ svg {
   padding-right: 20px;
   display: flex;
   flex-direction: column;
+}
+
+.no-border {
+  border: none;
+}
+
+.top-border {
+  border-top: 1px solid #ddd;
 }
 
 .padding {
