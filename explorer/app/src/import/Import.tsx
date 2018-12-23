@@ -4,6 +4,21 @@ import { statsToGraph } from "./stats_to_graph";
 
 // noopener noreferrer
 
+
+function readFileAsText(file: File): Promise<string> {
+  return new Promise((res, rej) => {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const target = (e.target as EventTarget & { result: string });
+        res(target.result)
+      }
+
+      reader.onabort = reader.onerror = (e) => Promise.reject(e);
+      reader.readAsText(file);
+
+  });
+}
+
 class Import extends Component {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   statsInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
@@ -24,17 +39,11 @@ class Import extends Component {
     this.setState({ selected });
   }
 
-  processFiles() {
+  async processFiles() {
     if (this.statsInput != null && this.statsInput.current != null) {
-      const statsFile = this.statsInput.current.files[0];
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const target = (e.target as EventTarget & { result: string });
-        const stats = JSON.parse(target.result);
-        console.log(cleanGraph(statsToGraph(stats)));
-      }
-
-      reader.readAsText(statsFile);
+      const contents = await readFileAsText(this.statsInput.current.files[0]);
+      const stats = JSON.parse(contents);
+      console.log(cleanGraph(statsToGraph(stats)));
     }
   }
 
