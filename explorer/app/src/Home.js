@@ -1,20 +1,10 @@
-import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import React, { Component, Suspense, lazy } from "react";
 import Header from "./Header";
-import Bundle from "./bundle/Bundle";
-import Import from "./import/Import";
 // noopener noreferrer
 
-function parseQuery(queryString) {
-  var query = {};
-  var pairs = (queryString[0] === "?"
-    ? queryString.substr(1)
-    : queryString).split("&");
-  for (var i = 0; i < pairs.length; i++) {
-    var pair = pairs[i].split("=");
-    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
-  }
-  return query;
-}
+const Bundle = lazy(() => import("./bundle/Bundle"));
+const Import = lazy(() => import("./import/Import"));
 
 class Home extends Component {
   constructor(props) {
@@ -32,21 +22,18 @@ class Home extends Component {
   }
 
   render() {
-    const pathname = window.location.pathname;
-
-    const initialState = parseQuery(window.location.search);
-
-    let Page;
-
-    if (pathname === "/bundle") Page = Bundle;
-
-    if (pathname === "/import") Page = Import;
-
     return (
-      <div className="App">
-        <Header />
-        {Page && <Page {...initialState} />}
-      </div>
+      <Router>
+        <div className="App">
+          <Header/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route path="/bundle" component={Bundle}></Route>
+              <Route path="/import" component={Import}></Route>
+            </Switch>
+          </Suspense>
+        </div>
+      </Router>
     );
   }
 }

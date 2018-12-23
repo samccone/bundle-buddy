@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 
 // noopener noreferrer
 
@@ -13,13 +14,13 @@ class Header extends Component {
           </div>
           <div className="flex space-between">
             <p>
-              <a href="/">About</a>
+              <Link to="/">About</Link>
             </p>
             <p>
-              <a href="/import">Import</a>
+              <Link to="/import">Import</Link>
             </p>
             <p>
-              <a href="/bundle">Bundle</a>
+              <Link to="/bundle">Bundle</Link>
             </p>
           </div>
         </div>
