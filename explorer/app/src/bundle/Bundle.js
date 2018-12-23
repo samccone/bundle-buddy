@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import OverviewBarChart from "./OverviewBarChart";
 import ByTypeBarChart from "./ByTypeBarChart";
 import FileDetails from "./FileDetails";
-import BundleMakeup from "./BundleMakeup";
 import Dendrogram from "./Dendrogram";
 // import Network from "./Network"
 
@@ -126,12 +124,11 @@ class Bundle extends Component {
 
     byType.sum(d => d.totalBytes);
 
-    console.log(props.initialState);
+    //TODO change to URI encode
     this.state = {
       hierarchy: h,
       byTypeHierarchy: byType,
-      selected: null,
-      ...props.initialState
+      selected: props.selected
     };
 
     this.changeSelected = this.changeSelected.bind(this);
@@ -183,6 +180,8 @@ class Bundle extends Component {
       data.nodes &&
       data.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
 
+    console.log(counts, data.nodes.filter(d => d.asSource === 0));
+
     return (
       <div>
         <ByTypeBarChart
@@ -197,21 +196,7 @@ class Bundle extends Component {
           changeSelected={this.changeSelected}
           counts={counts}
         />
-        {false &&
-          <OverviewBarChart
-            hierarchy={this.state.hierarchy}
-            nodeMap={nodeMap}
-          />}{" "}
-        <div>
-          {false &&
-            this.state.hierarchy &&
-            <BundleMakeup
-              changeSelected={this.changeSelected}
-              nodeMap={nodeMap}
-              hierarchy={this.state.hierarchy}
-              selected={this.state.selected}
-            />}
-        </div>
+
         <div>
           {this.state.selected &&
             <Dendrogram
@@ -219,6 +204,7 @@ class Bundle extends Component {
               edges={edges}
               max={max}
               selected={this.state.selected}
+              counts={counts}
             />}
         </div>
       </div>

@@ -193,7 +193,9 @@ button.rollup-import {
 .bottom-panel {
   height: 70vh;
   position: fixed;
+  width: 100vw;
   bottom: 0px;
   background: white;
   border-top: 1px solid #ddd;
+  overflow-y: auto;
 }

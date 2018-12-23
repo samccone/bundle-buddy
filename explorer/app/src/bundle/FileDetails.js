@@ -1,9 +1,8 @@
 import React from "react";
 
 import OrdinalFrame from "semiotic/lib/OrdinalFrame";
-import ResponsiveOrdinalFrame from "semiotic/lib/ResponsiveOrdinalFrame";
-import { colors, primary, mainFileColor, secondaryFileColor } from "../theme";
-import { getFileSize, getPercent } from "./stringFormats";
+import { colors, mainFileColor, secondaryFileColor } from "../theme";
+import { getPercent } from "./stringFormats";
 
 const typeColors = {
   js: mainFileColor,

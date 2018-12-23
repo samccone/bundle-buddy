@@ -25,11 +25,18 @@ class Home extends Component {
     return (
       <Router>
         <div className="App">
-          <Header/>
+          <Header />
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
-              <Route path="/bundle" component={Bundle}></Route>
-              <Route path="/import" component={Import}></Route>
+              <Route
+                path="/bundle/"
+                component={({ location }) => {
+                  let params = new URLSearchParams(location.search);
+                  return <Bundle selected={params.get("selected")} />;
+                }}
+              />
+              <Route path="/bundle" component={Bundle} />
+              <Route path="/import" component={Import} />
             </Switch>
           </Suspense>
         </div>
