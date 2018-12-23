@@ -2,12 +2,15 @@ import React, { Component } from "react";
 
 // noopener noreferrer
 
-class Heaer extends Component {
+class Header extends Component {
   render() {
     return (
       <header className="App-header flex">
         <div className="panel bottom">
-          <h1>Bundle Buddy</h1>
+          <div className="relative">
+            <img className="logo" src="/icon.png" width="60" height="60" />
+            <h1>Bundle Buddy</h1>
+          </div>
           <div className="flex space-between">
             <p>
               <a href="/">About</a>
@@ -28,4 +31,4 @@ class Heaer extends Component {
   }
 }
 
-export default Heaer;
+export default Header;

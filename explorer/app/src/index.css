@@ -1,7 +1,10 @@
 :root {
   --primary-color: #7AF1E9;
   --link-color: darkblue;
-  --margin-left: 60px;
+  --margin-left: 90px;
+  --panel-width: 260px;
+  --side-panel-width: 100px;
+  --total-width: 570px;
 }
 
 body {
@@ -48,8 +51,16 @@ svg {
   position: inherit !important;
 }
 
+.overflow-visible svg {
+  overflow: visible;
+}
+
 .flex {
   display: flex;
+}
+
+.App {
+  width: 100vw;
 }
 
 .App-header {
@@ -58,14 +69,45 @@ svg {
   border-bottom: 1px solid #ddd;
 }
 
+.logo {
+  position: absolute;
+  left: -70px;
+  top: 15px;
+}
+
 .panel {
-  width: 260px;
+  width: var(--panel-width);
   min-width: 260px;
   border-right: 1px solid #ddd;
   padding-left: var(--margin-left);
   padding-right: 20px;
   display: flex;
   flex-direction: column;
+}
+
+.padding {
+  padding: 20px;
+}
+
+.side-panel {
+  padding: 20px;
+}
+
+.side-panel.left {
+  width: 100px;
+  min-width: 100px;
+}
+
+.side-panel {
+  width: var(--side-panel-width);
+  min-width: 100px;
+  padding: 20px;
+}
+
+.side-panel.right {
+  width: calc(100vw - var(--total-width));
+  overflow-x: auto;
+  min-width: 100px;
 }
 
 .sticky {
