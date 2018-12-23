@@ -1,21 +1,19 @@
 import React, { Component } from "react";
-import { cleanGraph } from './graph_process';
+import { cleanGraph } from "./graph_process";
 import { statsToGraph } from "./stats_to_graph";
 
 // noopener noreferrer
 
-
 function readFileAsText(file: File): Promise<string> {
   return new Promise((res, rej) => {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const target = (e.target as EventTarget & { result: string });
-        res(target.result)
-      }
+    const reader = new FileReader();
+    reader.onload = e => {
+      const target = e.target as EventTarget & { result: string };
+      res(target.result);
+    };
 
-      reader.onabort = reader.onerror = (e) => Promise.reject(e);
-      reader.readAsText(file);
-
+    reader.onabort = reader.onerror = e => Promise.reject(e);
+    reader.readAsText(file);
   });
 }
 
@@ -49,15 +47,11 @@ class Import extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Bundle Buddy</h1>
-        </header>
-
-        <label htmlFor="stats" >stats.json</label>
-        <input id="stats" type="file" ref={this.statsInput}></input>
+      <div>
+        <label htmlFor="stats">stats.json</label>
+        <input id="stats" type="file" ref={this.statsInput} />
         <label htmlFor="sourcemap">sourcemap</label>
-        <input id="sourcemap" type="file" ref={this.sourceMapInput}></input>
+        <input id="sourcemap" type="file" ref={this.sourceMapInput} />
         <button onClick={() => this.processFiles()}>Process</button>
       </div>
     );
