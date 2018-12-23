@@ -6,11 +6,13 @@ const magicPrefixes = [
   "\u0000commonjs-proxy:",
   // Rollup specific prefix added to add commonjs external nodes.
   "\u0000commonjs-external:",
+  '\u0000',
 ]
 
 const ignoreNodes = new Set([
   // Rollup specific magic module.
   "\u0000commonjsHelpers",
+  'babelHelpers',
   // Core nodejs modules
   "crypto",
   "events",

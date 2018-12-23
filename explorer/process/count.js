@@ -6,7 +6,6 @@ const network = require('/Users/samccone/Downloads/trimmed-network.json');
  */
 function countsFromNetwork(network) {
     const d = {};
-
     for (const n of network.edges) {
         if (d[n.target] == null) {
             d[n.target] = {
@@ -62,7 +61,7 @@ function countsFromNetwork(network) {
                 count++;
             }
 
-            count += countAllRequires(requiredBy, seen, graph, false)
+            count += countTransitiveRequires(requiredBy, seen, graph, false)
         }
 
         return count;
@@ -70,7 +69,7 @@ function countsFromNetwork(network) {
 
     for (const moduleName of Object.keys(d)) {
         const seen = new Set();
-        d[moduleName].indirectDependedOnCount = countAllRequires(moduleName, seen, d, true);
+        d[moduleName].indirectDependedOnCount = countTransitiveRequires(moduleName, seen, d, true);
         d[moduleName].transitiveRequiredBy = Array.from(seen).filter(v => v !== moduleName); 
     }
 
