@@ -3,17 +3,17 @@ import React, { Component } from "react";
 // noopener noreferrer
 
 class Import extends Component {
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
 
     this.changeSelected = this.changeSelected.bind(this);
   }
 
-  state = {
+  state: {selected: boolean|null} = {
     selected: null
   };
 
-  changeSelected(selected) {
+  changeSelected(selected: boolean) {
     this.setState({ selected });
   }
 

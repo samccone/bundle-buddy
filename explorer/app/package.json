@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
     "d3-scale": "2.1.2",
     "d3-voronoi-treemap": "^1.1.0",
     "dagre": "0.8.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
-    "semiotic": "1.15.10"
+    "semiotic": "1.15.10",
+    "typescript": "^3.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
