@@ -17,3 +17,5 @@ class RollupImport extends Component {
       )
   }
 }
+
+export default RollupImport;

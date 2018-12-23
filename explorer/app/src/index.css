@@ -166,3 +166,7 @@ button.rollup-import {
   text-align: left;
   font-size: 17px;
 }
+
+.no-link-underline {
+  text-decoration: none;
+}
