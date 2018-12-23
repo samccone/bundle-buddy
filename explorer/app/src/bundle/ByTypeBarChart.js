@@ -48,11 +48,8 @@ export default function OverviewBarChart({
   changeSelected,
   counts
 }) {
-  console.log(hierarchy, network);
   const nodes = network.nodes.sort((a, b) => b.totalBytes - a.totalBytes);
   const max = nodes[0].totalBytes;
-
-  console.log(counts);
 
   return (
     <div className="relative">
@@ -70,7 +67,7 @@ export default function OverviewBarChart({
               <text textAnchor="middle" fontSize="10" opacity=".6">
                 <tspan>{d}</tspan>
                 <tspan x={0} y={15} fontWeight="bold">
-                  {Math.round((arr[0].parent.value / hierarchy.value) * 100)}%{" "}
+                  {Math.round(arr[0].parent.value / hierarchy.value * 100)}%{" "}
                 </tspan>
                 <tspan>
                   {arr[0].parent && (arr[0].parent.value / 1024).toFixed(2)} KB
@@ -84,15 +81,11 @@ export default function OverviewBarChart({
       <div
         style={{
           marginLeft: frameProps.margin.left,
-          display: "flex",
-          maxHeight: 200,
-          overflowY: "scroll",
-          border: "1px solid #ccc"
+          display: "flex"
         }}
-        className="overflow-hidden"
       >
         {hierarchy.children.map(l => {
-          const d = nodes.filter(d => d.id.indexOf(l.id) === 0);
+          const d = nodes.filter(d => d.id.indexOf(l.id) !== -1);
           return (
             <div style={{ width: 200, display: "inline-block" }}>
               <OrdinalFrame
@@ -102,7 +95,7 @@ export default function OverviewBarChart({
                 rExtent={[0, max]}
                 customClickBehavior={changeSelected}
                 size={[200, d.length * 13]}
-                oLabel={(d, arr) => (
+                oLabel={(d, arr) =>
                   <text
                     fontSize="12"
                     opacity=".6"
@@ -115,8 +108,7 @@ export default function OverviewBarChart({
                       {counts[d] && counts[d].indirectDependedOnCount}
                     </tspan>{" "}
                     <tspan x={45}>{d.replace(l.id + "/", "")}</tspan>
-                  </text>
-                )}
+                  </text>}
               />
             </div>
           );

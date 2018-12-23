@@ -22,11 +22,7 @@ class BundleMakeup extends Component {
   constructor(props) {
     super(props);
 
-    // var mySeededPrng = new Math.seedrandom("hello");
-
-    voronoiTreemap()
-      // .prng(mySeededPrng)
-      .size([width, height])(props.hierarchy);
+    voronoiTreemap().size([width, height])(props.hierarchy);
 
     this.state = {
       h: props.hierarchy
@@ -36,9 +32,7 @@ class BundleMakeup extends Component {
   render() {
     const h = this.state.h;
     const { nodeMap, selected } = this.props;
-    // console.log("here", selected)
     const children = h.children;
-    // console.log(h.leaves().slice(0, 10))
     const polygons = h.leaves().map((p, i) => {
       const index = p.id.lastIndexOf("/");
       const unselected = selected && !nodeMap[p.id];
@@ -99,10 +93,9 @@ class BundleMakeup extends Component {
           {polygons}
           {children.map(c => {
             offsets[c.topOrBottom]++;
-            const y =
-              c.topOrBottom === "top"
-                ? -offsets[c.topOrBottom] * 30 + 20
-                : height + offsets[c.topOrBottom] * 30;
+            const y = c.topOrBottom === "top"
+              ? -offsets[c.topOrBottom] * 30 + 20
+              : height + offsets[c.topOrBottom] * 30;
 
             const matchHeight = c.topOrBottom === "top" ? 0 : height;
             const matchingSide = c.polygon.filter(d => d[1] === matchHeight);
@@ -135,7 +128,7 @@ class BundleMakeup extends Component {
                           strokeWidth={2}
                           opacity={1}
                         />
-                        {d.value / total > 0.01 && (
+                        {d.value / total > 0.01 &&
                           <text
                             x={d.polygon.site.x}
                             y={d.polygon.site.y}
@@ -145,8 +138,7 @@ class BundleMakeup extends Component {
                             textAnchor="middle"
                           >
                             {d.id.slice(i + 1)}
-                          </text>
-                        )}
+                          </text>}
                       </g>
                     );
                   })}

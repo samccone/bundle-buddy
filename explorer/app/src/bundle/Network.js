@@ -1,6 +1,6 @@
 import React from "react";
 // import dagre from "dagre"
-import network from "./prototype-algodash/trimmed-network.json";
+import network from "./prototype-semiotic/trimmed-network.json";
 import NetworkFrame from "semiotic/lib/NetworkFrame";
 import { scaleSqrt } from "d3-scale";
 import { colors } from "../theme";
@@ -64,12 +64,10 @@ export default function Dendrogram() {
 
     .force(
       "link",
-      forceLink(filteredEdges)
-        .id(d => d.id)
-        .strength(d => {
-          // console.log(d)
-          return d.target.asTarget > 6 ? 0.01 : 0.2;
-        })
+      forceLink(filteredEdges).id(d => d.id).strength(d => {
+        // console.log(d)
+        return d.target.asTarget > 6 ? 0.01 : 0.2;
+      })
     )
     .stop();
   // .force("x", d => {})
@@ -114,11 +112,9 @@ export default function Dendrogram() {
                     borderRadius: "100%",
                     background: "#ccc",
 
-                    border: `2px solid ${
-                      d.id.indexOf("node_modules") !== -1
-                        ? colors[1]
-                        : colors[0]
-                    }`
+                    border: `2px solid ${d.id.indexOf("node_modules") !== -1
+                      ? colors[1]
+                      : colors[0]}`
                   }}
                 />
                 <div className="absolute" style={{ top: 0 }}>
@@ -148,17 +144,16 @@ export default function Dendrogram() {
             stroke: d.id.indexOf("node_modules") !== -1 ? colors[1] : colors[0],
             fill: veryConnected[d.id]
               ? "#eee"
-              : d.id.indexOf("node_modules") !== -1
-              ? colors[1]
-              : colors[0],
+              : d.id.indexOf("node_modules") !== -1 ? colors[1] : colors[0],
             strokeWidth: 1
           };
         }}
         nodeSizeAccessor={d => heightScale(d.totalBytes)}
         edgeStyle={d => {
           return {
-            fill:
-              d.source.id.indexOf("node_modules") !== -1 ? colors[1] : colors[0]
+            fill: d.source.id.indexOf("node_modules") !== -1
+              ? colors[1]
+              : colors[0]
             // opacity: d.target.asTarget > 6 ? 0.2 : 1
             // fillOpacity: 0.75,
             // strokeWidth: 0.5
@@ -177,14 +172,13 @@ export default function Dendrogram() {
           }
           return (
             <g>
-              {veryConnected[d.id] && (
+              {veryConnected[d.id] &&
                 <text y={-10} fontSize="10" textAnchor="middle">
                   <tspan fontSize="12" fontWeight="bold">
                     ↑
                   </tspan>{" "}
                   {d.asSource}
-                </text>
-              )}
+                </text>}
               <text fontSize="10" textAnchor="middle">
                 {name}
               </text>

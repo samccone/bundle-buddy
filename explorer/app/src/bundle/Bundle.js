@@ -9,10 +9,10 @@ import Dendrogram from "./Dendrogram";
 // import totalsByType from "./prototype/totalsByType.json"
 // import data from "./prototype/network.json"
 // import network from "./prototype/trimmed-network.json"
-import hierarchy from "./prototype-algodash/hierarchy.json";
-import totalsByType from "./prototype-algodash/totalsByType.json";
-import data from "./prototype-algodash/trimmed-network.json";
-import network from "./prototype-algodash/trimmed-network.json";
+import hierarchy from "./prototype-semiotic/hierarchy.json";
+import totalsByType from "./prototype-semiotic/totalsByType.json";
+import data from "./prototype-semiotic/trimmed-network.json";
+import network from "./prototype-semiotic/trimmed-network.json";
 
 import { stratify } from "d3-hierarchy";
 
@@ -139,9 +139,8 @@ class App extends Component {
     window.history.pushState(
       { selected },
       "",
-      `${window.location.origin}${
-        window.location.pathname
-      }?selected=${selected}`
+      `${window.location.origin}${window.location
+        .pathname}?selected=${selected}`
     );
     this.setState({ selected });
   }
@@ -152,18 +151,11 @@ class App extends Component {
       nodeMap = {};
 
     if (this.state.selected) {
-      const validList = counts[this.state.selected].transitiveRequiredBy;
+      const validList =
+        (counts[this.state.selected] &&
+          counts[this.state.selected].transitiveRequiredBy) ||
+        [];
 
-      console.log(validList);
-
-      // if (this.state.selected.indexOf("node_modules") !== -1) {
-      //   edges = data.edges.filter(d => {
-      //     return (
-      //       d.source === this.state.selected &&
-      //       d.target.indexOf("node_modules") === -1
-      //     )
-      //   })
-      // } else {
       edges = data.edges.filter(d => {
         return (
           (validList.indexOf(d.source) !== -1 &&
@@ -171,7 +163,6 @@ class App extends Component {
           (d.source === this.state.selected || d.target === this.state.selected)
         );
       });
-      // }
 
       nodeMap = edges.reduce((p, c) => {
         p[c.source] = true;
@@ -205,33 +196,31 @@ class App extends Component {
           changeSelected={this.changeSelected}
           counts={counts}
         />
-        {false && (
+        {false &&
           <OverviewBarChart
             hierarchy={this.state.hierarchy}
             nodeMap={nodeMap}
-          />
-        )}{" "}
+          />}{" "}
         <div>
-          {false && this.state.hierarchy && (
+          {false &&
+            this.state.hierarchy &&
             <BundleMakeup
               changeSelected={this.changeSelected}
               nodeMap={nodeMap}
               hierarchy={this.state.hierarchy}
               selected={this.state.selected}
-            />
-          )}
+            />}
         </div>
         <div>
           <p>{this.state.selected}</p>
 
-          {this.state.selected && (
+          {this.state.selected &&
             <Dendrogram
               nodes={nodes}
               edges={edges}
               max={max}
               selected={this.state.selected}
-            />
-          )}
+            />}
         </div>
       </div>
     );
