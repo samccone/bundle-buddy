@@ -12,14 +12,10 @@ const RollupImport = lazy(() => import("./rollup/Import"));
 // noopener noreferrer
 
 class Import extends Component {
-  sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
-  statsInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
 
   constructor(props: {}) {
     super(props);
 
-    this.sourceMapInput = React.createRef();
-    this.statsInput = React.createRef();
     this.changeSelected = this.changeSelected.bind(this);
   }
 
@@ -32,11 +28,11 @@ class Import extends Component {
   }
 
   async processFiles() {
-    if (this.statsInput != null && this.statsInput.current != null) {
+/*     if (this.statsInput != null && this.statsInput.current != null) {
       const contents = await readFileAsText(this.statsInput.current.files[0]);
       const stats = JSON.parse(contents);
       console.log(cleanGraph(statsToGraph(stats)));
-    }
+    } */
   }
 
   render() {
@@ -49,13 +45,6 @@ class Import extends Component {
             <Route exact path="/import/rollup" component={RollupImport}></Route>
           </Switch>
         </Suspense>
-        <div>
-          <label htmlFor="stats">stats.json</label>
-          <input id="stats" type="file" ref={this.statsInput} />
-          <label htmlFor="sourcemap">sourcemap</label>
-          <input id="sourcemap" type="file" ref={this.sourceMapInput} />
-          <button onClick={() => this.processFiles()}>Process</button>
-        </div>
       </div>
     );
   }

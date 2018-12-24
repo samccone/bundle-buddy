@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --primary-color: #7AF1E9;
   --link-color: darkblue;
@@ -157,15 +161,38 @@ button {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
+  position: relative;
+}
+
+button.copy-button {
+  background-image: url(/img/copy_icon.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: none;
+  display: inline-block;
+  opacity: 0.2;
+  position: absolute;
+  left: calc(100% - 40px);
+  top: 100%;
+  margin-top: -30px;
+}
+
+button.copy-button:hover {
+  opacity: 0.4;
 }
 
 .col-container {
   display: flex;
-  padding: 0 25px;
 }
 
 .col-container div {
   flex: 1;
+  border-right: solid 2px transparent;
+  border-left: solid 2px transparent;
+}
+
+.col-container .col-narrow {
+  flex: 0.25;
 }
 
 .type-button {
@@ -201,4 +228,57 @@ button.rollup-import {
 }
 .no-link-underline {
   text-decoration: none;
+}
+code {
+  background: #F5F5F5;
+  display: block;
+  padding: 15px;
+  border: solid 1px #ddd;
+  position: relative;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+}
+
+.add-diff {
+  font-weight: bold;
+  background: #BCFFCF;
+}
+
+input[type="file"] {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: transparent;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.upload-files-container div {
+  margin: 10px 0;
+}
+
+.upload-files-container button {
+  width: 150px;
+}
+
+.attach-icon {
+  opacity: 0.4;
+  height: 20px;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+.status-icon {
+  height: 24px;
+  position: relative;
+  top: 7px;
+  margin-left: 7px;
 }
