@@ -12,26 +12,11 @@ const typeColors = {
 };
 
 const frameProps = {
-  margin: { top: 50 },
-  oAccessor: d => d.parent.id,
-  rAccessor: d => d.value,
   type: "bar",
-  projection: "vertical",
   oPadding: 2,
-
-  style: d => {
-    return {
-      fill: typeColors[d.id] || secondaryFileColor
-      // stroke: typeColors[d.id] || secondaryFileColor
-    };
-  }
-};
-
-const trimmedProps = {
-  ...frameProps,
   rAccessor: "totalBytes",
   oAccessor: "id",
-  margin: 0,
+  margin: { left: 70 },
   projection: "horizontal",
 
   style: d => {
@@ -50,8 +35,6 @@ export default function OverviewBarChart({
 }) {
   const nodes = network.nodes.sort((a, b) => b.totalBytes - a.totalBytes);
   const max = nodes[0].totalBytes;
-
-  console.log(nodes);
 
   let withNodeModules = 0;
   let withoutNodeModules = 0;
@@ -104,14 +87,15 @@ export default function OverviewBarChart({
                     <OrdinalFrame
                       data={d}
                       {...frameProps}
-                      {...trimmedProps}
                       rExtent={[0, max]}
-                      margin={{ left: 45 }}
                       customClickBehavior={changeSelected}
                       size={[180, d.length * 29]}
                       type={{
                         type: "bar",
                         customMark: d => {
+                          const count = counts[d.id];
+
+                          console.log(count);
                           return (
                             <g onClick={() => changeSelected(d.id)}>
                               <rect
@@ -120,8 +104,18 @@ export default function OverviewBarChart({
                                 y={15}
                                 fill={mainFileColor}
                               />
+                              <text
+                                fontSize="12"
+                                fontWeight={
+                                  count && count.transitiveRequiredBy.length < 5
+                                }
+                                x={-30}
+                                y={10}
+                              >
+                                {count && count.transitiveRequiredBy.length}
+                              </text>
                               <text fontSize="12" x={-40} y={10}>
-                                <tspan fontWeight="bold">
+                                <tspan fontWeight="bold" textAnchor="end">
                                   {getPercent(d.totalBytes, hierarchy.value)}
                                 </tspan>
                                 <tspan x={0}>

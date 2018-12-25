@@ -6,7 +6,7 @@ import { colors, primary, mainFileColor, secondaryFileColor } from "../theme";
 
 import { getFileSize, getPercent } from "./stringFormats";
 
-const typeColors = {
+export const typeColors = {
   js: mainFileColor,
   ts: mainFileColor,
   jsx: mainFileColor,

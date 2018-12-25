@@ -29,13 +29,12 @@ class Home extends Component {
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
               <Route
-                path="/bundle/"
+                path="/bundle"
                 component={({ location }) => {
                   let params = new URLSearchParams(location.search);
                   return <Bundle selected={params.get("selected")} />;
                 }}
               />
-              <Route path="/bundle" component={Bundle} />
               <Route path="/import" component={Import} />
             </Switch>
           </Suspense>

@@ -60,7 +60,7 @@ svg {
   position: inherit !important;
 }
 
-.overflow-visible svg {
+.overflow-visible svg, .overflow-visible {
   overflow: visible;
 }
 
@@ -191,7 +191,7 @@ button.rollup-import {
 }
 
 .bottom-panel {
-  height: 70vh;
+  height: 60vh;
   position: fixed;
   width: 100vw;
   bottom: 0px;

@@ -99,7 +99,7 @@ function countsFromNetwork(network) {
 }
 
 const counts = countsFromNetwork(network);
-
+console.log(counts);
 class Bundle extends Component {
   constructor(props) {
     super(props);
@@ -145,42 +145,42 @@ class Bundle extends Component {
   }
 
   render() {
-    let edges = [],
-      nodes = [],
+    let edges = data.edges || [],
+      nodes = data.nodes || [],
       nodeMap = {};
 
-    if (this.state.selected) {
-      const validList =
-        (counts[this.state.selected] &&
-          counts[this.state.selected].transitiveRequiredBy) ||
-        [];
+    // if (this.state.selected) {
+    //   const validList =
+    //     (counts[this.state.selected] &&
+    //       counts[this.state.selected].transitiveRequiredBy) ||
+    //     [];
 
-      edges = data.edges.filter(d => {
-        return (
-          (validList.indexOf(d.source) !== -1 &&
-            validList.indexOf(d.target) !== -1) ||
-          (d.source === this.state.selected || d.target === this.state.selected)
-        );
-      });
+    //   edges = data.edges.filter(d => {
+    //     return (
+    //       (validList.indexOf(d.source) !== -1 &&
+    //         validList.indexOf(d.target) !== -1) ||
+    //       (d.source === this.state.selected || d.target === this.state.selected)
+    //     );
+    //   });
 
-      nodeMap = edges.reduce((p, c) => {
-        p[c.source] = true;
-        p[c.target] = true;
+    //   nodeMap = edges.reduce((p, c) => {
+    //     p[c.source] = true;
+    //     p[c.target] = true;
 
-        return p;
-      }, {});
+    //     return p;
+    //   }, {});
 
-      nodes = data.nodes
-        .filter(d => nodeMap[d.id])
-        .sort((a, b) => b.totalBytes - a.totalBytes);
-    }
+    //   nodes = data.nodes
+    //     .filter(d => nodeMap[d.id])
+    //     .sort((a, b) => b.totalBytes - a.totalBytes);
+    // }
 
     const max =
       data &&
       data.nodes &&
       data.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
 
-    console.log(counts, data.nodes.filter(d => d.asSource === 0));
+    // console.log(counts, data.nodes.filter(d => d.asSource === 0));
 
     return (
       <div>
@@ -200,11 +200,15 @@ class Bundle extends Component {
         <div>
           {this.state.selected &&
             <Dendrogram
-              nodes={nodes}
-              edges={edges}
+              nodes={nodes.map(d => Object.assign({}, d))}
+              edges={edges.map(d => Object.assign({}, d))}
               max={max}
               selected={this.state.selected}
               counts={counts}
+              directories={this.state.byTypeHierarchy.children
+                .sort((a, b) => b.value - a.value)
+                .map(d => d.id)
+                .filter(d => d.indexOf("node_modules") === -1)}
             />}
         </div>
       </div>
