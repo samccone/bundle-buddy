@@ -1,10 +1,5 @@
 import { Route, Switch, Link } from "react-router-dom";
 import React, { Component, Suspense, lazy } from "react";
-import { cleanGraph } from "./graph_process";
-import { statsToGraph } from "./stats_to_graph";
-import { readFileAsText } from './file_reader';
-
-
 const Describe = lazy(() => import("./Describe"));
 const WebpackImport = lazy(() => import("./webpack/Import"));
 const RollupImport = lazy(() => import("./rollup/Import"));
@@ -25,14 +20,6 @@ class Import extends Component {
 
   changeSelected(selected: boolean) {
     this.setState({ selected });
-  }
-
-  async processFiles() {
-/*     if (this.statsInput != null && this.statsInput.current != null) {
-      const contents = await readFileAsText(this.statsInput.current.files[0]);
-      const stats = JSON.parse(contents);
-      console.log(cleanGraph(statsToGraph(stats)));
-    } */
   }
 
   render() {

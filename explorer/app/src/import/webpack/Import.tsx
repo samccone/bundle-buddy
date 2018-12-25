@@ -1,3 +1,8 @@
+import { cleanGraph } from "../graph_process";
+import { statsToGraph } from "../stats_to_graph";
+import { readFileAsText } from '../file_reader';
+import {processSourcemap} from '../process_sourcemaps'
+
 import React, { Component } from "react";
 // noopener noreferrer
 
@@ -33,8 +38,19 @@ class WebpackImport extends Component {
         return statsFile != null && sourceMapFile != null;
     }
 
-    private processFiles() {
+    private async processFiles() {
+        if (this.state.statsFile == null || this.state.sourceMapFile == null) { 
+            return
+        }
 
+        const statsFileContents = await readFileAsText(this.state.statsFile);
+        const sourceMapFileContents = await readFileAsText(this.state.sourceMapFile);
+
+
+        const parsedStats = JSON.parse(statsFileContents);
+        console.log(cleanGraph(statsToGraph(parsedStats)));
+
+        processSourcemap(sourceMapFileContents);
     }
 
     protected onStatsInput() {

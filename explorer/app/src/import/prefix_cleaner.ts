@@ -1,4 +1,4 @@
-export function findCommonPrefix(strings: string[]) {
+export function findCommonPrefix(strings: string[]): string|null {
     let commonPrefix = null;
 
     for (const k of strings) {
