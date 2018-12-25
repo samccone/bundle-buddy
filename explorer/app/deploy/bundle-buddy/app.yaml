@@ -3,9 +3,9 @@ threadsafe: true
 api_version: 1
 
 handlers:
-- url: /(.*\.(gif|png|jpg|ico|css|js|json|map|wasm))$
+- url: /(.*\.(gif|png|jpg|ico|css|js|json|map|wasm|svg))$
   static_files: www/\1
-  upload: www/.*\.(gif|png|jpg|ico|css|js|json|map|wasm)$
+  upload: www/.*\.(gif|png|jpg|ico|css|js|json|map|wasm|svg)$
 
 - url: /.*
   static_files: www/index.html
