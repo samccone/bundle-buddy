@@ -2,6 +2,7 @@ import { cleanGraph } from "../graph_process";
 import { statsToGraph } from "../stats_to_graph";
 import { readFileAsText } from '../file_reader';
 import {processSourcemap} from '../process_sourcemaps'
+import {toClipboard} from '../clipboard';
 
 import React, { Component } from "react";
 // noopener noreferrer
@@ -21,10 +22,6 @@ class WebpackImport extends Component {
         statsFile?: File;
     } = {
     };
-
-    async toClipboard(text: string) {
-        await (navigator as (Navigator & { clipboard: { writeText: (t: string) => Promise<void> } })).clipboard.writeText(text);
-    }
 
     hasStatsFile(f: File|undefined) {
         return f != null;
@@ -117,7 +114,7 @@ class WebpackImport extends Component {
                                             devtool: "source-map"
                                     </span>
                                     </pre>
-                                    <button onClick={() => this.toClipboard("devtool: 'source-map'")} className="copy-button" aria-label="Copy sourcemap snippet to clipboard"></button>
+                                    <button onClick={() => toClipboard("devtool: 'source-map'")} className="copy-button" aria-label="Copy sourcemap snippet to clipboard"></button>
                                 </code>
                             </div>
                             <div>
@@ -129,7 +126,7 @@ class WebpackImport extends Component {
                                             webpack --profile --json > stats.json
                                     </span>
                                     </pre>
-                                    <button onClick={() => this.toClipboard("webpack --profile --json > stats.json")} className="copy-button" aria-label="Copy stats.json CLI command to clipboard"></button>
+                                    <button onClick={() => toClipboard("webpack --profile --json > stats.json")} className="copy-button" aria-label="Copy stats.json CLI command to clipboard"></button>
                                 </code>
                                 <p>via programatic compilation </p>
                                 <code>
@@ -148,7 +145,7 @@ fs.writeJSONSync(path.join(__dirname, "stats.json"),
 `}
                                         </span>
                                     </pre>
-                                    <button onClick={() => this.toClipboard(`fs.writeJSONSync(path.join(__dirname, "stats.json"), 
+                                    <button onClick={() => toClipboard(`fs.writeJSONSync(path.join(__dirname, "stats.json"), 
     stats.toJson())
 });`)} className="copy-button" aria-label="Copy stats.json programatic snippit to clipboard"></button>
                                 </code>
