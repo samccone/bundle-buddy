@@ -16,7 +16,7 @@ export default function Dendrogram({
 }) {
   // const sorted = nodes.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0))
   // const max = (sorted[0] && sorted[0].totalBytes) || 0
-  const width = 150;
+  const width = 100;
 
   const count = counts[selected];
 
@@ -24,6 +24,10 @@ export default function Dendrogram({
     // if (d.id !== selected) {
     if (d.id.indexOf("node_modules") !== -1) {
       return "url(#dags)";
+    } else if (d.id.indexOf("/") === -1) {
+      const match = directories.findIndex(dir => dir === "No Directory");
+
+      return colors[match % colors.length];
     } else {
       const match = directories.findIndex(dir => d.id.indexOf(dir) === 0);
 
@@ -33,9 +37,7 @@ export default function Dendrogram({
 
   const heightScale = scaleLinear().domain([0, max]).range([1, width]);
 
-  const mapLocation = (r = 200, inOrOut, files) => {
-    const circumfrence = 2 * Math.PI * r;
-
+  const mapLocation = (inOrOut, files, rOffset = 150) => {
     let total = 0;
     const requires = files
       .sort((a, b) => b.totalBytes - a.totalBytes)
@@ -53,7 +55,14 @@ export default function Dendrogram({
         return value;
       });
 
+    //cconst r = total*2/2/Math.PI =  r
+    // const r = (total * 2) / 2 / Math.PI;
+    const r = rOffset;
+    const rSize = Math.max(rOffset, total * 2.4 / 2 / Math.PI);
+    const circumfrence = 2 * Math.PI * rSize;
+
     const overallArcStart = total / circumfrence / 2 * 360;
+
     const center = inOrOut === "in" ? 270 : 90;
     const sign = inOrOut === "in" ? 1 : -1;
 
@@ -68,8 +77,8 @@ export default function Dendrogram({
 
     requires.forEach(d => {
       const degrees = angleScale(d.offset);
-      d.x = xScale(degrees, r);
-      d.y = yScale(degrees, r);
+      d.x = xScale(degrees, rSize) - (rSize - r);
+      d.y = yScale(degrees, rSize);
       d.degrees = degrees;
     });
 
@@ -78,18 +87,18 @@ export default function Dendrogram({
 
   const placeCircles = (inOrOut, files) => {
     return files.map(d => {
-      // const index = d.id.indexOf("/") || 0;
+      const index = d.id.lastIndexOf("/");
       return (
         <g>
           <g transform={`translate(${d.x}, ${d.y})`}>
             <circle r={heightScale(d.totalBytes)} fill={getFill(d)} />
             <text
-              transform={`rotate(${d.degrees - (inOrOut === "in" ? 270 : 90)})`}
-              y="0em"
+              // transform={`rotate(${d.degrees - (inOrOut === "in" ? 270 : 90)})`}
+              y=".4em"
               fontSize="12"
-              textAnchor={inOrOut === "out" && "end"}
+              textAnchor={inOrOut === "in" && "end"}
             >
-              {d.id.slice(0)}
+              {d.id.slice(index !== -1 ? index + 1 : 0)}
             </text>
           </g>
         </g>
@@ -97,16 +106,12 @@ export default function Dendrogram({
     });
   };
 
-  const r = 200;
-
   const requires = mapLocation(
-    r,
     "in",
     nodes.filter(d => count.requires.indexOf(d.id) !== -1)
   );
 
   const requiredBy = mapLocation(
-    r,
     "out",
     nodes.filter(d => count.requiredBy.indexOf(d.id) !== -1)
   );
@@ -136,7 +141,7 @@ export default function Dendrogram({
     );
 
     if (matchingNodes.length > 0) {
-      const newNodes = mapLocation(r * (level + 2), "out", matchingNodes);
+      const newNodes = mapLocation("out", matchingNodes, 150 * (level + 2));
 
       newNodes.forEach(n => {
         usedNodes[n.id] = n;
@@ -195,8 +200,9 @@ export default function Dendrogram({
         <g transform="translate(300,300)">
           <circle
             r={heightScale(selectedNode.totalBytes)}
-            fill={primary}
-            stroke="none"
+            stroke={primary}
+            strokeWidth={2}
+            fill={getFill(selectedNode)}
           />
           <g transform="translate(0, -100)">
             <text x={-200} textAnchor="middle">

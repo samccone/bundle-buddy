@@ -74,7 +74,13 @@ export default function OverviewBarChart({
           <div className="side-panel right padding relative">
             <div className="flex">
               {hierarchy.children.sort((a, b) => b.value - a.value).map(l => {
-                const d = nodes.filter(d => d.id.indexOf(l.id) === 0);
+                let d;
+                if (l.id === "No Directory") {
+                  d = nodes.filter(d => d.id.indexOf("/") === -1);
+                } else {
+                  d = nodes.filter(d => d.id.indexOf(l.id) === 0);
+                }
+
                 return (
                   <div
                     style={{
@@ -95,7 +101,6 @@ export default function OverviewBarChart({
                         customMark: d => {
                           const count = counts[d.id];
 
-                          console.log(count);
                           return (
                             <g onClick={() => changeSelected(d.id)}>
                               <rect

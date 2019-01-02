@@ -8,10 +8,10 @@ import Dendrogram from "./Dendrogram";
 // import totalsByType from "./prototype/totalsByType.json"
 // import data from "./prototype/network.json"
 // import network from "./prototype/trimmed-network.json"
-import hierarchy from "./prototype-semiotic/hierarchy.json";
-import totalsByType from "./prototype-semiotic/totalsByType.json";
-import data from "./prototype-semiotic/trimmed-network.json";
-import network from "./prototype-semiotic/trimmed-network.json";
+import hierarchy from "./prototype-rough/hierarchy.json";
+import totalsByType from "./prototype-rough/totalsByType.json";
+import data from "./prototype-rough/trimmed-network.json";
+import network from "./prototype-rough/trimmed-network.json";
 
 import { stratify } from "d3-hierarchy";
 
@@ -99,7 +99,7 @@ function countsFromNetwork(network) {
 }
 
 const counts = countsFromNetwork(network);
-console.log(counts);
+
 class Bundle extends Component {
   constructor(props) {
     super(props);
@@ -179,8 +179,6 @@ class Bundle extends Component {
       data &&
       data.nodes &&
       data.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
-
-    // console.log(counts, data.nodes.filter(d => d.asSource === 0));
 
     return (
       <div>
