@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { toClipboard } from '../clipboard';
 import { readFileAsText } from '../file_reader';
 import {processSourcemap} from '../process_sourcemaps'
+import { cleanGraph } from "../graph_process";
 
 // noopener noreferrer
 
@@ -65,10 +66,11 @@ class RollupImport extends Component {
             return
         }
 
-        const statsFileContents = await readFileAsText(this.state.graphFile);
+        const graphFileContents = await readFileAsText(this.state.graphFile);
         const sourceMapFileContents = await readFileAsText(this.state.sourceMapFile);
 
         processSourcemap(sourceMapFileContents);
+        console.log(cleanGraph(JSON.parse(graphFileContents)));
     }
 
     render() {
