@@ -1,6 +1,4 @@
 import React from "react";
-import dagre from "dagre";
-import NetworkFrame from "semiotic/lib/NetworkFrame";
 import { scaleLinear } from "d3-scale";
 import { colors, primary, mainFileColor, secondaryFileColor } from "../theme";
 import { typeColors } from "./ByTypeBarChart";
@@ -12,7 +10,8 @@ export default function Dendrogram({
   max,
   selected,
   counts,
-  directories
+  directories,
+  changeSelected
 }) {
   // const sorted = nodes.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0))
   // const max = (sorted[0] && sorted[0].totalBytes) || 0
@@ -26,7 +25,6 @@ export default function Dendrogram({
       return "url(#dags)";
     } else if (d.id.indexOf("/") === -1) {
       const match = directories.findIndex(dir => dir === "No Directory");
-
       return colors[match % colors.length];
     } else {
       const match = directories.findIndex(dir => d.id.indexOf(dir) === 0);
@@ -89,7 +87,7 @@ export default function Dendrogram({
     return files.map(d => {
       const index = d.id.lastIndexOf("/");
       return (
-        <g>
+        <g onClick={() => changeSelected(d.id)}>
           <g transform={`translate(${d.x}, ${d.y})`}>
             <circle r={heightScale(d.totalBytes)} fill={getFill(d)} />
             <text
@@ -106,15 +104,19 @@ export default function Dendrogram({
     });
   };
 
-  const requires = mapLocation(
-    "in",
-    nodes.filter(d => count.requires.indexOf(d.id) !== -1)
-  );
+  let requires = [],
+    requiredBy = [];
 
-  const requiredBy = mapLocation(
-    "out",
-    nodes.filter(d => count.requiredBy.indexOf(d.id) !== -1)
-  );
+  if (count) {
+    requires = mapLocation(
+      "in",
+      nodes.filter(d => count.requires.indexOf(d.id) !== -1)
+    );
+    requiredBy = mapLocation(
+      "out",
+      nodes.filter(d => count.requiredBy.indexOf(d.id) !== -1)
+    );
+  }
 
   const usedNodes = [
     ...requires,
@@ -152,7 +154,7 @@ export default function Dendrogram({
     }
   };
 
-  getNextLevel(count.requiredBy);
+  count && getNextLevel(count.requiredBy);
 
   const selectedNode = nodes.find(d => d.id === selected);
 

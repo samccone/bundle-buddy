@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // noopener noreferrer
 
@@ -7,7 +7,7 @@ class Header extends Component {
   render() {
     return (
       <header className="App-header flex">
-        <div className="panel bottom">
+        <div className="panel left-side bottom">
           <div className="relative">
             <img className="logo" src="/icon.png" width="60" height="60" />
             <h1>Bundle Buddy</h1>
@@ -25,7 +25,9 @@ class Header extends Component {
           </div>
         </div>
         <div className="overview-barchart">
-          <p>placeholder for bar chart view</p>
+          <div className="flex bottom">
+            <p>placeholder for bar chart view</p>
+          </div>
         </div>
       </header>
     );

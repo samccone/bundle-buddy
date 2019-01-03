@@ -8,11 +8,12 @@ import Dendrogram from "./Dendrogram";
 // import totalsByType from "./prototype/totalsByType.json"
 // import data from "./prototype/network.json"
 // import network from "./prototype/trimmed-network.json"
-import hierarchy from "./prototype-rough/hierarchy.json";
-import totalsByType from "./prototype-rough/totalsByType.json";
-import data from "./prototype-rough/trimmed-network.json";
-import network from "./prototype-rough/trimmed-network.json";
+import hierarchy from "./prototype-semiotic/hierarchy.json";
+import totalsByType from "./prototype-semiotic/totalsByType.json";
+import data from "./prototype-semiotic/trimmed-network.json";
+import network from "./prototype-semiotic/trimmed-network.json";
 
+import { colors } from "../theme";
 import { stratify } from "d3-hierarchy";
 
 // noopener noreferrer
@@ -180,33 +181,58 @@ class Bundle extends Component {
       data.nodes &&
       data.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
 
-    return (
-      <div>
-        <ByTypeBarChart
-          hierarchy={this.state.byTypeHierarchy}
-          network={network}
-          changeSelected={this.changeSelected}
-          counts={counts}
-        />
-        <FileDetails
-          hierarchy={this.state.byTypeHierarchy}
-          network={network}
-          changeSelected={this.changeSelected}
-          counts={counts}
-        />
+    const directories = this.state.byTypeHierarchy.children
+      .sort((a, b) => b.value - a.value)
+      .map(d => d.id)
+      .filter(d => d.indexOf("node_modules") === -1);
 
+    const directoryColors = {};
+
+    directories.forEach((d, i) => {
+      directoryColors[d] = colors[i % colors.length];
+    });
+
+    this.state.byTypeHierarchy.children.forEach(d => {
+      if (d.id.indexOf("node_modules") !== -1) d.color = "url(#dags)";
+      else d.color = directoryColors[d.id];
+    });
+
+    data.nodes.forEach(d => {
+      const index = d.id.indexOf("/");
+      if (index !== -1) d.directory = d.id.slice(0, index);
+      else d.directory = "No Directory";
+    });
+
+    return (
+      <div className="flex relative">
+        <div className="panel left-side">
+          <ByTypeBarChart
+            hierarchy={this.state.byTypeHierarchy}
+            network={network}
+            changeSelected={this.changeSelected}
+            counts={counts}
+          />
+        </div>
+        <div className="panel">
+          <FileDetails
+            hierarchy={this.state.byTypeHierarchy}
+            network={network}
+            changeSelected={this.changeSelected}
+            counts={counts}
+            directoryColors={directoryColors}
+          />
+        </div>
         <div>
           {this.state.selected &&
             <Dendrogram
+              changeSelected={this.changeSelected}
               nodes={nodes.map(d => Object.assign({}, d))}
               edges={edges.map(d => Object.assign({}, d))}
               max={max}
               selected={this.state.selected}
               counts={counts}
-              directories={this.state.byTypeHierarchy.children
-                .sort((a, b) => b.value - a.value)
-                .map(d => d.id)
-                .filter(d => d.indexOf("node_modules") === -1)}
+              directories={directories}
+              directoryColors={directoryColors}
             />}
         </div>
       </div>
