@@ -5,14 +5,16 @@ import {findCommonPrefix} from './prefix_cleaner'
    "lib/mappings.wasm": "/mappings.wasm" 
 });
 
-export function processSourcemap(contents: string) {
+export interface ProcessedSourceMap {[file: string]: {totalBytes: number}};
+
+export function processSourcemap(contents: string): Promise<ProcessedSourceMap> {
     let missedLines = 0;
     let missedColumns = 0;
     let totalBytes = 0;
 
 
     // TODO(samccone) fix typing when https://github.com/mozilla/source-map/pull/374 lands.
-    function onMapping(cursor: {line: number; column: number}, files: {[file: string]: {totalBytes: number}}, m: sourceMap.MappingItem&{lastGeneratedColumn?: number}) {
+    function onMapping(cursor: {line: number; column: number}, files: ProcessedSourceMap, m: sourceMap.MappingItem&{lastGeneratedColumn?: number}) {
         if (files[m.source] == null) {
             files[m.source] = {
                 totalBytes: 0,
@@ -52,27 +54,36 @@ export function processSourcemap(contents: string) {
 
     }
 
-    sourceMap.SourceMapConsumer.with(contents, null, consumer => {
-        const files: {[file: string]: {totalBytes: number}} = {};
-        const cursor = { line: 1, column: 1 };
-        consumer.computeColumnSpans();
-        consumer.eachMapping(m => onMapping(cursor, files, m));
+    return new Promise((res, rej) => {
+        sourceMap.SourceMapConsumer.with(contents, null, consumer => {
+            const files: ProcessedSourceMap = {};
+            const cursor = { line: 1, column: 1 };
+            try {
+                consumer.computeColumnSpans();
+            } catch(e) {
+                rej(e);
+                return;
+            }
 
-        const prefixClean = findCommonPrefix(Object.keys(files)) || '';
-        const ret: {[file: string]: {totalBytes: number}} = {};
+            consumer.eachMapping(m => onMapping(cursor, files, m));
 
-        for (const k of Object.keys(files)) {
-            ret[k.slice(prefixClean.length)] = files[k];
-        }
+            const prefixClean = findCommonPrefix(Object.keys(files)) || '';
+            const ret: ProcessedSourceMap  = {};
 
-        console.error(`
-        Removed common source prefix "${prefixClean}"
+            for (const k of Object.keys(files)) {
+                ret[k.slice(prefixClean.length)] = files[k];
+            }
 
-        ----- STATS -----
-        * missed ${missedLines} lines
-        * missed ${missedColumns} columns
-        * total mapped bytes ${totalBytes}
-        `);
-        console.log(JSON.stringify(ret, null, 2));
+            console.info(`
+            Removed common source prefix "${prefixClean}"
+
+            ----- STATS -----
+            * missed ${missedLines} lines
+            * missed ${missedColumns} columns
+            * total mapped bytes ${totalBytes}
+            `);
+            res(ret);
+        }).catch(e => rej(e));
     });
+
 }

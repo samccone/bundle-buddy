@@ -1,5 +1,7 @@
 import { findCommonPrefix } from './prefix_cleaner';
 
+export type GraphNodes = Array<{source: string; target: string}>
+
 const magicPrefixes = [
     // Rollup specific prefix added to add commonjs proxy nodes.
     "\u0000commonjs-proxy:",
@@ -22,7 +24,7 @@ const ignoreNodes = new Set([
     "util",
 ]);
 
-export function cleanGraph(graph: Array<{ source: string; target: string }>) {
+export function cleanGraph(graph: GraphNodes): GraphNodes {
     const keys = new Set();
 
     for (let { source, target } of graph) {
@@ -48,7 +50,6 @@ export function cleanGraph(graph: Array<{ source: string; target: string }>) {
     const commonPrefix = findCommonPrefix(Array.from(keys));
 
     if (commonPrefix != null && commonPrefix.length) {
-        console.error(`Cleaning common prefix ${commonPrefix}`);
         for (const node of graph) {
             for (const key of Object.keys(node) as Array<'target'|'source'>) {
                 for (const magicPrefix of magicPrefixes) {

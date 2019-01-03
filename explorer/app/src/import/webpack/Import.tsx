@@ -1,8 +1,7 @@
-import { cleanGraph } from "../graph_process";
 import { statsToGraph } from "../stats_to_graph";
 import { readFileAsText } from '../file_reader';
-import {processSourcemap} from '../process_sourcemaps'
 import {toClipboard} from '../clipboard';
+import { processImports, buildErrorString } from "../process_imports";
 
 import React, { Component } from "react";
 // noopener noreferrer
@@ -20,6 +19,7 @@ class WebpackImport extends Component {
     state: {
         sourceMapFile?: File;
         statsFile?: File;
+        importError?: string;
     } = {
     };
 
@@ -41,13 +41,20 @@ class WebpackImport extends Component {
         }
 
         const statsFileContents = await readFileAsText(this.state.statsFile);
-        const sourceMapFileContents = await readFileAsText(this.state.sourceMapFile);
+        const sourceMapContents = await readFileAsText(this.state.sourceMapFile);
 
+        const processed = await processImports({
+            sourceMapContents,
+            graphNodes: statsFileContents,
+            graphPreProcessFn: statsToGraph,
+        });
 
-        const parsedStats = JSON.parse(statsFileContents);
-        console.log(cleanGraph(statsToGraph(parsedStats)));
-
-        processSourcemap(sourceMapFileContents);
+        this.setState({
+            importError: buildErrorString(processed, {
+                graphFile: this.state.statsFile,
+                sourceMapFile: this.state.sourceMapFile
+            })
+        });
     }
 
     protected onStatsInput() {
@@ -78,6 +85,11 @@ class WebpackImport extends Component {
         return (
             <div>
                 <h3>Importing a project from Webpack</h3>
+                    {this.state.importError != null ? (
+                        <div className="import-error">
+                            <h2>Import error</h2>
+                            <code><pre>{`${this.state.importError}`}</pre></code>
+                        </div>) : null}
                 <div className="col-container">
                     <div className="col-narrow">
                         <h5>Upload assets</h5>
