@@ -289,3 +289,8 @@ input[type="file"]::-webkit-file-upload-button {
   top: 7px;
   margin-left: 7px;
 }
+
+.import-error {
+  background: #ff988b;
+  padding: 10px;
+}

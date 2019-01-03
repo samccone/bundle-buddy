@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { toClipboard } from '../clipboard';
 import { readFileAsText } from '../file_reader';
-import {processSourcemap} from '../process_sourcemaps'
-import { cleanGraph } from "../graph_process";
+import { processImports, buildErrorString } from "../process_imports";
+import { GraphNodes } from "../graph_process";
 
 // noopener noreferrer
 
@@ -22,6 +22,7 @@ class RollupImport extends Component {
     state: {
         sourceMapFile?: File;
         graphFile?: File;
+        importError?: string;
     } = {
         };
 
@@ -32,7 +33,7 @@ class RollupImport extends Component {
             })
         } else {
             this.setState({
-                'graphFile': undefined 
+                'graphFile': undefined
             })
         }
     }
@@ -44,7 +45,7 @@ class RollupImport extends Component {
             })
         } else {
             this.setState({
-                'sourceMapFile': undefined 
+                'sourceMapFile': undefined
             })
         }
     }
@@ -57,20 +58,29 @@ class RollupImport extends Component {
         return file != null;
     }
 
-    canProcess(sourceMapFile: File|undefined, graphFile: File|undefined) {
+    canProcess(sourceMapFile: File | undefined, graphFile: File | undefined) {
         return sourceMapFile != null && graphFile != null;
     }
 
     async processFiles() {
-        if (this.state.graphFile == null || this.state.sourceMapFile == null) { 
+        if (this.state.graphFile == null || this.state.sourceMapFile == null) {
             return
         }
 
-        const graphFileContents = await readFileAsText(this.state.graphFile);
-        const sourceMapFileContents = await readFileAsText(this.state.sourceMapFile);
+        const graphContents = await readFileAsText(this.state.graphFile);
+        const sourceMapContents = await readFileAsText(this.state.sourceMapFile);
 
-        processSourcemap(sourceMapFileContents);
-        console.log(cleanGraph(JSON.parse(graphFileContents)));
+        const processed = await processImports({
+            sourceMapContents,
+            graphNodes: graphContents,
+        });
+
+        this.setState({
+            importError: buildErrorString(processed, {
+                graphFile: this.state.graphFile,
+                sourceMapFile: this.state.sourceMapFile
+            })
+        });
     }
 
     render() {
@@ -78,6 +88,11 @@ class RollupImport extends Component {
             <div>
                 <div>
                     <h3>Importing a project from Rollup [V1 required]</h3>
+                    {this.state.importError != null ? (
+                        <div className="import-error">
+                            <h2>Import error</h2>
+                            <code><pre>{`${this.state.importError}`}</pre></code>
+                        </div>) : null}
                     <div className="col-container">
                         <div className="col-narrow">
                             <h5>Upload assets</h5>
@@ -107,14 +122,14 @@ class RollupImport extends Component {
                             <div className="col-container">
                                 <div>
                                     <h5>sourcemap</h5>
-                                    <p>webpack.conf.js</p>
+                                    <p>via rollup.config.js</p>
                                     <code>
                                         <pre>{`output: { 
     file: '\`\${outFolder}/dist.js',
     format: 'iife',
     name: 'rough',\n`}
-<span className="add-diff">
-&nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
+                                            <span className="add-diff">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
 </span>{`
 }`}
                                         </pre>
