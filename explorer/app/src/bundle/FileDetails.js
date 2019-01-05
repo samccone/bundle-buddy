@@ -28,10 +28,22 @@ const frameProps = {
 };
 
 export default class OverviewBarChart extends React.Component {
-  state = { search: "" };
+  constructor(props) {
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
+    this.resetSearch = this.resetSearch.bind(this);
+
+    this.state = { search: "" };
+  }
 
   onChange(e, t) {
-    console.log(e, t);
+    this.setState({ search: e.currentTarget.value });
+  }
+
+  resetSearch() {
+    this.setState({ search: "" });
+    this.search.value = "";
   }
 
   render() {
@@ -42,7 +54,9 @@ export default class OverviewBarChart extends React.Component {
       counts,
       directoryColors
     } = this.props;
-    const nodes = network.nodes.sort((a, b) => b.totalBytes - a.totalBytes);
+
+    let nodes = network.nodes.sort((a, b) => b.totalBytes - a.totalBytes);
+
     const max = nodes[0].totalBytes;
 
     let withNodeModules = 0;
@@ -52,6 +66,13 @@ export default class OverviewBarChart extends React.Component {
       if (n.id.indexOf("node_modules") !== -1) withNodeModules++;
       else withoutNodeModules++;
     });
+
+    if (this.state.search) {
+      const values = this.state.search.split(" ").map(d => d.toLowerCase());
+      nodes = nodes.filter(d =>
+        values.find(v => d.id.toLowerCase().indexOf(v) !== -1)
+      );
+    }
 
     return (
       <div>
@@ -68,9 +89,23 @@ export default class OverviewBarChart extends React.Component {
           {withNodeModules && "with "}
           <b>{withoutNodeModules}</b> files
         </p>
-        <input type="text" placeholder="Search" onChange={this.onChange} />
+        <div>
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={this.onChange}
+            ref={input => (this.search = input)}
+          />
+          <button>
+            <span style={{ color: "red" }} onClick={this.resetSearch}>
+              ✖
+            </span>
+          </button>
+        </div>
+        <br />
+        <br />
         <ResponsiveOrdinalFrame
-          data={nodes.sort((a, b) => b.totalBytes - a.totalBytes)}
+          data={nodes}
           {...frameProps}
           rExtent={[0, max]}
           customClickBehavior={changeSelected}
