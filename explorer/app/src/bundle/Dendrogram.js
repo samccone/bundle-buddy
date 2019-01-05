@@ -1,5 +1,5 @@
 import React from "react";
-import { scaleLinear } from "d3-scale";
+import { scaleSqrt, scaleLinear } from "d3-scale";
 import { colors, primary, mainFileColor, secondaryFileColor } from "../theme";
 import { typeColors } from "./ByTypeBarChart";
 import { arc } from "d3-shape";
@@ -15,7 +15,6 @@ export default function Dendrogram({
 }) {
   // const sorted = nodes.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0))
   // const max = (sorted[0] && sorted[0].totalBytes) || 0
-  const width = 100;
 
   const count = counts[selected];
 
@@ -33,17 +32,21 @@ export default function Dendrogram({
     }
   };
 
-  const heightScale = scaleLinear().domain([0, max]).range([1, width]);
+  const radiusScale = scaleSqrt().domain([0, max]).range([1, 50]);
+
+  let translateX = 0,
+    translateY = 150,
+    maxX = 0;
 
   const mapLocation = (inOrOut, files, rOffset = 150) => {
     let total = 0;
     const requires = files
       .sort((a, b) => b.totalBytes - a.totalBytes)
       .map((d, i) => {
-        const spacing = Math.max(heightScale(d.totalBytes) * 2, 18);
+        const spacing = Math.max(radiusScale(d.totalBytes) * 2, 18);
         const value = {
           ...d,
-          r: heightScale(d.totalBytes),
+          r: radiusScale(d.totalBytes),
           spacing,
           offset: total + spacing / 2
         };
@@ -53,8 +56,6 @@ export default function Dendrogram({
         return value;
       });
 
-    //cconst r = total*2/2/Math.PI =  r
-    // const r = (total * 2) / 2 / Math.PI;
     const r = rOffset;
     const rSize = Math.max(rOffset, total * 2.4 / 2 / Math.PI);
     const circumfrence = 2 * Math.PI * rSize;
@@ -75,8 +76,13 @@ export default function Dendrogram({
 
     requires.forEach(d => {
       const degrees = angleScale(d.offset);
-      d.x = xScale(degrees, rSize) - (rSize - r);
+
+      d.x = xScale(degrees, rSize) + sign * (rSize - r);
       d.y = yScale(degrees, rSize);
+      d.r = radiusScale(d.totalBytes);
+      if (-(d.x + d.r) > translateX) translateX = -(d.x + d.r);
+      if (d.y > translateY) translateY = d.y;
+      if (d.x > maxX) maxX = d.x;
       d.degrees = degrees;
     });
 
@@ -84,12 +90,12 @@ export default function Dendrogram({
   };
 
   const placeCircles = (inOrOut, files) => {
-    return files.map(d => {
+    return files.sort((a, b) => a.r - b.r).map(d => {
       const index = d.id.lastIndexOf("/");
       return (
         <g onClick={() => changeSelected(d.id)}>
           <g transform={`translate(${d.x}, ${d.y})`}>
-            <circle r={heightScale(d.totalBytes)} fill={getFill(d)} />
+            <circle r={d.r} fill={getFill(d)} stroke="white" />
             <text
               // transform={`rotate(${d.degrees - (inOrOut === "in" ? 270 : 90)})`}
               y=".4em"
@@ -158,6 +164,14 @@ export default function Dendrogram({
 
   const selectedNode = nodes.find(d => d.id === selected);
 
+  if (requires.length === 0) {
+    translateX = radiusScale(selectedNode.totalBytes) + 50;
+  } else {
+    translateX += 150;
+  }
+
+  const primaryRadius = radiusScale(selectedNode.totalBytes);
+
   return (
     <div className="bottom-panel padding">
       <p>
@@ -177,35 +191,39 @@ export default function Dendrogram({
           <span style={{ color: colors[i], fontWeight: "bold" }}>{d} </span>
         )}
       </p>
-      <svg width={800} height={800} className="overflow-visible">
-        <pattern
-          id="dags-primary"
-          patternUnits="userSpaceOnUse"
-          width="4"
-          height="4"
-        >
-          <path
-            d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
-            shapeRendering="auto"
-            stroke={primary}
-            strokeLinecap="square"
-          />
-        </pattern>
-        <pattern id="dags" patternUnits="userSpaceOnUse" width="4" height="4">
-          <path
-            d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
-            shapeRendering="auto"
-            stroke={"#ddd"}
-            strokeLinecap="square"
-          />
-        </pattern>
-        <g transform="translate(300,300)">
+      <svg
+        width={translateX + maxX + 200}
+        height={translateY * 2 + 60}
+        className="overflow-visible"
+        style={{ border: `1px solid ${primary}` }}
+      >
+        <g transform={`translate(${translateX},${translateY + 30})`}>
           <circle
-            r={heightScale(selectedNode.totalBytes)}
+            r={primaryRadius}
             stroke={primary}
             strokeWidth={2}
             fill={getFill(selectedNode)}
           />
+          <g transform={`translate(${primaryRadius} , 0)`}>
+            <line stroke={primary} x2={80} />
+            <text fontSize="11" fontWeight="bold" x={5} y={-3}>
+              Required by
+            </text>
+          </g>
+          {requires &&
+            requires.length !== 0 &&
+            <g transform={`translate(${-primaryRadius} , 0)`}>
+              <line stroke={primary} x2={-80} />{" "}
+              <text
+                textAnchor="end"
+                fontSize="11"
+                fontWeight="bold"
+                x={-8}
+                y={-3}
+              >
+                Requires
+              </text>
+            </g>}
           <g transform="translate(0, -100)">
             <text x={-200} textAnchor="middle">
               {selected.split("/").map((d, i, array) => {

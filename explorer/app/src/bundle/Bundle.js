@@ -203,6 +203,8 @@ class Bundle extends Component {
       else d.directory = "No Directory";
     });
 
+    console.log(data.nodes);
+
     return (
       <div className="flex relative">
         <div className="panel left-side">

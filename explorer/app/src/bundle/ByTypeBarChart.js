@@ -18,9 +18,9 @@ const frameProps = {
   oAccessor: d => d.parent.id,
   rAccessor: d => d.value,
   type: "bar",
-  projection: "vertical",
+  projection: "horizontal",
   oPadding: 2,
-
+  responsiveWidth: true,
   style: d => {
     // console.log(d);
     return {
@@ -28,6 +28,33 @@ const frameProps = {
       // stroke: typeColors[d.id] || secondaryFileColor
     };
   }
+};
+
+const directoryProps = {
+  ...frameProps,
+  additionalDefs: [
+    <pattern
+      id="dags-primary"
+      patternUnits="userSpaceOnUse"
+      width="4"
+      height="4"
+    >
+      <path
+        d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
+        shapeRendering="auto"
+        stroke={primary}
+        strokeLinecap="square"
+      />
+    </pattern>,
+    <pattern id="dags" patternUnits="userSpaceOnUse" width="4" height="4">
+      <path
+        d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
+        shapeRendering="auto"
+        stroke={"#ddd"}
+        strokeLinecap="square"
+      />
+    </pattern>
+  ]
 };
 
 export default function OverviewBarChart({
@@ -71,9 +98,7 @@ export default function OverviewBarChart({
         data={Object.values(fileTypes).sort((a, b) => b.value - a.value)}
         oAccessor={"none"}
         margin={{ right: 100 }}
-        responsiveWidth={true}
         className="overflow-visible"
-        projection="horizontal"
         type={{
           type: "bar",
           customMark: d => {
@@ -111,9 +136,7 @@ export default function OverviewBarChart({
       </p>
       <ResponsiveOrdinalFrame
         size={[100, hierarchy.children.length * 70]}
-        {...frameProps}
-        projection="horizontal"
-        responsiveWidth={true}
+        {...directoryProps}
         oPadding={40}
         data={hierarchy.leaves().sort((a, b) => b.value - a.value)}
         oLabel={(d, arr) => {
