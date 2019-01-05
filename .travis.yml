@@ -7,4 +7,4 @@ install:
   - yarn
 script:
   - yarn test
-  - cd explorer/app && yarn build
+  - yarn build
