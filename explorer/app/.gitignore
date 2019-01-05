@@ -23,4 +23,5 @@ package-lock.json
 yarn-debug.log*
 yarn-error.log*
 src/bundle/prototype*
+!src/bundle/prototype-semiotic
 deploy/bundle-buddy/www

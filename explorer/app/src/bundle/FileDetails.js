@@ -30,6 +30,10 @@ const frameProps = {
 export default class OverviewBarChart extends React.Component {
   state = { search: "" };
 
+  onChange(e, t) {
+    console.log(e, t);
+  }
+
   render() {
     const {
       hierarchy,
@@ -64,7 +68,7 @@ export default class OverviewBarChart extends React.Component {
           {withNodeModules && "with "}
           <b>{withoutNodeModules}</b> files
         </p>
-
+        <input type="text" placeholder="Search" onChange={this.onChange} />
         <ResponsiveOrdinalFrame
           data={nodes.sort((a, b) => b.totalBytes - a.totalBytes)}
           {...frameProps}
