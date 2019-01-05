@@ -5,21 +5,14 @@ import Header from "./Header";
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Import = lazy(() => import("./import/Import"));
+const Resolve = lazy(() => import("./resolve/Resolve"));
 
 class Home extends Component {
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
-
-    this.changeSelected = this.changeSelected.bind(this);
   }
 
-  state = {
-    selected: null
-  };
-
-  changeSelected(selected) {
-    this.setState({ selected });
-  }
+  state = {};
 
   render() {
     return (
@@ -30,12 +23,13 @@ class Home extends Component {
             <Switch>
               <Route
                 path="/bundle"
-                component={({ location }) => {
+                component={({ location }: {location: Location}) => {
                   let params = new URLSearchParams(location.search);
                   return <Bundle selected={params.get("selected")} />;
                 }}
               />
               <Route path="/import" component={Import} />
+              <Route path="/resolve" component={Resolve} />
             </Switch>
           </Suspense>
         </div>
