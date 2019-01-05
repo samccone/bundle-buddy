@@ -93,14 +93,13 @@ export default function Dendrogram({
     return files.sort((a, b) => a.r - b.r).map(d => {
       const index = d.id.lastIndexOf("/");
       return (
-        <g onClick={() => changeSelected(d.id)}>
+        <g key={d.id} onClick={() => changeSelected(d.id)}>
           <g transform={`translate(${d.x}, ${d.y})`}>
             <circle r={d.r} fill={getFill(d)} stroke="white" />
             <text
-              // transform={`rotate(${d.degrees - (inOrOut === "in" ? 270 : 90)})`}
               y=".4em"
               fontSize="12"
-              textAnchor={inOrOut === "in" && "end"}
+              textAnchor={(inOrOut === "in" && "end") || "start"}
             >
               {d.id.slice(index !== -1 ? index + 1 : 0)}
             </text>
@@ -188,7 +187,9 @@ export default function Dendrogram({
       </p>
       <p>
         {directories.map((d, i) =>
-          <span style={{ color: colors[i], fontWeight: "bold" }}>{d} </span>
+          <span key={i} style={{ color: colors[i], fontWeight: "bold" }}>
+            {d}{" "}
+          </span>
         )}
       </p>
       <svg
@@ -228,7 +229,7 @@ export default function Dendrogram({
             <text x={-200} textAnchor="middle">
               {selected.split("/").map((d, i, array) => {
                 return (
-                  <tspan x={0} dy={"1em"}>
+                  <tspan key={i} x={0} dy={"1em"}>
                     {d}
                     {i !== array.length - 1 && "/"}
                   </tspan>

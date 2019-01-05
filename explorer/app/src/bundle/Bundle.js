@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ByTypeBarChart from "./ByTypeBarChart";
 import FileDetails from "./FileDetails";
-import Dendrogram from "./Dendrogram";
+import RippleChart from "./RippleChart";
 // import Network from "./Network"
 
 // import hierarchy from "./prototype/hierarchy.json"
@@ -203,8 +203,6 @@ class Bundle extends Component {
       else d.directory = "No Directory";
     });
 
-    console.log(data.nodes);
-
     return (
       <div className="flex relative">
         <div className="panel left-side">
@@ -226,7 +224,7 @@ class Bundle extends Component {
         </div>
         <div>
           {this.state.selected &&
-            <Dendrogram
+            <RippleChart
               changeSelected={this.changeSelected}
               nodes={nodes.map(d => Object.assign({}, d))}
               edges={edges.map(d => Object.assign({}, d))}
