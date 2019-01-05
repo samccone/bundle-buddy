@@ -8,32 +8,34 @@ export interface ImportProcess {
   graphProcessError?: Error;
 }
 
-
 class ReportErrorUri {
-    erroredFiles: string[]  = [];
-    errorBodies: {[file: string]: string} = {};
+  erroredFiles: string[] = [];
+  errorBodies: { [file: string]: string } = {};
 
-    addError(fileName: string, error: Error) {
-        this.erroredFiles.push(fileName);
-        this.errorBodies[fileName] = error.toString();
+  addError(fileName: string, error: Error) {
+    this.erroredFiles.push(fileName);
+    this.errorBodies[fileName] = error.toString();
+  }
+
+  toUri() {
+    const base = "https://github.com/samccone/bundle-buddy/issues/new";
+    const params = new URLSearchParams();
+
+    params.append(
+      "title",
+      `Error importing from ${this.erroredFiles.join(" & ")}`
+    );
+
+    let body = "";
+
+    for (const filename of Object.keys(this.errorBodies)) {
+      body += `\`${filename}\`:\n\`\`\`${this.errorBodies[filename]}\`\`\`\n`;
     }
 
-    toUri() {
-        const base = "https://github.com/samccone/bundle-buddy/issues/new";
-        const params = new URLSearchParams();
+    params.append("body", body);
 
-        params.append('title', `Error importing from ${this.erroredFiles.join(' & ')}`);
-
-        let body = '';
-
-        for (const filename of Object.keys(this.errorBodies)) {
-            body += `\`${filename}\`:\n\`\`\`${this.errorBodies[filename]}\`\`\`\n`;
-        }
-
-        params.append('body', body);
-
-        return `${base}?${params}`;
-    }
+    return `${base}?${params}`;
+  }
 }
 
 // TODO(samccone) we will want to handle more error types.
@@ -77,26 +79,33 @@ export async function processImports(opts: {
   return ret;
 }
 
-export function buildImportErrorReport(processed: ImportProcess, files: { graphFile: {name: string}, sourceMapFile: {name: string}}) {
-    let importError = null;
-    const reportUri = new ReportErrorUri();
+export function buildImportErrorReport(
+  processed: ImportProcess,
+  files: { graphFile: { name: string }; sourceMapFile: { name: string } }
+) {
+  let importError = null;
+  const reportUri = new ReportErrorUri();
 
-    if (processed.graphProcessError != null) {
-        importError = `${files.graphFile.name} ${processed.graphProcessError}\n`;
-        reportUri.addError(files.graphFile.name, processed.graphProcessError);
-    }
+  if (processed.graphProcessError != null) {
+    importError = `${files.graphFile.name} ${processed.graphProcessError}\n`;
+    reportUri.addError(files.graphFile.name, processed.graphProcessError);
+  }
 
   if (processed.sourceMapProcessError != null) {
     if (importError == null) {
       importError = "";
     }
 
-    reportUri.addError(files.sourceMapFile.name, processed.sourceMapProcessError);
-    importError += `${files.sourceMapFile.name}: ${processed.sourceMapProcessError}`;
+    reportUri.addError(
+      files.sourceMapFile.name,
+      processed.sourceMapProcessError
+    );
+    importError += `${files.sourceMapFile
+      .name}: ${processed.sourceMapProcessError}`;
   }
 
-    return {
-        importError,
-        importErrorUri: reportUri.toUri(),
-    };
+  return {
+    importError,
+    importErrorUri: reportUri.toUri()
+  };
 }
