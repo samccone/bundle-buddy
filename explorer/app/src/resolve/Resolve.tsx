@@ -142,7 +142,7 @@ class Resolve extends Component<{ graphNodes: GraphNodes; processedSourceMap: Pr
                 </div>
                 <div>
                     <h3>Graph source files</h3>
-                    <textarea ref={this.sourceGraphTransformRef} className="code-editor" defaultValue={this.state.transforms.sourceMapFileTransform.toString()}>
+                    <textarea ref={this.sourceGraphTransformRef} className="code-editor" defaultValue={this.state.transforms.graphFileTransform.toString()}>
                     </textarea>
                     <br />
                     <button onClick={() => this.updateGraphSourceTransform()}>update graph source transform</button>
