@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { toClipboard } from '../clipboard';
 import { readFileAsText } from '../file_reader';
-import { processImports, buildErrorString } from "../process_imports";
+import { processImports, buildImportErrorReport } from "../process_imports";
 import { GraphNodes } from "../graph_process";
 
 // noopener noreferrer
@@ -23,6 +23,7 @@ class RollupImport extends Component {
         sourceMapFile?: File;
         graphFile?: File;
         importError?: string;
+        importErrorUri?: string;
     } = {
         };
 
@@ -75,11 +76,14 @@ class RollupImport extends Component {
             graphNodes: graphContents,
         });
 
-        this.setState({
-            importError: buildErrorString(processed, {
+        const {importError, importErrorUri} = buildImportErrorReport(processed, {
                 graphFile: this.state.graphFile,
                 sourceMapFile: this.state.sourceMapFile
-            })
+        });
+
+        this.setState({
+            importError, 
+            importErrorUri, 
         });
     }
 
@@ -92,6 +96,7 @@ class RollupImport extends Component {
                         <div className="import-error">
                             <h2>Import error</h2>
                             <code><pre>{`${this.state.importError}`}</pre></code>
+                            <a href={this.state.importErrorUri} target="_blank">File a bug</a>
                         </div>) : null}
                     <div className="col-container">
                         <div className="col-narrow">

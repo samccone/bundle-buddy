@@ -1,7 +1,7 @@
 import { statsToGraph } from "../stats_to_graph";
 import { readFileAsText } from '../file_reader';
 import {toClipboard} from '../clipboard';
-import { processImports, buildErrorString } from "../process_imports";
+import { processImports, buildImportErrorReport } from "../process_imports";
 
 import React, { Component } from "react";
 // noopener noreferrer
@@ -20,6 +20,7 @@ class WebpackImport extends Component {
         sourceMapFile?: File;
         statsFile?: File;
         importError?: string;
+        importErrorUri?: string;
     } = {
     };
 
@@ -49,11 +50,14 @@ class WebpackImport extends Component {
             graphPreProcessFn: statsToGraph,
         });
 
-        this.setState({
-            importError: buildErrorString(processed, {
+        const {importError, importErrorUri} = buildImportErrorReport(processed, {
                 graphFile: this.state.statsFile,
                 sourceMapFile: this.state.sourceMapFile
-            })
+        });
+
+        this.setState({
+            importError, 
+            importErrorUri, 
         });
     }
 
@@ -89,6 +93,7 @@ class WebpackImport extends Component {
                         <div className="import-error">
                             <h2>Import error</h2>
                             <code><pre>{`${this.state.importError}`}</pre></code>
+                            <a href={this.state.importErrorUri} target="_blank">File a bug</a>
                         </div>) : null}
                 <div className="col-container">
                     <div className="col-narrow">
