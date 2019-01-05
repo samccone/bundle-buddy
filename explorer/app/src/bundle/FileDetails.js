@@ -16,7 +16,7 @@ const frameProps = {
   oPadding: 2,
   rAccessor: "totalBytes",
   oAccessor: "id",
-  margin: { left: 70 },
+  margin: { left: 95, top: 70 },
   projection: "horizontal",
 
   style: () => {
@@ -24,7 +24,17 @@ const frameProps = {
       fill: colors[0],
       stroke: "white"
     };
-  }
+  },
+  foregroundGraphics: [
+    <g transform="translate(0, 65) " fontSize="13">
+      <g transform="translate(55, 0)  rotate(-45)">
+        <text>Requires</text>{" "}
+      </g>
+      <g transform="translate(80, 0) rotate(-45)">
+        <text>Required By</text>
+      </g>
+    </g>
+  ]
 };
 
 export default class OverviewBarChart extends React.Component {
@@ -102,15 +112,14 @@ export default class OverviewBarChart extends React.Component {
             </span>
           </button>
         </div>
-        <br />
-        <br />
+
         <ResponsiveOrdinalFrame
           data={nodes}
           {...frameProps}
           rExtent={[0, max]}
           customClickBehavior={changeSelected}
           responsiveWidth={true}
-          size={[180, nodes.length * 29]}
+          size={[180, nodes.length * 29 + frameProps.margin.top]}
           type={{
             type: "bar",
             customMark: d => {
@@ -123,10 +132,13 @@ export default class OverviewBarChart extends React.Component {
                     y={15}
                     fill={directoryColors[d.directory] || "url(#dags)"}
                   />
-                  <text fontSize="12" x={-30} y={10}>
+                  <text fontSize="12" x={-10} y={10} textAnchor="end">
                     {count && count.transitiveRequiredBy.length}
                   </text>
-                  <text fontSize="12" x={-40} y={10}>
+                  <text fontSize="12" x={-40} y={10} textAnchor="end">
+                    {count && count.requires.length}
+                  </text>
+                  <text fontSize="12" x={-70} y={10}>
                     <tspan fontWeight="bold" textAnchor="end">
                       {getPercent(d.totalBytes, hierarchy.value)}
                     </tspan>

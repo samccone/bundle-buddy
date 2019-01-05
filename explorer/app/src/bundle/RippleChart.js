@@ -164,7 +164,7 @@ export default function Dendrogram({
   const selectedNode = nodes.find(d => d.id === selected);
 
   if (requires.length === 0) {
-    translateX = radiusScale(selectedNode.totalBytes) + 50;
+    translateX = 150;
   } else {
     translateX += 150;
   }
