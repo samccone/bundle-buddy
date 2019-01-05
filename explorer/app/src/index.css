@@ -187,6 +187,10 @@ button.copy-button:hover {
   opacity: 0.4;
 }
 
+button.clear {
+  box-shadow: none;
+}
+
 .col-container {
   display: flex;
 }
@@ -265,6 +269,10 @@ input[type="file"] {
 
 input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
+}
+
+input.search, button.clear {
+  font-size: 15px;
 }
 
 .upload-files-container div {

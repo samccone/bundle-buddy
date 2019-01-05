@@ -201,6 +201,10 @@ class Bundle extends Component {
       const index = d.id.indexOf("/");
       if (index !== -1) d.directory = d.id.slice(0, index);
       else d.directory = "No Directory";
+      d.text =
+        (d.directory !== "No Directory" &&
+          d.id.replace(d.directory + "/", "")) ||
+        d.id;
     });
 
     return (

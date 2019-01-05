@@ -16,7 +16,7 @@ const frameProps = {
   oPadding: 2,
   rAccessor: "totalBytes",
   oAccessor: "id",
-  margin: { left: 95, top: 70 },
+  margin: { left: 95, top: 80 },
   projection: "horizontal",
 
   style: () => {
@@ -24,18 +24,27 @@ const frameProps = {
       fill: colors[0],
       stroke: "white"
     };
-  },
-  foregroundGraphics: [
-    <g transform="translate(0, 65) " fontSize="13">
-      <g transform="translate(55, 0)  rotate(-45)">
-        <text>Requires</text>{" "}
-      </g>
-      <g transform="translate(80, 0) rotate(-45)">
-        <text>Required By</text>
-      </g>
-    </g>
-  ]
+  }
 };
+
+const options = [
+  {
+    value: "totalBytes",
+    label: "Size"
+  },
+  {
+    value: "requires",
+    label: "Requires"
+  },
+  {
+    value: "transitiveRequiredBy",
+    label: "Required By"
+  },
+  {
+    value: "text",
+    label: "Name"
+  }
+];
 
 export default class OverviewBarChart extends React.Component {
   constructor(props) {
@@ -44,7 +53,7 @@ export default class OverviewBarChart extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.resetSearch = this.resetSearch.bind(this);
 
-    this.state = { search: "" };
+    this.state = { search: "", order: "desc", sort: "totalBytes" };
   }
 
   onChange(e, t) {
@@ -54,6 +63,15 @@ export default class OverviewBarChart extends React.Component {
   resetSearch() {
     this.setState({ search: "" });
     this.search.value = "";
+  }
+
+  sort(type) {
+    if (type === this.state.sort) {
+      this.setState({ order: this.state.order === "desc" ? "asc" : "desc" });
+      console.log("IN SAME TYPE");
+    } else {
+      this.setState({ sort: type, order: type === "id" ? "asc" : "desc" });
+    }
   }
 
   render() {
@@ -84,6 +102,32 @@ export default class OverviewBarChart extends React.Component {
       );
     }
 
+    if (this.state.sort !== "totalBytes" || this.state.order !== "desc") {
+      const sign = this.state.order === "desc" ? -1 : 1;
+
+      if (this.state.sort === "text") {
+        if (this.state.order === "desc") {
+          nodes = nodes.sort((a, b) => b.text.localeCompare(a.text));
+        } else {
+          nodes = nodes.sort((a, b) => a.text.localeCompare(b.text));
+        }
+      } else if (this.state.sort === "totalBytes") {
+        nodes = nodes.sort(
+          (a, b) => sign * a[this.state.sort] - sign * b[this.state.sort]
+        );
+      } else {
+        nodes = nodes.sort((a, b) => {
+          const av =
+            sign *
+            ((counts[a.id] && counts[a.id][this.state.sort].length) || 0);
+          const bv =
+            sign *
+            ((counts[b.id] && counts[b.id][this.state.sort].length) || 0);
+          return av - bv;
+        });
+      }
+    }
+
     return (
       <div>
         <p>
@@ -103,10 +147,11 @@ export default class OverviewBarChart extends React.Component {
           <input
             type="text"
             placeholder="Search"
+            className="search"
             onChange={this.onChange}
             ref={input => (this.search = input)}
           />
-          <button>
+          <button className="clear">
             <span style={{ color: "red" }} onClick={this.resetSearch}>
               ✖
             </span>
@@ -119,6 +164,27 @@ export default class OverviewBarChart extends React.Component {
           rExtent={[0, max]}
           customClickBehavior={changeSelected}
           responsiveWidth={true}
+          foregroundGraphics={[
+            <g transform="translate(-5, 65) " fontSize="13">
+              {options.map((o, i) => {
+                return (
+                  <g
+                    transform={`translate(${30 + i * 25}, 0)  rotate(-45)`}
+                    onClick={this.sort.bind(this, o.value)}
+                    className="pointer"
+                  >
+                    <text
+                      fontWeight={o.value === this.state.sort ? "bold" : 300}
+                    >
+                      {o.label}{" "}
+                      {this.state.sort === o.value &&
+                        `${this.state.order === "desc" ? "▼" : "▲"}`}
+                    </text>
+                  </g>
+                );
+              })}
+            </g>
+          ]}
           size={[180, nodes.length * 29 + frameProps.margin.top]}
           type={{
             type: "bar",
@@ -138,15 +204,11 @@ export default class OverviewBarChart extends React.Component {
                   <text fontSize="12" x={-40} y={10} textAnchor="end">
                     {count && count.requires.length}
                   </text>
-                  <text fontSize="12" x={-70} y={10}>
+                  <text fontSize="12" x={-68} y={10}>
                     <tspan fontWeight="bold" textAnchor="end">
                       {getPercent(d.totalBytes, hierarchy.value)}
                     </tspan>
-                    <tspan x={0}>
-                      {(d.directory !== "No Directory" &&
-                        d.id.replace(d.directory + "/", "")) ||
-                        d.id}
-                    </tspan>
+                    <tspan x={0}>{d.text}</tspan>
                     <tspan textAnchor="start" opacity="0" fontWeight="bold">
                       {d.asSource},{" "}
                       {counts[d.id] && counts[d.id].indirectDependedOnCount}
