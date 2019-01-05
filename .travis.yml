@@ -5,3 +5,5 @@ cache: yarn
 install:
   - cd explorer/app
   - yarn
+test:
+  - cd explorer/app && yarn build
