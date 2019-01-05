@@ -9,7 +9,13 @@ class Header extends Component {
       <header className="App-header flex">
         <div className="panel left-side bottom">
           <div className="relative">
-            <img className="logo" src="/icon.png" width="60" height="60" />
+            <img
+              className="logo"
+              src="/icon.png"
+              width="60"
+              height="60"
+              alt="Bundle Buddy logo"
+            />
             <h1>Bundle Buddy</h1>
           </div>
           <div className="flex space-between">

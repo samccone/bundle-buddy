@@ -73,7 +73,7 @@ function countsFromNetwork(network) {
         continue;
       }
 
-      if (root != true) {
+      if (root !== true) {
         count++;
       }
 
