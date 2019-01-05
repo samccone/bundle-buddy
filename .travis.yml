@@ -7,4 +7,4 @@ install:
   - yarn
 script:
   - yarn test
-  - yarn build
+  - CI=false yarn build
