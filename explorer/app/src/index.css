@@ -318,3 +318,13 @@ input.search, button.clear {
   width: 400px;
   height: 150px;
 }
+
+.opacity-filter.off {
+  transition: opacity 0.3s;
+  transition-delay: 0.2s;
+  opacity: 0;
+}
+
+.opacity-filter.on {
+  opacity: 0.6;
+}

@@ -205,6 +205,9 @@ class Bundle extends Component {
         (d.directory !== "No Directory" &&
           d.id.replace(d.directory + "/", "")) ||
         d.id;
+
+      const lastSlash = d.id.lastIndexOf("/");
+      d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
     });
 
     return (

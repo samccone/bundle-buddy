@@ -4,6 +4,7 @@ import { colors, primary, mainFileColor, secondaryFileColor } from "../theme";
 import { typeColors } from "./ByTypeBarChart";
 import { arc } from "d3-shape";
 import { render } from "react-dom";
+import arrow from "viz-annotation/lib/Connector/end-arrow";
 
 export default class RippleChart extends React.Component {
   constructor(props) {
@@ -99,7 +100,6 @@ export default class RippleChart extends React.Component {
 
     const placeCircles = (inOrOut, files) => {
       return files.sort((a, b) => a.r - b.r).map(d => {
-        const index = d.id.lastIndexOf("/");
         return (
           <g
             key={d.id}
@@ -114,7 +114,7 @@ export default class RippleChart extends React.Component {
                 fontSize="12"
                 textAnchor={(inOrOut === "in" && "end") || "start"}
               >
-                {d.id.slice(index !== -1 ? index + 1 : 0)}
+                {d.fileName}
               </text>
             </g>
           </g>
@@ -188,11 +188,25 @@ export default class RippleChart extends React.Component {
     const primaryRadius = radiusScale(selectedNode.totalBytes);
 
     let showEdges = [];
+    let showNodes = [];
     if (this.state.hover) {
       showEdges = nextLevelEdges.filter(
-        d => d.source === this.state.hover || this.target === this.state.hover
+        d => d.source === this.state.hover || d.target === this.state.hover
+      );
+
+      showNodes = Object.values(
+        showEdges.reduce((p, c) => {
+          p[c.source] = {
+            id: c.source,
+            anchor: c.target === selected ? "end" : "start"
+          };
+          p[c.target] = { id: c.target, anchor: "start" };
+          return p;
+        }, {})
       );
     }
+
+    console.log(showNodes);
 
     return (
       <div className="bottom-panel padding">
@@ -260,12 +274,40 @@ export default class RippleChart extends React.Component {
                 })}
               </text>
             </g>
+
+            {placeCircles("in", requires)}
+            {placeCircles("out", requiredBy)}
+            {placeCircles("out", nextLevelNodes)}
+
+            <rect
+              x={-translateX - 30}
+              y={-translateY}
+              width="100%"
+              height="100%"
+              fill="white"
+              className={`opacity-filter ${(this.state.hover && "on") ||
+                "off"}`}
+              pointerEvents="none"
+            />
+
             {this.state.hover &&
-              showEdges.map(d => {
+              showEdges.map((d, i) => {
                 const source = usedNodes[d.source];
                 const target = usedNodes[d.target];
+
+                const middle = {
+                  x: source.x + (target.x - source.x) * 2 / 3,
+                  y: source.y + (target.y - source.y) * 2 / 3
+                };
+
+                const a = arrow({
+                  start: [source.x, source.y],
+                  end: [middle.x, middle.y],
+                  scale: 1.5
+                });
+                // console.log(a);
                 return (
-                  <g pointerEvents="none">
+                  <g pointerEvents="none" key={i}>
                     <line
                       x1={source.x}
                       y1={source.y}
@@ -273,12 +315,42 @@ export default class RippleChart extends React.Component {
                       y2={target.y}
                       stroke="#ccc"
                     />
+                    <circle
+                      r={source.r}
+                      cx={source.x}
+                      cy={source.y}
+                      fill={primary}
+                    />
+                    <path d={a.components[0].attrs.d} fill={primary} />
+                    <circle
+                      r={target.r}
+                      cx={target.x}
+                      cy={target.y}
+                      fill={primary}
+                    />
                   </g>
                 );
               })}
-            {placeCircles("in", requires)}
-            {placeCircles("out", requiredBy)}
-            {placeCircles("out", nextLevelNodes)}
+            {this.state.hover &&
+              showNodes.map((d, i) => {
+                const n = usedNodes[d.id];
+                return (
+                  <g
+                    transform={`translate(${n.x},${n.y})`}
+                    pointerEvents="none"
+                    key={i}
+                  >
+                    <text
+                      y=".4em"
+                      fontSize="12"
+                      // fontWeight="bold"
+                      textAnchor={d.anchor}
+                    >
+                      {n.fileName}
+                    </text>
+                  </g>
+                );
+              })}
           </g>
         </svg>
       </div>

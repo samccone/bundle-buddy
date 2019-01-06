@@ -97,8 +97,8 @@ export default class OverviewBarChart extends React.Component {
 
     if (this.state.search) {
       const values = this.state.search.split(" ").map(d => d.toLowerCase());
-      nodes = nodes.filter(d =>
-        values.find(v => d.id.toLowerCase().indexOf(v) !== -1)
+      nodes = nodes.filter(
+        d => !values.find(v => d.id.toLowerCase().indexOf(v) === -1)
       );
     }
 
