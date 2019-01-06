@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sentry/browser": "^4.4.2",
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.18",

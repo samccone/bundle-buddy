@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Component, Suspense, lazy } from "react";
 import Header from "./Header";
+import ErrorBoundry from './ErrorBoundry';
+
 // noopener noreferrer
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
@@ -17,22 +19,24 @@ class Home extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <Header />
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route
-                path="/bundle"
-                component={({ location }: {location: Location}) => {
-                  let params = new URLSearchParams(location.search);
-                  return <Bundle selected={params.get("selected")} />;
-                }}
-              />
-              <Route path="/import" component={Import} />
-              <Route path="/resolve" component={Resolve} />
-            </Switch>
-          </Suspense>
-        </div>
+        <ErrorBoundry>
+          <div className="App">
+            <Header />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route
+                  path="/bundle"
+                  component={({ location }: { location: Location }) => {
+                    let params = new URLSearchParams(location.search);
+                    return <Bundle selected={params.get("selected")} />;
+                  }}
+                />
+                <Route path="/import" component={Import} />
+                <Route path="/resolve" component={Resolve} />
+              </Switch>
+            </Suspense>
+          </div>
+        </ErrorBoundry>
       </Router>
     );
   }
