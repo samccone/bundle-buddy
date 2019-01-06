@@ -142,12 +142,11 @@ class Resolve extends Component<{ graphNodes: GraphNodes; processedSourceMap: Pr
                 </div>
                 <div>
                     <h3>Graph source files</h3>
+                    <p>{uniqueIn(this.state.graphFiles, this.state.sourceMapFiles, this.state.transforms.graphFileTransform, this.state.transforms.sourceMapFileTransform).length} unmatched graph files of {this.state.graphFiles.length} total</p>
                     <textarea ref={this.sourceGraphTransformRef} className="code-editor" defaultValue={this.state.transforms.graphFileTransform.toString()}>
                     </textarea>
                     <br />
                     <button onClick={() => this.updateGraphSourceTransform()}>update graph source transform</button>
-
-                    <p>{uniqueIn(this.state.graphFiles, this.state.sourceMapFiles, this.state.transforms.graphFileTransform, this.state.transforms.sourceMapFileTransform).length} unmatched graph files of {this.state.graphFiles.length} total</p>
                     <ul>
                         {Resolve.sorted(uniqueIn(this.state.graphFiles, this.state.sourceMapFiles, this.state.transforms.graphFileTransform, this.state.transforms.sourceMapFileTransform)).map(v => <li key={v}>{v}</li>)}
                     </ul>

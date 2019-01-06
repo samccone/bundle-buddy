@@ -116,7 +116,7 @@ class WebpackImport extends Component {
                                 <img src={this.hasSourceMapFile(this.state.sourceMapFile) ? '/img/ok_icon.svg' : '/img/warn_icon.svg'}  className="status-icon"></img>
                             </div>
                             <div>
-                                <button disabled={!this.canProcess(this.state.sourceMapFile, this.state.statsFile)} onClick={() => this.processFiles()}>Process</button>
+                                <button disabled={!this.canProcess(this.state.sourceMapFile, this.state.statsFile)} onClick={() => this.processFiles()}>Import</button>
                             </div>
                         </div>
                     </div>

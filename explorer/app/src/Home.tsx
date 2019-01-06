@@ -17,6 +17,12 @@ class Home extends Component {
   state = {};
 
   render() {
+    if (process.env.NODE_ENV === 'production') {
+      if (!new URLSearchParams(window.location.search).has('randal')) {
+        return `no access`;
+      }
+    }
+
     return (
       <Router>
         <ErrorBoundry>

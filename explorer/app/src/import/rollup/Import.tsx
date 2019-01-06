@@ -119,7 +119,7 @@ class RollupImport extends Component {
                                     <img src={this.hasSourceMapFile(this.state.sourceMapFile) ? '/img/ok_icon.svg' : '/img/warn_icon.svg'} className="status-icon"></img>
                                 </div>
                                 <div>
-                                    <button disabled={!this.canProcess(this.state.sourceMapFile, this.state.graphFile)} onClick={() => this.processFiles()}>Process</button>
+                                    <button disabled={!this.canProcess(this.state.sourceMapFile, this.state.graphFile)} onClick={() => this.processFiles()}>Import project</button>
                                 </div>
                             </div>
                         </div>
