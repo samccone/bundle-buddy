@@ -2,15 +2,16 @@ import { statsToGraph } from "../stats_to_graph";
 import { readFileAsText } from '../file_reader';
 import {toClipboard} from '../clipboard';
 import { processImports, buildImportErrorReport } from "../process_imports";
+import { ImportProps, ImportResolveState } from "../../types";
 
 import React, { Component } from "react";
 // noopener noreferrer
 
-class WebpackImport extends Component {
+class WebpackImport extends Component<ImportProps> {
     sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
     statsInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
 
-    constructor(props: {}) {
+    constructor(props: ImportProps) {
         super(props);
         this.sourceMapInput = React.createRef();
         this.statsInput = React.createRef();
@@ -59,6 +60,17 @@ class WebpackImport extends Component {
             importError, 
             importErrorUri, 
         });
+
+        if (this.props.history != null) {
+            const state: ImportResolveState = {
+                graphNodes: processed.processedGraph!,
+                processedSourceMap: processed.proccessedSourcemap!,
+            };
+
+            this.props.history.push('/resolve', {
+                state
+            });
+        }
     }
 
     protected onStatsInput() {

@@ -2,12 +2,17 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Component, Suspense, lazy } from "react";
 import Header from "./Header";
 import ErrorBoundry from './ErrorBoundry';
+import { Location as HistoryLocation } from "history";
+import { ImportResolveState } from "./types";
 
 // noopener noreferrer
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Import = lazy(() => import("./import/Import"));
 const Resolve = lazy(() => import("./resolve/Resolve"));
+
+type T = typeof Resolve;
+
 
 class Home extends Component {
   constructor(props: {}) {
@@ -38,7 +43,9 @@ class Home extends Component {
                   }}
                 />
                 <Route path="/import" component={Import} />
-                <Route path="/resolve" component={Resolve} />
+                <Route path="/resolve" component={({ location }: { location: HistoryLocation<ImportResolveState> }) => {
+                  return <Resolve graphNodes={location.state.graphNodes} processedSourceMap={location.state.processedSourceMap} />;
+                }} />
               </Switch>
             </Suspense>
           </div>

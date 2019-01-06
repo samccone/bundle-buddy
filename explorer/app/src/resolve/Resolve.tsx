@@ -25,8 +25,7 @@ function uniqueIn<T>(a: Array<T>, b: Array<T>, aTransform: (v: T) => T, bTransfo
 function toFunctionRef(func: string) {
     let ref: any;
     try {
-        const t = new Date().getTime();
-        ref = eval(`var ____a${t} = ${func}; ____a${t}`);
+        ref = eval(`(${func})`);
     } catch (e) {
         alert(`unable to compile transform due to ${e}`);
     }
@@ -34,20 +33,21 @@ function toFunctionRef(func: string) {
     return ref;
 }
 
+interface ResolveProps { graphNodes?: GraphNodes; processedSourceMap?: ProcessedSourceMap; }; 
 
-class Resolve extends Component<{ graphNodes: GraphNodes; processedSourceMap: ProcessedSourceMap }> {
+class Resolve extends Component<ResolveProps> {
     sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement>;
     sourceGraphTransformRef?: React.RefObject<HTMLTextAreaElement>;
 
-    constructor(props: { graphNodes: GraphNodes; processedSourceMap: ProcessedSourceMap }) {
+    constructor(props: ResolveProps) {
         super(props);
 
         this.sourceMapTransformRef = React.createRef();
         this.sourceGraphTransformRef = React.createRef();
 
         this.state = {
-            sourceMapFiles: this.getSourceMapFiles(this.props.processedSourceMap || DEBUG_PROCESSED_SOURCE_MAP),
-            graphFiles: this.getGraphFiles(this.props.graphNodes || DEBUG_GRAPH_NODES),
+            sourceMapFiles: this.getSourceMapFiles(props.processedSourceMap || DEBUG_PROCESSED_SOURCE_MAP),
+            graphFiles: this.getGraphFiles(props.graphNodes || DEBUG_GRAPH_NODES),
             transforms: {
                 sourceMapFileTransform: (v: string) => v,
                 graphFileTransform: (v: string) => v,

@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import { toClipboard } from '../clipboard';
 import { readFileAsText } from '../file_reader';
 import { processImports, buildImportErrorReport } from "../process_imports";
-import { GraphNodes } from "../graph_process";
+import { ImportProps, ImportResolveState } from "../../types";
 
 // noopener noreferrer
-
-class RollupImport extends Component {
+class RollupImport extends Component<ImportProps> {
     sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
     graphInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
     generateGraphContents: React.RefObject<HTMLSpanElement>;
 
-    constructor(props: {}) {
+    constructor(props: ImportProps) {
         super(props);
 
         this.sourceMapInput = React.createRef();
@@ -76,15 +75,24 @@ class RollupImport extends Component {
             graphNodes: graphContents,
         });
 
-        const {importError, importErrorUri} = buildImportErrorReport(processed, {
-                graphFile: this.state.graphFile,
-                sourceMapFile: this.state.sourceMapFile
+        const { importError, importErrorUri } = buildImportErrorReport(processed, {
+            graphFile: this.state.graphFile,
+            sourceMapFile: this.state.sourceMapFile
         });
 
         this.setState({
-            importError, 
-            importErrorUri, 
+            importError,
+            importErrorUri,
         });
+
+        if (this.props.history != null) {
+            const state: ImportResolveState = {
+                graphNodes: processed.processedGraph!,
+                processedSourceMap: processed.proccessedSourcemap!,
+            };
+
+            this.props.history.push('/resolve', state);
+        }
     }
 
     render() {
