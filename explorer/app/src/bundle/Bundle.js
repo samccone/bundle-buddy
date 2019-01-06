@@ -211,7 +211,7 @@ class Bundle extends Component {
     });
 
     return (
-      <div className="flex relative">
+      <div className="flex page">
         <div className="panel left-side">
           <ByTypeBarChart
             hierarchy={this.state.byTypeHierarchy}
@@ -229,7 +229,7 @@ class Bundle extends Component {
             directoryColors={directoryColors}
           />
         </div>
-        <div>
+        <div className="panel large">
           {this.state.selected &&
             <RippleChart
               changeSelected={this.changeSelected}

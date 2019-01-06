@@ -1,9 +1,7 @@
 import React from "react";
 import { scaleSqrt, scaleLinear } from "d3-scale";
-import { colors, primary, mainFileColor, secondaryFileColor } from "../theme";
-import { typeColors } from "./ByTypeBarChart";
-import { arc } from "d3-shape";
-import { render } from "react-dom";
+import { colors, primary } from "../theme";
+
 import arrow from "viz-annotation/lib/Connector/end-arrow";
 
 export default class RippleChart extends React.Component {
@@ -22,13 +20,10 @@ export default class RippleChart extends React.Component {
       directories,
       changeSelected
     } = this.props;
-    // const sorted = nodes.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0))
-    // const max = (sorted[0] && sorted[0].totalBytes) || 0
 
     const count = counts[selected];
 
     const getFill = d => {
-      // if (d.id !== selected) {
       if (d.id.indexOf("node_modules") !== -1) {
         return "url(#dags)";
       } else if (d.id.indexOf("/") === -1) {
@@ -123,7 +118,9 @@ export default class RippleChart extends React.Component {
     };
 
     let requires = [],
-      requiredBy = [];
+      requiredBy = [],
+      nextLevelNodes = [],
+      nextLevelEdges = [];
 
     if (count) {
       requires = mapLocation(
@@ -134,6 +131,11 @@ export default class RippleChart extends React.Component {
         "out",
         nodes.filter(d => count.requiredBy.indexOf(d.id) !== -1)
       );
+
+      nextLevelEdges = [
+        ...count.requires.map(d => ({ source: d, target: selected })),
+        ...count.requiredBy.map(d => ({ target: d, source: selected }))
+      ];
     }
 
     const usedNodes = [
@@ -144,12 +146,6 @@ export default class RippleChart extends React.Component {
       p[c.id] = c;
       return p;
     }, {});
-
-    let nextLevelNodes = [];
-    let nextLevelEdges = [
-      ...count.requires.map(d => ({ source: d, target: selected })),
-      ...count.requiredBy.map(d => ({ target: d, source: selected }))
-    ];
 
     const getNextLevel = (requiredByKeys, level = 0) => {
       const edgeLevel = edges.filter(
@@ -206,10 +202,8 @@ export default class RippleChart extends React.Component {
       );
     }
 
-    console.log(showNodes);
-
     return (
-      <div className="bottom-panel padding">
+      <div className="padding">
         <p>
           Selected File: <b style={{ color: primary }}>{selected}</b>{" "}
           {count &&
@@ -229,130 +223,138 @@ export default class RippleChart extends React.Component {
             </span>
           )}
         </p>
-        <svg
-          width={translateX + maxX + 200}
-          height={translateY * 2 + 60}
-          className="overflow-visible"
-          style={{ border: `1px solid ${primary}` }}
-        >
-          <g transform={`translate(${translateX},${translateY + 30})`}>
-            <circle
-              r={primaryRadius}
-              stroke={primary}
-              strokeWidth={2}
-              fill={getFill(selectedNode)}
-            />
-            <g transform={`translate(${primaryRadius} , 0)`}>
-              <line stroke={primary} x2={80} />
-              <text fontSize="11" fontWeight="bold" x={5} y={-3}>
-                Required by
-              </text>
-            </g>
-            {requires &&
-              requires.length !== 0 &&
-              <g transform={`translate(${-primaryRadius} , 0)`}>
-                <line stroke={primary} x2={-80} />{" "}
-                <text
-                  textAnchor="end"
-                  fontSize="11"
-                  fontWeight="bold"
-                  x={-8}
-                  y={-3}
-                >
-                  Requires
+        <div style={{ overflowY: "auto", overflowX: "scroll" }}>
+          <svg
+            width={translateX + maxX + 200}
+            height={translateY * 2 + 60}
+            className="overflow-visible"
+            style={{ border: `1px solid ${primary}` }}
+          >
+            <g transform={`translate(${translateX},${translateY + 30})`}>
+              <circle
+                r={primaryRadius}
+                stroke={primary}
+                strokeWidth={2}
+                fill={getFill(selectedNode)}
+              />
+              {requiredBy &&
+                requiredBy.length !== 0 &&
+                <g transform={`translate(${primaryRadius} , 0)`}>
+                  <line stroke={primary} x2={80} />
+                  <text fontSize="11" fontWeight="bold" x={5} y={-3}>
+                    Required by
+                  </text>
+                </g>}
+              {requires &&
+                requires.length !== 0 &&
+                <g transform={`translate(${-primaryRadius} , 0)`}>
+                  <line stroke={primary} x2={-80} />{" "}
+                  <text
+                    textAnchor="end"
+                    fontSize="11"
+                    fontWeight="bold"
+                    x={-8}
+                    y={-3}
+                  >
+                    Requires
+                  </text>
+                </g>}
+              <g transform="translate(0, -100)">
+                <text x={-200} textAnchor="middle">
+                  {selected.split("/").map((d, i, array) => {
+                    return (
+                      <tspan key={i} x={0} dy={"1em"}>
+                        {d}
+                        {i !== array.length - 1 && "/"}
+                      </tspan>
+                    );
+                  })}
                 </text>
-              </g>}
-            <g transform="translate(0, -100)">
-              <text x={-200} textAnchor="middle">
-                {selected.split("/").map((d, i, array) => {
+              </g>
+
+              {placeCircles("in", requires)}
+              {placeCircles("out", requiredBy)}
+              {placeCircles("out", nextLevelNodes)}
+
+              <rect
+                x={-translateX}
+                y={-translateY - 30}
+                width="100%"
+                height="100%"
+                fill="white"
+                className={`opacity-filter ${(this.state.hover && "on") ||
+                  "off"}`}
+                pointerEvents="none"
+              />
+
+              {this.state.hover &&
+                showEdges.map((d, i) => {
+                  const source = usedNodes[d.source];
+                  const target = usedNodes[d.target];
+
+                  const middle = {
+                    x: source.x + (target.x - source.x) * 2 / 3,
+                    y: source.y + (target.y - source.y) * 2 / 3
+                  };
+
+                  const a = arrow({
+                    start: [source.x, source.y],
+                    end: [middle.x, middle.y],
+                    scale: 1.5
+                  });
+
                   return (
-                    <tspan key={i} x={0} dy={"1em"}>
-                      {d}
-                      {i !== array.length - 1 && "/"}
-                    </tspan>
+                    <g pointerEvents="none" key={i}>
+                      <line
+                        x1={source.x}
+                        y1={source.y}
+                        x2={target.x}
+                        y2={target.y}
+                        stroke="#ccc"
+                      />
+                      <circle
+                        r={source.r}
+                        cx={source.x}
+                        cy={source.y}
+                        fill={primary}
+                      />
+                      <path
+                        d={a.components[0].attrs.d}
+                        fill={primary}
+                        stroke="#ccc"
+                      />
+                      <circle
+                        r={target.r}
+                        cx={target.x}
+                        cy={target.y}
+                        fill={primary}
+                      />
+                    </g>
                   );
                 })}
-              </text>
-            </g>
-
-            {placeCircles("in", requires)}
-            {placeCircles("out", requiredBy)}
-            {placeCircles("out", nextLevelNodes)}
-
-            <rect
-              x={-translateX - 30}
-              y={-translateY}
-              width="100%"
-              height="100%"
-              fill="white"
-              className={`opacity-filter ${(this.state.hover && "on") ||
-                "off"}`}
-              pointerEvents="none"
-            />
-
-            {this.state.hover &&
-              showEdges.map((d, i) => {
-                const source = usedNodes[d.source];
-                const target = usedNodes[d.target];
-
-                const middle = {
-                  x: source.x + (target.x - source.x) * 2 / 3,
-                  y: source.y + (target.y - source.y) * 2 / 3
-                };
-
-                const a = arrow({
-                  start: [source.x, source.y],
-                  end: [middle.x, middle.y],
-                  scale: 1.5
-                });
-                // console.log(a);
-                return (
-                  <g pointerEvents="none" key={i}>
-                    <line
-                      x1={source.x}
-                      y1={source.y}
-                      x2={target.x}
-                      y2={target.y}
-                      stroke="#ccc"
-                    />
-                    <circle
-                      r={source.r}
-                      cx={source.x}
-                      cy={source.y}
-                      fill={primary}
-                    />
-                    <path d={a.components[0].attrs.d} fill={primary} />
-                    <circle
-                      r={target.r}
-                      cx={target.x}
-                      cy={target.y}
-                      fill={primary}
-                    />
-                  </g>
-                );
-              })}
-            {this.state.hover &&
-              showNodes.map((d, i) => {
-                const n = usedNodes[d.id];
-                return (
-                  <g
-                    transform={`translate(${n.x},${n.y})`}
-                    pointerEvents="none"
-                    key={i}
-                  >
-                    <text
-                      y=".4em"
-                      fontSize="12"
-                      // fontWeight="bold"
-                      textAnchor={d.anchor}
+              {this.state.hover &&
+                showNodes.map((d, i) => {
+                  const n = usedNodes[d.id];
+                  return (
+                    <g
+                      transform={`translate(${n.x},${n.y})`}
+                      pointerEvents="none"
+                      key={i}
                     >
-                      {n.fileName}
-                    </text>
-                  </g>
-                );
-              })}
-          </g>
-        </svg>
+                      <text
+                        y=".4em"
+                        fontSize="12"
+                        // fontWeight="bold"
+                        textAnchor={d.anchor}
+                      >
+                        {n.fileName}
+                      </text>
+                    </g>
+                  );
+                })}
+            </g>
+          </svg>
+        </div>
       </div>
     );
   }

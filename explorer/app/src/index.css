@@ -77,9 +77,19 @@ svg {
 }
 
 .App-header {
-  height: 170px;
+  height: 100px;
   width: 100%;
   border-bottom: 1px solid #ddd;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+.page {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  overflow: hidden;
 }
 
 img.icon {
@@ -88,22 +98,30 @@ img.icon {
   height: 1em;
 }
 
+.baseline {
+  align-items: center;
+}
+
 .logo {
-  position: absolute;
-  left: -70px;
-  top: 15px;
+  /* margin-top: 10px; */
+  margin-right: 10px;
 }
 
 .panel {
   /* width: var(--panel-width); */
   /* min-width: 260px; */
-  width: 30%;
-  min-width: 300px;
+  /* width: 30%; */
+  width: 25vw;
   border-right: 1px solid #ddd;
   padding-right: 20px;
   padding-left: 20px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+}
+
+.panel.large {
+  width: 50vw;
 }
 
 .panel.left-side {
@@ -120,27 +138,6 @@ img.icon {
 
 .padding {
   padding: 20px;
-}
-
-.side-panel {
-  padding: 20px;
-}
-
-.side-panel.left {
-  width: 100px;
-  min-width: 100px;
-}
-
-.side-panel {
-  width: var(--side-panel-width);
-  min-width: 100px;
-  padding: 20px;
-}
-
-.side-panel.right {
-  /* width: calc(100vw - var(--total-width)); */
-  overflow-x: auto;
-  /* min-width: 100px; */
 }
 
 .sticky {
@@ -227,15 +224,6 @@ button.rollup-import {
   font-size: 17px;
 }
 
-.bottom-panel {
-  /* height: 60vh; */
-  /* position: fixed; */
-  /* width: 100vw; */
-  /* bottom: 0px; */
-  background: white;
-  border-top: 1px solid #ddd;
-  overflow-y: auto;
-}
 .no-link-underline {
   text-decoration: none;
 }
