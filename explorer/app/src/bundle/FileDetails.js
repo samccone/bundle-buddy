@@ -68,20 +68,13 @@ export default class OverviewBarChart extends React.Component {
   sort(type) {
     if (type === this.state.sort) {
       this.setState({ order: this.state.order === "desc" ? "asc" : "desc" });
-      console.log("IN SAME TYPE");
     } else {
       this.setState({ sort: type, order: type === "id" ? "asc" : "desc" });
     }
   }
 
   render() {
-    const {
-      hierarchy,
-      network = {},
-      changeSelected,
-      counts,
-      directoryColors
-    } = this.props;
+    const { total, network = {}, changeSelected, directoryColors } = this.props;
 
     let nodes = network.nodes.sort((a, b) => b.totalBytes - a.totalBytes);
 
@@ -117,12 +110,8 @@ export default class OverviewBarChart extends React.Component {
         );
       } else {
         nodes = nodes.sort((a, b) => {
-          const av =
-            sign *
-            ((counts[a.id] && counts[a.id][this.state.sort].length) || 0);
-          const bv =
-            sign *
-            ((counts[b.id] && counts[b.id][this.state.sort].length) || 0);
+          const av = sign * ((a.count && a.count[this.state.sort].length) || 0);
+          const bv = sign * ((b.count && b.count[this.state.sort].length) || 0);
           return av - bv;
         });
       }
@@ -189,7 +178,6 @@ export default class OverviewBarChart extends React.Component {
           type={{
             type: "bar",
             customMark: d => {
-              const count = counts[d.id];
               return (
                 <g onClick={() => changeSelected(d.id)}>
                   <rect
@@ -199,20 +187,16 @@ export default class OverviewBarChart extends React.Component {
                     fill={directoryColors[d.directory] || "url(#dags)"}
                   />
                   <text fontSize="12" x={-10} y={10} textAnchor="end">
-                    {count && count.transitiveRequiredBy.length}
+                    {d.count && d.count.transitiveRequiredBy.length}
                   </text>
                   <text fontSize="12" x={-40} y={10} textAnchor="end">
-                    {count && count.requires.length}
+                    {d.count && d.count.requires.length}
                   </text>
                   <text fontSize="12" x={-68} y={10}>
                     <tspan fontWeight="bold" textAnchor="end">
-                      {getPercent(d.totalBytes, hierarchy.value)}
+                      {getPercent(d.totalBytes, total)}
                     </tspan>
                     <tspan x={0}>{d.text}</tspan>
-                    <tspan textAnchor="start" opacity="0" fontWeight="bold">
-                      {d.asSource},{" "}
-                      {counts[d.id] && counts[d.id].indirectDependedOnCount}
-                    </tspan>{" "}
                   </text>
                 </g>
               );

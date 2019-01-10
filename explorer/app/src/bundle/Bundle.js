@@ -2,19 +2,13 @@ import React, { Component } from "react";
 import ByTypeBarChart from "./ByTypeBarChart";
 import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
-// import Network from "./Network"
 
-// import hierarchy from "./prototype/hierarchy.json"
 // import totalsByType from "./prototype/totalsByType.json"
-// import data from "./prototype/network.json"
 // import network from "./prototype/trimmed-network.json"
-import hierarchy from "./prototype-semiotic/hierarchy.json";
 import totalsByType from "./prototype-semiotic/totalsByType.json";
-import data from "./prototype-semiotic/trimmed-network.json";
 import network from "./prototype-semiotic/trimmed-network.json";
 
 import { colors } from "../theme";
-import { stratify } from "d3-hierarchy";
 
 // noopener noreferrer
 /**
@@ -105,30 +99,8 @@ class Bundle extends Component {
   constructor(props) {
     super(props);
 
-    const h = stratify()
-      .id(function(d) {
-        return d.name;
-      })
-      .parentId(function(d) {
-        return d.parent;
-      })(hierarchy);
-
-    h.sum(d => d.totalBytes);
-
-    const byType = stratify()
-      .id(function(d) {
-        return d.name;
-      })
-      .parentId(function(d) {
-        return d.parent;
-      })(totalsByType);
-
-    byType.sum(d => d.totalBytes);
-
     //TODO change to URI encode
     this.state = {
-      hierarchy: h,
-      byTypeHierarchy: byType,
       selected: props.selected
     };
 
@@ -146,44 +118,17 @@ class Bundle extends Component {
   }
 
   render() {
-    let edges = data.edges || [],
-      nodes = data.nodes || [],
-      nodeMap = {};
-
-    // if (this.state.selected) {
-    //   const validList =
-    //     (counts[this.state.selected] &&
-    //       counts[this.state.selected].transitiveRequiredBy) ||
-    //     [];
-
-    //   edges = data.edges.filter(d => {
-    //     return (
-    //       (validList.indexOf(d.source) !== -1 &&
-    //         validList.indexOf(d.target) !== -1) ||
-    //       (d.source === this.state.selected || d.target === this.state.selected)
-    //     );
-    //   });
-
-    //   nodeMap = edges.reduce((p, c) => {
-    //     p[c.source] = true;
-    //     p[c.target] = true;
-
-    //     return p;
-    //   }, {});
-
-    //   nodes = data.nodes
-    //     .filter(d => nodeMap[d.id])
-    //     .sort((a, b) => b.totalBytes - a.totalBytes);
-    // }
+    let edges = network.edges || [],
+      nodes = network.nodes || [];
 
     const max =
-      data &&
-      data.nodes &&
-      data.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
+      network &&
+      network.nodes &&
+      network.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
 
-    const directories = this.state.byTypeHierarchy.children
-      .sort((a, b) => b.value - a.value)
-      .map(d => d.id)
+    const directories = totalsByType.directories
+      .sort((a, b) => b.totalBytes - a.totalBytes)
+      .map(d => d.name)
       .filter(d => d.indexOf("node_modules") === -1);
 
     const directoryColors = {};
@@ -192,12 +137,12 @@ class Bundle extends Component {
       directoryColors[d] = colors[i % colors.length];
     });
 
-    this.state.byTypeHierarchy.children.forEach(d => {
-      if (d.id.indexOf("node_modules") !== -1) d.color = "url(#dags)";
-      else d.color = directoryColors[d.id];
+    totalsByType.directories.forEach(d => {
+      if (d.name.indexOf("node_modules") !== -1) d.color = "url(#dags)";
+      else d.color = directoryColors[d.name];
     });
 
-    data.nodes.forEach(d => {
+    network.nodes.forEach(d => {
       const index = d.id.indexOf("/");
       if (index !== -1) d.directory = d.id.slice(0, index);
       else d.directory = "No Directory";
@@ -208,24 +153,26 @@ class Bundle extends Component {
 
       const lastSlash = d.id.lastIndexOf("/");
       d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
+      d.count = counts[d.id];
     });
+
+    const total = totalsByType.value;
 
     return (
       <div className="flex page">
         <div className="panel left-side">
           <ByTypeBarChart
-            hierarchy={this.state.byTypeHierarchy}
+            totalsByType={totalsByType}
             network={network}
             changeSelected={this.changeSelected}
-            counts={counts}
+            total={total}
           />
         </div>
         <div className="panel">
           <FileDetails
-            hierarchy={this.state.byTypeHierarchy}
+            total={total}
             network={network}
             changeSelected={this.changeSelected}
-            counts={counts}
             directoryColors={directoryColors}
           />
         </div>
@@ -237,7 +184,6 @@ class Bundle extends Component {
               edges={edges.map(d => Object.assign({}, d))}
               max={max}
               selected={this.state.selected}
-              counts={counts}
               directories={directories}
               directoryColors={directoryColors}
             />}

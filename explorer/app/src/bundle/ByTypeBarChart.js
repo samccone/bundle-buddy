@@ -1,6 +1,5 @@
 import React from "react";
 
-import OrdinalFrame from "semiotic/lib/OrdinalFrame";
 import ResponsiveOrdinalFrame from "semiotic/lib/ResponsiveOrdinalFrame";
 import { colors, primary, mainFileColor, secondaryFileColor } from "../theme";
 
@@ -15,17 +14,15 @@ export const typeColors = {
 
 const frameProps = {
   margin: { top: 10 },
-  oAccessor: d => d.parent.id,
-  rAccessor: d => d.value,
+  oAccessor: d => d.name,
+  rAccessor: d => d.totalBytes,
   type: "bar",
   projection: "horizontal",
   oPadding: 2,
   responsiveWidth: true,
   style: d => {
-    // console.log(d);
     return {
-      fill: d.color || d.parent.color //typeColors[d.id] || secondaryFileColor
-      // stroke: typeColors[d.id] || secondaryFileColor
+      fill: d.color
     };
   }
 };
@@ -57,26 +54,15 @@ const directoryProps = {
   ]
 };
 
-export default function OverviewBarChart({
-  hierarchy,
-  network = {},
-  changeSelected,
-  counts
-}) {
-  const totalSize = hierarchy.value;
+export default function ByTypeBarChart({ totalsByType, total }) {
+  const totalSize = total;
 
-  const fileTypes = hierarchy.leaves().reduce((p, c) => {
-    if (!p[c.id]) {
-      p[c.id] = {
-        id: c.id,
-        value: c.value
-      };
-    } else {
-      p[c.id].value += c.value;
-    }
-
-    return p;
-  }, {});
+  const fileTypes = totalsByType.fileTypes.sort(
+    (a, b) => b.totalBytes - a.totalBytes
+  );
+  const directories = totalsByType.directories.sort(
+    (a, b) => b.totalBytes - a.totalBytes
+  );
 
   return (
     <div>
@@ -95,16 +81,16 @@ export default function OverviewBarChart({
       <ResponsiveOrdinalFrame
         size={[500, 100]}
         {...frameProps}
-        data={Object.values(fileTypes).sort((a, b) => b.value - a.value)}
+        data={fileTypes}
         oAccessor={"none"}
         margin={{ right: 100 }}
         className="overflow-visible"
         type={{
           type: "bar",
           customMark: d => {
-            if (!d.value) return null;
+            if (!d.totalBytes) return null;
 
-            const color = typeColors[d.id] || secondaryFileColor;
+            const color = typeColors[d.name] || secondaryFileColor;
             return (
               <g transform="translate(0, 30)">
                 <rect
@@ -114,10 +100,10 @@ export default function OverviewBarChart({
                   stroke={color}
                 />
                 <text fontWeight="bold" y={-5}>
-                  {getPercent(d.value, hierarchy.value)}
+                  {getPercent(d.totalBytes, totalSize)}
                 </text>
                 <text y={25} x={5}>
-                  .{d.id}
+                  .{d.name}
                 </text>
               </g>
             );
@@ -125,8 +111,7 @@ export default function OverviewBarChart({
         }}
       />
       <p>
-        Your bundle is made up <b>{hierarchy.children.length}</b> top-level
-        directories
+        Your bundle is made up <b>{directories.length}</b> top-level directories
       </p>
       <p>
         <img className="icon" alt="directories" src="/img/folder.png" />
@@ -135,19 +120,19 @@ export default function OverviewBarChart({
         </b>
       </p>
       <ResponsiveOrdinalFrame
-        size={[100, hierarchy.children.length * 70]}
+        size={[100, directories.length * 70]}
         {...directoryProps}
         oPadding={40}
-        data={hierarchy.leaves().sort((a, b) => b.value - a.value)}
+        data={directories}
         oLabel={(d, arr) => {
           return (
             <text transform="translate(5, -35)">
               <tspan>{d}</tspan>
               <tspan x={0} y={18} fontWeight="bold">
-                {Math.round(arr[0].parent.value / hierarchy.value * 100)}%{" "}
+                {getPercent(arr[0].pct)}{" "}
               </tspan>
               <tspan opacity=".6">
-                {arr[0].parent && (arr[0].parent.value / 1024).toFixed(2)} KB
+                {arr[0] && (arr[0].totalBytes / 1024).toFixed(2)} KB
               </tspan>
             </text>
           );

@@ -16,12 +16,9 @@ export default class RippleChart extends React.Component {
       nodes,
       max,
       selected,
-      counts,
       directories,
       changeSelected
     } = this.props;
-
-    const count = counts[selected];
 
     const getFill = d => {
       if (d.id.indexOf("node_modules") !== -1) {
@@ -122,6 +119,10 @@ export default class RippleChart extends React.Component {
       nextLevelNodes = [],
       nextLevelEdges = [];
 
+    const selectedNode = nodes.find(d => d.id === selected);
+
+    const count = selectedNode.count;
+
     if (count) {
       requires = mapLocation(
         "in",
@@ -173,8 +174,6 @@ export default class RippleChart extends React.Component {
 
     count && getNextLevel(count.requiredBy);
 
-    const selectedNode = nodes.find(d => d.id === selected);
-
     if (requires.length === 0) {
       translateX = 150;
     } else {
@@ -223,7 +222,7 @@ export default class RippleChart extends React.Component {
             </span>
           )}
         </p>
-        <div style={{ overflowY: "auto", overflowX: "scroll" }}>
+        <div style={{ overflowY: "auto", overflowX: "auto" }}>
           <svg
             width={translateX + maxX + 200}
             height={translateY * 2 + 60}
