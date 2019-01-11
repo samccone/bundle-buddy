@@ -1,6 +1,11 @@
 import { findCommonPrefix } from "./prefix_cleaner";
 
-export type GraphNodes = Array<{ source: string; target: string }>;
+export interface GraphNode {
+  source: string;
+  target: string;
+}
+
+export type GraphNodes = GraphNode[];
 
 const magicPrefixes = [
   // Rollup specific prefix added to add commonjs proxy nodes.

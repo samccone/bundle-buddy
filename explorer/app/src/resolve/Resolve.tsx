@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import * as data from './data';
+import { transform } from "./process";
 // noopener noreferrer
 
 const DEBUG_PROCESSED_SOURCE_MAP: ProcessedSourceMap = data.processedSourceMap;
@@ -126,8 +127,14 @@ class Resolve extends Component<ResolveProps> {
         }
     }
 
+    import() {
+        console.log(transform(this.props.graphNodes!, this.props.processedSourceMap!));
+    }
+
     render() {
         return <div className="resolve-conflicts">
+
+            <button onClick={() => this.import()}>Import</button>
             <div className="col-container">
                 <div>
                     <h3> Source map files</h3>
