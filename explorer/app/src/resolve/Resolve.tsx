@@ -34,7 +34,25 @@ function toFunctionRef(func: string) {
     return ref;
 }
 
-interface ResolveProps { graphNodes?: GraphNodes; processedSourceMap?: ProcessedSourceMap; }; 
+function transformGraphNames(nodes: GraphNodes, graphTransform: (v: string) => string): GraphNodes {
+    return nodes.map(n => {
+        n.source = graphTransform(n.source);
+        n.target = graphTransform(n.target);
+        return n;
+    });
+}
+
+function transformSourceMapNames(sourcemap: ProcessedSourceMap, sourcemapTransform: (v: string) => string): ProcessedSourceMap {
+    const ret: ProcessedSourceMap = {};
+
+    for (const fileName of Object.keys(sourcemap)) {
+        ret[sourcemapTransform(fileName)] = sourcemap[fileName];
+    }
+
+    return ret;
+}
+
+interface ResolveProps { graphNodes?: GraphNodes; processedSourceMap?: ProcessedSourceMap; };
 
 class Resolve extends Component<ResolveProps> {
     sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement>;
@@ -128,12 +146,14 @@ class Resolve extends Component<ResolveProps> {
     }
 
     import() {
-        console.log(transform(this.props.graphNodes!, this.props.processedSourceMap!));
+        console.log(
+            transform(
+                transformGraphNames(this.props.graphNodes!, this.state.transforms.graphFileTransform), 
+                transformSourceMapNames(this.props.processedSourceMap!, this.state.transforms.sourceMapFileTransform)));
     }
 
     render() {
         return <div className="resolve-conflicts">
-
             <button onClick={() => this.import()}>Import</button>
             <div className="col-container">
                 <div>
