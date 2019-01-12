@@ -40,6 +40,14 @@ h1 {
   margin-bottom: 40px;
 }
 
+.padding-right {
+  padding-right: 15px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
 .capitalize {
   text-transform: capitalize;
 }

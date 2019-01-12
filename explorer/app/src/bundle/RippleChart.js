@@ -216,9 +216,14 @@ export default class RippleChart extends React.Component {
             </span>}
         </p>
         <p>
+          <small>
+            <b>File Directory Legend</b>
+          </small>
+        </p>
+        <p>
           {directories.map((d, i) =>
-            <span key={i} style={{ color: colors[i], fontWeight: "bold" }}>
-              {d}{" "}
+            <span key={i} className="padding-right inline-block">
+              <span style={{ color: colors[i] }}>⬤</span> {d}{" "}
             </span>
           )}
         </p>
