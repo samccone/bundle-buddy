@@ -3,10 +3,8 @@ import ByTypeBarChart from "./ByTypeBarChart";
 import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
 
-// import totalsByType from "./prototype/totalsByType.json"
-// import network from "./prototype/trimmed-network.json"
-import totalsByType from "./prototype-semiotic/totalsByType.json";
-import network from "./prototype-semiotic/trimmed-network.json";
+import DEFAULT_TOTALS from "./prototype-semiotic/totalsByType.json";
+import DEFAULT_NETWORK from "./prototype-semiotic/trimmed-network.json";
 
 import { colors } from "../theme";
 
@@ -93,18 +91,15 @@ function countsFromNetwork(network) {
   return d;
 }
 
-const counts = countsFromNetwork(network);
-
 class Bundle extends Component {
   constructor(props) {
     super(props);
 
     //TODO change to URI encode
     this.state = {
-      selected: props.selected
+      selected: props.selected,
+      counts: countsFromNetwork(props.trimmedNetwork || DEFAULT_NETWORK)
     };
-
-    this.changeSelected = this.changeSelected.bind(this);
   }
 
   changeSelected(selected) {
@@ -118,6 +113,9 @@ class Bundle extends Component {
   }
 
   render() {
+    const network = this.props.trimmedNetwork || DEFAULT_NETWORK;
+    const totalsByType = this.props.rollups || DEFAULT_TOTALS;
+
     let edges = network.edges || [],
       nodes = network.nodes || [];
 
@@ -153,7 +151,7 @@ class Bundle extends Component {
 
       const lastSlash = d.id.lastIndexOf("/");
       d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
-      d.count = counts[d.id];
+      d.count = this.state.counts[d.id];
     });
 
     const total = totalsByType.value;
@@ -164,7 +162,7 @@ class Bundle extends Component {
           <ByTypeBarChart
             totalsByType={totalsByType}
             network={network}
-            changeSelected={this.changeSelected}
+            changeSelected={(...args) => this.changeSelected(...args)}
             total={total}
           />
         </div>
@@ -172,14 +170,14 @@ class Bundle extends Component {
           <FileDetails
             total={total}
             network={network}
-            changeSelected={this.changeSelected}
+            changeSelected={(...args) => this.changeSelected(...args)}
             directoryColors={directoryColors}
           />
         </div>
         <div className="panel large">
           {this.state.selected &&
             <RippleChart
-              changeSelected={this.changeSelected}
+              changeSelected={(...args) => this.changeSelected(...args)}
               nodes={nodes.map(d => Object.assign({}, d))}
               edges={edges.map(d => Object.assign({}, d))}
               max={max}

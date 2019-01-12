@@ -10,3 +10,39 @@ export interface ImportResolveState {
 export interface ImportProps {
   history: History;
 }
+
+export interface ResolveProps {
+  history: History<ProcessedImportState>;
+  graphNodes?: GraphNodes;
+  processedSourceMap?: ProcessedSourceMap;
+}
+
+export interface ProcessedImportState {
+  trimmedNetwork: { nodes: TrimmedNode[]; edges: Edge[] };
+  rollups: {
+    value: number;
+    fileTypes: {
+      pct: number;
+      name: string;
+      totalBytes: number;
+    }[];
+    directories: {
+      pct: number;
+      name: string;
+      totalBytes: number;
+    }[];
+  };
+}
+
+export interface Edge {
+  source: string;
+  target: string;
+}
+
+export interface TrimmedNode {
+  id: string;
+  totalBytes?: number;
+  directory?: string;
+  fileName?: string;
+  text?: string;
+}

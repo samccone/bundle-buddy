@@ -1,18 +1,6 @@
 import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
-
-interface Edge {
-  source: string;
-  target: string;
-}
-
-interface TrimmedNode {
-  id: string;
-  totalBytes?: number;
-  directory?: string;
-  fileName?: string;
-  text?: string;
-}
+import { TrimmedNode, Edge, ProcessedImportState } from "../types";
 
 const addedNodes: { [name: string]: boolean } = {};
 const trimmedNodes: { [name: string]: TrimmedNode } = {};
@@ -33,21 +21,7 @@ function values<V>(entity: { [k: string]: V }): V[] {
 export function transform(
   graphNodes: GraphNodes,
   sourceMapData: ProcessedSourceMap
-): {
-  trimmedNetwork: { nodes: TrimmedNode[]; edges: Edge[] };
-  rollups: {
-    fileTypes: {
-      pct: number;
-      name: string;
-      totalBytes: number;
-    }[];
-    directories: {
-      pct: number;
-      name: string;
-      totalBytes: number;
-    }[];
-  };
-} {
+): ProcessedImportState {
   graphNodes.forEach(e => {
     //trimmed network functions
     addedNodes[e.source] = true;
@@ -229,6 +203,7 @@ export function transform(
   });
 
   const rollups = {
+    value: summary.value,
     fileTypes: values(summary.fileTypes).map(d => ({
       ...d,
       pct: d.totalBytes / summary.value

@@ -3,6 +3,8 @@ import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import * as data from './data';
 import { transform } from "./process";
+import {ResolveProps, ProcessedImportState} from '../types';
+
 // noopener noreferrer
 
 const DEBUG_PROCESSED_SOURCE_MAP: ProcessedSourceMap = data.processedSourceMap;
@@ -51,8 +53,6 @@ function transformSourceMapNames(sourcemap: ProcessedSourceMap, sourcemapTransfo
 
     return ret;
 }
-
-interface ResolveProps { graphNodes?: GraphNodes; processedSourceMap?: ProcessedSourceMap; };
 
 class Resolve extends Component<ResolveProps> {
     sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement>;
@@ -146,10 +146,11 @@ class Resolve extends Component<ResolveProps> {
     }
 
     import() {
-        console.log(
-            transform(
+        const processed = transform(
                 transformGraphNames(this.props.graphNodes!, this.state.transforms.graphFileTransform), 
-                transformSourceMapNames(this.props.processedSourceMap!, this.state.transforms.sourceMapFileTransform)));
+                transformSourceMapNames(this.props.processedSourceMap!, this.state.transforms.sourceMapFileTransform));
+
+        this.props.history.push('/bundle', processed);
     }
 
     render() {
