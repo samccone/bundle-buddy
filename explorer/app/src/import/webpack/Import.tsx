@@ -60,7 +60,8 @@ class WebpackImport extends Component<ImportProps> {
       importErrorUri
     });
 
-    if (this.props.history != null) {
+    // We only want to go to the resolve screen if there are no errors.
+    if (this.props.history != null && this.state.importError == null) {
       const state: ImportResolveState = {
         graphNodes: processed.processedGraph!,
         processedSourceMap: processed.proccessedSourcemap!
