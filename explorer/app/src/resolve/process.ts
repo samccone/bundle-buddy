@@ -25,13 +25,16 @@ export function transform(
   graphNodes.forEach(e => {
     //trimmed network functions
     addedNodes[e.source] = true;
-    addedNodes[e.target] = true;
+
+    if (e.target != null) {
+      addedNodes[e.target] = true;
+    }
 
     const sourceKey = e.source.indexOf("node_modules") !== -1
       ? e.source.split("/").slice(0, 2).join("/")
       : e.source;
 
-    if (e.target.indexOf("node_modules") === -1) {
+    if (e.target != null && e.target.indexOf("node_modules") === -1) {
       trimmedEdges.push({
         source: sourceKey,
         target: e.target
@@ -44,7 +47,7 @@ export function transform(
         };
       }
 
-      if (!trimmedNodes[e.target]) {
+      if (e.target != null && !trimmedNodes[e.target]) {
         trimmedNodes[e.target] = {
           id: e.target,
           totalBytes: 0
@@ -52,7 +55,7 @@ export function transform(
       }
     }
 
-    if (!unique[e.target] && trimmedNodes[e.target]) {
+    if (e.target != null && !unique[e.target] && trimmedNodes[e.target]) {
       unique[e.target] = true;
 
       if (sourceMapData[e.target]) {

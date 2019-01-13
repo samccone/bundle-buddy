@@ -39,7 +39,9 @@ function toFunctionRef(func: string) {
 function transformGraphNames(nodes: GraphNodes, graphTransform: (v: string) => string): GraphNodes {
     return nodes.map(n => {
         n.source = graphTransform(n.source);
-        n.target = graphTransform(n.target);
+        if (n.target != null) {
+            n.target = graphTransform(n.target);
+        }
         return n;
     });
 }

@@ -2,7 +2,7 @@ import { findCommonPrefix } from "./prefix_cleaner";
 
 export interface GraphNode {
   source: string;
-  target: string;
+  target: string | null;
 }
 
 export type GraphNodes = GraphNode[];
@@ -33,6 +33,10 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
   const keys = new Set();
 
   for (let { source, target } of graph) {
+    if (target == null) {
+      continue;
+    }
+
     for (const magicPrefix of magicPrefixes) {
       if (source.startsWith(magicPrefix)) {
         source = source.slice(magicPrefix.length);
@@ -57,20 +61,24 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
   if (commonPrefix != null && commonPrefix.length) {
     for (const node of graph) {
       for (const key of Object.keys(node) as Array<"target" | "source">) {
+        if (node[key] == null) {
+          continue;
+        }
+
         for (const magicPrefix of magicPrefixes) {
-          if (node[key].startsWith(magicPrefix)) {
-            node[key] = node[key].slice(magicPrefix.length);
+          if (node[key]!.startsWith(magicPrefix)) {
+            node[key] = node[key]!.slice(magicPrefix.length);
           }
         }
 
-        if (node[key].startsWith(commonPrefix)) {
-          node[key] = node[key].slice(commonPrefix.length);
+        if (node[key]!.startsWith(commonPrefix)) {
+          node[key] = node[key]!.slice(commonPrefix.length);
         }
       }
     }
   }
 
-  const ret: Array<{ source: string; target: string }> = [];
+  const ret: GraphNodes = [];
   for (const node of graph) {
     if (node.target !== node.source) {
       ret.push(node);
