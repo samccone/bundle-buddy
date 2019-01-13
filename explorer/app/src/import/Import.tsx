@@ -22,9 +22,9 @@ class Import extends Component {
             <Route
               exact
               path="/webpack"
-              component={(h: History<ImportResolveState>) => (
-                <WebpackImport selected history={h} />
-              )}
+              component={({history}: {history: History<ImportResolveState>}) => {
+                return <WebpackImport selected history={history} />
+              }}
             />
             <Route exact path="/rollup" component={RollupImport} />
           </Switch>
