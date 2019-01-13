@@ -26,5 +26,11 @@ export function findCommonPrefix(strings: string[]): string | null {
     }
   }
 
+  if (commonPrefix) {
+    const nodeModulesIndex = commonPrefix.indexOf("node_modules");
+    if (nodeModulesIndex !== -1) {
+      return commonPrefix.slice(0, nodeModulesIndex);
+    }
+  }
   return commonPrefix;
 }
