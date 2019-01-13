@@ -10,16 +10,17 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
     "downlevelIteration": true,
     "lib": [
       "es2015.collection",
-      "dom", 
-      "es6",
+      "dom",
+      "es6"
     ],
+    "isolatedModules": true,
   },
+  "exclude": ["src/storage/import_pb.js"],
   "include": [
     "src"
   ]

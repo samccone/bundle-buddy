@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Import {
+    int32 date = 1;
+    string name = 2;
+}
