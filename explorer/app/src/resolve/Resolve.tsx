@@ -3,7 +3,7 @@ import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import * as data from './data';
 import { transform } from "./process";
-import {ResolveProps, ProcessedImportState} from '../types';
+import { ResolveProps, ProcessedImportState } from '../types';
 
 // noopener noreferrer
 
@@ -146,9 +146,12 @@ class Resolve extends Component<ResolveProps> {
     }
 
     import() {
+        if (this.props.graphNodes == null || this.props.processedSourceMap == null) {
+            throw new Error('Unable to find graphnodes or sourcemap data')
+        }
         const processed = transform(
-                transformGraphNames(this.props.graphNodes!, this.state.transforms.graphFileTransform), 
-                transformSourceMapNames(this.props.processedSourceMap!, this.state.transforms.sourceMapFileTransform));
+            transformGraphNames(this.props.graphNodes, this.state.transforms.graphFileTransform),
+            transformSourceMapNames(this.props.processedSourceMap, this.state.transforms.sourceMapFileTransform));
 
         this.props.history.push('/bundle', processed);
     }

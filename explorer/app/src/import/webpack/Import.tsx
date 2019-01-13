@@ -67,9 +67,7 @@ class WebpackImport extends Component<ImportProps> {
                 processedSourceMap: processed.proccessedSourcemap!,
             };
 
-            this.props.history.push('/resolve', {
-                state
-            });
+            this.props.history.push('/resolve', state);
         }
     }
 

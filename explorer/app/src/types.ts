@@ -8,13 +8,13 @@ export interface ImportResolveState {
 }
 
 export interface ImportProps {
-  history: History;
+  history: History<ImportResolveState>;
 }
 
 export interface ResolveProps {
   history: History<ProcessedImportState>;
-  graphNodes?: GraphNodes;
-  processedSourceMap?: ProcessedSourceMap;
+  graphNodes: GraphNodes;
+  processedSourceMap: ProcessedSourceMap;
 }
 
 export interface ProcessedImportState {
