@@ -15,7 +15,9 @@ class Import extends Component {
         <Describe />
         <Switch>
           <Route exact path="/webpack" component={WebpackImport} />
+          <Route exact path="/webpack/resolve" component={WebpackImport} />
           <Route exact path="/rollup" component={RollupImport} />
+          <Route exact path="/rollup/resolve" component={RollupImport} />
         </Switch>
       </div>
     );

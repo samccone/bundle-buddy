@@ -98,11 +98,13 @@ class RollupImport extends Component<ImportProps> {
         processedSourceMap: processed.proccessedSourcemap!
       };
 
-      this.props.history.push("/resolve", state);
+      this.props.history.push("/rollup/resolve", state);
     }
   }
 
   render() {
+    const resolve = window.location.pathname.indexOf("resolve") !== -1;
+
     return (
       <div>
         <div>
@@ -174,43 +176,44 @@ class RollupImport extends Component<ImportProps> {
               </button>
             </div>
           </div>
-          <div className="col-container">
-            <div className="col-narrow" />
-            <div className="import-instruction">
-              <div className="col-container">
-                <div>
-                  <h5>sourcemap</h5>
-                  <p>via rollup.config.js</p>
-                  <code>
-                    <pre>
-                      {`output: { 
+          {!resolve && (
+            <div className="col-container">
+              <div className="col-narrow" />
+              <div className="import-instruction">
+                <div className="col-container">
+                  <div>
+                    <h5>sourcemap</h5>
+                    <p>via rollup.config.js</p>
+                    <code>
+                      <pre>
+                        {`output: { 
     file: '\`\${outFolder}/dist.js',
     format: 'iife',
     name: 'rough',\n`}
-                      <span className="add-diff">
-                        &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
-                      </span>
-                      {`
-}`}
-                    </pre>
-                    <button
-                      onClick={() => toClipboard("sourcemap: true,")}
-                      className="copy-button"
-                      aria-label="Copy sourcemap snippet to clipboard"
-                    />
-                  </code>
-                </div>
-                <div>
-                  <h5>graph.json</h5>
-                  <p>via rollup.config.js</p>
-                  <code>
-                    <pre>
-                      <span
-                        id="rollup-generate-graph"
-                        ref={this.generateGraphContents}
-                        className="add-diff"
-                      >
+                        <span className="add-diff">
+                          &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
+                        </span>
                         {`
+}`}
+                      </pre>
+                      <button
+                        onClick={() => toClipboard("sourcemap: true,")}
+                        className="copy-button"
+                        aria-label="Copy sourcemap snippet to clipboard"
+                      />
+                    </code>
+                  </div>
+                  <div>
+                    <h5>graph.json</h5>
+                    <p>via rollup.config.js</p>
+                    <code>
+                      <pre>
+                        <span
+                          id="rollup-generate-graph"
+                          ref={this.generateGraphContents}
+                          className="add-diff"
+                        >
+                          {`
 plugins: [{
     buildEnd() {
         const deps = [];
@@ -228,22 +231,24 @@ plugins: [{
             JSON.stringify(deps, null, 2));
     },
 }]`}
-                      </span>
-                    </pre>
-                    <button
-                      onClick={() =>
-                        toClipboard(
-                          this.generateGraphContents.current!.textContent || ""
-                        )
-                      }
-                      className="copy-button"
-                      aria-label="Copy stats.json programatic snippit to clipboard"
-                    />
-                  </code>
+                        </span>
+                      </pre>
+                      <button
+                        onClick={() =>
+                          toClipboard(
+                            this.generateGraphContents.current!.textContent ||
+                              ""
+                          )
+                        }
+                        className="copy-button"
+                        aria-label="Copy stats.json programatic snippit to clipboard"
+                      />
+                    </code>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     );

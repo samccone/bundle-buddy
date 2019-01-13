@@ -10,6 +10,8 @@ class DescribeImport extends Component {
   state: {} = {};
 
   render() {
+    const selected = window.location.pathname;
+
     return (
       <div>
         <h1>Analyze</h1>
@@ -25,8 +27,12 @@ class DescribeImport extends Component {
             aria-label="webpack project import"
             className="no-link-underline"
           >
-            <button className="type-button  rollup-import">
-              <img className="rollup-logo" src="img/webpack_logo.png" />
+            <button
+              className={`${
+                selected === "webpack" ? "selected" : ""
+              } type-button  rollup-import`}
+            >
+              <img className="rollup-logo" src="/img/webpack_logo.png" />
               Webpack
             </button>
           </Link>
@@ -35,8 +41,12 @@ class DescribeImport extends Component {
             aria-label="rollup project import"
             className="no-link-underline"
           >
-            <button className="type-button rollup-import">
-              <img src="img/rollup_logo.png" className="rollup-logo" /> Rollup
+            <button
+              className={`${
+                selected === "rollup" ? "selected" : ""
+              } type-button rollup-import`}
+            >
+              <img src="/img/rollup_logo.png" className="rollup-logo" /> Rollup
             </button>
           </Link>
           <div>

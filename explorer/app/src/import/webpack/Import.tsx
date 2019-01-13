@@ -67,7 +67,7 @@ class WebpackImport extends Component<ImportProps> {
         processedSourceMap: processed.proccessedSourcemap!
       };
 
-      this.props.history.push("/resolve", state);
+      this.props.history.push("/webpack/resolve", state);
     }
   }
 
@@ -104,6 +104,7 @@ class WebpackImport extends Component<ImportProps> {
   }
 
   render() {
+    const resolve = window.location.pathname.indexOf("resolve") !== -1;
     return (
       <div>
         {this.state.importError != null ? (
@@ -171,44 +172,45 @@ class WebpackImport extends Component<ImportProps> {
             </button>
           </div>
         </div>
-        <div className="col-container">
-          <div className="import-instruction">
-            <div className="col-container">
-              <div>
-                <h5>sourcemap</h5>
-                <p>webpack.conf.js</p>
-                <code>
-                  <pre>
-                    <span className="add-diff">devtool: "source-map"</span>
-                  </pre>
-                  <button
-                    onClick={() => toClipboard("devtool: 'source-map'")}
-                    className="copy-button"
-                    aria-label="Copy sourcemap snippet to clipboard"
-                  />
-                </code>
-              </div>
-              <div>
-                <h5>stats.json</h5>
-                <p>via command line</p>
-                <code>
-                  <pre>
-                    <span className="add-diff">
-                      webpack --profile --json > stats.json
-                    </span>
-                  </pre>
-                  <button
-                    onClick={() =>
-                      toClipboard("webpack --profile --json > stats.json")
-                    }
-                    className="copy-button"
-                    aria-label="Copy stats.json CLI command to clipboard"
-                  />
-                </code>
-                <p>via programatic compilation </p>
-                <code>
-                  <pre>
-                    {`const webpack = require("webpack");
+        {!resolve && (
+          <div className="col-container">
+            <div className="import-instruction">
+              <div className="col-container">
+                <div>
+                  <h5>sourcemap</h5>
+                  <p>webpack.conf.js</p>
+                  <code>
+                    <pre>
+                      <span className="add-diff">devtool: "source-map"</span>
+                    </pre>
+                    <button
+                      onClick={() => toClipboard("devtool: 'source-map'")}
+                      className="copy-button"
+                      aria-label="Copy sourcemap snippet to clipboard"
+                    />
+                  </code>
+                </div>
+                <div>
+                  <h5>stats.json</h5>
+                  <p>via command line</p>
+                  <code>
+                    <pre>
+                      <span className="add-diff">
+                        webpack --profile --json > stats.json
+                      </span>
+                    </pre>
+                    <button
+                      onClick={() =>
+                        toClipboard("webpack --profile --json > stats.json")
+                      }
+                      className="copy-button"
+                      aria-label="Copy stats.json CLI command to clipboard"
+                    />
+                  </code>
+                  <p>via programatic compilation </p>
+                  <code>
+                    <pre>
+                      {`const webpack = require("webpack");
 webpack({
 // Configuration Object
 }, (err, stats) => {
@@ -216,28 +218,29 @@ if (err) {
     console.error(err);
     return;
 }`}
-                    <span className="add-diff">
-                      {`
+                      <span className="add-diff">
+                        {`
 fs.writeJSONSync(path.join(__dirname, "stats.json"), 
     stats.toJson())
 });
 `}
-                    </span>
-                  </pre>
-                  <button
-                    onClick={() =>
-                      toClipboard(`fs.writeJSONSync(path.join(__dirname, "stats.json"), 
+                      </span>
+                    </pre>
+                    <button
+                      onClick={() =>
+                        toClipboard(`fs.writeJSONSync(path.join(__dirname, "stats.json"), 
     stats.toJson())
 });`)
-                    }
-                    className="copy-button"
-                    aria-label="Copy stats.json programatic snippit to clipboard"
-                  />
-                </code>
+                      }
+                      className="copy-button"
+                      aria-label="Copy stats.json programatic snippit to clipboard"
+                    />
+                  </code>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
