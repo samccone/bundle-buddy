@@ -9,6 +9,7 @@ export interface ImportResolveState {
 
 export interface ImportProps {
   history: History<ImportResolveState>;
+  selected: boolean;
 }
 
 export interface ResolveProps {

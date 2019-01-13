@@ -115,6 +115,11 @@ img.icon {
   margin-right: 10px;
 }
 
+.left-col {
+  border-right: 1px solid #ddd;
+  width: 30vw;
+}
+
 .panel {
   /* width: var(--panel-width); */
   /* min-width: 260px; */
@@ -201,9 +206,9 @@ button.clear {
 }
 
 .col-container div {
-  flex: 1;
-  border-right: solid 2px transparent;
-  border-left: solid 2px transparent;
+  /* flex: 1; */
+  /* border-right: solid 2px transparent;
+  border-left: solid 2px transparent; */
 }
 
 .col-container .col-narrow {

@@ -1,5 +1,7 @@
 import { Route, Switch, Link } from "react-router-dom";
 import React, { Component, Suspense, lazy } from "react";
+import { History } from "history";
+import { ImportResolveState } from "../types";
 const Describe = lazy(() => import("./Describe"));
 const WebpackImport = lazy(() => import("./webpack/Import"));
 const RollupImport = lazy(() => import("./rollup/Import"));
@@ -7,7 +9,6 @@ const RollupImport = lazy(() => import("./rollup/Import"));
 // noopener noreferrer
 
 class Import extends Component {
-
   constructor(props: {}) {
     super(props);
   }
@@ -16,10 +17,16 @@ class Import extends Component {
     return (
       <div>
         <Suspense fallback={<div>Loading...</div>}>
+          <Describe />
           <Switch>
-            <Route exact path="/import" component={Describe}></Route>
-            <Route exact path="/import/webpack" component={WebpackImport}></Route>
-            <Route exact path="/import/rollup" component={RollupImport}></Route>
+            <Route
+              exact
+              path="/webpack"
+              component={(h: History<ImportResolveState>) => (
+                <WebpackImport selected history={h} />
+              )}
+            />
+            <Route exact path="/rollup" component={RollupImport} />
           </Switch>
         </Suspense>
       </div>

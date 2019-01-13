@@ -8,12 +8,13 @@ import { ImportResolveState, ProcessedImportState } from "./types";
 // noopener noreferrer
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
+const Home = lazy(() => import("./home/Home"));
 const Import = lazy(() => import("./import/Import"));
 const Resolve = lazy(() => import("./resolve/Resolve"));
 
 type T = typeof Resolve;
 
-class Home extends Component {
+class App extends Component {
   constructor(props: {}) {
     super(props);
   }
@@ -37,24 +38,38 @@ class Home extends Component {
                 <Switch>
                   <Route
                     path="/bundle"
-                    component={({ location }: { location: Location<ProcessedImportState> }) => {
+                    component={({
+                      location
+                    }: {
+                      location: Location<ProcessedImportState>;
+                    }) => {
                       let params = new URLSearchParams(location.search);
-                      return <Bundle
-                        trimmedNetwork={(location.state || {}).trimmedNetwork}
-                        rollups={(location.state || {}).rollups}
-                        selected={params.get("selected")}
-                      />;
+                      return (
+                        <Bundle
+                          trimmedNetwork={(location.state || {}).trimmedNetwork}
+                          rollups={(location.state || {}).rollups}
+                          selected={params.get("selected")}
+                        />
+                      );
                     }}
                   />
-                  <Route path="/import" component={Import} />
+
                   <Route
-                    path="/resolve"
-                    component={(h: { location: Location<ImportResolveState>, history: History }) => {
+                    path="/"
+                    component={(h: {
+                      location: Location<ImportResolveState>;
+                      history: History;
+                    }) => {
                       return (
-                        <Resolve
+                        <Home
                           history={h.history}
-                          graphNodes={h.location.state.graphNodes}
-                          processedSourceMap={h.location.state.processedSourceMap}
+                          graphNodes={
+                            h.location.state && h.location.state.graphNodes
+                          }
+                          processedSourceMap={
+                            h.location.state &&
+                            h.location.state.processedSourceMap
+                          }
                         />
                       );
                     }}
@@ -69,4 +84,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default App;
