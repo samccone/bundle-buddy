@@ -92,7 +92,7 @@ class RollupImport extends Component<ImportProps> {
       importErrorUri
     });
 
-    if (this.props.history != null) {
+    if (this.props.history != null && this.state.importError == null) {
       const state: ImportResolveState = {
         graphNodes: processed.processedGraph!,
         processedSourceMap: processed.proccessedSourcemap!
