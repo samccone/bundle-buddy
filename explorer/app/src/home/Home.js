@@ -2,27 +2,14 @@ import React, { Component } from "react";
 import Introduction from "./Introduction";
 import Guide from "./Guide";
 import Import from "../import/Import";
+import Resolve from "../resolve/Resolve";
 
 // <Route path="/import" component={Import} />
-// <Route
-//   path="/resolve"
-//   component={(h: {
-//     location: Location<ImportResolveState>;
-//     history: History;
-//   }) => {
-//     return (
-//       <Resolve
-//         history={h.history}
-//         graphNodes={h.location.state.graphNodes}
-//         processedSourceMap={
-//           h.location.state.processedSourceMap
-//         }
-//       />
-//     );
-//   }}
-// />
+
 class Home extends Component {
   render() {
+    const { history, graphNodes, processedSourceMap } = this.props;
+
     return (
       <div className="col-container">
         <div className="left-col border-right">
@@ -34,6 +21,14 @@ class Home extends Component {
         <div className="right-col">
           <div className="padding">
             <Import />
+
+            {graphNodes &&
+              processedSourceMap &&
+              <Resolve
+                history={history}
+                graphNodes={graphNodes}
+                processedSourceMap={processedSourceMap}
+              />}
           </div>
         </div>
       </div>

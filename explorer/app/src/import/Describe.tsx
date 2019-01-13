@@ -13,13 +13,21 @@ class DescribeImport extends Component {
     return (
       <div>
         <h1>Analyze</h1>
-        <p>How many bundles does your project have?</p>
-        <p> One or more than one</p>
-        <p>Which bundler are you using?</p>
+        <h5>How many bundles do you have?</h5>
         <div className="flex">
-          <Link to="/webpack" aria-label="webpack project import">
-            <button className="type-button">
-              <img className="webpack-logo" src="img/webpack_logo.png" />
+          <button className="type-button">One</button>
+          <button className="type-button">More than one</button>
+        </div>
+        <h5>What bundler are you using?</h5>
+        <div className="flex">
+          <Link
+            to="/webpack"
+            aria-label="webpack project import"
+            className="no-link-underline"
+          >
+            <button className="type-button  rollup-import">
+              <img className="rollup-logo" src="img/webpack_logo.png" />
+              Webpack
             </button>
           </Link>
           <Link
@@ -33,7 +41,7 @@ class DescribeImport extends Component {
           </Link>
           <div>
             <button className="type-button rollup-import">
-              Try a sample project
+              See Sample Project
             </button>
           </div>
         </div>

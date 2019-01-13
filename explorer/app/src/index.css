@@ -94,6 +94,22 @@ svg {
   margin: 0;
 }
 
+.App-header .nav {
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.App-header .nav a {
+  text-decoration: none;
+  padding-right: 10px;
+  font-weight: bold;
+  color: black;
+}
+
+/* .flex.nav {
+  align-content: center;
+} */
+
 .page {
   width: 100vw;
   height: calc(100vh - 100px);

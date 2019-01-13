@@ -9,7 +9,6 @@ import { ImportResolveState, ProcessedImportState } from "./types";
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Home = lazy(() => import("./home/Home"));
-const Import = lazy(() => import("./import/Import"));
 const Resolve = lazy(() => import("./resolve/Resolve"));
 
 type T = typeof Resolve;
