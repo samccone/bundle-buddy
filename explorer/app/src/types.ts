@@ -47,3 +47,10 @@ export interface TrimmedNode {
   fileName?: string;
   text?: string;
 }
+
+export interface ImportState {
+  sourceMapFiles?: File[];
+  graphFile?: File;
+  importError?: string | null;
+  importErrorUri?: string | null;
+}

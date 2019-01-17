@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { toClipboard } from "../clipboard";
-import { readFileAsText } from "../file_reader";
+import { readFileAsText, readFilesAsText } from "../file_reader";
 import { processImports, buildImportErrorReport } from "../process_imports";
-import { ImportProps, ImportResolveState } from "../../types";
+import { ImportProps, ImportResolveState, ImportState } from "../../types";
+
 
 // noopener noreferrer
-class RollupImport extends Component<ImportProps> {
+class RollupImport extends Component<ImportProps, ImportState> {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   graphInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   generateGraphContents: React.RefObject<HTMLSpanElement>;
@@ -18,12 +19,7 @@ class RollupImport extends Component<ImportProps> {
     this.generateGraphContents = React.createRef();
   }
 
-  state: {
-    sourceMapFile?: File;
-    graphFile?: File;
-    importError?: string;
-    importErrorUri?: string;
-  } = {};
+  state: ImportState = {};
 
   onGraphInput() {
     if (
@@ -48,11 +44,11 @@ class RollupImport extends Component<ImportProps> {
       this.sourceMapInput.current.files.length
     ) {
       this.setState({
-        sourceMapFile: this.sourceMapInput.current.files[0]
+        sourceMapFiles: Array.from(this.sourceMapInput.current.files)
       });
     } else {
       this.setState({
-        sourceMapFile: undefined
+        sourceMapFiles: undefined
       });
     }
   }
@@ -61,21 +57,21 @@ class RollupImport extends Component<ImportProps> {
     return file != null;
   }
 
-  hasSourceMapFile(file?: File) {
-    return file != null;
+  hasSourceMapFile(files?: File[]) {
+    return files != null && files.length;
   }
 
-  canProcess(sourceMapFile: File | undefined, graphFile: File | undefined) {
-    return sourceMapFile != null && graphFile != null;
+  canProcess(sourceMapFiles: File[] | undefined, graphFile: File | undefined) {
+    return sourceMapFiles != null && sourceMapFiles.length && graphFile != null;
   }
 
   async processFiles() {
-    if (this.state.graphFile == null || this.state.sourceMapFile == null) {
+    if (this.state.graphFile == null || this.state.sourceMapFiles == null) {
       return;
     }
 
     const graphContents = await readFileAsText(this.state.graphFile);
-    const sourceMapContents = await readFileAsText(this.state.sourceMapFile);
+    const sourceMapContents = await readFilesAsText(this.state.sourceMapFiles);
 
     const processed = await processImports({
       sourceMapContents,
@@ -84,7 +80,7 @@ class RollupImport extends Component<ImportProps> {
 
     const { importError, importErrorUri } = buildImportErrorReport(processed, {
       graphFile: this.state.graphFile,
-      sourceMapFile: this.state.sourceMapFile
+      sourceMapFiles: this.state.sourceMapFiles
     });
 
     this.setState({
@@ -114,7 +110,7 @@ class RollupImport extends Component<ImportProps> {
               <code>
                 <pre>{`${this.state.importError}`}</pre>
               </code>
-              <a href={this.state.importErrorUri} target="_blank">
+              <a href={this.state.importErrorUri || ''} target="_blank">
                 File a bug
               </a>
             </div>
@@ -127,6 +123,7 @@ class RollupImport extends Component<ImportProps> {
                 sourcemap
                 <input
                   id="sourcemap"
+                  multiple
                   type="file"
                   ref={this.sourceMapInput}
                   onInput={() => this.onSourceMapInput()}
@@ -134,7 +131,7 @@ class RollupImport extends Component<ImportProps> {
               </button>
               <img
                 src={
-                  this.hasSourceMapFile(this.state.sourceMapFile)
+                  this.hasSourceMapFile(this.state.sourceMapFiles)
                     ? "/img/ok_icon.svg"
                     : "/img/warn_icon.svg"
                 }
@@ -166,7 +163,7 @@ class RollupImport extends Component<ImportProps> {
               <button
                 disabled={
                   !this.canProcess(
-                    this.state.sourceMapFile,
+                    this.state.sourceMapFiles,
                     this.state.graphFile
                   )
                 }

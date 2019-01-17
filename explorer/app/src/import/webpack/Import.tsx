@@ -1,13 +1,13 @@
 import { statsToGraph } from "../stats_to_graph";
-import { readFileAsText } from "../file_reader";
+import { readFileAsText, readFilesAsText } from "../file_reader";
 import { toClipboard } from "../clipboard";
 import { processImports, buildImportErrorReport } from "../process_imports";
-import { ImportProps, ImportResolveState } from "../../types";
+import { ImportProps, ImportResolveState, ImportState } from "../../types";
 
 import React, { Component } from "react";
 // noopener noreferrer
 
-class WebpackImport extends Component<ImportProps> {
+class WebpackImport extends Component<ImportProps, ImportState> {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   statsInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
 
@@ -17,32 +17,27 @@ class WebpackImport extends Component<ImportProps> {
     this.statsInput = React.createRef();
   }
 
-  state: {
-    sourceMapFile?: File;
-    statsFile?: File;
-    importError?: string;
-    importErrorUri?: string;
-  } = {};
+  state: ImportState  = {};
 
   hasStatsFile(f: File | undefined) {
     return f != null;
   }
 
-  hasSourceMapFile(f: File | undefined) {
-    return f != null;
+  hasSourceMapFile(f: File[] | undefined) {
+    return f != null && f.length > 0;
   }
 
-  canProcess(statsFile: File | undefined, sourceMapFile: File | undefined) {
-    return statsFile != null && sourceMapFile != null;
+  canProcess(statsFiles: File[] | undefined, sourceMapFile: File | undefined) {
+    return statsFiles != null && sourceMapFile != null;
   }
 
   private async processFiles() {
-    if (this.state.statsFile == null || this.state.sourceMapFile == null) {
+    if (this.state.graphFile == null || this.state.sourceMapFiles == null) {
       return;
     }
 
-    const statsFileContents = await readFileAsText(this.state.statsFile);
-    const sourceMapContents = await readFileAsText(this.state.sourceMapFile);
+    const statsFileContents = await readFileAsText(this.state.graphFile);
+    const sourceMapContents = await readFilesAsText(this.state.sourceMapFiles);
 
     const processed = await processImports({
       sourceMapContents,
@@ -51,8 +46,8 @@ class WebpackImport extends Component<ImportProps> {
     });
 
     const { importError, importErrorUri } = buildImportErrorReport(processed, {
-      graphFile: this.state.statsFile,
-      sourceMapFile: this.state.sourceMapFile
+      graphFile: this.state.graphFile,
+      sourceMapFiles: this.state.sourceMapFiles
     });
 
     this.setState({
@@ -78,11 +73,11 @@ class WebpackImport extends Component<ImportProps> {
       this.statsInput.current.files.length
     ) {
       this.setState({
-        statsFile: this.statsInput.current.files[0]
+        graphFile: this.statsInput.current.files[0]
       });
     } else {
       this.setState({
-        statsFile: undefined
+        graphFile: undefined
       });
     }
   }
@@ -94,11 +89,11 @@ class WebpackImport extends Component<ImportProps> {
       this.sourceMapInput.current.files.length
     ) {
       this.setState({
-        sourceMapFile: this.sourceMapInput.current.files[0]
+        sourceMapFiles: Array.from(this.sourceMapInput.current.files)
       });
     } else {
       this.setState({
-        sourceMapFile: undefined
+        sourceMapFiles: undefined
       });
     }
   }
@@ -113,7 +108,7 @@ class WebpackImport extends Component<ImportProps> {
             <code>
               <pre>{`${this.state.importError}`}</pre>
             </code>
-            <a href={this.state.importErrorUri} target="_blank">
+            <a href={this.state.importErrorUri || ''} target="_blank">
               File a bug
             </a>
           </div>
@@ -127,13 +122,14 @@ class WebpackImport extends Component<ImportProps> {
               <input
                 id="sourcemap"
                 type="file"
+                multiple
                 ref={this.sourceMapInput}
                 onInput={() => this.onSourceMapInput()}
               />
             </button>
             <img
               src={
-                this.hasSourceMapFile(this.state.sourceMapFile)
+                this.hasSourceMapFile(this.state.sourceMapFiles)
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
@@ -153,7 +149,7 @@ class WebpackImport extends Component<ImportProps> {
             </button>
             <img
               src={
-                this.hasStatsFile(this.state.statsFile)
+                this.hasStatsFile(this.state.graphFile)
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
@@ -164,7 +160,7 @@ class WebpackImport extends Component<ImportProps> {
           <div>
             <button
               disabled={
-                !this.canProcess(this.state.sourceMapFile, this.state.statsFile)
+                !this.canProcess(this.state.sourceMapFiles, this.state.graphFile)
               }
               onClick={() => this.processFiles()}
             >
