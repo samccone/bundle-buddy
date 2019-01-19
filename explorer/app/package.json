@@ -9,7 +9,6 @@
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
-    "builtin-modules": "^3.0.0",
     "d3-scale": "2.1.2",
     "d3-voronoi-treemap": "^1.1.0",
     "dagre": "0.8.2",
@@ -37,7 +36,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/builtin-modules": "^2.0.0",
     "@types/google-protobuf": "^3.2.7",
     "@types/react-router-dom": "^4.3.1",
     "d3-hierarchy": "1.1.8",

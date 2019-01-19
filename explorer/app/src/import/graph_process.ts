@@ -1,6 +1,5 @@
 import { findCommonPrefix } from "./prefix_cleaner";
-import * as buildInModules from "builtin-modules";
-import { builtinModules } from "module";
+import builtins from "./builtins";
 
 export interface GraphNode {
   source: string;
@@ -23,7 +22,7 @@ const ignoreNodes = new Set(
     // Rollup specific magic module.
     "\u0000commonjsHelpers",
     "babelHelpers"
-  ].concat(builtinModules)
+  ].concat(builtins)
 );
 
 export function cleanGraph(graph: GraphNodes): GraphNodes {
