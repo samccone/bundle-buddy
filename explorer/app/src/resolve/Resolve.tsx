@@ -10,24 +10,7 @@ import { ResolveProps, ProcessedImportState } from "../types";
 const DEBUG_PROCESSED_SOURCE_MAP: ProcessedSourceMap = data.processedSourceMap;
 const DEBUG_GRAPH_NODES: GraphNodes = data.processedGraph;
 
-function uniqueIn<T>(
-  a: Array<T>,
-  b: Array<T>,
-  aTransform: (v: T) => T,
-  bTransform: (v: T) => T
-) {
-  const setA = new Set(a.map(v => aTransform(v)));
-  const setB = new Set(b.map(v => bTransform(v)));
 
-  const ret: Array<T> = [];
-  for (const v of setA) {
-    if (!setB.has(v)) {
-      ret.push(v);
-    }
-  }
-
-  return ret;
-}
 
 function toFunctionRef(func: string) {
   let ref: any;
@@ -66,9 +49,28 @@ function transformSourceMapNames(
   return ret;
 }
 
-class Resolve extends Component<ResolveProps> {
+export interface ResolveState {
+  sourceMapFiles: string[];
+  transforms: {
+    sourceMapFileTransform: (v: string) => string;
+    graphFileTransform: (v: string) => string;
+  };
+  graphFiles: string[];
+  resolveError?: string;
+}
+
+class Resolve extends Component<ResolveProps, ResolveState> {
   sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement>;
   sourceGraphTransformRef?: React.RefObject<HTMLTextAreaElement>;
+
+  state: ResolveState = {
+    sourceMapFiles: [],
+    graphFiles: [],
+    transforms: {
+      sourceMapFileTransform: (v: string) => v,
+      graphFileTransform: (v: string) => v
+    }
+  };
 
   constructor(props: ResolveProps) {
     super(props);
@@ -88,26 +90,47 @@ class Resolve extends Component<ResolveProps> {
     };
   }
 
-  state: {
-    sourceMapFiles: string[];
-    transforms: {
-      sourceMapFileTransform: (v: string) => string;
-      graphFileTransform: (v: string) => string;
-    };
-    graphFiles: string[];
-  } = {
-    sourceMapFiles: [],
-    graphFiles: [],
-    transforms: {
-      sourceMapFileTransform: (v: string) => v,
-      graphFileTransform: (v: string) => v
-    }
-  };
-
   static sorted<T>(arr: Array<T>) {
     const ret = Array.from(arr);
     ret.sort();
     return ret;
+  }
+
+  transformFiles<T>(
+    a: Array<T>,
+    b: Array<T>,
+    aTransform: (v: T) => T,
+    bTransform: (v: T) => T
+  ): { files: T[], lastError: undefined | Error } {
+    let lastError: Error | undefined = undefined;
+    const setA = new Set(a.map(v => {
+      try {
+        return aTransform(v);
+      } catch (e) {
+        lastError = e;
+        return v;
+      }
+    }));
+    const setB = new Set(b.map(v => {
+      try {
+        return bTransform(v);
+      } catch (e) {
+        lastError = e;
+        return v;
+      }
+    }));
+
+    const ret: Array<T> = [];
+    for (const v of setA) {
+      if (!setB.has(v)) {
+        ret.push(v);
+      }
+    }
+
+    return {
+      files: ret,
+      lastError,
+    };
   }
 
   getGraphFiles(graphNodes: GraphNodes) {
@@ -190,7 +213,28 @@ class Resolve extends Component<ResolveProps> {
     this.props.history.push("/bundle", processed);
   }
 
+  formatError(e: Error) {
+    return `
+${e.message}
+\n----------------\n
+${e.stack}`
+  }
+
   render() {
+    const sourceMapTransformed = this.transformFiles(
+      this.state.sourceMapFiles,
+      this.state.graphFiles,
+      this.state.transforms.sourceMapFileTransform,
+      this.state.transforms.graphFileTransform
+    );
+
+    const graphTransformed = this.transformFiles(
+      this.state.graphFiles,
+      this.state.sourceMapFiles,
+      this.state.transforms.graphFileTransform,
+      this.state.transforms.sourceMapFileTransform
+    );
+
     return (
       <div className="resolve-conflicts">
         <h5>Resolve sourcemap and stats</h5>
@@ -198,15 +242,9 @@ class Resolve extends Component<ResolveProps> {
         <div className="col-container">
           <div>
             <h3> Source map files</h3>
+            {sourceMapTransformed.lastError != null ? <div className="error">{this.formatError(sourceMapTransformed.lastError)}</div> : null}
             <p>
-              {
-                uniqueIn(
-                  this.state.sourceMapFiles,
-                  this.state.graphFiles,
-                  this.state.transforms.sourceMapFileTransform,
-                  this.state.transforms.graphFileTransform
-                ).length
-              }{" "}
+              {sourceMapTransformed.files.length}{" "}
               unmatched source map files of {this.state.sourceMapFiles.length}{" "}
               total
             </p>
@@ -220,29 +258,16 @@ class Resolve extends Component<ResolveProps> {
               update source map transform
             </button>
             <ul>
-              {Resolve.sorted(
-                uniqueIn(
-                  this.state.sourceMapFiles,
-                  this.state.graphFiles,
-                  this.state.transforms.sourceMapFileTransform,
-                  this.state.transforms.graphFileTransform
-                )
-              ).map(v => (
+              {Resolve.sorted(sourceMapTransformed.files).map(v => (
                 <li key={v}>{v}</li>
               ))}
             </ul>
           </div>
           <div>
             <h3>Graph source files</h3>
+            {graphTransformed.lastError != null ? <div className="error">{this.formatError(graphTransformed.lastError)}</div> : null}
             <p>
-              {
-                uniqueIn(
-                  this.state.graphFiles,
-                  this.state.sourceMapFiles,
-                  this.state.transforms.graphFileTransform,
-                  this.state.transforms.sourceMapFileTransform
-                ).length
-              }{" "}
+              {graphTransformed.files.length}{" "}
               unmatched graph files of {this.state.graphFiles.length} total
             </p>
             <textarea
@@ -255,14 +280,7 @@ class Resolve extends Component<ResolveProps> {
               update graph source transform
             </button>
             <ul>
-              {Resolve.sorted(
-                uniqueIn(
-                  this.state.graphFiles,
-                  this.state.sourceMapFiles,
-                  this.state.transforms.graphFileTransform,
-                  this.state.transforms.sourceMapFileTransform
-                )
-              ).map(v => (
+              {Resolve.sorted(graphTransformed.files).map(v => (
                 <li key={v}>{v}</li>
               ))}
             </ul>

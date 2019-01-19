@@ -103,7 +103,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
     return (
       <div>
         {this.state.importError != null ? (
-          <div className="import-error">
+          <div className="error">
             <h2>Import error</h2>
             <code>
               <pre>{`${this.state.importError}`}</pre>

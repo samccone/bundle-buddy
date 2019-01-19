@@ -315,11 +315,13 @@ input.search, button.clear {
   margin-left: 7px;
 }
 
-.import-error {
+.error {
   background: #ff988b;
   padding: 10px;
   padding: 10px;
   border: solid 2px #c55c5c;
+  white-space: pre-wrap;
+  font-size: 12px;
 }
 
 .resolve-conflicts li {
