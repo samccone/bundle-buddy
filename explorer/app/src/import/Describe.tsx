@@ -15,11 +15,6 @@ class DescribeImport extends Component {
     return (
       <div>
         <h1>Analyze</h1>
-        <h5>How many bundles do you have?</h5>
-        <div className="flex">
-          <button className="type-button">One</button>
-          <button className="type-button">More than one</button>
-        </div>
         <h5>What bundler are you using?</h5>
         <div className="flex">
           <Link
