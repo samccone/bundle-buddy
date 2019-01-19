@@ -125,6 +125,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
                   id="sourcemap"
                   multiple
                   type="file"
+                  accept=".map"
                   ref={this.sourceMapInput}
                   onInput={() => this.onSourceMapInput()}
                 />
@@ -145,6 +146,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
                 <input
                   id="stats"
                   type="file"
+                  accept=".json"
                   ref={this.graphInput}
                   onInput={() => this.onGraphInput()}
                 />

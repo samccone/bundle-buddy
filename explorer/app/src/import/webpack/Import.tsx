@@ -123,6 +123,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                 id="sourcemap"
                 type="file"
                 multiple
+                accept=".map"
                 ref={this.sourceMapInput}
                 onInput={() => this.onSourceMapInput()}
               />
@@ -144,6 +145,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                 id="stats"
                 type="file"
                 ref={this.statsInput}
+                accept=".json"
                 onInput={() => this.onStatsInput()}
               />
             </button>
