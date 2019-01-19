@@ -106,50 +106,28 @@ export default function ByTypeBarChart({ totalsByType, total }) {
   return (
     <div className="flex padding top-panel">
       <div style={{ width: "25vw" }}>
-        <h1>Project Name</h1>
-        <b>
-          <small>Uploaded Date</small>
-        </b>
-        <p>
-          <b>
-            <small>Total Size</small>
-          </b>
-        </p>
-        <h2>{getFileSize(totalSize)}</h2>
+        <h1>Report</h1>
       </div>
       <div style={{ width: "37vw" }}>
         <p>
           <img className="icon" alt="file types" src="/img/file.png" />
           <b>
-            <small>File Types</small>
+            <small>File Types (placeholder)</small>
           </b>
         </p>
         <p>{fileTypeMessage}</p>
-
-        <ResponsiveOrdinalFrame
-          size={[100, fileTypes.length * 45 + frameProps.margin.top]}
-          {...frameProps}
-          data={fileTypes}
-          className="overflow-visible"
-        />
       </div>
       <div style={{ width: "37vw" }}>
         <p>
           <img className="icon" alt="directories" src="/img/folder.png" />
           <b>
-            <small>Directories</small>
+            <small>Directories (placeholder)</small>
           </b>
         </p>
         <p>
           Your project is made up <b>{directories.length}</b> top-level
           directories
         </p>
-
-        <ResponsiveOrdinalFrame
-          size={[100, directories.length * 45 + frameProps.margin.top]}
-          {...directoryProps}
-          data={directories}
-        />
       </div>
     </div>
   );

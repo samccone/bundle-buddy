@@ -1,11 +1,11 @@
 const mb = 1024 * 1024;
 const kb = 1024;
 export const getFileSize = size => {
-  return (
-    (size && size >= mb ? size / mb : size / kb).toFixed(2) +
-    " " +
-    (size >= mb ? "MB" : "KB")
-  );
+  let value = size && size >= mb ? size / mb : size / kb;
+  if (value < 1 || size >= mb) value = value.toFixed(2);
+  else value = value.toFixed(0);
+
+  return value + " " + (size >= mb ? "MB" : "KB");
 };
 
 export const getPercent = (size, total) => {

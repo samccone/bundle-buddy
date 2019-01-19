@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ByTypeBarChart from "./ByTypeBarChart";
+import Report from "./Report";
 import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
 
@@ -126,18 +127,21 @@ class Bundle extends Component {
 
     const directories = totalsByType.directories
       .sort((a, b) => b.totalBytes - a.totalBytes)
-      .map(d => d.name)
-      .filter(d => d.indexOf("node_modules") === -1);
+      .map(d => d.name);
 
     const directoryColors = {};
-
-    directories.forEach((d, i) => {
-      directoryColors[d] = colors[i % colors.length];
+    let i = 0;
+    directories.forEach(d => {
+      if (d.indexOf("node_modules") !== -1) {
+        directoryColors[d] = "url(#dags)";
+      } else {
+        directoryColors[d] = colors[i] || "black";
+        i++;
+      }
     });
 
     totalsByType.directories.forEach(d => {
-      if (d.name.indexOf("node_modules") !== -1) d.color = "url(#dags)";
-      else d.color = directoryColors[d.name];
+      d.color = directoryColors[d.name];
     });
 
     network.nodes.forEach(d => {
@@ -157,8 +161,8 @@ class Bundle extends Component {
     const total = totalsByType.value;
 
     return (
-      <div className="flex page">
-        <div className="panel left-side">
+      <div>
+        <div>
           <ByTypeBarChart
             totalsByType={totalsByType}
             network={network}
@@ -166,25 +170,35 @@ class Bundle extends Component {
             total={total}
           />
         </div>
-        <div className="panel">
-          <FileDetails
-            total={total}
+        <div>
+          <Report
+            totalsByType={totalsByType}
             network={network}
             changeSelected={(...args) => this.changeSelected(...args)}
-            directoryColors={directoryColors}
+            total={total}
           />
         </div>
-        <div className="panel large">
-          {this.state.selected &&
-            <RippleChart
+        <div className="flex page">
+          <div className="panel">
+            <FileDetails
+              total={total}
+              network={network}
               changeSelected={(...args) => this.changeSelected(...args)}
-              nodes={nodes.map(d => Object.assign({}, d))}
-              edges={edges.map(d => Object.assign({}, d))}
-              max={max}
-              selected={this.state.selected}
-              directories={directories}
               directoryColors={directoryColors}
-            />}
+            />
+          </div>
+          <div className="panel large">
+            {this.state.selected &&
+              <RippleChart
+                changeSelected={(...args) => this.changeSelected(...args)}
+                nodes={nodes.map(d => Object.assign({}, d))}
+                edges={edges.map(d => Object.assign({}, d))}
+                max={max}
+                selected={this.state.selected}
+                directories={directories}
+                directoryColors={directoryColors}
+              />}
+          </div>
         </div>
       </div>
     );

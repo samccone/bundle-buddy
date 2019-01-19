@@ -3,7 +3,7 @@
 }
 
 :root {
-  --primary-color: #7AF1E9;
+  --primary-color: #b42dd6;
   --link-color: darkblue;
   --margin-left: 90px;
   /* --panel-width: 260px; */
@@ -25,11 +25,16 @@ body {
     'Helvetica Neue',
     sans-serif;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
   font-weight: 300;
   font-size: 36px;
+}
+
+.primary {
+  color: var(--primary-color);
 }
 
 .pointer, a {
@@ -112,7 +117,7 @@ svg {
 
 .page {
   width: 100vw;
-  height: calc(100vh - 100px);
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -143,14 +148,19 @@ img.icon {
   width: 25vw;
   border-right: 1px solid #ddd;
   padding-right: 20px;
-  padding-left: 20px;
+  padding-left: 25px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
 
+.top-panel {
+  border-bottom: 1px solid #ddd;
+}
+
 .panel.large {
-  width: 50vw;
+  width: 75vw;
 }
 
 .panel.left-side {

@@ -1,15 +1,10 @@
 import React from "react";
 
 import ResponsiveOrdinalFrame from "semiotic/lib/ResponsiveOrdinalFrame";
-import { colors, mainFileColor, secondaryFileColor } from "../theme";
+import { colors, mainFileColor } from "../theme";
 import { getPercent } from "./stringFormats";
 
-const typeColors = {
-  js: mainFileColor,
-  ts: mainFileColor,
-  jsx: mainFileColor,
-  tsx: mainFileColor
-};
+const inputStyle = { width: "70%" };
 
 const frameProps = {
   type: "bar",
@@ -139,6 +134,7 @@ export default class OverviewBarChart extends React.Component {
             className="search"
             onChange={this.onChange}
             ref={input => (this.search = input)}
+            style={inputStyle}
           />
           <button className="clear">
             <span style={{ color: "red" }} onClick={this.resetSearch}>
@@ -172,9 +168,23 @@ export default class OverviewBarChart extends React.Component {
                   </g>
                 );
               })}
-            </g>
+            </g>,
+            <line
+              x1="35"
+              x2="35"
+              y1={frameProps.margin.top - 5}
+              y2="100%"
+              stroke="#ddd"
+            />,
+            <line
+              x1="60"
+              x2="60"
+              y1={frameProps.margin.top - 5}
+              y2="100%"
+              stroke="#ddd"
+            />
           ]}
-          size={[180, nodes.length * 29 + frameProps.margin.top]}
+          size={[180, nodes.length * 38 + frameProps.margin.top]}
           type={{
             type: "bar",
             customMark: d => {
@@ -187,10 +197,10 @@ export default class OverviewBarChart extends React.Component {
                     fill={directoryColors[d.directory] || "url(#dags)"}
                   />
                   <text fontSize="12" x={-10} y={10} textAnchor="end">
-                    {d.count && d.count.transitiveRequiredBy.length}
+                    {!d.count ? "--" : d.count.transitiveRequiredBy.length}
                   </text>
                   <text fontSize="12" x={-40} y={10} textAnchor="end">
-                    {d.count && d.count.requires.length}
+                    {!d.count ? "--" : d.count.requires.length}
                   </text>
                   <text fontSize="12" x={-68} y={10}>
                     <tspan fontWeight="bold" textAnchor="end">

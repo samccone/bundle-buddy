@@ -17,20 +17,11 @@ export default class RippleChart extends React.Component {
       max,
       selected,
       directories,
+      directoryColors,
       changeSelected
     } = this.props;
-
     const getFill = d => {
-      if (d.id.indexOf("node_modules") !== -1) {
-        return "url(#dags)";
-      } else if (d.id.indexOf("/") === -1) {
-        const match = directories.findIndex(dir => dir === "No Directory");
-        return colors[match % colors.length];
-      } else {
-        const match = directories.findIndex(dir => d.id.indexOf(dir) === 0);
-
-        return colors[match % colors.length];
-      }
+      return directoryColors[d.directory];
     };
 
     const radiusScale = scaleSqrt().domain([0, max]).range([1, 50]);
@@ -100,6 +91,7 @@ export default class RippleChart extends React.Component {
             onMouseLeave={() => this.setState({ hover: null })}
           >
             <g transform={`translate(${d.x}, ${d.y})`}>
+              {d.r < 8 && <circle r={8} stroke="#ccc" fill="none" />}
               <circle r={d.r} fill={getFill(d)} stroke="white" />
               <text
                 y=".4em"
@@ -201,29 +193,31 @@ export default class RippleChart extends React.Component {
       );
     }
 
+    // console.log(count);
+
     return (
       <div className="padding">
+        <img className="icon" alt="details" src="/img/ripple.png" />
+        <b>Ripple Chart</b>
+        <br />
         <p>
-          Selected File: <b style={{ color: primary }}>{selected}</b>{" "}
-          {count &&
-            <span>
-              is imported by <b>{count.requiredBy.length}</b> file
-              {count.requiredBy.length > 1 && "s"}
-              {selected.indexOf("node_modules") === -1 &&
-                <span>
-                  , and imports <b>{count.requires.length}</b> files/modules
-                </span>}
-            </span>}
-        </p>
-        <p>
-          <small>
-            <b>File Directory Legend</b>
-          </small>
+          A detailed look at how a <span className="primary">resource</span> is
+          linked to an entry point of your application.{" "}
+          <span className="primary">Resources</span> with many required bys are
+          harder to remove as a dependency.
         </p>
         <p>
           {directories.map((d, i) =>
             <span key={i} className="padding-right inline-block">
-              <span style={{ color: colors[i] }}>⬤</span> {d}{" "}
+              <svg
+                className="overflow-visible"
+                width="30"
+                height="1.2em"
+                viewBox="0 -1.5 10 10"
+              >
+                <circle r="5" cx="5" cy="5" fill={directoryColors[d]} />
+              </svg>
+              {d}{" "}
             </span>
           )}
         </p>
@@ -244,15 +238,18 @@ export default class RippleChart extends React.Component {
               {requiredBy &&
                 requiredBy.length !== 0 &&
                 <g transform={`translate(${primaryRadius} , 0)`}>
-                  <line stroke={primary} x2={80} />
+                  <line stroke={primary} x2={100} />
                   <text fontSize="11" fontWeight="bold" x={5} y={-3}>
                     Required by
+                  </text>
+                  <text fontSize="11" fontWeight="bold" x={5} y={14}>
+                    {count.transitiveRequiredBy.length} files
                   </text>
                 </g>}
               {requires &&
                 requires.length !== 0 &&
                 <g transform={`translate(${-primaryRadius} , 0)`}>
-                  <line stroke={primary} x2={-80} />{" "}
+                  <line stroke={primary} x2={-100} />{" "}
                   <text
                     textAnchor="end"
                     fontSize="11"
@@ -262,9 +259,18 @@ export default class RippleChart extends React.Component {
                   >
                     Requires
                   </text>
+                  <text
+                    fontSize="11"
+                    textAnchor="end"
+                    fontWeight="bold"
+                    x={-8}
+                    y={14}
+                  >
+                    {count.requires.length} files/modules
+                  </text>
                 </g>}
               <g transform="translate(0, -100)">
-                <text x={-200} textAnchor="middle">
+                <text x={-200} fill={primary} textAnchor="middle">
                   {selected.split("/").map((d, i, array) => {
                     return (
                       <tspan key={i} x={0} dy={"1em"}>
@@ -314,24 +320,26 @@ export default class RippleChart extends React.Component {
                         y1={source.y}
                         x2={target.x}
                         y2={target.y}
-                        stroke="#ccc"
+                        stroke={primary}
                       />
                       <circle
                         r={source.r}
                         cx={source.x}
                         cy={source.y}
-                        fill={primary}
+                        stroke={primary}
+                        fill={"none"}
                       />
                       <path
                         d={a.components[0].attrs.d}
                         fill={primary}
-                        stroke="#ccc"
+                        stroke={primary}
                       />
                       <circle
                         r={target.r}
                         cx={target.x}
                         cy={target.y}
-                        fill={primary}
+                        stroke={primary}
+                        fill={"none"}
                       />
                     </g>
                   );
