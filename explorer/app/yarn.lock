@@ -856,6 +856,10 @@
     "@svgr/core" "^2.4.1"
     loader-utils "^1.1.0"
 
+"@types/builtin-modules@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/builtin-modules/-/builtin-modules-2.0.0.tgz#ac89b765b8ef36f0d5ab42de10e39faa5fd64535"
+
 "@types/google-protobuf@^3.2.7":
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/@types/google-protobuf/-/google-protobuf-3.2.7.tgz#9576ed5dd62cdb1c9f952522028a03b7cb2b69b5"
@@ -1809,6 +1813,10 @@ buffer@^4.3.0:
 builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
+
+builtin-modules@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-3.0.0.tgz#1e587d44b006620d90286cc7a9238bbc6129cab1"
 
 builtin-status-codes@^3.0.0:
   version "3.0.0"
