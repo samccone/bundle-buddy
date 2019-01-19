@@ -29,7 +29,7 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
   const keys = new Set();
 
   for (let { source, target } of graph) {
-    if (target == null) {
+    if (target == null || source == null) {
       continue;
     }
 
@@ -39,7 +39,9 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
       }
 
       if (target.startsWith(magicPrefix)) {
-        target = target.slice(magicPrefix.length);
+        if (target.length !== magicPrefix.length) {
+          target = target.slice(magicPrefix.length);
+        }
       }
     }
 
@@ -63,12 +65,16 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
 
         for (const magicPrefix of magicPrefixes) {
           if (node[key]!.startsWith(magicPrefix)) {
-            node[key] = node[key]!.slice(magicPrefix.length);
+            if (node[key]!.length !== magicPrefix.length) {
+              node[key] = node[key]!.slice(magicPrefix.length);
+            }
           }
         }
 
         if (node[key]!.startsWith(commonPrefix)) {
-          node[key] = node[key]!.slice(commonPrefix.length);
+          if (node[key]!.length !== commonPrefix.length) {
+            node[key] = node[key]!.slice(commonPrefix.length);
+          }
         }
       }
     }
@@ -76,7 +82,11 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
 
   const ret: GraphNodes = [];
   for (const node of graph) {
-    if (node.target !== node.source) {
+    if (
+      node.target !== node.source &&
+      node.target !== null &&
+      node.source !== null
+    ) {
       ret.push(node);
     }
   }

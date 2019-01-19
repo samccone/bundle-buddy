@@ -20,6 +20,10 @@ export function processSourcemap(
     files: ProcessedSourceMap,
     m: sourceMap.MappingItem & { lastGeneratedColumn?: number }
   ) {
+    if (m.source == null) {
+      return;
+    }
+
     if (files[m.source] == null) {
       files[m.source] = {
         totalBytes: 0
@@ -81,7 +85,11 @@ export function processSourcemap(
         const ret: ProcessedSourceMap = {};
 
         for (const k of Object.keys(files)) {
-          ret[k.slice(prefixClean.length)] = files[k];
+          if (k.slice(prefixClean.length).length === 0) {
+            ret[k] = files[k];
+          } else {
+            ret[k.slice(prefixClean.length)] = files[k];
+          }
         }
 
         console.info(`
