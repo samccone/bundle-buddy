@@ -120,7 +120,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
             <div>
               <button tabIndex={-1}>
                 <img className="attach-icon" src="/img/attach_icon.svg" />
-                sourcemap
+                sourcemaps
                 <input
                   id="sourcemap"
                   multiple

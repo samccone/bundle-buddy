@@ -118,7 +118,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
           <div>
             <button tabIndex={-1}>
               <img className="attach-icon" src="/img/attach_icon.svg" />
-              sourcemap
+              sourcemaps
               <input
                 id="sourcemap"
                 type="file"
@@ -175,7 +175,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             <div className="import-instruction">
               <div className="col-container">
                 <div>
-                  <h5>sourcemap</h5>
+                  <h5>sourcemaps</h5>
                   <p>webpack.conf.js</p>
                   <code>
                     <pre>
