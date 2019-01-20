@@ -1,14 +1,7 @@
-// This optional code is used to register a service worker.
-// register() is not called by default.
-
-// This lets the app load faster on subsequent visits in production, and gives
-// it offline capabilities. However, it also means that developers (and users)
-// will only see deployed updates on subsequent visits to a page, after all the
-// existing tabs open on the page have been closed, since previously cached
-// resources are updated in the background.
-
-// To learn more about the benefits of this model and instructions on how to
-// opt-in, read http://bit.ly/CRA-PWA
+export interface ConfigOptions {
+  onSuccess: (registration: ServiceWorkerRegistration) => void;
+  onUpdate: (registration: ServiceWorkerRegistration) => void;
+}
 
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
@@ -20,7 +13,7 @@ const isLocalhost = Boolean(
     )
 );
 
-export function register(config) {
+export function register(config?: ConfigOptions) {
   if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
@@ -31,21 +24,15 @@ export function register(config) {
       return;
     }
 
-    window.addEventListener("load", () => {
+    window.addEventListener("load", async () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
 
-        // Add some additional logging to localhost, pointing developers to the
-        // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then(() => {
-          console.log(
-            "This web app is being served cache-first by a service " +
-              "worker. To learn more, visit http://bit.ly/CRA-PWA"
-          );
-        });
+        await navigator.serviceWorker.ready;
+        console.info("service worker ready [dev mode]");
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
@@ -54,7 +41,64 @@ export function register(config) {
   }
 }
 
-function registerValidSW(swUrl, config) {
+export function showRefreshUI(registration: ServiceWorkerRegistration) {
+  // TODO: Display a toast or refresh UI.
+
+  var button = document.createElement("button");
+  button.style.position = "absolute";
+  button.style.bottom = "24px";
+  button.style.left = "24px";
+  button.textContent = "This site has updated. Please click to see changes.";
+
+  button.addEventListener("click", function() {
+    if (!registration.waiting) {
+      console.info("Missing registration waiting");
+      // Just to ensure registration.waiting is available before
+      // calling postMessage()
+      return;
+    }
+
+    button.disabled = true;
+    registration.waiting.postMessage("skipWaiting");
+  });
+
+  document.body.appendChild(button);
+}
+
+function onNewServiceWorker(
+  registration: ServiceWorkerRegistration,
+  callback: () => void
+) {
+  if (registration.waiting) {
+    // SW is waiting to activate. Can occur if multiple clients open and
+    // one of the clients is refreshed.
+    return callback();
+  }
+
+  function listenInstalledStateChange() {
+    if (registration.installing != null) {
+      registration.installing.addEventListener("statechange", event => {
+        if (
+          event.target != null &&
+          (event.target as any).state === "installed"
+        ) {
+          // A new service worker is available, inform the user
+          callback();
+        }
+      });
+    }
+  }
+
+  if (registration.installing) {
+    return listenInstalledStateChange();
+  }
+
+  // We are currently controlled so a new SW may be found...
+  // Add a listener in case a new SW is found,
+  registration.addEventListener("updatefound", listenInstalledStateChange);
+}
+
+function registerValidSW(swUrl: string, config?: ConfigOptions) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -64,6 +108,24 @@ function registerValidSW(swUrl, config) {
           return;
         }
         installingWorker.onstatechange = () => {
+          if (navigator.serviceWorker.controller != null) {
+            var preventDevToolsReloadLoop = false;
+            navigator.serviceWorker.addEventListener(
+              "controllerchange",
+              function(event) {
+                // Ensure refresh is only called once.
+                // This works around a bug in "force update on reload".
+                if (preventDevToolsReloadLoop) return;
+                preventDevToolsReloadLoop = true;
+                window.location.reload(true);
+              }
+            );
+
+            onNewServiceWorker(registration, function() {
+              showRefreshUI(registration);
+            });
+          }
+
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
               // At this point, the updated precached content has been fetched,
@@ -98,7 +160,7 @@ function registerValidSW(swUrl, config) {
     });
 }
 
-function checkValidServiceWorker(swUrl, config) {
+function checkValidServiceWorker(swUrl: string, config?: ConfigOptions) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
     .then(response => {

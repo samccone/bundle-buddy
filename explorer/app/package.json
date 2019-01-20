@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cat service_worker_postfix_shim.js >> build/service-worker.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
