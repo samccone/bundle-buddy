@@ -72,9 +72,9 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     this.sourceGraphTransformRef = React.createRef();
 
     this.state = {
-      sourceMapFiles: this.getSourceMapFiles(
+      sourceMapFiles: Object.keys(this.cleanSouremapFiles(
         props.processedSourceMap || DEBUG_PROCESSED_SOURCE_MAP
-      ),
+      )),
       graphFiles: this.getGraphFiles(props.graphNodes || DEBUG_GRAPH_NODES),
       transforms: {
         sourceMapFileTransform:
@@ -149,13 +149,18 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     return Array.from(ret);
   }
 
-  getSourceMapFiles(processedSourceMap: ProcessedSourceMap) {
-    const fileNames = Object.keys(processedSourceMap);
-    const prefix = (findCommonPrefix(fileNames) || "").length;
+  cleanSouremapFiles(processedSourceMap: ProcessedSourceMap): ProcessedSourceMap {
+    const ret: ProcessedSourceMap = {};
+    const prefix = (findCommonPrefix(Object.keys(processedSourceMap)) || "");
+    if (prefix.length === 0) {
+      return processedSourceMap;
+    }
 
-    if (prefix) return fileNames.map(d => d.slice(prefix));
+    for (const filename of Object.keys(processedSourceMap)) {
+      ret[filename.slice(prefix.length)] = processedSourceMap[filename];
+    }
 
-    return fileNames;
+    return ret;
   }
 
   updateSourceMapTransform() {
@@ -227,7 +232,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         this.state.transforms.graphFileTransform
       ),
       transformSourceMapNames(
-        this.props.processedSourceMap,
+        this.cleanSouremapFiles(this.props.processedSourceMap),
         this.state.transforms.sourceMapFileTransform
       ),
       this.state.sourceMapFiles
