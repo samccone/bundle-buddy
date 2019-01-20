@@ -18,7 +18,7 @@ const prefixStrips = [
   "\u0000"
 ];
 
-export const ignoreNodes = new Set(
+const ignoreNodes = new Set(
   [
     // Rollup specific magic module.
     "\u0000commonjsHelpers",
@@ -27,7 +27,7 @@ export const ignoreNodes = new Set(
   ].concat(builtins)
 );
 
-export function filterIgnoredNodes(nodes: string[]) {
+function removedIgnoredFiles(nodes: string[]) {
   return nodes.filter(v => !ignoreNodes.has(v));
 }
 
@@ -62,14 +62,14 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
   }
 
   // Strip common prefixes
-  const graphFiles = filterIgnoredNodes(getAllGraphFiles(graph));
-  const prefix = findCommonPrefix(filterIgnoredNodes(graphFiles)) || "";
+  const graphFiles = removedIgnoredFiles(getAllGraphFiles(graph));
+  const prefix = findCommonPrefix(removedIgnoredFiles(graphFiles)) || "";
 
   if (prefix.length) {
     for (const node of graph) {
       for (const key of Object.keys(node) as Array<"target" | "source">) {
-        if (node[key]!.startsWith(prefix)) {
-          if (node[key] != null) {
+        if (node[key] != null) {
+          if (node[key]!.startsWith(prefix)) {
             node[key] = node[key]!.slice(prefix.length);
           }
         }
@@ -77,12 +77,14 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
     }
   } else {
     // fallback to Strip up to first /
-    const firstIndex = findFirstIndex(filterIgnoredNodes(graphFiles));
+    const firstIndex = findFirstIndex(removedIgnoredFiles(graphFiles));
     if (firstIndex > 0) {
       for (const node of graph) {
         for (const key of Object.keys(node) as Array<"target" | "source">) {
           if (node[key] != null) {
-            node[key] = node[key]!.slice(firstIndex + 1);
+            if (node[key]![firstIndex] === "/") {
+              node[key] = node[key]!.slice(firstIndex + 1);
+            }
           }
         }
       }
