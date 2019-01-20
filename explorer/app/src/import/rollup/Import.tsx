@@ -188,7 +188,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
                         {`output: { 
     file: '\`\${outFolder}/dist.js',
     format: 'iife',
-    name: 'rough',\n`}
+    name: 'PROJECT_NAME',\n`}
                         <span className="add-diff">
                           &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
                         </span>
