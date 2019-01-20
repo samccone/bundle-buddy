@@ -34,3 +34,30 @@ export function findCommonPrefix(strings: string[]): string | null {
   }
   return commonPrefix;
 }
+
+export function findFirstIndex(strings: string[]) {
+  let indexes: { [backslashIndex: number]: number } = {};
+  let total: number = 0;
+
+  for (const k of strings) {
+    const index = k.indexOf("/");
+    if (!indexes[index]) indexes[index] = 0;
+
+    indexes[index]++;
+    total++;
+  }
+
+  let validIndex = 0;
+
+  Array.from(Object.keys(indexes)).find(k => {
+    const v = indexes[parseInt(k)];
+
+    if (v / total >= 0.8) {
+      validIndex = parseInt(k);
+      return true;
+    }
+    return false;
+  });
+
+  return validIndex;
+}

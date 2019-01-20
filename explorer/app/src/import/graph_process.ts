@@ -1,4 +1,3 @@
-import { findCommonPrefix } from "./prefix_cleaner";
 import builtins from "./builtins";
 
 export interface GraphNode {
@@ -54,7 +53,7 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
     }
   }
 
-  const commonPrefix = findCommonPrefix(Array.from(keys));
+  const commonPrefix = "";
 
   if (commonPrefix != null && commonPrefix.length) {
     for (const node of graph) {

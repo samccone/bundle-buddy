@@ -1,11 +1,12 @@
 import * as sourceMap from "source-map";
-import { findCommonPrefix } from "./prefix_cleaner";
 
 (sourceMap.SourceMapConsumer as any).initialize({
   "lib/mappings.wasm": "/mappings.wasm"
 });
 
-export interface ProcessedSourceMap { [file: string]: { totalBytes: number } }
+export interface ProcessedSourceMap {
+  [file: string]: { totalBytes: number };
+}
 
 export function processSourcemap(
   contents: string
@@ -81,7 +82,7 @@ export function processSourcemap(
 
         consumer.eachMapping(m => onMapping(cursor, files, m));
 
-        const prefixClean = findCommonPrefix(Object.keys(files)) || "";
+        const prefixClean = "";
         const ret: ProcessedSourceMap = {};
 
         for (const k of Object.keys(files)) {

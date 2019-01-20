@@ -4,13 +4,12 @@ import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import * as data from "./data";
 import { transform } from "./process";
 import { ResolveProps, ProcessedImportState } from "../types";
+import { findCommonPrefix, findFirstIndex } from "../import/prefix_cleaner";
 
 // noopener noreferrer
 
 const DEBUG_PROCESSED_SOURCE_MAP: ProcessedSourceMap = data.processedSourceMap;
 const DEBUG_GRAPH_NODES: GraphNodes = data.processedGraph;
-
-
 
 function toFunctionRef(func: string) {
   let ref: any;
@@ -101,24 +100,28 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     b: Array<T>,
     aTransform: (v: T) => T,
     bTransform: (v: T) => T
-  ): { files: T[], lastError: undefined | Error } {
+  ): { files: T[]; lastError: undefined | Error } {
     let lastError: Error | undefined = undefined;
-    const setA = new Set(a.map(v => {
-      try {
-        return aTransform(v);
-      } catch (e) {
-        lastError = e;
-        return v;
-      }
-    }));
-    const setB = new Set(b.map(v => {
-      try {
-        return bTransform(v);
-      } catch (e) {
-        lastError = e;
-        return v;
-      }
-    }));
+    const setA = new Set(
+      a.map(v => {
+        try {
+          return aTransform(v);
+        } catch (e) {
+          lastError = e;
+          return v;
+        }
+      })
+    );
+    const setB = new Set(
+      b.map(v => {
+        try {
+          return bTransform(v);
+        } catch (e) {
+          lastError = e;
+          return v;
+        }
+      })
+    );
 
     const ret: Array<T> = [];
     for (const v of setA) {
@@ -129,27 +132,34 @@ class Resolve extends Component<ResolveProps, ResolveState> {
 
     return {
       files: ret,
-      lastError,
+      lastError
     };
   }
 
   getGraphFiles(graphNodes: GraphNodes) {
     const ret = new Set();
+
     for (const node of graphNodes) {
       ret.add(node.source);
       ret.add(node.target);
     }
+    const firstIndex = findFirstIndex(Array.from(ret));
 
-    return Array.from(ret);
+    let nodeNames = Array.from(ret).map(k => {
+      if (k[firstIndex] === "/") return k.slice(firstIndex + 1);
+      return k;
+    });
+
+    return nodeNames;
   }
 
   getSourceMapFiles(processedSourceMap: ProcessedSourceMap) {
-    const ret = new Set();
-    for (const k of Object.keys(processedSourceMap)) {
-      ret.add(k);
-    }
+    const fileNames = Object.keys(processedSourceMap);
+    const prefix = (findCommonPrefix(fileNames) || "").length;
 
-    return Array.from(ret);
+    if (prefix) return fileNames.map(d => d.slice(prefix));
+
+    return fileNames;
   }
 
   updateSourceMapTransform() {
@@ -217,7 +227,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     return `
 ${e.message}
 \n----------------\n
-${e.stack}`
+${e.stack}`;
   }
 
   render() {
@@ -235,6 +245,8 @@ ${e.stack}`
       this.state.transforms.sourceMapFileTransform
     );
 
+    console.log(this.state);
+
     return (
       <div className="resolve-conflicts">
         <h5>Resolve sourcemap and stats</h5>
@@ -242,11 +254,14 @@ ${e.stack}`
         <div className="col-container">
           <div>
             <h3> Source map files</h3>
-            {sourceMapTransformed.lastError != null ? <div className="error">{this.formatError(sourceMapTransformed.lastError)}</div> : null}
+            {sourceMapTransformed.lastError != null ? (
+              <div className="error">
+                {this.formatError(sourceMapTransformed.lastError)}
+              </div>
+            ) : null}
             <p>
-              {sourceMapTransformed.files.length}{" "}
-              unmatched source map files of {this.state.sourceMapFiles.length}{" "}
-              total
+              {sourceMapTransformed.files.length} unmatched source map files of{" "}
+              {this.state.sourceMapFiles.length} total
             </p>
             <textarea
               ref={this.sourceMapTransformRef}
@@ -265,10 +280,14 @@ ${e.stack}`
           </div>
           <div>
             <h3>Graph source files</h3>
-            {graphTransformed.lastError != null ? <div className="error">{this.formatError(graphTransformed.lastError)}</div> : null}
+            {graphTransformed.lastError != null ? (
+              <div className="error">
+                {this.formatError(graphTransformed.lastError)}
+              </div>
+            ) : null}
             <p>
-              {graphTransformed.files.length}{" "}
-              unmatched graph files of {this.state.graphFiles.length} total
+              {graphTransformed.files.length} unmatched graph files of{" "}
+              {this.state.graphFiles.length} total
             </p>
             <textarea
               ref={this.sourceGraphTransformRef}
