@@ -4,15 +4,19 @@ import React from "react";
 
 // import { getFileSize, getPercent } from "./stringFormats";
 
-export default function ByTypeBarChart({ totalsByType, total }) {
+export default function ByTypeBarChart({
+  totalsByType,
+  total,
+  duplicateNodeModules
+}) {
   // const totalSize = total;
 
   const fileTypes = totalsByType.fileTypes.sort(
     (a, b) => b.totalBytes - a.totalBytes
   );
-  const directories = totalsByType.directories.sort(
-    (a, b) => b.totalBytes - a.totalBytes
-  );
+  // const directories = totalsByType.directories.sort(
+  //   (a, b) => b.totalBytes - a.totalBytes
+  // );
 
   let fileTypeMessage;
 
@@ -57,13 +61,18 @@ export default function ByTypeBarChart({ totalsByType, total }) {
         <p>
           <img className="icon" alt="directories" src="/img/folder.png" />
           <b>
-            <small>Directories (placeholder)</small>
+            <small>Duplicate Node Modules</small>
           </b>
         </p>
-        <p>
-          Your project is made up <b>{directories.length}</b> top-level
-          directories
-        </p>
+        {Object.keys(duplicateNodeModules).map(k => {
+          return (
+            <div key={k}>
+              <p>
+                <b>{k}</b>: {duplicateNodeModules[k].join(", ")}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -213,7 +213,8 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       transformSourceMapNames(
         this.props.processedSourceMap,
         this.state.transforms.sourceMapFileTransform
-      )
+      ),
+      this.state.sourceMapFiles
     );
 
     this.props.history.push("/bundle", processed);

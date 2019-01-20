@@ -47,6 +47,9 @@ class App extends Component {
                         <Bundle
                           trimmedNetwork={(location.state || {}).trimmedNetwork}
                           rollups={(location.state || {}).rollups}
+                          duplicateNodeModules={
+                            (location.state || {}).duplicateNodeModules
+                          }
                           selected={params.get("selected")}
                         />
                       );

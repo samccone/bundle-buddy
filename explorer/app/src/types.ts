@@ -33,6 +33,9 @@ export interface ProcessedImportState {
       totalBytes: number;
     }[];
   };
+  duplicateNodeModules: {
+    [key: string]: string[];
+  };
 }
 
 export interface Edge {

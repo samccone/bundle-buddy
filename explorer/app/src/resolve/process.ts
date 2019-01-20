@@ -20,8 +20,36 @@ function values<V>(entity: { [k: string]: V }): V[] {
 
 export function transform(
   graphNodes: GraphNodes,
-  sourceMapData: ProcessedSourceMap
+  sourceMapData: ProcessedSourceMap,
+  sourceMapFiles: string[]
 ): ProcessedImportState {
+  const nmLength = "node_modules".length + 1;
+
+  const duplicateNodeModules = sourceMapFiles.reduce<{
+    [key: string]: string[];
+  }>((p, d) => {
+    var regex = /node_modules/gi,
+      result,
+      indices = [];
+    while ((result = regex.exec(d))) {
+      indices.push(result.index);
+    }
+
+    //has multiple node modules in string
+    if (indices.length > 1) {
+      const parent = d.slice(indices[0] + nmLength, indices[1] - 1);
+
+      const child = d.slice(indices[1] + nmLength);
+      const childDirIndex = child.indexOf("/");
+      const childDir = child.slice(0, childDirIndex);
+
+      if (!p[parent]) p[parent] = [];
+
+      if (p[parent].indexOf(childDir) === -1) p[parent].push(childDir);
+    }
+    return p;
+  }, {});
+
   graphNodes.forEach(e => {
     //trimmed network functions
     addedNodes[e.source] = true;
@@ -217,5 +245,5 @@ export function transform(
     }))
   };
 
-  return { rollups, trimmedNetwork };
+  return { rollups, trimmedNetwork, duplicateNodeModules };
 }

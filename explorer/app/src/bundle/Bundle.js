@@ -116,6 +116,7 @@ class Bundle extends Component {
   render() {
     const network = this.props.trimmedNetwork || DEFAULT_NETWORK;
     const totalsByType = this.props.rollups || DEFAULT_TOTALS;
+    const duplicateNodeModules = this.props.duplicateNodeModules || {};
 
     let edges = network.edges || [],
       nodes = network.nodes || [];
@@ -158,6 +159,7 @@ class Bundle extends Component {
       d.count = this.state.counts[d.id];
     });
 
+    console.log(this.state, this.props);
     const total = totalsByType.value;
 
     return (
@@ -176,6 +178,7 @@ class Bundle extends Component {
             network={network}
             changeSelected={(...args) => this.changeSelected(...args)}
             total={total}
+            duplicateNodeModules={duplicateNodeModules}
           />
         </div>
         <div className="flex page">
