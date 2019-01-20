@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { GraphNodes, filterIgnoredNodes, ignoreNodes } from "../import/graph_process";
+import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import * as data from "./data";
 import { transform } from "./process";
 import { ResolveProps, ProcessedImportState } from "../types";
-import { findCommonPrefix, findFirstIndex } from "../import/prefix_cleaner";
+import { findCommonPrefix } from "../import/prefix_cleaner";
 
 // noopener noreferrer
 
