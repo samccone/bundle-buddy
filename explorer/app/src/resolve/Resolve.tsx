@@ -4,7 +4,8 @@ import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import * as data from "./data";
 import { transform } from "./process";
 import { ResolveProps, ProcessedImportState } from "../types";
-import { findCommonPrefix } from "../import/prefix_cleaner";
+import { findCommonPrefix, findFirstIndex } from "../import/prefix_cleaner";
+import { History } from "history";
 
 // noopener noreferrer
 
@@ -62,14 +63,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
   sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement>;
   sourceGraphTransformRef?: React.RefObject<HTMLTextAreaElement>;
 
-  state: ResolveState = {
-    sourceMapFiles: [],
-    graphFiles: [],
-    transforms: {
-      sourceMapFileTransform: (v: string) => v,
-      graphFileTransform: (v: string) => v
-    }
-  };
+  state: ResolveState;
 
   constructor(props: ResolveProps) {
     super(props);
@@ -83,8 +77,14 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       ),
       graphFiles: this.getGraphFiles(props.graphNodes || DEBUG_GRAPH_NODES),
       transforms: {
-        sourceMapFileTransform: (v: string) => v,
-        graphFileTransform: (v: string) => v
+        sourceMapFileTransform:
+          (props.sourceMapFileTransform &&
+            toFunctionRef(props.sourceMapFileTransform)) ||
+          (fileName => fileName),
+        graphFileTransform:
+          (props.graphFileTransform &&
+            toFunctionRef(props.graphFileTransform)) ||
+          (fileName => fileName)
       }
     };
   }
@@ -169,6 +169,14 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       if (transformRef == null) {
         return;
       }
+
+      this.props.history.replace(window.location.pathname, {
+        graphNodes: this.props.graphNodes,
+        processedSourceMap: this.props.processedSourceMap,
+        graphFileTransform: this.state.transforms.graphFileTransform.toString(),
+        sourceMapFileTransform: transformRef.toString()
+      });
+
       this.setState({
         transforms: {
           graphFileTransform: this.state.transforms.graphFileTransform,
@@ -189,6 +197,14 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       if (transformRef == null) {
         return;
       }
+
+      this.props.history.replace(window.location.pathname, {
+        graphNodes: this.props.graphNodes,
+        processedSourceMap: this.props.processedSourceMap,
+        graphFileTransform: transformRef.toString(),
+        sourceMapFileTransform: this.state.transforms.sourceMapFileTransform.toString()
+      });
+
       this.setState({
         transforms: {
           graphFileTransform: transformRef,
@@ -217,7 +233,10 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       this.state.sourceMapFiles
     );
 
-    this.props.history.push("/bundle", processed);
+    ((this.props.history as unknown) as History<ProcessedImportState>).push(
+      "/bundle",
+      processed
+    );
   }
 
   formatError(e: Error) {
@@ -241,7 +260,7 @@ ${e.stack}`;
       this.state.transforms.graphFileTransform,
       this.state.transforms.sourceMapFileTransform
     );
-
+    console.log(this.props);
     return (
       <div className="resolve-conflicts">
         <h5>Resolve sourcemap and stats</h5>

@@ -8,7 +8,13 @@ import Resolve from "../resolve/Resolve";
 
 class Home extends Component {
   render() {
-    const { history, graphNodes, processedSourceMap } = this.props;
+    const {
+      history,
+      graphNodes,
+      processedSourceMap,
+      sourceMapFileTransform,
+      graphFileTransform
+    } = this.props;
 
     return (
       <div className="col-container">
@@ -28,6 +34,8 @@ class Home extends Component {
                 history={history}
                 graphNodes={graphNodes}
                 processedSourceMap={processedSourceMap}
+                sourceMapFileTransform={sourceMapFileTransform}
+                graphFileTransform={graphFileTransform}
               />}
           </div>
         </div>

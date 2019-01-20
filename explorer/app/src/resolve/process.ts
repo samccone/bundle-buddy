@@ -146,10 +146,13 @@ export function transform(
 
   Object.keys(sourceMapData).forEach(d => {
     if (!addedNodes[d]) {
-      trimmedNodes[d] = {
-        id: d,
-        totalBytes: sourceMapData[d].totalBytes
-      };
+      if (d.indexOf("node_modules") === -1) {
+        trimmedNodes[d] = {
+          id: d,
+          totalBytes: sourceMapData[d].totalBytes
+        };
+      }
+      console.log(d, sourceMapData[d].totalBytes);
     }
   });
 

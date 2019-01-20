@@ -72,6 +72,14 @@ class App extends Component {
                             h.location.state &&
                             h.location.state.processedSourceMap
                           }
+                          sourceMapFileTransform={
+                            h.location.state &&
+                            h.location.state.sourceMapFileTransform
+                          }
+                          graphFileTransform={
+                            h.location.state &&
+                            h.location.state.graphFileTransform
+                          }
                         />
                       );
                     }}

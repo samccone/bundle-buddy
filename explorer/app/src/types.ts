@@ -5,6 +5,8 @@ import { ProcessedSourceMap } from "./import/process_sourcemaps";
 export interface ImportResolveState {
   graphNodes: GraphNodes;
   processedSourceMap: ProcessedSourceMap;
+  graphFileTransform?: string;
+  sourceMapFileTransform?: string;
 }
 
 export interface ImportProps {
@@ -13,9 +15,11 @@ export interface ImportProps {
 }
 
 export interface ResolveProps {
-  history: History<ProcessedImportState>;
+  history: History<ImportResolveState>;
   graphNodes: GraphNodes;
   processedSourceMap: ProcessedSourceMap;
+  graphFileTransform?: string;
+  sourceMapFileTransform?: string;
 }
 
 export interface ProcessedImportState {
