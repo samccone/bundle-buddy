@@ -143,14 +143,19 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       ret.add(node.source);
       ret.add(node.target);
     }
-    const firstIndex = findFirstIndex(Array.from(ret));
 
-    let nodeNames = Array.from(ret).map(k => {
+    let fileNames = Array.from(ret);
+
+    const firstIndex = findFirstIndex(fileNames);
+    const prefix = (findCommonPrefix(fileNames) || "").length;
+
+    if (prefix) return fileNames.map(d => d.slice(prefix));
+    if (!firstIndex) return fileNames;
+
+    return fileNames.map(k => {
       if (k[firstIndex] === "/") return k.slice(firstIndex + 1);
       return k;
     });
-
-    return nodeNames;
   }
 
   getSourceMapFiles(processedSourceMap: ProcessedSourceMap) {
