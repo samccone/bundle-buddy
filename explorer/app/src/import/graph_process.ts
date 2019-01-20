@@ -1,4 +1,5 @@
 import builtins from "./builtins";
+import { findFirstIndex, findCommonPrefix } from "../import/prefix_cleaner";
 
 export interface GraphNode {
   source: string;
@@ -17,7 +18,7 @@ const prefixStrips = [
   "\u0000"
 ];
 
-const ignoreNodes = new Set(
+export const ignoreNodes = new Set(
   [
     // Rollup specific magic module.
     "\u0000commonjsHelpers",
@@ -26,61 +27,69 @@ const ignoreNodes = new Set(
   ].concat(builtins)
 );
 
-export function cleanGraph(graph: GraphNodes): GraphNodes {
-  const keys = new Set();
+export function filterIgnoredNodes(nodes: string[]) {
+  return nodes.filter(v => !ignoreNodes.has(v));
+}
 
-  for (let { source, target } of graph) {
-    if (target == null || source == null) {
-      continue;
+function getAllGraphFiles(graph: GraphNodes): string[] {
+  const ret = new Set<string>();
+  for (const { target, source } of graph) {
+    if (target != null) {
+      ret.add(target);
     }
+    ret.add(source);
+  }
 
-    for (const magicPrefix of prefixStrips) {
-      if (source.startsWith(magicPrefix)) {
-        source = source.slice(magicPrefix.length);
+  return Array.from(ret);
+}
+
+export function cleanGraph(graph: GraphNodes): GraphNodes {
+  // Strip all magic prefixes
+  for (const node of graph) {
+    for (const key of Object.keys(node) as Array<"target" | "source">) {
+      if (node[key] == null) {
+        continue;
       }
 
-      if (target.startsWith(magicPrefix)) {
-        if (target.length !== magicPrefix.length) {
-          target = target.slice(magicPrefix.length);
+      for (const magicPrefix of prefixStrips) {
+        if (node[key]!.startsWith(magicPrefix)) {
+          if (node[key]!.length !== magicPrefix.length) {
+            node[key] = node[key]!.slice(magicPrefix.length);
+          }
         }
       }
     }
-
-    if (!ignoreNodes.has(source)) {
-      keys.add(source);
-    }
-
-    if (!ignoreNodes.has(target)) {
-      keys.add(target);
-    }
   }
 
-  const commonPrefix = "";
+  // Strip common prefixes
+  const graphFiles = filterIgnoredNodes(getAllGraphFiles(graph));
+  const prefix = findCommonPrefix(filterIgnoredNodes(graphFiles)) || "";
 
-  if (commonPrefix != null && commonPrefix.length) {
+  if (prefix.length) {
     for (const node of graph) {
       for (const key of Object.keys(node) as Array<"target" | "source">) {
-        if (node[key] == null) {
-          continue;
-        }
-
-        for (const magicPrefix of prefixStrips) {
-          if (node[key]!.startsWith(magicPrefix)) {
-            if (node[key]!.length !== magicPrefix.length) {
-              node[key] = node[key]!.slice(magicPrefix.length);
-            }
+        if (node[key]!.startsWith(prefix)) {
+          if (node[key] != null) {
+            node[key] = node[key]!.slice(prefix.length);
           }
         }
-
-        if (node[key]!.startsWith(commonPrefix)) {
-          if (node[key]!.length !== commonPrefix.length) {
-            node[key] = node[key]!.slice(commonPrefix.length);
+      }
+    }
+  } else {
+    // fallback to Strip up to first /
+    const firstIndex = findFirstIndex(filterIgnoredNodes(graphFiles));
+    if (firstIndex > 0) {
+      for (const node of graph) {
+        for (const key of Object.keys(node) as Array<"target" | "source">) {
+          if (node[key] != null) {
+            node[key] = node[key]!.slice(firstIndex + 1);
           }
         }
       }
     }
   }
 
+  // Remove null nodes in graph
   const ret: GraphNodes = [];
   for (const node of graph) {
     if (

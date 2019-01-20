@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { GraphNodes } from "../import/graph_process";
+import { GraphNodes, filterIgnoredNodes, ignoreNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import * as data from "./data";
 import { transform } from "./process";
@@ -137,25 +137,16 @@ class Resolve extends Component<ResolveProps, ResolveState> {
   }
 
   getGraphFiles(graphNodes: GraphNodes) {
-    const ret = new Set();
+    const ret = new Set<string>();
 
     for (const node of graphNodes) {
       ret.add(node.source);
-      ret.add(node.target);
+      if (node.target) {
+        ret.add(node.target);
+      }
     }
 
-    let fileNames = Array.from(ret);
-
-    const firstIndex = findFirstIndex(fileNames);
-    const prefix = (findCommonPrefix(fileNames) || "").length;
-
-    if (prefix) return fileNames.map(d => d.slice(prefix));
-    if (!firstIndex) return fileNames;
-
-    return fileNames.map(k => {
-      if (k[firstIndex] === "/") return k.slice(firstIndex + 1);
-      return k;
-    });
+    return Array.from(ret);
   }
 
   getSourceMapFiles(processedSourceMap: ProcessedSourceMap) {
@@ -249,8 +240,6 @@ ${e.stack}`;
       this.state.transforms.graphFileTransform,
       this.state.transforms.sourceMapFileTransform
     );
-
-    console.log(this.state);
 
     return (
       <div className="resolve-conflicts">

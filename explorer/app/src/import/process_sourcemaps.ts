@@ -81,27 +81,7 @@ export function processSourcemap(
         }
 
         consumer.eachMapping(m => onMapping(cursor, files, m));
-
-        const prefixClean = "";
-        const ret: ProcessedSourceMap = {};
-
-        for (const k of Object.keys(files)) {
-          if (k.slice(prefixClean.length).length === 0) {
-            ret[k] = files[k];
-          } else {
-            ret[k.slice(prefixClean.length)] = files[k];
-          }
-        }
-
-        console.info(`
-            Removed common source prefix "${prefixClean}"
-
-            ----- STATS -----
-            * missed ${missedLines} lines
-            * missed ${missedColumns} columns
-            * total mapped bytes ${totalBytes}
-            `);
-        res(ret);
+        res(files);
       })
       .catch(e => rej(e));
   });
