@@ -1,6 +1,6 @@
 import React from "react";
 import { scaleSqrt, scaleLinear } from "d3-scale";
-import { colors, primary } from "../theme";
+import { primary } from "../theme";
 
 import arrow from "viz-annotation/lib/Connector/end-arrow";
 

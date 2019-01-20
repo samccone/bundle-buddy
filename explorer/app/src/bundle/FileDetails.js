@@ -1,7 +1,7 @@
 import React from "react";
 
 import ResponsiveOrdinalFrame from "semiotic/lib/ResponsiveOrdinalFrame";
-import { colors, mainFileColor } from "../theme";
+import { colors } from "../theme";
 import { getPercent } from "./stringFormats";
 
 const inputStyle = { width: "70%" };
@@ -114,6 +114,8 @@ export default class OverviewBarChart extends React.Component {
 
     return (
       <div>
+        <h1>Analyze</h1>
+
         <p>
           <img className="icon" alt="details" src="/img/details.png" />
           <b>Details</b>

@@ -1,73 +1,11 @@
 import React from "react";
 
-import ResponsiveOrdinalFrame from "semiotic/lib/ResponsiveOrdinalFrame";
-import { primary, mainFileColor, secondaryFileColor } from "../theme";
+// import { primary, mainFileColor, secondaryFileColor } from "../theme";
 
-import { getFileSize, getPercent } from "./stringFormats";
-
-export const typeColors = {
-  js: mainFileColor,
-  ts: mainFileColor,
-  jsx: mainFileColor,
-  tsx: mainFileColor
-};
-
-const frameProps = {
-  margin: { top: 5, right: 50, left: 140 },
-  oAccessor: d => d.name,
-  rAccessor: d => d.totalBytes,
-  type: "bar",
-  projection: "horizontal",
-  oPadding: 10,
-  responsiveWidth: true,
-  style: d => {
-    return {
-      fill: typeColors[d.name] || d.color || secondaryFileColor
-    };
-  }
-};
-
-frameProps.oLabel = (d, arr) => {
-  return (
-    <text transform={`translate(-${frameProps.margin.left - 5}, -5)`}>
-      <tspan>{d}</tspan>
-      <tspan x={0} y={18} fontWeight="bold">
-        {getPercent(arr[0].pct)}{" "}
-      </tspan>
-      <tspan opacity=".6">{arr[0] && getFileSize(arr[0].totalBytes)}</tspan>
-    </text>
-  );
-};
-
-const directoryProps = {
-  ...frameProps,
-  additionalDefs: [
-    <pattern
-      id="dags-primary"
-      patternUnits="userSpaceOnUse"
-      width="4"
-      height="4"
-    >
-      <path
-        d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
-        shapeRendering="auto"
-        stroke={primary}
-        strokeLinecap="square"
-      />
-    </pattern>,
-    <pattern id="dags" patternUnits="userSpaceOnUse" width="4" height="4">
-      <path
-        d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
-        shapeRendering="auto"
-        stroke={"#ddd"}
-        strokeLinecap="square"
-      />
-    </pattern>
-  ]
-};
+// import { getFileSize, getPercent } from "./stringFormats";
 
 export default function ByTypeBarChart({ totalsByType, total }) {
-  const totalSize = total;
+  // const totalSize = total;
 
   const fileTypes = totalsByType.fileTypes.sort(
     (a, b) => b.totalBytes - a.totalBytes
@@ -99,8 +37,6 @@ export default function ByTypeBarChart({ totalsByType, total }) {
         </span>
       );
     }
-
-    // console.log(fileTypes);
   }
 
   return (
