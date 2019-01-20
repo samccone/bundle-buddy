@@ -7,9 +7,10 @@ export interface GraphNode {
 
 export type GraphNodes = GraphNode[];
 
-const magicPrefixes = [
+const prefixStrips = [
   // Rollup specific prefix added to add commonjs proxy nodes.
   "\u0000commonjs-proxy:",
+  "commonjs-proxy:/",
   // Rollup specific prefix added to add commonjs external nodes.
   "\u0000commonjs-external:",
   // More rollup magic prefixing.
@@ -20,6 +21,7 @@ const ignoreNodes = new Set(
   [
     // Rollup specific magic module.
     "\u0000commonjsHelpers",
+    "commonjsHelpers",
     "babelHelpers"
   ].concat(builtins)
 );
@@ -32,7 +34,7 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
       continue;
     }
 
-    for (const magicPrefix of magicPrefixes) {
+    for (const magicPrefix of prefixStrips) {
       if (source.startsWith(magicPrefix)) {
         source = source.slice(magicPrefix.length);
       }
@@ -62,7 +64,7 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
           continue;
         }
 
-        for (const magicPrefix of magicPrefixes) {
+        for (const magicPrefix of prefixStrips) {
           if (node[key]!.startsWith(magicPrefix)) {
             if (node[key]!.length !== magicPrefix.length) {
               node[key] = node[key]!.slice(magicPrefix.length);
