@@ -159,6 +159,7 @@ export default class OverviewBarChart extends React.Component {
                     transform={`translate(${30 + i * 25}, 0)  rotate(-45)`}
                     onClick={this.sort.bind(this, o.value)}
                     className="pointer"
+                    key={`${o.value}_${i}`}
                   >
                     <text
                       fontWeight={o.value === this.state.sort ? "bold" : 300}
