@@ -113,6 +113,8 @@ export default class RippleChart extends React.Component {
 
     const selectedNode = nodes.find(d => d.id === selected);
 
+    if (!selectedNode) return null;
+
     const count = selectedNode.count;
 
     if (count) {
