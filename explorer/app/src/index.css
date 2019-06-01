@@ -357,3 +357,43 @@ input.search, button.clear {
 .opacity-filter.on {
   opacity: 0.6;
 }
+
+.treemap__node {
+  position: absolute;
+  border-radius: 2px;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(105, 105, 105);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.5);
+}
+
+.treemap__label {
+  box-sizing: border-box;
+  font-size: 12px;
+  white-space: nowrap;
+  padding-left: 4px;
+  transform: translate(1px, 1px);
+}
+
+.treemap__label--children {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.treemap__label--children:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

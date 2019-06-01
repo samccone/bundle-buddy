@@ -199,8 +199,18 @@ export default class RippleChart extends React.Component {
 
     return (
       <div className="padding">
+        <h2>
+          {selected}{" "}
+          <span
+            onClick={() => {
+              changeSelected();
+            }}
+          >
+            x Remove
+          </span>
+        </h2>
         <img className="icon" alt="details" src="/img/ripple.png" />
-        <b>Ripple Chart</b>
+        <b>Ripple Chart </b>
         <br />
         <p>
           A detailed look at how a <span className="primary">resource</span> is

@@ -73,7 +73,7 @@ const directoryProps = {
   ]
 };
 
-export default function ByTypeBarChart({ totalsByType, total }) {
+export default function ByTypeBarChart({ totalsByType, total, name }) {
   const totalSize = total;
 
   const fileTypes = totalsByType.fileTypes.sort(
@@ -113,7 +113,7 @@ export default function ByTypeBarChart({ totalsByType, total }) {
   return (
     <div className="flex padding top-panel">
       <div style={{ width: "25vw" }}>
-        <h1>Project Name</h1>
+        <h1>{name}</h1>
         <b>
           <small>Uploaded Date</small>
         </b>

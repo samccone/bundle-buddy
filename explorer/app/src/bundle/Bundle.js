@@ -3,9 +3,11 @@ import ByTypeBarChart from "./ByTypeBarChart";
 import Report from "./Report";
 import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
+import Treemap from "./Treemap";
 
 import DEFAULT_TOTALS from "./prototype-semiotic/totalsByType.json";
 import DEFAULT_NETWORK from "./prototype-semiotic/trimmed-network.json";
+import DEFAULT_HIERARCHY from "./prototype-semiotic/hierarchy.json";
 
 import { colors } from "../theme";
 
@@ -96,6 +98,8 @@ class Bundle extends Component {
   constructor(props) {
     super(props);
 
+    this.changeSelected = this.changeSelected.bind(this);
+
     //TODO change to URI encode
     this.state = {
       selected: props.selected,
@@ -104,11 +108,14 @@ class Bundle extends Component {
   }
 
   changeSelected(selected) {
+    // console.log(selected);
     window.history.pushState(
       { selected },
       "",
-      `${window.location.origin}${window.location
-        .pathname}?selected=${selected}`
+      selected
+        ? `${window.location.origin}${window.location
+            .pathname}?selected=${selected}`
+        : `${window.location.origin}${window.location.pathname}`
     );
     this.setState({ selected });
   }
@@ -116,7 +123,9 @@ class Bundle extends Component {
   render() {
     const network = this.props.trimmedNetwork || DEFAULT_NETWORK;
     const totalsByType = this.props.rollups || DEFAULT_TOTALS;
+    const hierarchy = DEFAULT_HIERARCHY;
     const duplicateNodeModules = this.props.duplicateNodeModules || {};
+    const name = "Project Name";
 
     let edges = network.edges || [],
       nodes = network.nodes || [];
@@ -159,7 +168,7 @@ class Bundle extends Component {
       d.count = this.state.counts[d.id];
     });
 
-    console.log(this.state, this.props);
+    // console.log(network, nodes, edges);
     const total = totalsByType.value;
 
     return (
@@ -168,15 +177,16 @@ class Bundle extends Component {
           <ByTypeBarChart
             totalsByType={totalsByType}
             network={network}
-            changeSelected={(...args) => this.changeSelected(...args)}
+            changeSelected={this.changeSelected}
             total={total}
+            name={name}
           />
         </div>
         <div>
           <Report
             totalsByType={totalsByType}
             network={network}
-            changeSelected={(...args) => this.changeSelected(...args)}
+            changeSelected={this.changeSelected}
             total={total}
             duplicateNodeModules={duplicateNodeModules}
           />
@@ -186,21 +196,27 @@ class Bundle extends Component {
             <FileDetails
               total={total}
               network={network}
-              changeSelected={(...args) => this.changeSelected(...args)}
+              changeSelected={this.changeSelected}
               directoryColors={directoryColors}
             />
           </div>
           <div className="panel large">
-            {this.state.selected &&
-              <RippleChart
-                changeSelected={(...args) => this.changeSelected(...args)}
-                nodes={nodes.map(d => Object.assign({}, d))}
-                edges={edges.map(d => Object.assign({}, d))}
-                max={max}
-                selected={this.state.selected}
-                directories={directories}
-                directoryColors={directoryColors}
-              />}
+            {this.state.selected
+              ? <RippleChart
+                  changeSelected={this.changeSelected}
+                  nodes={nodes.map(d => Object.assign({}, d))}
+                  edges={edges.map(d => Object.assign({}, d))}
+                  max={max}
+                  selected={this.state.selected}
+                  directories={directories}
+                  directoryColors={directoryColors}
+                />
+              : <Treemap
+                  hierarchy={hierarchy}
+                  name={name}
+                  bgColorsMap={directoryColors}
+                  changeSelected={this.changeSelected}
+                />}
           </div>
         </div>
       </div>
