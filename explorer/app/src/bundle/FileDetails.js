@@ -152,7 +152,7 @@ export default class OverviewBarChart extends React.Component {
           customClickBehavior={changeSelected}
           responsiveWidth={true}
           foregroundGraphics={[
-            <g transform="translate(-5, 65) " fontSize="13">
+            <g key="1" transform="translate(-5, 65) " fontSize="13">
               {options.map((o, i) => {
                 return (
                   <g
@@ -173,6 +173,7 @@ export default class OverviewBarChart extends React.Component {
               })}
             </g>,
             <line
+              key="2"
               x1="35"
               x2="35"
               y1={frameProps.margin.top - 5}
@@ -180,6 +181,7 @@ export default class OverviewBarChart extends React.Component {
               stroke="#ddd"
             />,
             <line
+              key="3"
               x1="60"
               x2="60"
               y1={frameProps.margin.top - 5}

@@ -43,6 +43,7 @@ const directoryProps = {
   ...frameProps,
   additionalDefs: [
     <pattern
+      key="1"
       id="dags-primary"
       patternUnits="userSpaceOnUse"
       width="4"
@@ -55,7 +56,13 @@ const directoryProps = {
         strokeLinecap="square"
       />
     </pattern>,
-    <pattern id="dags" patternUnits="userSpaceOnUse" width="4" height="4">
+    <pattern
+      key="2"
+      id="dags"
+      patternUnits="userSpaceOnUse"
+      width="4"
+      height="4"
+    >
       <path
         d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
         shapeRendering="auto"
