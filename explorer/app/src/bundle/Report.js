@@ -57,22 +57,26 @@ export default function ByTypeBarChart({
         </p>
         <p>{fileTypeMessage}</p>
       </div>
-      <div style={{ width: "37vw" }}>
-        <p>
-          <img className="icon" alt="directories" src="/img/folder.png" />
-          <b>
-            <small>Duplicate Node Modules</small>
-          </b>
-        </p>
-        {Object.keys(duplicateNodeModules).map(k => {
-          return (
-            <div key={k}>
-              <p>
-                <b>{k}</b>: {duplicateNodeModules[k].join(", ")}
-              </p>
-            </div>
-          );
-        })}
+      <div className="scoll-y" style={{ width: "37vw" }}>
+        <div className="sticky-wrapper">
+          <div className="sticky">
+            <p>
+              <img className="icon" alt="directories" src="/img/folder.png" />
+              <b>
+                <small>Duplicate Node Modules</small>
+              </b>
+            </p>
+          </div>
+          {Object.keys(duplicateNodeModules).map(k => {
+            return (
+              <div key={k}>
+                <p>
+                  <b>{k}</b>: {duplicateNodeModules[k].join(", ")}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

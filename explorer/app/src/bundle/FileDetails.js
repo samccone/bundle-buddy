@@ -70,22 +70,23 @@ export default class OverviewBarChart extends React.Component {
 
   render() {
     const { total, network = {}, changeSelected, directoryColors } = this.props;
+    const { nodes = [] } = network;
 
-    let nodes = network.nodes.sort((a, b) => b.totalBytes - a.totalBytes);
+    let sortedNodes = nodes.sort((a, b) => b.totalBytes - a.totalBytes);
 
-    const max = nodes[0].totalBytes;
+    const max = nodes[0] && nodes[0].totalBytes;
 
     let withNodeModules = 0;
     let withoutNodeModules = 0;
 
-    nodes.forEach(n => {
+    sortedNodes.forEach(n => {
       if (n.id.indexOf("node_modules") !== -1) withNodeModules++;
       else withoutNodeModules++;
     });
 
     if (this.state.search) {
       const values = this.state.search.split(" ").map(d => d.toLowerCase());
-      nodes = nodes.filter(
+      sortedNodes = nodes.filter(
         d => !values.find(v => d.id.toLowerCase().indexOf(v) === -1)
       );
     }
@@ -95,16 +96,16 @@ export default class OverviewBarChart extends React.Component {
 
       if (this.state.sort === "text") {
         if (this.state.order === "desc") {
-          nodes = nodes.sort((a, b) => b.text.localeCompare(a.text));
+          sortedNodes = nodes.sort((a, b) => b.text.localeCompare(a.text));
         } else {
-          nodes = nodes.sort((a, b) => a.text.localeCompare(b.text));
+          sortedNodes = nodes.sort((a, b) => a.text.localeCompare(b.text));
         }
       } else if (this.state.sort === "totalBytes") {
-        nodes = nodes.sort(
+        sortedNodes = nodes.sort(
           (a, b) => sign * a[this.state.sort] - sign * b[this.state.sort]
         );
       } else {
-        nodes = nodes.sort((a, b) => {
+        sortedNodes = nodes.sort((a, b) => {
           const av = sign * ((a.count && a.count[this.state.sort].length) || 0);
           const bv = sign * ((b.count && b.count[this.state.sort].length) || 0);
           return av - bv;
@@ -146,7 +147,7 @@ export default class OverviewBarChart extends React.Component {
         </div>
 
         <ResponsiveOrdinalFrame
-          data={nodes}
+          data={sortedNodes}
           {...frameProps}
           rExtent={[0, max]}
           customClickBehavior={changeSelected}
@@ -189,7 +190,7 @@ export default class OverviewBarChart extends React.Component {
               stroke="#ddd"
             />
           ]}
-          size={[180, nodes.length * 38 + frameProps.margin.top]}
+          size={[180, sortedNodes.length * 38 + frameProps.margin.top]}
           type={{
             type: "bar",
             customMark: d => {

@@ -4,7 +4,7 @@ export const getFileSize = size => {
   let value = size && size >= mb ? size / mb : size / kb;
   if (value < 1 || size >= mb) value = value.toFixed(2);
   else value = value.toFixed(0);
-
+  console.log("IN HERE", value, value + " " + (size >= mb ? "MB" : "KB"));
   return value + " " + (size >= mb ? "MB" : "KB");
 };
 

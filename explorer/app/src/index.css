@@ -157,6 +157,8 @@ img.icon {
 
 .top-panel {
   border-bottom: 1px solid #ddd;
+  max-height: 350px;
+  overflow: hidden;
 }
 
 .panel.large {
@@ -179,8 +181,15 @@ img.icon {
   padding: 20px;
 }
 
+.scroll-y {
+  overflow-y: auto;
+}
+
 .sticky {
   position: sticky;
+  top: 0;
+  background: white;
+  z-index: 300;
 }
 
 .bottom {
