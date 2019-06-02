@@ -20,7 +20,7 @@ function generatePrefixList(items: string[]) {
 }
 
 /**
- * Given two lists of strings find common prefixes that when removed would
+ * Given two lists of strings find common non-overlapping prefixes that when removed would
  * align the two lists of strings.
  * @param items 
  * @param items2 

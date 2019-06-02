@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
-import * as data from "./data";
 import { transform } from "./process";
 import { ResolveProps, ProcessedImportState } from "../types";
 import { findCommonPrefix, findFirstIndex } from "../import/prefix_cleaner";
@@ -9,6 +8,16 @@ import { History } from "history";
 import { findTrims } from "./trim";
 
 // noopener noreferrer
+
+export interface ResolveState {
+  sourceMapFiles: string[];
+  transforms: {
+    sourceMapFileTransform: (v: string) => string;
+    graphFileTransform: (v: string) => string;
+  };
+  graphFiles: string[];
+  resolveError?: string;
+}
 
 function toFunctionRef(func: string) {
   let ref: any;
@@ -23,12 +32,13 @@ function toFunctionRef(func: string) {
 
 function transformGraphNames(
   nodes: GraphNodes,
-  graphTransform: (v: string) => string
+  graphTransform: (v: string) => string,
+  trims: string[],
 ): GraphNodes {
   return nodes.map(n => {
-    n.source = graphTransform(n.source);
+    n.source = graphTransform(trimClean(trims, n.source));
     if (n.target != null) {
-      n.target = graphTransform(n.target);
+      n.target = graphTransform(trimClean(trims, n.target));
     }
     return n;
   });
@@ -36,48 +46,81 @@ function transformGraphNames(
 
 function transformSourceMapNames(
   sourcemap: ProcessedSourceMap,
-  sourcemapTransform: (v: string) => string
+  sourcemapTransform: (v: string) => string,
+  trims: string[]
 ): ProcessedSourceMap {
   const ret: ProcessedSourceMap = {};
 
   for (const fileName of Object.keys(sourcemap)) {
-    ret[sourcemapTransform(fileName)] = sourcemap[fileName];
+    ret[sourcemapTransform(trimClean(trims, fileName))] = sourcemap[fileName];
   }
 
   return ret;
 }
 
-export interface ResolveState {
-  sourceMapFiles: string[];
-  transforms: {
-    sourceMapFileTransform: (v: string) => string;
-    graphFileTransform: (v: string) => string;
-  };
-  graphFiles: string[];
-  resolveError?: string;
+function getGraphFiles(graphNodes: GraphNodes) {
+    const ret = new Set<string>();
+
+    for (const node of graphNodes) {
+      ret.add(node.source);
+      if (node.target) {
+        ret.add(node.target);
+      }
+    }
+
+    return Array.from(ret);
+  }
+
+function trimClean(trims: string[], word: string) {
+  for (const t of trims) {
+        if (word.startsWith(t)) {
+            return word.slice(t.length);
+          }
+        }
+        return word;
 }
+
+function autoclean(opts: {processedSourceMap: ProcessedSourceMap, graphNodes: GraphNodes}): {sourceMapFiles: string[], graphFiles: string[], trims: string[]} {
+    const sourceMapFiles = Object.keys(cleanSouremapFiles(opts.processedSourceMap));
+    const graphFiles = getGraphFiles(opts.graphNodes);
+    const trims = Object.keys(findTrims(sourceMapFiles, graphFiles));
+
+    return {
+      sourceMapFiles: sourceMapFiles.map(v => trimClean(trims, v)),
+      graphFiles: graphFiles.map(v => trimClean(trims, v)) ,
+      trims,
+    };
+}
+
+function cleanSouremapFiles(processedSourceMap: ProcessedSourceMap): ProcessedSourceMap {
+    const ret: ProcessedSourceMap = {};
+    const prefix = (findCommonPrefix(Object.keys(processedSourceMap)) || "");
+    if (prefix.length === 0) {
+      return processedSourceMap;
+    }
+
+    for (const filename of Object.keys(processedSourceMap)) {
+      ret[filename.slice(prefix.length)] = processedSourceMap[filename];
+    }
+
+    return ret;
+  }
+
 
 class Resolve extends Component<ResolveProps, ResolveState> {
   sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement>;
   sourceGraphTransformRef?: React.RefObject<HTMLTextAreaElement>;
 
   state: ResolveState;
+  trims: string[];
 
   constructor(props: ResolveProps) {
     super(props);
 
     this.sourceMapTransformRef = React.createRef();
     this.sourceGraphTransformRef = React.createRef();
-
-    const sourceMapFiles = Object.keys(this.cleanSouremapFiles(
-        props.processedSourceMap
-      ));
-
-    const graphFiles = this.getGraphFiles(props.graphNodes);
-
-    const trims = findTrims(sourceMapFiles, graphFiles);
-    console.log(trims);
-
+    const {sourceMapFiles, graphFiles, trims} = autoclean({processedSourceMap: this.props.processedSourceMap, graphNodes: this.props.graphNodes});
+    this.trims = trims;
     this.state = {
       sourceMapFiles,
       graphFiles,
@@ -92,6 +135,17 @@ class Resolve extends Component<ResolveProps, ResolveState> {
           (fileName => fileName)
       }
     };
+
+    const sourcemapTransformed = this.transformFiles(
+      this.state.sourceMapFiles,
+      this.state.graphFiles,
+      this.state.transforms.sourceMapFileTransform,
+      this.state.transforms.graphFileTransform
+    );
+
+    if (sourcemapTransformed.files.length === 0) {
+      this.import();
+    }
   }
 
   static sorted<T>(arr: Array<T>) {
@@ -139,33 +193,6 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       files: ret,
       lastError
     };
-  }
-
-  getGraphFiles(graphNodes: GraphNodes) {
-    const ret = new Set<string>();
-
-    for (const node of graphNodes) {
-      ret.add(node.source);
-      if (node.target) {
-        ret.add(node.target);
-      }
-    }
-
-    return Array.from(ret);
-  }
-
-  cleanSouremapFiles(processedSourceMap: ProcessedSourceMap): ProcessedSourceMap {
-    const ret: ProcessedSourceMap = {};
-    const prefix = (findCommonPrefix(Object.keys(processedSourceMap)) || "");
-    if (prefix.length === 0) {
-      return processedSourceMap;
-    }
-
-    for (const filename of Object.keys(processedSourceMap)) {
-      ret[filename.slice(prefix.length)] = processedSourceMap[filename];
-    }
-
-    return ret;
   }
 
   updateSourceMapTransform() {
@@ -234,11 +261,13 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     const processed = transform(
       transformGraphNames(
         this.props.graphNodes,
-        this.state.transforms.graphFileTransform
+        this.state.transforms.graphFileTransform,
+        this.trims,
       ),
       transformSourceMapNames(
-        this.cleanSouremapFiles(this.props.processedSourceMap),
-        this.state.transforms.sourceMapFileTransform
+        cleanSouremapFiles(this.props.processedSourceMap),
+        this.state.transforms.sourceMapFileTransform,
+        this.trims,
       ),
       this.state.sourceMapFiles
     );
