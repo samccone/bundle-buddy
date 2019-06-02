@@ -4,11 +4,6 @@ import Report from "./Report";
 import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
 import Treemap from "./Treemap";
-
-import DEFAULT_TOTALS from "./prototype-semiotic/totalsByType.json";
-import DEFAULT_NETWORK from "./prototype-semiotic/trimmed-network.json";
-import DEFAULT_HIERARCHY from "./prototype-semiotic/hierarchy.json";
-
 import { colors } from "../theme";
 
 // noopener noreferrer
@@ -103,7 +98,7 @@ class Bundle extends Component {
     //TODO change to URI encode
     this.state = {
       selected: props.selected,
-      counts: countsFromNetwork(props.trimmedNetwork || DEFAULT_NETWORK)
+      counts: countsFromNetwork(props.trimmedNetwork)
     };
   }
 
@@ -121,9 +116,9 @@ class Bundle extends Component {
   }
 
   render() {
-    const network = this.props.trimmedNetwork || DEFAULT_NETWORK;
-    const totalsByType = this.props.rollups || DEFAULT_TOTALS;
-    const hierarchy = DEFAULT_HIERARCHY;
+    const network = this.props.trimmedNetwork;
+    const totalsByType = this.props.rollups;
+    const hierarchy = this.props.hierarchy;
     const duplicateNodeModules = this.props.duplicateNodeModules || {};
     const name = "Project Name";
 

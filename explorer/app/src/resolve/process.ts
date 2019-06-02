@@ -1,6 +1,6 @@
 import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
-import { TrimmedNode, Edge, ProcessedImportState } from "../types";
+import { TrimmedNode, Edge, ProcessedImportState, TreemapNode } from "../types";
 
 const addedNodes: { [name: string]: boolean } = {};
 const trimmedNodes: { [name: string]: TrimmedNode } = {};
@@ -16,6 +16,42 @@ function values<V>(entity: { [k: string]: V }): V[] {
   }
 
   return ret;
+}
+
+function nodesToTreeMap(data: { [id: string]: TrimmedNode }): TreemapNode[] {
+  const rel = [
+    {
+      parent: "",
+      name: "rootNode"
+    }
+  ];
+
+  const unique: { [hash: string]: Boolean } = {};
+
+  Object.keys(data).forEach(d => {
+    const parents = d.split(/\/(?!\/)/).filter(d => d);
+
+    parents.forEach((p, i, array) => {
+      const value = {
+        name: array.slice(0, i + 1).join("/"),
+        parent: array.slice(0, i).join("/") || "rootNode",
+        totalBytes: 0
+      };
+
+      if (i === array.length - 1) {
+        value.totalBytes = data[d].totalBytes || 0;
+      }
+
+      const key = JSON.stringify(value);
+
+      if (!unique[key]) {
+        rel.push(value);
+        unique[key] = true;
+      }
+    });
+  });
+
+  return rel;
 }
 
 export function transform(
@@ -112,36 +148,6 @@ export function transform(
         ].totalBytes;
       }
     }
-
-    //regular network functions
-
-    // if (!nodes[e.source]) {
-    //   nodes[e.source] = {
-    //     id: e.source,
-    //     asSource: 1,
-    //     asTarget: 0
-    //   };
-
-    //   if (data[e.source]) {
-    //     nodes[e.source].totalBytes = data[e.source].totalBytes;
-    //   }
-    // } else {
-    //   nodes[e.source].asSource++;
-    // }
-
-    // if (!nodes[e.target]) {
-    //   nodes[e.target] = {
-    //     id: e.target,
-    //     asSource: 0,
-    //     asTarget: 1
-    //   };
-
-    //   if (data[e.target]) {
-    //     nodes[e.target].totalBytes = data[e.target].totalBytes;
-    //   }
-    // } else {
-    //   nodes[e.target].asTarget++;
-    // }
   });
 
   Object.keys(sourceMapData).forEach(d => {
@@ -172,11 +178,6 @@ export function transform(
     const lastSlash = d.id.lastIndexOf("/");
     d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
   });
-
-  // jsonfile.writeFile("./semiotic-test/network.json", {
-  //   nodes: values(nodes),
-  //   edges
-  // });
 
   const summary: {
     value: number;
@@ -248,5 +249,7 @@ export function transform(
     }))
   };
 
-  return { rollups, trimmedNetwork, duplicateNodeModules };
+  const hierachy = nodesToTreeMap(trimmedNodes);
+
+  return { rollups, trimmedNetwork, duplicateNodeModules, hierachy };
 }

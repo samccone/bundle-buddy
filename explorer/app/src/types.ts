@@ -9,6 +9,12 @@ export interface ImportResolveState {
   sourceMapFileTransform?: string;
 }
 
+export interface TreemapNode {
+  parent: string;
+  name: string;
+  totalBytes?: number;
+}
+
 export interface ImportProps {
   history: History<ImportResolveState>;
   selected: boolean;
@@ -24,6 +30,7 @@ export interface ResolveProps {
 
 export interface ProcessedImportState {
   trimmedNetwork: { nodes: TrimmedNode[]; edges: Edge[] };
+  hierachy: TreemapNode[];
   rollups: {
     value: number;
     fileTypes: {

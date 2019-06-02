@@ -45,12 +45,13 @@ class App extends Component {
                       let params = new URLSearchParams(location.search);
                       return (
                         <Bundle
-                          trimmedNetwork={(location.state || {}).trimmedNetwork}
-                          rollups={(location.state || {}).rollups}
+                          trimmedNetwork={(location.state).trimmedNetwork}
+                          rollups={(location.state).rollups}
                           duplicateNodeModules={
-                            (location.state || {}).duplicateNodeModules
+                            (location.state).duplicateNodeModules
                           }
                           selected={params.get("selected")}
+                          hierarchy={location.state.hierachy}
                         />
                       );
                     }}
