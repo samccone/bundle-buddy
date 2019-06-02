@@ -6,11 +6,9 @@ import { transform } from "./process";
 import { ResolveProps, ProcessedImportState } from "../types";
 import { findCommonPrefix, findFirstIndex } from "../import/prefix_cleaner";
 import { History } from "history";
+import { findTrims } from "./trim";
 
 // noopener noreferrer
-
-const DEBUG_PROCESSED_SOURCE_MAP: ProcessedSourceMap = data.processedSourceMap;
-const DEBUG_GRAPH_NODES: GraphNodes = data.processedGraph;
 
 function toFunctionRef(func: string) {
   let ref: any;
@@ -71,11 +69,18 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     this.sourceMapTransformRef = React.createRef();
     this.sourceGraphTransformRef = React.createRef();
 
+    const sourceMapFiles = Object.keys(this.cleanSouremapFiles(
+        props.processedSourceMap
+      ));
+
+    const graphFiles = this.getGraphFiles(props.graphNodes);
+
+    const trims = findTrims(sourceMapFiles, graphFiles);
+    console.log(trims);
+
     this.state = {
-      sourceMapFiles: Object.keys(this.cleanSouremapFiles(
-        props.processedSourceMap || DEBUG_PROCESSED_SOURCE_MAP
-      )),
-      graphFiles: this.getGraphFiles(props.graphNodes || DEBUG_GRAPH_NODES),
+      sourceMapFiles,
+      graphFiles,
       transforms: {
         sourceMapFileTransform:
           (props.sourceMapFileTransform &&
@@ -265,7 +270,6 @@ ${e.stack}`;
       this.state.transforms.graphFileTransform,
       this.state.transforms.sourceMapFileTransform
     );
-    console.log(this.props);
     return (
       <div className="resolve-conflicts">
         <h5>Resolve sourcemap and stats</h5>
