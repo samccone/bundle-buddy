@@ -52,5 +52,13 @@ export function findTrims(items: string[], items2: string[]) {
       }
     }
   }
+
+  for (const k of Object.keys(recommendedTrims)) {
+    for (const j of Object.keys(recommendedTrims)) {
+      if (j.startsWith(k) && j !== k) {
+        delete recommendedTrims[j];
+      }
+    }
+  }
   return recommendedTrims;
 }

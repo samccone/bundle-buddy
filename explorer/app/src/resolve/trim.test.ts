@@ -26,3 +26,14 @@ it("finds multi trims", () => {
     "../": 1
   });
 });
+
+it("no overlapping trims", () => {
+  expect(
+    findTrims(
+      ["some/path/1", "some/path/2", "some/12"],
+      ["../wow/some/path/1", "../wow/some/path/2", "../some/12"]
+    )
+  ).toEqual({
+    "../": 1
+  });
+});
