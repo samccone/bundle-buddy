@@ -195,8 +195,6 @@ export default class RippleChart extends React.Component {
       );
     }
 
-    // console.log(count);
-
     return (
       <div className="padding">
         <h2>

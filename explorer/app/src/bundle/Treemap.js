@@ -92,11 +92,9 @@ export default class Treemap extends React.Component {
                 let fileName = name.slice(index !== -1 ? index + 1 : 0);
 
                 if (fileName === "rootNode") fileName = this.props.name;
-                // console.log(fileName);
                 const dirIndex = name.indexOf("/");
                 let directory = name;
                 if (dirIndex !== -1) directory = name.slice(0, dirIndex);
-                // console.log(node);
                 return (
                   <div
                     className="treemap__node"

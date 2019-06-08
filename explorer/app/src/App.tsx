@@ -5,8 +5,6 @@ import ErrorBoundry from "./ErrorBoundry";
 import { History, Location } from "history";
 import { ImportResolveState, ProcessedImportState } from "./types";
 
-// noopener noreferrer
-
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Home = lazy(() => import("./home/Home"));
 const Resolve = lazy(() => import("./resolve/Resolve"));

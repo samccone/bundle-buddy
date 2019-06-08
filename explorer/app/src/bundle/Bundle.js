@@ -103,9 +103,8 @@ class Bundle extends Component {
   }
 
   changeSelected(selected) {
-    // console.log(selected);
     window.history.pushState(
-      { selected },
+      { ...window.history.state, selected },
       "",
       selected
         ? `${window.location.origin}${window.location
@@ -163,7 +162,6 @@ class Bundle extends Component {
       d.count = this.state.counts[d.id];
     });
 
-    // console.log(network, nodes, edges);
     const total = totalsByType.value;
 
     return (

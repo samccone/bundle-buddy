@@ -57,7 +57,7 @@ export default function ByTypeBarChart({
         </p>
         <p>{fileTypeMessage}</p>
       </div>
-      <div className="scoll-y" style={{ width: "37vw" }}>
+      <div className="srcoll-y" style={{ width: "37vw" }}>
         <div className="sticky-wrapper">
           <div className="sticky">
             <p>
