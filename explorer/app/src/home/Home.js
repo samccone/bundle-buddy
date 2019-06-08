@@ -16,6 +16,8 @@ class Home extends Component {
       graphFileTransform
     } = this.props;
 
+    console.log(graphNodes, processedSourceMap);
+
     return (
       <div className="col-container">
         <div className="left-col border-right">
@@ -26,7 +28,7 @@ class Home extends Component {
         </div>
         <div className="right-col">
           <div className="padding">
-            <Import />
+            <Import imported={!!(graphNodes && processedSourceMap)} />
 
             {graphNodes &&
               processedSourceMap &&

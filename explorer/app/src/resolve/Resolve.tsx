@@ -301,11 +301,10 @@ ${e.stack}`;
     );
     return (
       <div className="resolve-conflicts">
-        <h5>Resolve sourcemap and stats</h5>
-        <button onClick={() => this.import()}>Import</button>
+     
         <div className="col-container">
           <div>
-            <h3> Source map files</h3>
+            <h3>Resolve source map files</h3>
             {sourceMapTransformed.lastError != null ? (
               <div className="error">
                 {this.formatError(sourceMapTransformed.lastError)}
@@ -331,7 +330,7 @@ ${e.stack}`;
             </ul>
           </div>
           <div>
-            <h3>Graph source files</h3>
+            <h3>Resolve graph source files</h3>
             {graphTransformed.lastError != null ? (
               <div className="error">
                 {this.formatError(graphTransformed.lastError)}
@@ -357,6 +356,9 @@ ${e.stack}`;
             </ul>
           </div>
         </div>
+        <div className="resolved">
+        <div className="resolved-message">When sourcemaps and stats are resovled:{" "}
+        <button className="good" onClick={() => this.import()}>Go to analysis</button></div></div>
       </div>
     );
   }

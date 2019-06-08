@@ -236,6 +236,32 @@ button.clear {
   box-shadow: none;
 }
 
+button.good {
+  background: #1db1a4;
+  color:white;
+}
+
+.resolved {
+  position: fixed;
+  bottom: 0;
+  background: white;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  margin-left: -20px;
+  padding-left: 20px;
+}
+
+.resolved-message {
+  margin: 10px;
+}
+
+.resolved-message, .resolved-message button {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+
+
 .col-container {
   display: flex;
 }

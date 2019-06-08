@@ -17,7 +17,7 @@ export interface TreemapNode {
 
 export interface ImportProps {
   history: History<ImportResolveState>;
-  selected: boolean;
+  imported: boolean;
 }
 
 export interface BundleProps {

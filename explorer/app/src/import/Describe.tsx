@@ -28,7 +28,7 @@ class DescribeImport extends Component {
               } type-button  rollup-import`}
             >
               <img className="rollup-logo" src="/img/webpack_logo.png" />
-              Webpack
+              Webpack / Create React App
             </button>
           </Link>
           <Link

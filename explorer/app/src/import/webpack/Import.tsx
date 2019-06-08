@@ -7,6 +7,7 @@ import { ImportProps, ImportResolveState, ImportState } from "../../types";
 import React, { Component } from "react";
 // noopener noreferrer
 
+
 class WebpackImport extends Component<ImportProps, ImportState> {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   statsInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
@@ -17,7 +18,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
     this.statsInput = React.createRef();
   }
 
-  state: ImportState  = {};
+  state: ImportState = {};
 
   hasStatsFile(f: File | undefined) {
     return f != null;
@@ -100,6 +101,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
 
   render() {
     const resolve = window.location.pathname.indexOf("resolve") !== -1;
+
     return (
       <div>
         {this.state.importError != null ? (
@@ -108,13 +110,35 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             <code>
               <pre>{`${this.state.importError}`}</pre>
             </code>
-            <a href={this.state.importErrorUri || ''} target="_blank">
+            <a href={this.state.importErrorUri || ""} target="_blank">
               File a bug
             </a>
           </div>
         ) : null}
         <h5>Upload assets</h5>
         <div className="upload-files-container flex">
+         
+          <div>
+            <button tabIndex={-1}>
+              <img className="attach-icon" src="/img/attach_icon.svg" />
+              stats.json
+              <input
+                id="stats"
+                type="file"
+                ref={this.statsInput}
+                accept=".json"
+                onInput={() => this.onStatsInput()}
+              />
+            </button>
+            <img
+              src={
+                this.hasStatsFile(this.state.graphFile) || this.props.imported 
+                  ? "/img/ok_icon.svg"
+                  : "/img/warn_icon.svg"
+              }
+              className="status-icon"
+            />
+          </div>
           <div>
             <button tabIndex={-1}>
               <img className="attach-icon" src="/img/attach_icon.svg" />
@@ -130,39 +154,20 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             </button>
             <img
               src={
-                this.hasSourceMapFile(this.state.sourceMapFiles)
+                this.hasSourceMapFile(this.state.sourceMapFiles) || this.props.imported 
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
               className="status-icon"
             />
           </div>
-          <div>
-            <button tabIndex={-1}>
-              <img className="attach-icon" src="/img/attach_icon.svg" />
-              stats.json
-              <input
-                id="stats"
-                type="file"
-                ref={this.statsInput}
-                accept=".json"
-                onInput={() => this.onStatsInput()}
-              />
-            </button>
-            <img
-              src={
-                this.hasStatsFile(this.state.graphFile)
-                  ? "/img/ok_icon.svg"
-                  : "/img/warn_icon.svg"
-              }
-              className="status-icon"
-            />
-          </div>
-
           <div>
             <button
               disabled={
-                !this.canProcess(this.state.sourceMapFiles, this.state.graphFile)
+                !this.canProcess(
+                  this.state.sourceMapFiles,
+                  this.state.graphFile
+                )
               }
               onClick={() => this.processFiles()}
             >
@@ -173,21 +178,8 @@ class WebpackImport extends Component<ImportProps, ImportState> {
         {!resolve && (
           <div className="col-container">
             <div className="import-instruction">
+              <h3>How to create assets from Webpack:</h3>
               <div className="col-container">
-                <div>
-                  <h5>sourcemaps</h5>
-                  <p>webpack.conf.js</p>
-                  <code>
-                    <pre>
-                      <span className="add-diff">devtool: "source-map"</span>
-                    </pre>
-                    <button
-                      onClick={() => toClipboard("devtool: 'source-map'")}
-                      className="copy-button"
-                      aria-label="Copy sourcemap snippet to clipboard"
-                    />
-                  </code>
-                </div>
                 <div>
                   <h5>stats.json</h5>
                   <p>via command line</p>
@@ -235,7 +227,41 @@ fs.writeJSONSync(path.join(__dirname, "stats.json"),
                     />
                   </code>
                 </div>
+                <div>
+                  <h5>sourcemaps</h5>
+                  <p>webpack.conf.js</p>
+                  <code>
+                    <pre>
+                      <span className="add-diff">devtool: "source-map"</span>
+                    </pre>
+                    <button
+                      onClick={() => toClipboard("devtool: 'source-map'")}
+                      className="copy-button"
+                      aria-label="Copy sourcemap snippet to clipboard"
+                    />
+                  </code>
+                </div>
               </div>
+              <h3>How to create assets from Create React App:</h3>{" "}
+              <h5>sourcemaps & bundle-stats.json</h5>
+              <p>In your project directory run: </p>
+              <code>
+                <pre>
+                  <span className="add-diff">
+                    GENERATE_SOURCEMAP=true yarn run build -- --stats
+                    </span ><br/>
+                <span>
+                /*---or---*/ </span><br/>
+                <span className="add-diff">
+                GENERATE_SOURCEMAP=true npm run build -- --stats
+                    </span>
+                </pre>
+                <button
+                  onClick={() => toClipboard("devtool: 'source-map'")}
+                  className="copy-button"
+                  aria-label="Copy sourcemap snippet to clipboard"
+                />
+              </code>
             </div>
           </div>
         )}

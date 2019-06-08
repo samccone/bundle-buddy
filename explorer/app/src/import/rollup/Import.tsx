@@ -117,6 +117,27 @@ class RollupImport extends Component<ImportProps, ImportState> {
           ) : null}
           <h5>Upload assets</h5>
           <div className="upload-files-container flex">
+             <div>
+              <button tabIndex={-1}>
+                <img className="attach-icon" src="/img/attach_icon.svg" />
+                graph.json
+                <input
+                  id="stats"
+                  type="file"
+                  accept=".json"
+                  ref={this.graphInput}
+                  onInput={() => this.onGraphInput()}
+                />
+              </button>
+              <img
+                src={
+                  this.hasGraphFile(this.state.graphFile)|| this.props.imported 
+                    ? "/img/ok_icon.svg"
+                    : "/img/warn_icon.svg"
+                }
+                className="status-icon"
+              />
+            </div>
             <div>
               <button tabIndex={-1}>
                 <img className="attach-icon" src="/img/attach_icon.svg" />
@@ -132,34 +153,14 @@ class RollupImport extends Component<ImportProps, ImportState> {
               </button>
               <img
                 src={
-                  this.hasSourceMapFile(this.state.sourceMapFiles)
+                  this.hasSourceMapFile(this.state.sourceMapFiles)|| this.props.imported 
                     ? "/img/ok_icon.svg"
                     : "/img/warn_icon.svg"
                 }
                 className="status-icon"
               />
             </div>
-            <div>
-              <button tabIndex={-1}>
-                <img className="attach-icon" src="/img/attach_icon.svg" />
-                graph.json
-                <input
-                  id="stats"
-                  type="file"
-                  accept=".json"
-                  ref={this.graphInput}
-                  onInput={() => this.onGraphInput()}
-                />
-              </button>
-              <img
-                src={
-                  this.hasGraphFile(this.state.graphFile)
-                    ? "/img/ok_icon.svg"
-                    : "/img/warn_icon.svg"
-                }
-                className="status-icon"
-              />
-            </div>
+         
 
             <div>
               <button
@@ -180,28 +181,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
               <div className="col-narrow" />
               <div className="import-instruction">
                 <div className="col-container">
-                  <div>
-                    <h5>sourcemap</h5>
-                    <p>via rollup.config.js</p>
-                    <code>
-                      <pre>
-                        {`output: { 
-    file: '\`\${outFolder}/dist.js',
-    format: 'iife',
-    name: 'PROJECT_NAME',\n`}
-                        <span className="add-diff">
-                          &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
-                        </span>
-                        {`
-}`}
-                      </pre>
-                      <button
-                        onClick={() => toClipboard("sourcemap: true,")}
-                        className="copy-button"
-                        aria-label="Copy sourcemap snippet to clipboard"
-                      />
-                    </code>
-                  </div>
+                  
                   <div>
                     <h5>graph.json</h5>
                     <p>via rollup.config.js</p>
@@ -241,6 +221,28 @@ plugins: [{
                         }
                         className="copy-button"
                         aria-label="Copy stats.json programatic snippit to clipboard"
+                      />
+                    </code>
+                  </div>
+                  <div>
+                    <h5>sourcemap</h5>
+                    <p>via rollup.config.js</p>
+                    <code>
+                      <pre>
+                        {`output: { 
+    file: '\`\${outFolder}/dist.js',
+    format: 'iife',
+    name: 'PROJECT_NAME',\n`}
+                        <span className="add-diff">
+                          &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
+                        </span>
+                        {`
+}`}
+                      </pre>
+                      <button
+                        onClick={() => toClipboard("sourcemap: true,")}
+                        className="copy-button"
+                        aria-label="Copy sourcemap snippet to clipboard"
                       />
                     </code>
                   </div>
