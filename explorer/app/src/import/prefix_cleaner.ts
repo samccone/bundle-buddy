@@ -35,11 +35,15 @@ export function findCommonPrefix(strings: string[]): string | null {
   return commonPrefix;
 }
 
-export function findFirstIndex(strings: string[]) {
+export function findFirstIndex(strings: Array<string | null>) {
   let indexes: { [backslashIndex: number]: number } = {};
   let total: number = 0;
 
   for (const k of strings) {
+    if (k == null) {
+      continue;
+    }
+
     const index = k.indexOf("/");
     if (!indexes[index]) indexes[index] = 0;
 
