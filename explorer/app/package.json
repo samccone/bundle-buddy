@@ -13,6 +13,7 @@
     "d3-voronoi-treemap": "^1.1.0",
     "dagre": "0.8.2",
     "react": "^16.6.1",
+    "react-annotation": "2.1.6",
     "react-dom": "^16.6.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
@@ -38,15 +39,15 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-links": "^5.0.11",
+    "@storybook/addons": "^5.0.11",
+    "@storybook/react": "^5.0.11",
     "@types/google-protobuf": "^3.2.7",
     "@types/react-router-dom": "^4.3.1",
     "d3-hierarchy": "1.1.8",
     "google-protobuf": "^3.6.1",
-    "ts-protoc-gen": "^0.9.0",
-    "@storybook/react": "^5.0.11",
-    "@storybook/addon-actions": "^5.0.11",
-    "@storybook/addon-links": "^5.0.11",
-    "@storybook/addons": "^5.0.11",
-    "@babel/core": "^7.4.5"
+    "ts-protoc-gen": "^0.9.0"
   }
 }
