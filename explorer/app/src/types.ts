@@ -20,6 +20,26 @@ export interface ImportProps {
   selected: boolean;
 }
 
+export interface BundleProps {
+  trimmedNetwork: ProcessedImportState["trimmedNetwork"];
+  rollups: ProcessedImportState["rollups"];
+  duplicateNodeModules: ProcessedImportState["duplicateNodeModules"];
+  selected: string | null;
+  hierarchy: ProcessedImportState["hierachy"];
+}
+
+export interface BundleState {
+  selected: string | null;
+  counts: { [k: string]: BundleNetworkCount };
+}
+
+export interface BundleNetworkCount {
+  requiredBy: Set<string> | string[];
+  requires: Set<string> | string[];
+  indirectDependedOnCount?: number;
+  transitiveRequiredBy?: string[];
+}
+
 export interface ResolveProps {
   history: History<ImportResolveState>;
   graphNodes: GraphNodes;
@@ -28,8 +48,13 @@ export interface ResolveProps {
   sourceMapFileTransform?: string;
 }
 
+export interface TrimmedNetwork {
+  nodes: TrimmedNode[];
+  edges: Edge[];
+}
+
 export interface ProcessedImportState {
-  trimmedNetwork: { nodes: TrimmedNode[]; edges: Edge[] };
+  trimmedNetwork: TrimmedNetwork;
   hierachy: TreemapNode[];
   rollups: {
     value: number;
@@ -42,6 +67,7 @@ export interface ProcessedImportState {
       pct: number;
       name: string;
       totalBytes: number;
+      color?: string;
     }[];
   };
   duplicateNodeModules: {
@@ -60,6 +86,7 @@ export interface TrimmedNode {
   directory?: string;
   fileName?: string;
   text?: string;
+  count?: BundleNetworkCount;
 }
 
 export interface ImportState {

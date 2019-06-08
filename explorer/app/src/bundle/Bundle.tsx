@@ -5,14 +5,15 @@ import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
 import Treemap from "./Treemap";
 import { colors } from "../theme";
+import { BundleProps, BundleState, TrimmedNetwork, BundleNetworkCount } from "../types";
+
+
+const _untypedByTypeByChart: any = ByTypeBarChart;
+const _untypedReport: any = Report;
 
 // noopener noreferrer
-/**
- * @param network {{edges: Array<{id: string, target: string, source: string}>}}
- * @returns {{[node: string]: {requiredBy: string[]; requires: string[]; indirectDependedOnCount: number, transitiveRequiredBy: string[]}}}
- */
-function countsFromNetwork(network) {
-  const d = {};
+function countsFromNetwork(network: TrimmedNetwork): {[target: string]: BundleNetworkCount} {
+  const d: {[target: string]: BundleNetworkCount} = {};
 
   for (const n of network.edges) {
     if (d[n.target] == null) {
@@ -22,7 +23,7 @@ function countsFromNetwork(network) {
       };
     }
 
-    d[n.target].requires.add(n.source);
+    (d[n.target].requires as Set<string>).add(n.source);
 
     if (d[n.source] == null) {
       d[n.source] = {
@@ -34,8 +35,8 @@ function countsFromNetwork(network) {
 
   for (const k of Object.keys(d)) {
     for (const k2 of Object.keys(d)) {
-      if (k !== k2 && d[k2].requires.has(k)) {
-        d[k].requiredBy.add(k2);
+      if (k !== k2 && (d[k2].requires as Set<string>).has(k)) {
+        (d[k].requiredBy as Set<string>).add(k2);
       }
     }
   }
@@ -47,14 +48,7 @@ function countsFromNetwork(network) {
     };
   }
 
-  /**
-   *
-   * @param {string} moduleName
-   * @param {Set<string>} seen
-   * @param {{[k: string]: {requiredBy: string[]}}} graph
-   * @param {boolean} root
-   */
-  function countTransitiveRequires(moduleName, seen, graph, root) {
+  function countTransitiveRequires(moduleName: string, seen: Set<string>, graph: {[t: string]: BundleNetworkCount}, root: boolean): number {
     seen.add(moduleName);
     var count = 0;
 
@@ -74,7 +68,7 @@ function countsFromNetwork(network) {
   }
 
   for (const moduleName of Object.keys(d)) {
-    const seen = new Set();
+    const seen: Set<string> = new Set();
     d[moduleName].indirectDependedOnCount = countTransitiveRequires(
       moduleName,
       seen,
@@ -89,26 +83,25 @@ function countsFromNetwork(network) {
   return d;
 }
 
-class Bundle extends Component {
-  constructor(props) {
+class Bundle extends Component<BundleProps, BundleState> {
+  constructor(props: BundleProps) {
     super(props);
 
     this.changeSelected = this.changeSelected.bind(this);
 
-    //TODO change to URI encode
     this.state = {
       selected: props.selected,
       counts: countsFromNetwork(props.trimmedNetwork)
     };
   }
 
-  changeSelected(selected) {
+  changeSelected(selected: string) {
     window.history.pushState(
       { ...window.history.state, selected },
       "",
       selected
         ? `${window.location.origin}${window.location
-            .pathname}?selected=${selected}`
+            .pathname}?selected=${encodeURIComponent(selected)}`
         : `${window.location.origin}${window.location.pathname}`
     );
     this.setState({ selected });
@@ -127,13 +120,18 @@ class Bundle extends Component {
     const max =
       network &&
       network.nodes &&
-      network.nodes.sort((a, b) => b.totalBytes - a.totalBytes)[0].totalBytes;
+      network.nodes.sort((a, b) => {
+        if (a.totalBytes == null || b.totalBytes == null) {
+          return 0;
+        }
+        return b.totalBytes - a.totalBytes;
+      })[0].totalBytes;
 
     const directories = totalsByType.directories
       .sort((a, b) => b.totalBytes - a.totalBytes)
       .map(d => d.name);
 
-    const directoryColors = {};
+    const directoryColors: {[dir: string]: string} = {};
     let i = 0;
     directories.forEach(d => {
       if (d.indexOf("node_modules") !== -1) {
@@ -167,16 +165,16 @@ class Bundle extends Component {
     return (
       <div>
         <div>
-          <ByTypeBarChart
+          <_untypedByTypeByChart
             totalsByType={totalsByType}
             network={network}
             changeSelected={this.changeSelected}
             total={total}
             name={name}
-          />
+          />>
         </div>
         <div>
-          <Report
+          <_untypedReport
             totalsByType={totalsByType}
             network={network}
             changeSelected={this.changeSelected}
