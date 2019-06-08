@@ -69,6 +69,10 @@ h1 {
   position: absolute;
 }
 
+.normal-weight {
+  font-weight: 300;
+}
+
 svg {
   overflow: hidden;
 }
@@ -139,6 +143,10 @@ img.icon {
 .left-col {
   border-right: 1px solid #ddd;
   width: 30vw;
+}
+
+.margin-left {
+  margin-left: 10px;
 }
 
 .panel {
@@ -238,7 +246,11 @@ button.clear {
 
 button.good {
   background: #1db1a4;
-  color:white;
+  color: white;
+}
+
+button.alert {
+  color: #ff3733;
 }
 
 .resolved {
@@ -259,8 +271,6 @@ button.good {
   font-size: 1.2em;
   font-weight: 300;
 }
-
-
 
 .col-container {
   display: flex;
@@ -301,17 +311,19 @@ button.rollup-import {
 .no-link-underline {
   text-decoration: none;
 }
-code {
-  background: #F5F5F5;
+
+pre {
+  margin: 0;
+  padding: 0;
   display: block;
   padding: 15px;
   border: solid 1px #ddd;
   position: relative;
 }
 
-pre {
-  margin: 0;
-  padding: 0;
+code {
+  font-size: 1em;
+  background: #F5F5F5;
 }
 
 .add-diff {
@@ -431,4 +443,27 @@ a {
 a:hover {
   color: #0056b3;
   text-decoration: underline;
+}
+
+table {
+  border-spacing: 0px;
+}
+
+thead {
+  text-align: left;
+}
+
+th {
+  border-bottom: 1px solid #ccc;
+}
+
+th, td {
+  padding: 3px;
+}
+
+.bar-chart .fixed-label {
+  font-size: 12px;
+  position: absolute;
+  transform: translateX(-100%);
+  white-space: nowrap;
 }

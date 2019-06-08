@@ -4,4 +4,3 @@ node_modules
 /*.js
 output_large.json
 explorer/app/src/prototype/*
-explorer/app/src/stories/data/*

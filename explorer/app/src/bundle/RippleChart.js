@@ -197,16 +197,19 @@ export default class RippleChart extends React.Component {
 
     return (
       <div className="padding">
-        <h2>
-          {selected}{" "}
-          <span
-            onClick={() => {
-              changeSelected();
-            }}
-          >
-            x Remove
-          </span>
-        </h2>
+        <div className="flex baseline">
+          <h2>{selected} </h2>
+          <div className="margin-left">
+            <button
+              className="alert"
+              onClick={() => {
+                changeSelected();
+              }}
+            >
+              x Zoom out to treemap
+            </button>
+          </div>
+        </div>
         <img className="icon" alt="details" src="/img/ripple.png" />
         <b>Ripple Chart </b>
         <br />
@@ -236,7 +239,7 @@ export default class RippleChart extends React.Component {
             width={translateX + maxX + 200}
             height={translateY * 2 + 60}
             className="overflow-visible"
-            style={{ border: `1px solid ${primary}` }}
+            style={{ border: `1px solid black` }}
           >
             <g transform={`translate(${translateX},${translateY + 30})`}>
               <circle

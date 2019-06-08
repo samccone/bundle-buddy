@@ -70,9 +70,10 @@ export interface ProcessedImportState {
       color?: string;
     }[];
   };
-  duplicateNodeModules: {
-    [key: string]: string[];
-  };
+  duplicateNodeModules: Array<{
+    key: string;
+    value: string[];
+  }>;
 }
 
 export interface Edge {

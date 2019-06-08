@@ -5,15 +5,21 @@ import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
 import Treemap from "./Treemap";
 import { colors } from "../theme";
-import { BundleProps, BundleState, TrimmedNetwork, BundleNetworkCount } from "../types";
-
+import {
+  BundleProps,
+  BundleState,
+  TrimmedNetwork,
+  BundleNetworkCount
+} from "../types";
 
 const _untypedByTypeByChart: any = ByTypeBarChart;
 const _untypedReport: any = Report;
 
 // noopener noreferrer
-function countsFromNetwork(network: TrimmedNetwork): {[target: string]: BundleNetworkCount} {
-  const d: {[target: string]: BundleNetworkCount} = {};
+function countsFromNetwork(
+  network: TrimmedNetwork
+): { [target: string]: BundleNetworkCount } {
+  const d: { [target: string]: BundleNetworkCount } = {};
 
   for (const n of network.edges) {
     if (d[n.target] == null) {
@@ -48,7 +54,12 @@ function countsFromNetwork(network: TrimmedNetwork): {[target: string]: BundleNe
     };
   }
 
-  function countTransitiveRequires(moduleName: string, seen: Set<string>, graph: {[t: string]: BundleNetworkCount}, root: boolean): number {
+  function countTransitiveRequires(
+    moduleName: string,
+    seen: Set<string>,
+    graph: { [t: string]: BundleNetworkCount },
+    root: boolean
+  ): number {
     seen.add(moduleName);
     var count = 0;
 
@@ -100,8 +111,9 @@ class Bundle extends Component<BundleProps, BundleState> {
       { ...window.history.state, selected },
       "",
       selected
-        ? `${window.location.origin}${window.location
-            .pathname}?selected=${encodeURIComponent(selected)}`
+        ? `${window.location.origin}${
+            window.location.pathname
+          }?selected=${encodeURIComponent(selected)}`
         : `${window.location.origin}${window.location.pathname}`
     );
     this.setState({ selected });
@@ -131,7 +143,7 @@ class Bundle extends Component<BundleProps, BundleState> {
       .sort((a, b) => b.totalBytes - a.totalBytes)
       .map(d => d.name);
 
-    const directoryColors: {[dir: string]: string} = {};
+    const directoryColors: { [dir: string]: string } = {};
     let i = 0;
     directories.forEach(d => {
       if (d.indexOf("node_modules") !== -1) {
@@ -174,13 +186,7 @@ class Bundle extends Component<BundleProps, BundleState> {
           />
         </div>
         <div>
-          <_untypedReport
-            totalsByType={totalsByType}
-            network={network}
-            changeSelected={this.changeSelected}
-            total={total}
-            duplicateNodeModules={duplicateNodeModules}
-          />
+          <_untypedReport duplicateNodeModules={duplicateNodeModules} />
         </div>
         <div className="flex page">
           <div className="panel">
@@ -192,22 +198,24 @@ class Bundle extends Component<BundleProps, BundleState> {
             />
           </div>
           <div className="panel large">
-            {this.state.selected
-              ? <RippleChart
-                  changeSelected={this.changeSelected}
-                  nodes={nodes.map(d => Object.assign({}, d))}
-                  edges={edges.map(d => Object.assign({}, d))}
-                  max={max}
-                  selected={this.state.selected}
-                  directories={directories}
-                  directoryColors={directoryColors}
-                />
-              : <Treemap
-                  hierarchy={hierarchy}
-                  name={name}
-                  bgColorsMap={directoryColors}
-                  changeSelected={this.changeSelected}
-                />}
+            {this.state.selected ? (
+              <RippleChart
+                changeSelected={this.changeSelected}
+                nodes={nodes.map(d => Object.assign({}, d))}
+                edges={edges.map(d => Object.assign({}, d))}
+                max={max}
+                selected={this.state.selected}
+                directories={directories}
+                directoryColors={directoryColors}
+              />
+            ) : (
+              <Treemap
+                hierarchy={hierarchy}
+                name={name}
+                bgColorsMap={directoryColors}
+                changeSelected={this.changeSelected}
+              />
+            )}
           </div>
         </div>
       </div>

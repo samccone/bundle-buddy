@@ -1,9 +1,9 @@
 import React from "react";
 
-import ResponsiveOrdinalFrame from "semiotic/lib/ResponsiveOrdinalFrame";
 import { primary, mainFileColor, secondaryFileColor } from "../theme";
 
 import { getFileSize, getPercent } from "./stringFormats";
+import BarChart from "./BarChart";
 
 export const typeColors = {
   js: mainFileColor,
@@ -16,27 +16,35 @@ const frameProps = {
   margin: { top: 5, right: 50, left: 140 },
   oAccessor: d => d.name,
   rAccessor: d => d.totalBytes,
-  type: "bar",
-  projection: "horizontal",
   oPadding: 10,
   responsiveWidth: true,
   style: d => {
-    return {
-      fill: typeColors[d.name] || d.color || secondaryFileColor
-    };
+    return {};
+  },
+  barHeight: 45,
+  bar: (d, width) => {
+    return (
+      <div
+        style={{
+          background: typeColors[d.name] || d.color || secondaryFileColor,
+          height: "100%",
+          width
+        }}
+      />
+    );
+  },
+  oLabel: (d, o, r) => {
+    return (
+      <div>
+        <span>{o}</span>
+        <br />
+        <span>
+          <b>{getPercent(d.pct)}</b>{" "}
+          <span style={{ opacity: 0.6 }}>{getFileSize(r)}</span>
+        </span>
+      </div>
+    );
   }
-};
-
-frameProps.oLabel = (d, arr) => {
-  return (
-    <text transform={`translate(-${frameProps.margin.left - 5}, -5)`}>
-      <tspan>{d}</tspan>
-      <tspan x={0} y={18} fontWeight="bold">
-        {getPercent(arr[0].pct)}{" "}
-      </tspan>
-      <tspan opacity=".6">{arr[0] && getFileSize(arr[0].totalBytes)}</tspan>
-    </text>
-  );
 };
 
 const directoryProps = {
@@ -135,12 +143,7 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
             </p>
             <p>{fileTypeMessage}</p>
           </div>
-          <ResponsiveOrdinalFrame
-            size={[100, fileTypes.length * 45 + frameProps.margin.top]}
-            {...frameProps}
-            data={fileTypes}
-            className="overflow-visible"
-          />
+          <BarChart {...frameProps} data={fileTypes} />
         </div>
       </div>
       <div className="scroll-y" style={{ width: "37vw" }}>
@@ -157,11 +160,7 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
               directories
             </p>
           </div>
-          <ResponsiveOrdinalFrame
-            size={[100, directories.length * 45 + frameProps.margin.top]}
-            {...directoryProps}
-            data={directories}
-          />
+          <BarChart {...directoryProps} data={directories} />
         </div>
       </div>
     </div>

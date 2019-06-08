@@ -1,82 +1,69 @@
 import React from "react";
 
-// import { primary, mainFileColor, secondaryFileColor } from "../theme";
-
-// import { getFileSize, getPercent } from "./stringFormats";
-
-export default function ByTypeBarChart({
-  totalsByType,
-  total,
-  duplicateNodeModules
-}) {
-  // const totalSize = total;
-
-  const fileTypes = totalsByType.fileTypes.sort(
-    (a, b) => b.totalBytes - a.totalBytes
-  );
-  // const directories = totalsByType.directories.sort(
-  //   (a, b) => b.totalBytes - a.totalBytes
-  // );
-
-  let fileTypeMessage;
-
-  if (fileTypes.length === 1) {
-    fileTypeMessage = (
-      <span>
-        Your project only has one file type: <b>{fileTypes[0].name}</b>
-      </span>
-    );
-  } else {
-    if (fileTypes[0].pct >= 0.6) {
-      fileTypeMessage = (
-        <span>
-          Your project has <b>{fileTypes.length}</b> file types, but it is
-          mostly <b>{fileTypes[0].name}</b> files.
-        </span>
-      );
-    } else {
-      fileTypeMessage = (
-        <span>
-          Your bundle has <b>{fileTypes.length}</b> file types
-        </span>
-      );
-    }
-  }
-
+export default function Report({ total, duplicateNodeModules }) {
+  console.log(JSON.stringify(duplicateNodeModules));
   return (
     <div className="flex padding top-panel">
-      <div style={{ width: "25vw" }}>
-        <h1>Report</h1>
-      </div>
+      <div style={{ width: "25vw" }} />
       <div style={{ width: "37vw" }}>
         <p>
-          <img className="icon" alt="file types" src="/img/file.png" />
+          <img className="icon" alt="directories" src="/img/folder.png" />
           <b>
-            <small>File Types (placeholder)</small>
+            <small>Duplicate Node Modules</small>
           </b>
         </p>
-        <p>{fileTypeMessage}</p>
-      </div>
-      <div className="srcoll-y" style={{ width: "37vw" }}>
-        <div className="sticky-wrapper">
-          <div className="sticky">
-            <p>
-              <img className="icon" alt="directories" src="/img/folder.png" />
-              <b>
-                <small>Duplicate Node Modules</small>
-              </b>
-            </p>
-          </div>
-          {Object.keys(duplicateNodeModules).map(k => {
-            return (
-              <div key={k}>
-                <p>
-                  <b>{k}</b>: {duplicateNodeModules[k].join(", ")}
-                </p>
-              </div>
-            );
-          })}
+
+        <div>
+          <p>
+            Run <code>{`npm ls <package_name>`}</code> with the duplicated
+            module name to see the associations between duplicated modules.
+          </p>
+          <p>
+            To learn more, check out{" "}
+            <a href="https://github.com/formidablelabs/inspectpack/">
+              inspectpack
+            </a>
+            .
+          </p>
         </div>
+      </div>
+      <div className="scroll-y" style={{ width: "37vw" }}>
+        {duplicateNodeModules && duplicateNodeModules.length > 0
+          ? <div>
+              <br />
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      <small>Duplicated module</small>
+                    </th>
+                    <th>
+                      <small>Dependencies</small>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {duplicateNodeModules.map(k => {
+                    return (
+                      <tr key={k.key}>
+                        <td>
+                          <b>{k.key}</b>
+                        </td>{" "}
+                        <td>{k.value.join(", ")}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          : <p>
+              <small>
+                No duplicated node modules found{" "}
+                <span role="img" aria-label="raised-hands">
+                  🙌
+                </span>
+              </small>
+            </p>}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
+import BarChart from "./BarChart";
 
-import ResponsiveOrdinalFrame from "semiotic/lib/ResponsiveOrdinalFrame";
-import { colors } from "../theme";
+// import { colors } from "../theme";
 import { getPercent } from "./stringFormats";
 
 const inputStyle = { width: "70%" };
@@ -9,17 +9,10 @@ const inputStyle = { width: "70%" };
 const frameProps = {
   type: "bar",
   oPadding: 2,
-  rAccessor: "totalBytes",
-  oAccessor: "id",
-  margin: { left: 95, top: 80 },
-  projection: "horizontal",
-
-  style: () => {
-    return {
-      fill: colors[0],
-      stroke: "white"
-    };
-  }
+  rAccessor: d => d.totalBytes,
+  oAccessor: d => d.id,
+  barHeight: 38,
+  margin: { left: 95, top: 85 }
 };
 
 const options = [
@@ -146,14 +139,13 @@ export default class OverviewBarChart extends React.Component {
           </button>
         </div>
 
-        <ResponsiveOrdinalFrame
+        <BarChart
           data={sortedNodes}
           {...frameProps}
           rExtent={[0, max]}
-          customClickBehavior={changeSelected}
-          responsiveWidth={true}
+          onBarClick={changeSelected}
           foregroundGraphics={[
-            <g key="1" transform="translate(-5, 65) " fontSize="13">
+            <g key="1" transform="translate(-5, 70) " fontSize="13">
               {options.map((o, i) => {
                 return (
                   <g
@@ -190,33 +182,57 @@ export default class OverviewBarChart extends React.Component {
               stroke="#ddd"
             />
           ]}
-          size={[180, sortedNodes.length * 38 + frameProps.margin.top]}
-          type={{
-            type: "bar",
-            customMark: d => {
-              return (
-                <g onClick={() => changeSelected(d.id)}>
-                  <rect
-                    width={d.scaledValue}
-                    height={8}
-                    y={15}
-                    fill={directoryColors[d.directory] || "url(#dags)"}
-                  />
-                  <text fontSize="12" x={-10} y={10} textAnchor="end">
-                    {!d.count ? "--" : d.count.transitiveRequiredBy.length}
-                  </text>
-                  <text fontSize="12" x={-40} y={10} textAnchor="end">
-                    {!d.count ? "--" : d.count.requires.length}
-                  </text>
-                  <text fontSize="12" x={-68} y={10}>
-                    <tspan fontWeight="bold" textAnchor="end">
-                      {getPercent(d.totalBytes, total)}
-                    </tspan>
-                    <tspan x={0}>{d.text}</tspan>
-                  </text>
-                </g>
-              );
-            }
+          oLabel={d => {
+            return (
+              <div className="relative">
+                <span
+                  className="fixed-label"
+                  style={{
+                    left: 27
+                  }}
+                >
+                  <b textAnchor="end">{getPercent(d.totalBytes, total)}</b>
+                </span>
+
+                <span
+                  className="fixed-label"
+                  style={{
+                    left: 85
+                  }}
+                >
+                  {!d.count ? "--" : d.count.transitiveRequiredBy.length}
+                </span>
+                <span
+                  className="fixed-label"
+                  style={{
+                    left: 55
+                  }}
+                >
+                  {!d.count ? "--" : d.count.requires.length}
+                </span>
+              </div>
+            );
+          }}
+          bar={(d, width) => {
+            return (
+              <div className="relative">
+                <div
+                  style={{
+                    background: directoryColors[d.directory] || "black",
+                    border: "1px solid white",
+                    height: 8,
+                    width,
+                    position: "relative",
+                    top: 15
+                  }}
+                />
+
+                <br />
+                <span style={{ fontSize: 12, position: "absolute", top: 0 }}>
+                  <span>{d.text}</span>
+                </span>
+              </div>
+            );
           }}
         />
       </div>

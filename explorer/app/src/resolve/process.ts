@@ -1,5 +1,8 @@
 import { GraphNodes } from "../import/graph_process";
-import { ProcessedSourceMap } from "../import/process_sourcemaps";
+import {
+  ProcessedSourceMap,
+  processSourcemap
+} from "../import/process_sourcemaps";
 import { TrimmedNode, Edge, ProcessedImportState, TreemapNode } from "../types";
 
 const addedNodes: { [name: string]: boolean } = {};
@@ -60,8 +63,7 @@ export function transform(
   sourceMapFiles: string[]
 ): ProcessedImportState {
   const nmLength = "node_modules".length + 1;
-
-  const duplicateNodeModules = sourceMapFiles.reduce<{
+  const dps = sourceMapFiles.reduce<{
     [key: string]: string[];
   }>((p, d) => {
     var regex = /node_modules/gi,
@@ -79,12 +81,25 @@ export function transform(
       const childDirIndex = child.indexOf("/");
       const childDir = child.slice(0, childDirIndex);
 
-      if (!p[parent]) p[parent] = [];
+      if (!p[childDir]) p[childDir] = [];
 
-      if (p[parent].indexOf(childDir) === -1) p[parent].push(childDir);
+      if (p[childDir].indexOf(parent) === -1) p[childDir].push(parent);
     }
     return p;
   }, {});
+
+  const duplicateNodeModules = Object.keys(dps).reduce(
+    (p, c) => {
+      const v = dps[c];
+
+      if (v.length > 1) p.push({ key: c, value: v });
+      return p;
+    },
+    [] as Array<{
+      key: string;
+      value: string[];
+    }>
+  );
 
   graphNodes.forEach(e => {
     //trimmed network functions

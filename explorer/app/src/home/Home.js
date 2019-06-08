@@ -4,8 +4,6 @@ import Guide from "./Guide";
 import Import from "../import/Import";
 import Resolve from "../resolve/Resolve";
 
-// <Route path="/import" component={Import} />
-
 class Home extends Component {
   render() {
     const {
@@ -15,8 +13,6 @@ class Home extends Component {
       sourceMapFileTransform,
       graphFileTransform
     } = this.props;
-
-    console.log(graphNodes, processedSourceMap);
 
     return (
       <div className="col-container">
