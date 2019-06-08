@@ -171,7 +171,7 @@ class Bundle extends Component<BundleProps, BundleState> {
             changeSelected={this.changeSelected}
             total={total}
             name={name}
-          />>
+          />
         </div>
         <div>
           <_untypedReport

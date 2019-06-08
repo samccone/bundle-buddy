@@ -244,14 +244,23 @@ fs.writeJSONSync(path.join(__dirname, "stats.json"),
               </div>
               <h3>How to create assets from Create React App:</h3>{" "}
               <h5>sourcemaps & bundle-stats.json</h5>
-              <p>In your project directory run: </p>
+              <p>Using yarn, your project directory run: </p>
               <code>
                 <pre>
                   <span className="add-diff">
                     GENERATE_SOURCEMAP=true yarn run build -- --stats
                     </span ><br/>
-                <span>
-                /*---or---*/ </span><br/>
+                </pre>
+                <button
+                  onClick={() => toClipboard("devtool: 'source-map'")}
+                  className="copy-button"
+                  aria-label="Copy sourcemap snippet to clipboard"
+                />
+              </code>
+                 <p>Using npm, your project directory run: </p>
+              <code>
+                <pre>
+     
                 <span className="add-diff">
                 GENERATE_SOURCEMAP=true npm run build -- --stats
                     </span>
