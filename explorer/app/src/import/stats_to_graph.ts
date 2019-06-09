@@ -30,7 +30,6 @@ function cleanEdges(edges: Edge[], plusMap: Map<string, Set<string>>): Edge[] {
   for (const uncleanEdge of edges) {
     const foundNestedDeps = plusMap.get(uncleanEdge.target);
     if (foundNestedDeps) {
-      console.log(uncleanEdge.target);
       pushedMore = true;
       for (const toExplodeTarget of foundNestedDeps.values()) {
         exploded.push({
