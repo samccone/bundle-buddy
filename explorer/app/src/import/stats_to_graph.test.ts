@@ -1,53 +1,4 @@
-import { statsToGraph, removePlusNames } from "./stats_to_graph";
-
-it("removes + files", () => {
-  expect(
-    removePlusNames([
-      {
-        source: "foo.js + 2 modules",
-        target: "aa + 1 modules"
-      },
-      {
-        source: "aa + 1 modules",
-        target: "aa.js"
-      },
-      {
-        source: "random.js",
-        target: "something.js"
-      },
-      {
-        source: "foo.js + 2 modules",
-        target: "app.js"
-      },
-      {
-        source: "foo.js + 2 modules",
-        target: "foo.js"
-      },
-      {
-        source: "foo.js + 2 modules",
-        target: "tap.js"
-      },
-      {
-        source: "woah.js",
-        target: "foo.js + 2 modules"
-      },
-      {
-        source: "index.js",
-        target: "foo.js + 2 modules"
-      }
-    ])
-  ).toEqual([
-    { source: "random.js", target: "something.js" },
-    { source: "woah.js", target: "app.js" },
-    { source: "woah.js", target: "foo.js" },
-    { source: "woah.js", target: "tap.js" },
-    { source: "woah.js", target: "aa.js" },
-    { source: "index.js", target: "app.js" },
-    { source: "index.js", target: "foo.js" },
-    { source: "index.js", target: "tap.js" },
-    { source: "index.js", target: "aa.js" }
-  ]);
-});
+import { statsToGraph } from "./stats_to_graph";
 
 it("converts simple modules", () => {
   const input = {
@@ -491,11 +442,10 @@ it("handles complex", () => {
   };
 
   expect(statsToGraph(input)).toEqual([
-    { source: "./src/index.js + 4 modules", target: "multi ./src/index.js" },
-    { source: "./src/index.js", target: "./src/index.js + 4 modules" },
-    { source: "./src/App.tsx", target: "./src/index.js + 4 modules" },
-    { source: "./src/serviceWorker.ts", target: "./src/index.js + 4 modules" },
-    { source: "./src/Header.js", target: "./src/index.js + 4 modules" },
-    { source: "./src/ErrorBoundry.tsx", target: "./src/index.js + 4 modules" }
+    { source: "./src/index.js", target: "multi ./src/index.js" },
+    { source: "./src/App.tsx", target: "./src/index.js" },
+    { source: "./src/serviceWorker.ts", target: "./src/index.js" },
+    { source: "./src/Header.js", target: "./src/App.tsx" },
+    { source: "./src/ErrorBoundry.tsx", target: "./src/App.tsx" }
   ]);
 });

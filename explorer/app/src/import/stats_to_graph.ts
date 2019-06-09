@@ -1,5 +1,11 @@
 import { Edge } from "../types";
 
+interface Module {
+  name: string;
+  reasons: Array<{ moduleName: string }>;
+  modules?: Array<Module>;
+}
+
 function cleanWebpackMagicFiles(f: string): string {
   const matches = [
     {
@@ -17,86 +23,70 @@ function cleanWebpackMagicFiles(f: string): string {
   return f;
 }
 
-export function removePlusNames(edges: Edge[]): Edge[] {
-  const ret: Edge[] = [];
-  const matcher = /\+ \d+ modules/;
+function cleanEdges(edges: Edge[], plusMap: Map<string, Set<string>>): Edge[] {
+  const exploded: Edge[] = [];
 
-  const plusNames: Map<string, Set<string>> = new Map();
-
-  for (const e of edges) {
-    if (matcher.exec(e.source)) {
-      if (!plusNames.has(e.source)) {
-        plusNames.set(e.source, new Set());
-      }
-
-      plusNames.get(e.source)!.add(e.target);
-    }
-  }
-
-  for (const m of plusNames.values()) {
-    for (const k of m.values()) {
-      if (plusNames.has(k)) {
-        for (const l of plusNames.get(k)!.values()) {
-          m.add(l);
-        }
-        m.delete(k);
-      }
-    }
-  }
-
-  for (const e of edges) {
-    if (plusNames.has(e.source)) {
-      continue;
-    }
-    if (plusNames.has(e.target)) {
-      for (const target of plusNames.get(e.target)!.values()) {
-        ret.push({
-          target,
-          source: e.source
+  let pushedMore = false;
+  for (const uncleanEdge of edges) {
+    const foundNestedDeps = plusMap.get(uncleanEdge.target);
+    if (foundNestedDeps) {
+      console.log(uncleanEdge.target);
+      pushedMore = true;
+      for (const toExplodeTarget of foundNestedDeps.values()) {
+        exploded.push({
+          target: toExplodeTarget,
+          source: uncleanEdge.source
         });
       }
     } else {
-      ret.push(e);
+      exploded.push(uncleanEdge);
     }
   }
 
-  return ret;
-}
-
-interface Module {
-  name: string;
-  reasons: Array<{ moduleName: string }>;
-  modules?: Array<Module>;
+  if (pushedMore) {
+    return cleanEdges(exploded, plusMap);
+  } else {
+    return exploded;
+  }
 }
 
 export function gatherEdges(
   stats: { modules: Module[] },
   edges: Edge[] = [],
-  reasonOverrideName?: string
-): Edge[] {
-  const graph = [];
-  const lookupMap = new Set<string>();
-
+  lookupMap: Set<string> = new Set<string>(),
+  plusMap: Map<string, Set<string>> = new Map()
+): { edges: Edge[]; plusMap: Map<string, Set<string>> } {
   for (const module of stats.modules || []) {
-    const moduleName = cleanWebpackMagicFiles(module.name);
-    for (const reason of module.reasons || []) {
-      const reasonModuleName =
-        reasonOverrideName || cleanWebpackMagicFiles(reason.moduleName);
-      if (!lookupMap.has(`${moduleName}|${reasonModuleName}`)) {
-        edges.push({
-          target: reasonModuleName,
-          source: moduleName
-        });
-        lookupMap.add(`${moduleName}|${reasonModuleName}`);
-      }
-    }
-
     if (module.modules != null) {
-      edges = gatherEdges({ modules: module.modules }, edges, moduleName);
+      if (!plusMap.has(module.name)) {
+        plusMap.set(module.name, new Set());
+        for (const subModule of module.modules) {
+          plusMap.get(module.name)!.add(subModule.name);
+        }
+      }
+
+      edges = gatherEdges(
+        { modules: module.modules },
+        edges,
+        lookupMap,
+        plusMap
+      ).edges;
+    } else {
+      const moduleName = cleanWebpackMagicFiles(module.name);
+      for (const reason of module.reasons || []) {
+        const reasonModuleName = cleanWebpackMagicFiles(reason.moduleName);
+        if (!lookupMap.has(`${moduleName}|${reasonModuleName}`)) {
+          edges.push({
+            target: reasonModuleName,
+            source: moduleName
+          });
+          lookupMap.add(`${moduleName}|${reasonModuleName}`);
+        }
+      }
     }
   }
 
-  return edges;
+  return { edges, plusMap };
 }
 
 /**
@@ -104,6 +94,6 @@ export function gatherEdges(
  * @param stats A webpack stats.json object
  */
 export function statsToGraph(stats: { modules: Module[] }): Edge[] {
-  const edges = gatherEdges(stats);
-  return edges;
+  const { edges, plusMap } = gatherEdges(stats);
+  return cleanEdges(edges, plusMap);
 }
