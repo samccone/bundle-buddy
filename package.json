@@ -4,7 +4,7 @@
   "dependencies": {
     "chalk": "^2.0.1",
     "globby": "^6.1.0",
-    "http-server": "^0.10.0",
+    "http-server": "^0.11.1",
     "meow": "^3.7.0",
     "openport": "^0.0.4",
     "opn": "^5.1.0",
