@@ -18,8 +18,15 @@ If you are using webpack, you can also try the [bundle-buddy-webpack-plugin](htt
 
 ## How to use?
 
-```bash
+Build your app, then run directly via npx
 
+```bash
+npx bundle-buddy my-app/public/*.map
+```
+
+Or you can install into your project and run with npm
+
+```bash
 npm install -g bundle-buddy
 
 bundle-buddy my-app/public/*.map
@@ -55,9 +62,13 @@ yarn install
 yarn start
 ```
 
-Working on the CLI component is also straight forward
+Working on the CLI component is also straight forward, you just need to build the front end once first.
 
 ```bash
+pushd viz
 yarn install
-./node_modules/.bin/ts-node index.ts
+yarn build
+popd
+yarn install
+yarn start --demo
 ```
