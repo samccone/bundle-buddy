@@ -6,6 +6,7 @@ const WEBPACK_MATCHER = /\/\/ WEBPACK FOOTER \/\/\n\/\/\s+(.*)/m;
 const HASH_SPLITTER = "||||";
 
 export const VIZ_PATH = "viz/build";
+export const STANDALONE_PATH = "viz/build-standalone";
 
 export function hashFileLineNumber(
   fileName: string,
