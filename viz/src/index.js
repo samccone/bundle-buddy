@@ -15,8 +15,16 @@ const fileParam = new URLSearchParams(
 const toLoadPath = fileParam !== null ? `/${fileParam}` : "/demo.json";
 const target = document.querySelector("#root");
 
-fetch(toLoadPath, { credentials: "include" })
-  .then(v => v.json())
+const remoteDataPromise = fetch(toLoadPath, {
+  credentials: "include"
+}).then(v => v.json());
+const inlineDataPromise = Promise.resolve(window.DATA);
+
+const dataPromise = window.DATA === undefined
+  ? remoteDataPromise
+  : inlineDataPromise;
+
+dataPromise
   .then(data => {
     //TODO move this data transformation into the scripts
     let relatedNodes = [];
