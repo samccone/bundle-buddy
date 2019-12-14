@@ -5,7 +5,30 @@ import { processImports, buildImportErrorReport } from "../process_imports";
 import { ImportProps, ImportResolveState, ImportState } from "../../types";
 
 import React, { Component } from "react";
+import { ProcessedSourceMap } from "../process_sourcemaps";
 // noopener noreferrer
+
+const IGNORE_FILES = [
+  // https://twitter.com/samccone/status/1137776153148583936
+  'webpack/bootstrap',
+];
+
+function removeWebpackMagicFiles(v: ProcessedSourceMap) {
+  const ret: ProcessedSourceMap = {}
+  for (const k of Object.keys(v)) {
+    let skip = false;
+    for (const i of IGNORE_FILES) {
+      if (k.endsWith(i)) {
+        skip = true;
+      }
+    }
+    if (!skip) {
+      ret[k] = v[k];
+    }
+  }
+
+  return ret;
+}
 
 
 class WebpackImport extends Component<ImportProps, ImportState> {
@@ -45,6 +68,10 @@ class WebpackImport extends Component<ImportProps, ImportState> {
       graphNodes: statsFileContents,
       graphPreProcessFn: statsToGraph
     });
+
+    if (processed.proccessedSourcemap != null) {
+      processed.proccessedSourcemap = removeWebpackMagicFiles(processed.proccessedSourcemap);
+    }
 
     const { importError, importErrorUri } = buildImportErrorReport(processed, {
       graphFile: this.state.graphFile,
