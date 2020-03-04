@@ -237,9 +237,9 @@ if (err) {
 }`}
                       <span className="add-diff">
                         {`
-fs.writeJSONSync(path.join(__dirname, "stats.json"), 
-    stats.toJson())
-});
+fs.writeFileSync(path.join(__dirname, "stats.json"), 
+    JSON.stringify(stats.toJson(), 
+'utf-8');
 `}
                       </span>
                     </pre>
