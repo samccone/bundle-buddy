@@ -1,6 +1,9 @@
-viz/src/data/*
+data/*
 .DS_STORE
 node_modules
 /*.js
 output_large.json
-explorer/app/src/prototype/*
+src/bundle/prototype/*
+src/bundle/prototype-*/*
+build/*
+deploy/*

@@ -18,14 +18,14 @@ class Import extends Component<{imported:boolean}> {
           <Route exact path="/webpack" component={WebpackImport} />
           <Route exact path="/webpack/resolve" component={
             (h: {history: History}) => {
-            return (<WebpackImport imported={imported} history={h.history} />);
+            return (<WebpackImport imported={imported} history={h.history as any} />);
             }
            }
           />
           <Route exact path="/rollup" component={RollupImport} />
             <Route exact path="/rollup/resolve" component={
             (h: {history: History}) => {
-            return (<RollupImport imported={imported} history={h.history} />);
+            return (<RollupImport imported={imported} history={h.history as any} />);
             }
            }
           />

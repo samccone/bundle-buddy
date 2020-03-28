@@ -1,20 +1,27 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "noImplicitAny": true,
-        "inlineSourceMap": true,
-        "noEmitOnError": false,
-        "strictNullChecks": true,
-        "noImplicitReturns": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "lib": ["es2017"]
-    },
-    "exclude": [
-        "node_modules"
+  "compilerOptions": {
+    "target": "es5",
+    "allowJs": true,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "downlevelIteration": true,
+    "lib": [
+      "es2015.collection",
+      "dom",
+      "es6"
     ],
-    "include": [
-        "*.ts"
-    ]
+    "isolatedModules": true
+  },
+  "exclude": ["src/storage/import_pb.js"],
+  "include": [
+    "src"
+  ]
 }

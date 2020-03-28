@@ -1,43 +1,55 @@
 {
   "name": "bundle-buddy",
-  "version": "0.1.2",
+  "version": "0.2.0",
+  "private": true,
   "dependencies": {
-    "chalk": "^2.0.1",
-    "globby": "^6.1.0",
-    "http-server": "^0.10.0",
-    "meow": "^3.7.0",
-    "openport": "^0.0.4",
-    "opn": "^5.1.0",
-    "source-map": "^0.5.6"
-  },
-  "devDependencies": {
-    "@types/chalk": "^0.4.31",
-    "@types/globby": "^0.6.0",
-    "@types/meow": "^3.6.2",
-    "@types/node": "^8.0.2",
-    "@types/opn": "^3.0.28",
-    "@types/source-map": "^0.5.0",
-    "husky": "^0.14.1",
-    "lint-staged": "^4.0.0",
-    "prettier": "^1.4.4",
-    "ts-node": "^3.1.0",
-    "typescript": "^2.3.4"
+    "@sentry/browser": "^4.4.2",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@types/history": "^4.7.5",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "d3-scale": "2.1.2",
+    "d3-voronoi-treemap": "^1.1.0",
+    "dagre": "0.8.2",
+    "react": "^16.6.1",
+    "react-annotation": "2.1.6",
+    "react-dom": "^16.6.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.4.1",
+    "source-map": "^0.7.3",
+    "storybook": "^5.3.17",
+    "typescript": "^3.8.3",
+    "webtreemap": "2.0.1"
   },
   "scripts": {
-    "start": "ts-node index.ts",
-    "precommit": "lint-staged",
-    "build": "tsc",
-    "prepare-publish": "yarn run build && cd viz && yarn run build"
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=1 react-scripts build -- --stats && cat service_worker_postfix_shim.js >> build/service-worker.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
-  "bin": "bin.js",
-  "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/react": "^5.3.17",
+    "@types/google-protobuf": "^3.2.7",
+    "@types/react-router-dom": "^4.3.1",
+    "d3-hierarchy": "1.1.9",
+    "google-protobuf": "^3.6.1",
+    "ts-protoc-gen": "^0.9.0"
   }
 }
