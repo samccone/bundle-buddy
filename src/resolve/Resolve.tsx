@@ -22,6 +22,7 @@ export interface ResolveState {
 function toFunctionRef(func: string) {
   let ref: any;
   try {
+    /* eslint-disable-next-line no-eval */
     ref = eval(`(${func})`);
   } catch (e) {
     alert(`unable to compile transform due to ${e}`);
