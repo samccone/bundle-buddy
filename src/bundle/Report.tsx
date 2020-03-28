@@ -1,7 +1,7 @@
 import React from "react";
+// noopener noreferrer
 
-export default function Report({ total, duplicateNodeModules }) {
-  console.log(JSON.stringify(duplicateNodeModules));
+export default function Report({duplicateNodeModules }: {duplicateNodeModules: [{key: string, value: string[]}]} ) {
   return (
     <div className="flex padding top-panel">
       <div style={{ width: "25vw" }} />
