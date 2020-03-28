@@ -1,7 +1,6 @@
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
 import { History } from "history";
-import { ImportResolveState } from "../types";
 import Describe from "./Describe";
 import WebpackImport from "./webpack/Import";
 import RollupImport from "./rollup/Import";
