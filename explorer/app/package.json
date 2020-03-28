@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "@sentry/browser": "^4.4.2",
-    "@types/history": "^4.7.2",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@types/history": "^4.7.5",
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.18",
@@ -18,6 +19,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.4.1",
     "source-map": "^0.7.3",
+    "storybook": "^5.3.17",
     "typescript": "^3.8.3",
     "webtreemap": "2.0.1"
   },
@@ -39,14 +41,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@storybook/addon-actions": "^5.0.11",
-    "@storybook/addon-links": "^5.0.11",
-    "@storybook/addons": "^5.0.11",
-    "@storybook/react": "^5.0.11",
+    "@babel/core": "^7.9.0",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/react": "^5.3.17",
     "@types/google-protobuf": "^3.2.7",
     "@types/react-router-dom": "^4.3.1",
-    "d3-hierarchy": "1.1.8",
+    "d3-hierarchy": "1.1.9",
     "google-protobuf": "^3.6.1",
     "ts-protoc-gen": "^0.9.0"
   }
