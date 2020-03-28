@@ -18,7 +18,7 @@
       "dom",
       "es6"
     ],
-    "isolatedModules": true,
+    "isolatedModules": true
   },
   "exclude": ["src/storage/import_pb.js"],
   "include": [
