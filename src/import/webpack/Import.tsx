@@ -237,17 +237,17 @@ if (err) {
 }`}
                       <span className="add-diff">
                         {`
-fs.writeJSONSync(path.join(__dirname, "stats.json"), 
-    stats.toJson())
+fs.writeFileSync(
+  path.join(__dirname, "stats.json"), 
+  JSON.stringify(stats.toJson()), 
+  'utf-8');
 });
 `}
                       </span>
                     </pre>
                     <button
                       onClick={() =>
-                        toClipboard(`fs.writeJSONSync(path.join(__dirname, "stats.json"), 
-    stats.toJson())
-});`)
+                        toClipboard(`fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`)
                       }
                       className="copy-button"
                       aria-label="Copy stats.json programatic snippit to clipboard"
