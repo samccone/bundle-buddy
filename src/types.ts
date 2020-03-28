@@ -9,53 +9,9 @@ export interface ImportResolveState {
   sourceMapFileTransform?: string;
 }
 
-export interface TreemapNode {
-  parent: string;
-  name: string;
-  totalBytes?: number;
-}
-
-export interface ImportProps {
-  history: History<ImportResolveState>;
-  imported: boolean;
-}
-
-export interface BundleProps {
-  trimmedNetwork: ProcessedImportState["trimmedNetwork"];
-  rollups: ProcessedImportState["rollups"];
-  duplicateNodeModules: ProcessedImportState["duplicateNodeModules"];
-  selected: string | null;
-  hierarchy: ProcessedImportState["hierachy"];
-}
-
-export interface BundleState {
-  selected: string | null;
-  counts: { [k: string]: BundleNetworkCount };
-}
-
-export interface BundleNetworkCount {
-  requiredBy: Set<string> | string[];
-  requires: Set<string> | string[];
-  indirectDependedOnCount?: number;
-  transitiveRequiredBy?: string[];
-}
-
-export interface ResolveProps {
-  history: History<ImportResolveState>;
-  graphNodes: GraphNodes;
-  processedSourceMap: ProcessedSourceMap;
-  graphFileTransform?: string;
-  sourceMapFileTransform?: string;
-}
-
-export interface TrimmedNetwork {
-  nodes: TrimmedNode[];
-  edges: Edge[];
-}
-
 export interface ProcessedImportState {
   trimmedNetwork: TrimmedNetwork;
-  hierachy: TreemapNode[];
+  hierarchy: TreemapNode[];
   rollups: {
     value: number;
     fileTypes: {
@@ -75,6 +31,55 @@ export interface ProcessedImportState {
     value: string[];
   }>;
 }
+
+export interface TreemapNode {
+  parent: string;
+  name: string;
+  totalBytes?: number;
+}
+
+export type ProcessedHistory = History<ProcessedImportState>;
+export type ImportHistory = History<ImportResolveState>;
+
+export interface ImportProps {
+  history: ImportHistory;
+  imported: boolean;
+}
+
+export interface BundleProps {
+  trimmedNetwork: ProcessedImportState["trimmedNetwork"];
+  rollups: ProcessedImportState["rollups"];
+  duplicateNodeModules: ProcessedImportState["duplicateNodeModules"];
+  selected: string | null;
+  hierarchy: ProcessedImportState["hierarchy"];
+}
+
+export interface BundleState {
+  selected: string | null;
+  counts: { [k: string]: BundleNetworkCount };
+}
+
+export interface BundleNetworkCount {
+  requiredBy: Set<string> | string[];
+  requires: Set<string> | string[];
+  indirectDependedOnCount?: number;
+  transitiveRequiredBy?: string[];
+}
+
+export interface ResolveProps {
+  history: ImportHistory;
+  graphNodes: GraphNodes;
+  processedSourceMap: ProcessedSourceMap;
+  graphFileTransform?: string;
+  sourceMapFileTransform?: string;
+}
+
+export interface TrimmedNetwork {
+  nodes: TrimmedNode[];
+  edges: Edge[];
+}
+
+
 
 export interface Edge {
   source: string;

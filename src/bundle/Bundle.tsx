@@ -106,6 +106,15 @@ class Bundle extends Component<BundleProps, BundleState> {
     };
   }
 
+  download() {
+    const blob = new Blob([JSON.stringify(this.props)], {type : 'application/json'});
+    const objectURL = URL.createObjectURL(blob);
+    const a: HTMLAnchorElement = document.createElement('a');
+    a.setAttribute('download', 'bundle-buddy-share.json');
+    a.href = objectURL;
+    a.click();
+  }
+
   changeSelected(selected: string) {
     window.history.pushState(
       { ...window.history.state, selected },
@@ -176,6 +185,7 @@ class Bundle extends Component<BundleProps, BundleState> {
 
     return (
       <div>
+        <button onClick={() => this.download()}>download analaysis</button>
         <div>
           <_untypedByTypeByChart
             totalsByType={totalsByType}

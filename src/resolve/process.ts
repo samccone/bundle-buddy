@@ -264,7 +264,7 @@ export function transform(
     }))
   };
 
-  const hierachy = nodesToTreeMap(trimmedNodes);
+  const hierarchy = nodesToTreeMap(trimmedNodes);
 
-  return { rollups, trimmedNetwork, duplicateNodeModules, hierachy };
+  return { rollups, trimmedNetwork, duplicateNodeModules, hierarchy };
 }

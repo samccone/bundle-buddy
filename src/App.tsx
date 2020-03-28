@@ -39,7 +39,7 @@ class App extends Component {
                             (location.state).duplicateNodeModules
                           }
                           selected={params.get("selected")}
-                          hierarchy={location.state.hierachy}
+                          hierarchy={location.state.hierarchy}
                         />
                       );
                     }}

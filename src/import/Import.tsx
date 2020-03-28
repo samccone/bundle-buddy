@@ -12,8 +12,15 @@ class Import extends Component<{imported:boolean}> {
     const {imported} = this.props
     return (
       <div>
-        <Describe />
         <Switch>
+          <Route exact path="/" component={
+            (h: {history: History}) => {
+              return (
+                <Describe history={h.history as any} />
+              )
+            }
+           }
+          />
           <Route exact path="/webpack" component={WebpackImport} />
           <Route exact path="/webpack/resolve" component={
             (h: {history: History}) => {

@@ -1,13 +1,33 @@
 import React, { Component } from "react";
+import { readFileAsText } from "./file_reader";
 import { Link } from "react-router-dom";
+import {ImportHistory, ProcessedHistory} from "../types";
 // noopener noreferrer
 
-class DescribeImport extends Component {
-  constructor(props: {}) {
+class DescribeImport extends Component<{history: ImportHistory}> {
+  existingImportInput: React.RefObject<HTMLInputElement & {files: FileList}> ;
+
+  constructor(props: {history: ImportHistory}) {
     super(props);
+    this.existingImportInput = React.createRef();
   }
 
-  state: {} = {};
+async onExistingImportInput() {
+    const file = this.existingImportInput.current?.files[0];
+    if (file == null) {
+      return;
+    }
+
+    const contents = await readFileAsText(file);
+    const previousState = JSON.parse(contents);
+
+    ((this.props.history as unknown) as ProcessedHistory).push(
+      "/bundle",
+      previousState
+    )
+  }
+
+  state: never;
 
   render() {
     const selected = window.location.pathname;
@@ -49,6 +69,16 @@ class DescribeImport extends Component {
               See Sample Project
             </button>
           </div>
+        </div>
+        <div className="flex">
+          <button tabIndex={-1}>Import existing project
+            <input
+                type="file"
+                ref={this.existingImportInput}
+                accept=".json"
+                onInput={async () => await this.onExistingImportInput()}
+              />
+          </button>
         </div>
       </div>
     );
