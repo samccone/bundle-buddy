@@ -48,7 +48,7 @@ export default function Report({duplicateNodeModules }: {duplicateNodeModules: [
                       <tr key={k.key}>
                         <td>
                           <b>{k.key}</b>
-                        </td>{" "}
+                        </td>
                         <td>{k.value.join(", ")}</td>
                       </tr>
                     );
