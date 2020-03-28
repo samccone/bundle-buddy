@@ -20,7 +20,7 @@ export default function Report({ total, duplicateNodeModules }) {
           </p>
           <p>
             To learn more, check out{" "}
-            <a href="https://github.com/formidablelabs/inspectpack/">
+            <a target="_blank" href="https://github.com/formidablelabs/inspectpack/">
               inspectpack
             </a>
             .
