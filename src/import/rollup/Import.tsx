@@ -4,7 +4,6 @@ import { readFileAsText, readFilesAsText } from "../file_reader";
 import { processImports, buildImportErrorReport } from "../process_imports";
 import { ImportProps, ImportResolveState, ImportState } from "../../types";
 
-
 // noopener noreferrer
 class RollupImport extends Component<ImportProps, ImportState> {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;

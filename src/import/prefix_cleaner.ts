@@ -8,7 +8,7 @@ export function findCommonPrefix(strings: string[]): string | null {
       let matched = false;
       for (let splitPoint = k.length; splitPoint > 0; splitPoint--) {
         const split = k.slice(0, splitPoint);
-        if (commonPrefix.indexOf(split) != -1) {
+        if (commonPrefix.indexOf(split) !== -1) {
           commonPrefix = split;
           matched = true;
           break;

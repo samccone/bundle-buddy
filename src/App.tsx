@@ -12,10 +12,6 @@ const Resolve = lazy(() => import("./resolve/Resolve"));
 type T = typeof Resolve;
 
 class App extends Component {
-  constructor(props: {}) {
-    super(props);
-  }
-
   state = {};
 
   render() {
