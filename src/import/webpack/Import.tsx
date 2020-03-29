@@ -147,7 +147,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
          
           <div>
             <button tabIndex={-1}>
-              <img className="attach-icon" src="/img/attach_icon.svg" />
+              <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
               stats.json
               <input
                 id="stats"
@@ -170,7 +170,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
           </div>
           <div>
             <button tabIndex={-1}>
-              <img className="attach-icon" src="/img/attach_icon.svg" />
+              <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
               sourcemaps
               <input
                 id="sourcemap"
@@ -212,7 +212,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
               <h3>How to create assets from Webpack:</h3>
               <div className="col-container">
                 <div>
-                  <h5>stats.json</h5>
+                  <h5>{this.props.graphFileName}</h5>
                   <p>via command line</p>
                   <code>
                     <pre>

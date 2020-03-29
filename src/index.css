@@ -300,11 +300,22 @@ button.alert {
 }
 
 img.rollup-logo {
-  height: 36px;
   margin: -10px 0;
 }
 
-button.rollup-import {
+img.rome-logo {
+  margin-right: 10px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  zoom: 0.9;
+}
+
+button.rome-import {
+  display: flex;
+  align-items: center;
+}
+
+button.project-import {
   text-align: left;
   font-size: 17px;
 }
@@ -360,10 +371,6 @@ input.search, button.clear {
 
 .attach-icon {
   opacity: 0.4;
-  height: 20px;
-  position: absolute;
-  left: 10px;
-  top: 5px;
 }
 
 .status-icon {

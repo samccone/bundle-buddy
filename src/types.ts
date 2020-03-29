@@ -2,6 +2,12 @@ import { History } from "history";
 import { GraphNodes } from "./import/graph_process";
 import { ProcessedSourceMap } from "./import/process_sourcemaps";
 
+export enum ImportTypes {
+  ROLLUP,
+  ROME,
+  WEBPACK,
+}
+
 export interface ImportResolveState {
   graphNodes: GraphNodes;
   processedSourceMap: ProcessedSourceMap;
@@ -43,7 +49,9 @@ export type ImportHistory = History<ImportResolveState>;
 
 export interface ImportProps {
   history: ImportHistory;
+  graphFileName: string;
   imported: boolean;
+  importType: ImportTypes;
 }
 
 export interface BundleProps {

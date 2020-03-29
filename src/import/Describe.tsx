@@ -43,9 +43,7 @@ async onExistingImportInput() {
             className="no-link-underline"
           >
             <button
-              className={`${
-                selected === "webpack" ? "selected" : ""
-              } type-button  rollup-import`}
+              className={`type-button project-import`}
             >
               <img width="35px" height="36px" className="rollup-logo" src="/img/webpack_logo.png" />
               Webpack / Create React App
@@ -57,9 +55,7 @@ async onExistingImportInput() {
             className="no-link-underline"
           >
             <button
-              className={`${
-                selected === "rollup" ? "selected" : ""
-              } type-button rollup-import`}
+              className={`type-button project-import`}
             >
               <img 
                 width="34px"
@@ -67,6 +63,21 @@ async onExistingImportInput() {
                 src="/img/rollup_logo.png" className="rollup-logo" /> Rollup
             </button>
           </Link>
+         <Link
+            to="/rome"
+            aria-label="rome project import"
+            className="no-link-underline"
+          >
+            <button
+              className={`type-button project-import rome-import`}
+            >
+              <img 
+                width="31px"
+                height="36px"
+                src="/img/rome_logo.png" className="rome-logo" /> Rome
+            </button>
+          </Link>
+
         </div>
         <div className="flex">
           <button tabIndex={-1}>Import existing project

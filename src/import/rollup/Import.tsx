@@ -118,8 +118,8 @@ class RollupImport extends Component<ImportProps, ImportState> {
           <div className="upload-files-container flex">
              <div>
               <button tabIndex={-1}>
-                <img className="attach-icon" src="/img/attach_icon.svg" />
-                graph.json
+                <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
+                {this.props.graphFileName}
                 <input
                   id="stats"
                   type="file"
@@ -141,7 +141,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
             </div>
             <div>
               <button tabIndex={-1}>
-                <img className="attach-icon" src="/img/attach_icon.svg" />
+                <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
                 sourcemaps
                 <input
                   id="sourcemap"
@@ -186,7 +186,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
                 <div className="col-container">
                   
                   <div>
-                    <h5>graph.json</h5>
+                    <h5>{this.props.graphFileName}</h5>
                     <p>via rollup.config.js</p>
                     <code>
                       <pre>
