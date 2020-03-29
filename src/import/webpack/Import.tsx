@@ -142,11 +142,11 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             </a>
           </div>
         ) : null}
-        <h5>Upload assets</h5>
+        <h3>Upload assets</h3>
         <div className="upload-files-container flex">
          
-          <div>
-            <button tabIndex={-1}>
+          <div className="button-import-container">
+            <button className="import-asset" tabIndex={-1}>
               <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
               stats.json
               <input
@@ -168,8 +168,8 @@ class WebpackImport extends Component<ImportProps, ImportState> {
               className="status-icon"
             />
           </div>
-          <div>
-            <button tabIndex={-1}>
+          <div className="button-import-container">
+            <button tabIndex={-1} className="import-asset">
               <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
               sourcemaps
               <input
@@ -192,7 +192,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
               className="status-icon"
             />
           </div>
-          <div>
+          <div className="button-import-container">
             <button
               disabled={
                 !this.canProcess(

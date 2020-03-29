@@ -80,7 +80,7 @@ async onExistingImportInput() {
 
         </div>
         <div className="flex">
-          <button tabIndex={-1}>Import existing project
+          <button className="project-import" tabIndex={-1}>Import existing project
             <input
                 type="file"
                 ref={this.existingImportInput}

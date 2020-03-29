@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { toClipboard } from "../clipboard";
 import { readFileAsText, readFilesAsText } from "../file_reader";
 import { processImports, buildImportErrorReport } from "../process_imports";
-import { ImportProps, ImportResolveState, ImportState } from "../../types";
+import { ImportProps, ImportResolveState, ImportState, ImportTypes } from "../../types";
 
 // noopener noreferrer
 class RollupImport extends Component<ImportProps, ImportState> {
@@ -19,6 +19,96 @@ class RollupImport extends Component<ImportProps, ImportState> {
   }
 
   state: ImportState = {};
+
+  importInstructions(type: ImportTypes) {
+    if (type === ImportTypes.ROLLUP) {
+      return (
+        <div className="col-container">
+
+          <div>
+            <h5>{this.props.graphFileName}</h5>
+            <p>via rollup.config.js</p>
+            <code>
+              <pre>
+                <span
+                  id="rollup-generate-graph"
+                  ref={this.generateGraphContents}
+                  className="add-diff"
+                >
+                  {`
+plugins: [{
+    buildEnd() {
+        const deps = [];
+        for(const id of this.moduleIds) {
+            let m = this.getModuleInfo(id);
+            if (m != null && !m.isExternal) {
+                for (const source of m.importedIds) {
+                    deps.push({ target: m.id, source})
+                }
+            }
+        }
+        
+        fs.writeFileSync(
+            path.join(__dirname, 'graph.json'), 
+            JSON.stringify(deps, null, 2));
+    },
+}]`}
+                </span>
+              </pre>
+              <button
+                onClick={() =>
+                  toClipboard(
+                    this.generateGraphContents.current!.textContent ||
+                    ""
+                  )
+                }
+                className="copy-button"
+                aria-label="Copy stats.json programatic snippit to clipboard"
+              />
+            </code>
+          </div>
+          <div>
+            <h5>sourcemap</h5>
+            <p>via rollup.config.js</p>
+            <code>
+              <pre>
+                {`output: { 
+    file: '\`\${outFolder}/dist.js',
+    format: 'iife',
+    name: 'PROJECT_NAME',\n`}
+                <span className="add-diff">
+                  &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
+                        </span>
+                {`
+}`}
+              </pre>
+              <button
+                onClick={() => toClipboard("sourcemap: true,")}
+                className="copy-button"
+                aria-label="Copy sourcemap snippet to clipboard"
+              />
+            </code>
+          </div>
+        </div>);
+
+    }
+
+    if (type === ImportTypes.ROME) {
+      return (<div>
+        <p>
+          Run the <code>bundle</code> command of rome to generate the sourcemap files and bundlebuddy.json for your project
+        </p>
+       <code>
+          <pre>
+            rome bundle .
+         </pre>
+        </code>
+      </div>)
+    }
+
+    return <div />
+
+  }
 
   onGraphInput() {
     if (
@@ -114,10 +204,10 @@ class RollupImport extends Component<ImportProps, ImportState> {
               </a>
             </div>
           ) : null}
-          <h5>Upload assets</h5>
+          <h3>Upload assets</h3>
           <div className="upload-files-container flex">
-             <div>
-              <button tabIndex={-1}>
+            <div className="button-import-container">
+              <button tabIndex={-1} className="import-asset">
                 <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
                 {this.props.graphFileName}
                 <input
@@ -130,7 +220,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
               </button>
               <img
                 src={
-                  this.hasGraphFile(this.state.graphFile)|| this.props.imported 
+                  this.hasGraphFile(this.state.graphFile) || this.props.imported
                     ? "/img/ok_icon.svg"
                     : "/img/warn_icon.svg"
                 }
@@ -139,8 +229,8 @@ class RollupImport extends Component<ImportProps, ImportState> {
                 className="status-icon"
               />
             </div>
-            <div>
-              <button tabIndex={-1}>
+            <div className="button-import-container">
+              <button tabIndex={-1} className="import-asset">
                 <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
                 sourcemaps
                 <input
@@ -154,7 +244,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
               </button>
               <img
                 src={
-                  this.hasSourceMapFile(this.state.sourceMapFiles)|| this.props.imported 
+                  this.hasSourceMapFile(this.state.sourceMapFiles) || this.props.imported
                     ? "/img/ok_icon.svg"
                     : "/img/warn_icon.svg"
                 }
@@ -163,9 +253,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
                 className="status-icon"
               />
             </div>
-         
-
-            <div>
+            <div className="button-import-container">
               <button
                 disabled={
                   !this.canProcess(
@@ -183,73 +271,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
             <div className="col-container">
               <div className="col-narrow" />
               <div className="import-instruction">
-                <div className="col-container">
-                  
-                  <div>
-                    <h5>{this.props.graphFileName}</h5>
-                    <p>via rollup.config.js</p>
-                    <code>
-                      <pre>
-                        <span
-                          id="rollup-generate-graph"
-                          ref={this.generateGraphContents}
-                          className="add-diff"
-                        >
-                          {`
-plugins: [{
-    buildEnd() {
-        const deps = [];
-        for(const id of this.moduleIds) {
-            let m = this.getModuleInfo(id);
-            if (m != null && !m.isExternal) {
-                for (const source of m.importedIds) {
-                    deps.push({ target: m.id, source})
-                }
-            }
-        }
-        
-        fs.writeFileSync(
-            path.join(__dirname, 'graph.json'), 
-            JSON.stringify(deps, null, 2));
-    },
-}]`}
-                        </span>
-                      </pre>
-                      <button
-                        onClick={() =>
-                          toClipboard(
-                            this.generateGraphContents.current!.textContent ||
-                              ""
-                          )
-                        }
-                        className="copy-button"
-                        aria-label="Copy stats.json programatic snippit to clipboard"
-                      />
-                    </code>
-                  </div>
-                  <div>
-                    <h5>sourcemap</h5>
-                    <p>via rollup.config.js</p>
-                    <code>
-                      <pre>
-                        {`output: { 
-    file: '\`\${outFolder}/dist.js',
-    format: 'iife',
-    name: 'PROJECT_NAME',\n`}
-                        <span className="add-diff">
-                          &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
-                        </span>
-                        {`
-}`}
-                      </pre>
-                      <button
-                        onClick={() => toClipboard("sourcemap: true,")}
-                        className="copy-button"
-                        aria-label="Copy sourcemap snippet to clipboard"
-                      />
-                    </code>
-                  </div>
-                </div>
+                {this.importInstructions(this.props.importType)}
               </div>
             </div>
           )}
