@@ -36,7 +36,7 @@ async onExistingImportInput() {
       <div>
         <h1>Analyze</h1>
         <h5>What bundler are you using?</h5>
-        <div className="flex">
+        <div>
           <Link
             to="/webpack"
             aria-label="webpack project import"
