@@ -47,7 +47,7 @@ async onExistingImportInput() {
                 selected === "webpack" ? "selected" : ""
               } type-button  rollup-import`}
             >
-              <img className="rollup-logo" src="/img/webpack_logo.png" />
+              <img width="35px" height="36px" className="rollup-logo" src="/img/webpack_logo.png" />
               Webpack / Create React App
             </button>
           </Link>
@@ -61,7 +61,10 @@ async onExistingImportInput() {
                 selected === "rollup" ? "selected" : ""
               } type-button rollup-import`}
             >
-              <img src="/img/rollup_logo.png" className="rollup-logo" /> Rollup
+              <img 
+                width="34px"
+                height="36px"
+                src="/img/rollup_logo.png" className="rollup-logo" /> Rollup
             </button>
           </Link>
         </div>

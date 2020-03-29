@@ -163,6 +163,8 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
+              height="24px"
+              width="24px"
               className="status-icon"
             />
           </div>
@@ -185,6 +187,8 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
+              height="24px"
+              width="24px"
               className="status-icon"
             />
           </div>
