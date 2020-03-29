@@ -309,7 +309,7 @@ button.rollup-import {
   font-size: 17px;
 }
 
-.no-link-underline {
+.no-link-underline, .no-link-underline:hover {
   text-decoration: none;
 }
 
