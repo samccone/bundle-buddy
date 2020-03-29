@@ -7,3 +7,4 @@ src/bundle/prototype/*
 src/bundle/prototype-*/*
 build/*
 deploy/*
+samples/*
