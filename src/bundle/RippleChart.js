@@ -24,18 +24,22 @@ export default class RippleChart extends React.Component {
       return directoryColors[d.directory];
     };
 
-    const radiusScale = scaleSqrt().domain([0, max]).range([1, 50]);
+    const radiusScale = scaleSqrt()
+        .domain([0, max])
+        .range([0, 20]),
+      OFFSET = 100;
 
     let translateX = 0,
       translateY = 150,
-      maxX = 0;
+      maxX = 0,
+      minR = OFFSET;
 
-    const mapLocation = (inOrOut, files, rOffset = 150) => {
+    const mapLocation = (inOrOut, files, rOffset = OFFSET) => {
       let total = 0;
       const requires = files
         .sort((a, b) => b.totalBytes - a.totalBytes)
         .map((d, i) => {
-          const spacing = Math.max(radiusScale(d.totalBytes) * 2, 18);
+          const spacing = Math.max(radiusScale(d.totalBytes) * 2, 0);
           const value = {
             ...d,
             r: radiusScale(d.totalBytes),
@@ -48,28 +52,30 @@ export default class RippleChart extends React.Component {
           return value;
         });
 
-      const r = rOffset;
-      const rSize = Math.max(rOffset, total * 2.4 / 2 / Math.PI);
+      const rSize = Math.max(minR, (total * 2.4) / 2 / Math.PI);
+      if (rSize > minR) {
+        minR = rSize;
+      }
       const circumfrence = 2 * Math.PI * rSize;
 
-      const overallArcStart = total / circumfrence / 2 * 360;
+      const overallArcStart = (total / circumfrence / 2) * 360;
 
       const center = inOrOut === "in" ? 270 : 90;
       const sign = inOrOut === "in" ? 1 : -1;
 
       const angleScale = scaleLinear()
-        .domain([0, total || 0])
-        .range([
-          center + overallArcStart * sign,
-          center - overallArcStart * sign
-        ]),
+          .domain([0, total || 0])
+          .range([
+            center + overallArcStart * sign,
+            center - overallArcStart * sign
+          ]),
         yScale = (degrees, r) => -Math.cos(degrees * (Math.PI / 180)) * r,
         xScale = (degrees, r) => Math.sin(degrees * (Math.PI / 180)) * r;
 
       requires.forEach(d => {
         const degrees = angleScale(d.offset);
 
-        d.x = xScale(degrees, rSize) + sign * (rSize - r);
+        d.x = xScale(degrees, rSize) + sign * (rSize - rOffset);
         d.y = yScale(degrees, rSize);
         d.r = radiusScale(d.totalBytes);
         if (-(d.x + d.r) > translateX) translateX = -(d.x + d.r);
@@ -82,28 +88,31 @@ export default class RippleChart extends React.Component {
     };
 
     const placeCircles = (inOrOut, files) => {
-      return files.sort((a, b) => a.r - b.r).map(d => {
-        return (
-          <g
-            key={d.id}
-            onClick={() => changeSelected(d.id)}
-            onMouseEnter={() => this.setState({ hover: d.id })}
-            onMouseLeave={() => this.setState({ hover: null })}
-          >
-            <g transform={`translate(${d.x}, ${d.y})`}>
-              {d.r < 8 && <circle r={8} stroke="#ccc" fill="none" />}
-              <circle r={d.r} fill={getFill(d)} stroke="white" />
-              <text
-                y=".4em"
-                fontSize="12"
-                textAnchor={(inOrOut === "in" && "end") || "start"}
-              >
-                {d.fileName}
-              </text>
+      return files
+        .sort((a, b) => a.r - b.r)
+        .map(d => {
+          return (
+            <g
+              key={d.id}
+              onClick={() => changeSelected(d.id)}
+              onMouseEnter={() => this.setState({ hover: d.id })}
+              onMouseLeave={() => this.setState({ hover: null })}
+            >
+              <g transform={`translate(${d.x}, ${d.y})`}>
+                <circle r={d.r} fill={getFill(d)} stroke="white" />
+                {d.r > 8 && (
+                  <text
+                    y=".4em"
+                    fontSize="12"
+                    textAnchor={(inOrOut === "in" && "end") || "start"}
+                  >
+                    {d.fileName}
+                  </text>
+                )}
+              </g>
             </g>
-          </g>
-        );
-      });
+          );
+        });
     };
 
     let requires = [],
@@ -133,14 +142,13 @@ export default class RippleChart extends React.Component {
       ];
     }
 
-    const usedNodes = [
-      ...requires,
-      ...requiredBy,
-      { id: selected }
-    ].reduce((p, c) => {
-      p[c.id] = c;
-      return p;
-    }, {});
+    const usedNodes = [...requires, ...requiredBy, { id: selected }].reduce(
+      (p, c) => {
+        p[c.id] = c;
+        return p;
+      },
+      {}
+    );
 
     const getNextLevel = (requiredByKeys, level = 0) => {
       const edgeLevel = edges.filter(
@@ -155,14 +163,21 @@ export default class RippleChart extends React.Component {
       );
 
       if (matchingNodes.length > 0) {
-        const newNodes = mapLocation("out", matchingNodes, 150 * (level + 2));
+        const newNodes = mapLocation(
+          "out",
+          matchingNodes,
+          OFFSET * (level + 2)
+        );
 
         newNodes.forEach(n => {
           usedNodes[n.id] = n;
           nextLevelNodes.push(n);
         });
 
-        getNextLevel(newNodes.map(d => d.id), level + 1);
+        getNextLevel(
+          newNodes.map(d => d.id),
+          level + 1
+        );
       }
     };
 
@@ -220,7 +235,7 @@ export default class RippleChart extends React.Component {
           harder to remove as a dependency.
         </p>
         <p>
-          {directories.map((d, i) =>
+          {directories.map((d, i) => (
             <span key={i} className="padding-right inline-block">
               <svg
                 className="overflow-visible"
@@ -232,9 +247,11 @@ export default class RippleChart extends React.Component {
               </svg>
               {d}{" "}
             </span>
-          )}
+          ))}
         </p>
-        <div style={{ overflowY: "auto", overflowX: "auto" }}>
+        <div
+          style={{ overflowY: "auto", overflowX: "auto", maxHeight: "80vh" }}
+        >
           <svg
             width={translateX + maxX + 200}
             height={translateY * 2 + 60}
@@ -248,8 +265,10 @@ export default class RippleChart extends React.Component {
                 strokeWidth={2}
                 fill={getFill(selectedNode)}
               />
-              {requiredBy &&
-                requiredBy.length !== 0 &&
+              {placeCircles("in", requires)}
+              {placeCircles("out", requiredBy)}
+              {placeCircles("out", nextLevelNodes)}
+              {requiredBy && requiredBy.length !== 0 && (
                 <g transform={`translate(${primaryRadius} , 0)`}>
                   <line stroke={primary} x2={100} />
                   <text fontSize="11" fontWeight="bold" x={5} y={-3}>
@@ -258,9 +277,9 @@ export default class RippleChart extends React.Component {
                   <text fontSize="11" fontWeight="bold" x={5} y={14}>
                     {count.transitiveRequiredBy.length} files
                   </text>
-                </g>}
-              {requires &&
-                requires.length !== 0 &&
+                </g>
+              )}
+              {requires && requires.length !== 0 && (
                 <g transform={`translate(${-primaryRadius} , 0)`}>
                   <line stroke={primary} x2={-100} />{" "}
                   <text
@@ -281,8 +300,14 @@ export default class RippleChart extends React.Component {
                   >
                     {count.requires.length} files/modules
                   </text>
-                </g>}
-              <g transform="translate(0, -100)">
+                </g>
+              )}
+
+              <g
+                transform={`translate(0, ${-primaryRadius -
+                  14 -
+                  14 * selected.split("/").length})`}
+              >
                 <text x={-200} fill={primary} textAnchor="middle">
                   {selected.split("/").map((d, i, array) => {
                     return (
@@ -294,11 +319,6 @@ export default class RippleChart extends React.Component {
                   })}
                 </text>
               </g>
-
-              {placeCircles("in", requires)}
-              {placeCircles("out", requiredBy)}
-              {placeCircles("out", nextLevelNodes)}
-
               <rect
                 x={-translateX}
                 y={-translateY - 30}
@@ -316,8 +336,8 @@ export default class RippleChart extends React.Component {
                   const target = usedNodes[d.target];
 
                   const middle = {
-                    x: source.x + (target.x - source.x) * 2 / 3,
-                    y: source.y + (target.y - source.y) * 2 / 3
+                    x: source.x + ((target.x - source.x) * 2) / 3,
+                    y: source.y + ((target.y - source.y) * 2) / 3
                   };
 
                   const a = arrow({
@@ -326,6 +346,11 @@ export default class RippleChart extends React.Component {
                     scale: 1.5
                   });
 
+                  const color =
+                    d.source === this.state.hover
+                      ? "rgba(62, 156, 254,.5)"
+                      : "rgba(232, 212, 26, .5)";
+
                   return (
                     <g pointerEvents="none" key={i}>
                       <line
@@ -333,25 +358,25 @@ export default class RippleChart extends React.Component {
                         y1={source.y}
                         x2={target.x}
                         y2={target.y}
-                        stroke={primary}
+                        stroke={color}
                       />
                       <circle
                         r={source.r}
                         cx={source.x}
                         cy={source.y}
-                        stroke={primary}
+                        stroke={color}
                         fill={"none"}
                       />
                       <path
                         d={a.components[0].attrs.d}
-                        fill={primary}
-                        stroke={primary}
+                        fill={color}
+                        stroke={color}
                       />
                       <circle
                         r={target.r}
                         cx={target.x}
                         cy={target.y}
-                        stroke={primary}
+                        stroke={color}
                         fill={"none"}
                       />
                     </g>
