@@ -185,7 +185,7 @@ class Bundle extends Component<BundleProps, BundleState> {
 
     return (
       <div>
-        <button onClick={() => this.download()}>download analaysis</button>
+        <button onClick={() => this.download()}>download analysis</button>
         <div>
           <_untypedByTypeByChart
             totalsByType={totalsByType}
