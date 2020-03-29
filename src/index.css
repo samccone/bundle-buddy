@@ -6,9 +6,9 @@
   --primary-color: #b42dd6;
   --link-color: darkblue;
   --margin-left: 90px;
-  /* --panel-width: 260px; */
   --side-panel-width: 100px;
   --total-width: 580px;
+  --default-text: #111;
 }
 
 body {
@@ -26,11 +26,12 @@ body {
     sans-serif;
   height: 100vh;
   overflow-x: hidden;
+  color: var(--default-text);
 }
 
 h1 {
   font-weight: 300;
-  font-size: 36px;
+  font-size: 23px;
 }
 
 .primary {
@@ -94,7 +95,7 @@ svg {
 }
 
 .App-header {
-  height: 100px;
+  height: 50px;
   width: 100%;
   border-bottom: 1px solid #ddd;
 }
@@ -466,4 +467,10 @@ th, td {
   position: absolute;
   transform: translateX(-100%);
   white-space: nowrap;
+}
+
+.header-link, .header-link:visited, .header-link:hover {
+  align-items: center;
+  color: var(--default-text);
+  text-decoration: none;
 }

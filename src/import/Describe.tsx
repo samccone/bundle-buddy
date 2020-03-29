@@ -64,11 +64,6 @@ async onExistingImportInput() {
               <img src="/img/rollup_logo.png" className="rollup-logo" /> Rollup
             </button>
           </Link>
-          <div>
-            <button className="type-button rollup-import">
-              See Sample Project
-            </button>
-          </div>
         </div>
         <div className="flex">
           <button tabIndex={-1}>Import existing project
