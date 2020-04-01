@@ -1,3 +1,4 @@
+import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
 import Introduction from "./Introduction";
 import Guide from "./Guide";
@@ -16,12 +17,16 @@ class Home extends Component {
 
     return (
       <div className="col-container">
-        <div className="left-col border-right">
-          <div className="padding">
-            <Introduction />
-            <Guide />
-          </div>
-        </div>
+        <Switch>
+          <Route exact path="/">
+            <div className="left-col border-right">
+              <div className="padding">
+                <Introduction />
+                <Guide />
+              </div>
+            </div>
+          </Route>
+        </Switch>
         <div className="right-col">
           <div className="padding">
             <Import imported={!!(graphNodes && processedSourceMap)} />
