@@ -34,8 +34,7 @@ class Home extends Component {
             {!imported &&
               <Import imported={imported} />}
 
-            {graphNodes &&
-              processedSourceMap &&
+            {imported &&
               <Resolve
                 history={history}
                 graphNodes={graphNodes}
