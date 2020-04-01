@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ByTypeBarChart from "./ByTypeBarChart";
 import Report from "./Report";
-import FileDetails from "./FileDetails";
+import OverviewBarChart from "./FileDetails";
 import RippleChart from "./RippleChart";
 import Treemap from "./Treemap";
 import { colors } from "../theme";
@@ -198,7 +198,7 @@ class Bundle extends Component<BundleProps, BundleState> {
         </div>
         <div className="flex page">
           <div className="panel">
-            <FileDetails
+            <OverviewBarChart
               total={total}
               network={network}
               changeSelected={this.changeSelected}
