@@ -133,7 +133,6 @@ class Bundle extends Component<BundleProps, BundleState> {
     const totalsByType = this.props.rollups;
     const hierarchy = this.props.hierarchy;
     const duplicateNodeModules = this.props.duplicateNodeModules || {};
-    const name = "Project Name";
 
     let edges = network.edges || [],
       nodes = network.nodes || [];
@@ -192,7 +191,6 @@ class Bundle extends Component<BundleProps, BundleState> {
             network={network}
             changeSelected={this.changeSelected}
             total={total}
-            name={name}
           />
         </div>
         <div>
@@ -221,7 +219,6 @@ class Bundle extends Component<BundleProps, BundleState> {
             ) : (
               <Treemap
                 hierarchy={hierarchy}
-                name={name}
                 bgColorsMap={directoryColors}
                 changeSelected={this.changeSelected}
               />

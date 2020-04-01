@@ -116,21 +116,6 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
 
   return (
     <div className="flex padding top-panel">
-      <div style={{ width: "25vw" }}>
-        <h1>{name}</h1>
-        <b>
-          <small>Uploaded Date</small>
-        </b>
-        {totalSize &&
-          <div>
-            <p>
-              <b>
-                <small>Total Size</small>
-              </b>
-            </p>
-            <h2>{getFileSize(totalSize)}</h2>
-          </div>}
-      </div>
       <div className="scroll-y" style={{ width: "37vw" }}>
         <div className="sticky-wrapper">
           <div className="sticky">
@@ -162,6 +147,17 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
           </div>
           <BarChart {...directoryProps} data={directories} />
         </div>
+      </div>
+      <div style={{ width: "25vw" }}>
+        {totalSize &&
+          <div>
+            <p>
+              <b>
+                <small>Total Size</small>
+              </b>
+            </p>
+            <h2>{getFileSize(totalSize)}</h2>
+          </div>}
       </div>
     </div>
   );
