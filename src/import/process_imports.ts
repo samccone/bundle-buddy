@@ -99,9 +99,9 @@ export async function processImports(opts: {
         parsedNodes = opts.graphPreProcessFn(parsedNodes);
       }
 
-      ret.processedGraph = await cleanGraph(parsedNodes as GraphNodes);
+      ret.processedGraph = cleanGraph(parsedNodes as GraphNodes);
     } else {
-      ret.processedGraph = await cleanGraph(opts.graphNodes);
+      ret.processedGraph = cleanGraph(opts.graphNodes);
     }
   } catch (e) {
     ret.graphProcessError = new Error(humanizeGraphProcessError(e));
