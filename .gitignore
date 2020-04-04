@@ -8,3 +8,4 @@ src/bundle/prototype-*/*
 build/*
 deploy/*
 samples/*
+yarn-error*
