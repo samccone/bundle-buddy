@@ -39,15 +39,17 @@ function countsFromNetwork(
     }
   }
 
-  for (const k of Object.keys(d)) {
-    for (const k2 of Object.keys(d)) {
+  const keys = Object.keys(d);
+
+  for (const k of keys) {
+    for (const k2 of keys) {
       if (k !== k2 && (d[k2].requires as Set<string>).has(k)) {
         (d[k].requiredBy as Set<string>).add(k2);
       }
     }
   }
 
-  for (const k of Object.keys(d)) {
+  for (const k of keys) {
     d[k] = {
       requiredBy: Array.from(d[k].requiredBy),
       requires: Array.from(d[k].requires)
