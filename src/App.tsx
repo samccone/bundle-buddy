@@ -3,7 +3,7 @@ import React, { Component, Suspense, lazy } from "react";
 import Header from "./Header";
 import ErrorBoundry from "./ErrorBoundry";
 import { History, Location } from "history";
-import { ImportResolveState, ProcessedImportState } from "./types";
+import { ImportResolveState, ProcessedImportState, ImportHistory } from "./types";
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Home = lazy(() => import("./home/Home"));
@@ -49,7 +49,7 @@ class App extends Component {
                     path="/"
                     component={(h: {
                       location: Location<ImportResolveState>;
-                      history: History;
+                      history: ImportHistory;
                     }) => {
                       return (
                         <Home

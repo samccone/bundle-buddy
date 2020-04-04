@@ -4,8 +4,9 @@ import Introduction from "./Introduction";
 import Guide from "./Guide";
 import Import from "../import/Import";
 import Resolve from "../resolve/Resolve";
+import { ImportResolveState, ImportHistory } from "../types";
 
-class Home extends Component {
+class Home extends Component<ImportResolveState&{history: ImportHistory}> {
   render() {
     const {
       history,
