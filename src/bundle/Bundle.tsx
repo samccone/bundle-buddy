@@ -11,7 +11,7 @@ import {
   TrimmedNetwork,
   BundleNetworkCount
 } from "../types";
-
+import { requiredBy } from "./requiredBy";
 const _untypedByTypeByChart: any = ByTypeBarChart;
 const _untypedReport: any = Report;
 
@@ -56,41 +56,11 @@ function countsFromNetwork(
     };
   }
 
-  function countTransitiveRequires(
-    moduleName: string,
-    seen: Set<string>,
-    graph: { [t: string]: BundleNetworkCount },
-    root: boolean
-  ): number {
-    seen.add(moduleName);
-    var count = 0;
-
-    for (const requiredBy of graph[moduleName].requiredBy) {
-      if (seen.has(requiredBy)) {
-        continue;
-      }
-
-      if (root !== true) {
-        count++;
-      }
-
-      count += countTransitiveRequires(requiredBy, seen, graph, false);
-    }
-
-    return count;
-  }
-
+  const deps = requiredBy(d);
   for (const moduleName of Object.keys(d)) {
-    const seen: Set<string> = new Set();
-    d[moduleName].indirectDependedOnCount = countTransitiveRequires(
-      moduleName,
-      seen,
-      d,
-      true
-    );
-    d[moduleName].transitiveRequiredBy = Array.from(seen).filter(
-      v => v !== moduleName
-    );
+    d[moduleName].indirectDependedOnCount =
+      deps[moduleName].indirectDependedOnCount;
+    d[moduleName].transitiveRequiredBy = deps[moduleName].transitiveRequiredBy;
   }
 
   return d;
