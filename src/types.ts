@@ -5,7 +5,7 @@ import { ProcessedSourceMap } from "./import/process_sourcemaps";
 export enum ImportTypes {
   ROLLUP,
   ROME,
-  WEBPACK,
+  WEBPACK
 }
 
 export interface ImportResolveState {
@@ -86,8 +86,6 @@ export interface TrimmedNetwork {
   nodes: TrimmedNode[];
   edges: Edge[];
 }
-
-
 
 export interface Edge {
   source: string;

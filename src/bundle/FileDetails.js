@@ -116,10 +116,11 @@ export default class OverviewBarChart extends React.Component {
         </p>
         <p>
           Bundled{" "}
-          {withNodeModules &&
+          {withNodeModules && (
             <span>
               <b>{withNodeModules}</b> node_modules
-            </span>}{" "}
+            </span>
+          )}{" "}
           {withNodeModules && "with "}
           <b>{withoutNodeModules}</b> files
         </p>

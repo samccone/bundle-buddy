@@ -14,16 +14,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Open Sans',
-    'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   height: 100vh;
   overflow-x: hidden;
   color: var(--default-text);
@@ -38,7 +30,8 @@ h1 {
   color: var(--primary-color);
 }
 
-.pointer, a {
+.pointer,
+a {
   cursor: pointer;
 }
 
@@ -82,7 +75,8 @@ svg {
   position: inherit !important;
 }
 
-.overflow-visible svg, .overflow-visible {
+.overflow-visible svg,
+.overflow-visible {
   overflow: visible;
 }
 
@@ -214,7 +208,7 @@ a {
 }
 
 button {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
   border: none;
@@ -268,7 +262,8 @@ button.alert {
   margin: 10px;
 }
 
-.resolved-message, .resolved-message button {
+.resolved-message,
+.resolved-message button {
   font-size: 1.2em;
   font-weight: 300;
 }
@@ -320,7 +315,8 @@ button.project-import {
   font-size: 17px;
 }
 
-.no-link-underline, .no-link-underline:hover {
+.no-link-underline,
+.no-link-underline:hover {
   text-decoration: none;
 }
 
@@ -335,12 +331,12 @@ pre {
 
 code {
   font-size: 1em;
-  background: #F5F5F5;
+  background: #f5f5f5;
 }
 
 .add-diff {
   font-weight: bold;
-  background: #BCFFCF;
+  background: #bcffcf;
 }
 
 input[type="file"] {
@@ -357,7 +353,8 @@ input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
 
-input.search, button.clear {
+input.search,
+button.clear {
   font-size: 15px;
 }
 
@@ -470,7 +467,8 @@ th {
   border-bottom: 1px solid #ccc;
 }
 
-th, td {
+th,
+td {
   padding: 3px;
 }
 
@@ -481,7 +479,9 @@ th, td {
   white-space: nowrap;
 }
 
-.header-link, .header-link:visited, .header-link:hover {
+.header-link,
+.header-link:visited,
+.header-link:hover {
   align-items: center;
   color: var(--default-text);
   text-decoration: none;

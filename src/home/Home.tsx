@@ -6,7 +6,7 @@ import Import from "../import/Import";
 import Resolve from "../resolve/Resolve";
 import { ImportResolveState, ImportHistory } from "../types";
 
-class Home extends Component<ImportResolveState&{history: ImportHistory}> {
+class Home extends Component<ImportResolveState & { history: ImportHistory }> {
   render() {
     const {
       history,
@@ -16,7 +16,7 @@ class Home extends Component<ImportResolveState&{history: ImportHistory}> {
       graphFileTransform
     } = this.props;
 
-    const imported =  !!(graphNodes && processedSourceMap);
+    const imported = !!(graphNodes && processedSourceMap);
 
     return (
       <div className="col-container">
@@ -32,17 +32,17 @@ class Home extends Component<ImportResolveState&{history: ImportHistory}> {
         </Switch>
         <div className="right-col">
           <div className="padding">
-            {!imported &&
-              <Import imported={imported} />}
+            {!imported && <Import imported={imported} />}
 
-            {imported &&
+            {imported && (
               <Resolve
                 history={history}
                 graphNodes={graphNodes}
                 processedSourceMap={processedSourceMap}
                 sourceMapFileTransform={sourceMapFileTransform}
                 graphFileTransform={graphFileTransform}
-              />}
+              />
+            )}
           </div>
         </div>
       </div>

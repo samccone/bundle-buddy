@@ -1,7 +1,11 @@
 import React from "react";
 // noopener noreferrer
 
-export default function Report({duplicateNodeModules }: {duplicateNodeModules: [{key: string, value: string[]}]} ) {
+export default function Report({
+  duplicateNodeModules
+}: {
+  duplicateNodeModules: [{ key: string; value: string[] }];
+}) {
   return (
     <div className="flex padding top-panel">
       <div style={{ width: "25vw" }} />
@@ -20,7 +24,10 @@ export default function Report({duplicateNodeModules }: {duplicateNodeModules: [
           </p>
           <p>
             To learn more, check out{" "}
-            <a target="_blank" href="https://github.com/formidablelabs/inspectpack/">
+            <a
+              target="_blank"
+              href="https://github.com/formidablelabs/inspectpack/"
+            >
               inspectpack
             </a>
             .
@@ -28,42 +35,44 @@ export default function Report({duplicateNodeModules }: {duplicateNodeModules: [
         </div>
       </div>
       <div className="scroll-y" style={{ width: "37vw" }}>
-        {duplicateNodeModules && duplicateNodeModules.length > 0
-          ? <div>
-              <br />
-              <table>
-                <thead>
-                  <tr>
-                    <th>
-                      <small>Duplicated module</small>
-                    </th>
-                    <th>
-                      <small>Dependencies</small>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {duplicateNodeModules.map(k => {
-                    return (
-                      <tr key={k.key}>
-                        <td>
-                          <b>{k.key}</b>
-                        </td>
-                        <td>{k.value.join(", ")}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          : <p>
-              <small>
-                No duplicated node modules found{" "}
-                <span role="img" aria-label="raised-hands">
-                  🙌
-                </span>
-              </small>
-            </p>}
+        {duplicateNodeModules && duplicateNodeModules.length > 0 ? (
+          <div>
+            <br />
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <small>Duplicated module</small>
+                  </th>
+                  <th>
+                    <small>Dependencies</small>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {duplicateNodeModules.map(k => {
+                  return (
+                    <tr key={k.key}>
+                      <td>
+                        <b>{k.key}</b>
+                      </td>
+                      <td>{k.value.join(", ")}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p>
+            <small>
+              No duplicated node modules found{" "}
+              <span role="img" aria-label="raised-hands">
+                🙌
+              </span>
+            </small>
+          </p>
+        )}
       </div>
     </div>
   );

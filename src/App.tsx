@@ -3,7 +3,11 @@ import React, { Component, Suspense, lazy } from "react";
 import Header from "./Header";
 import ErrorBoundry from "./ErrorBoundry";
 import { History, Location } from "history";
-import { ImportResolveState, ProcessedImportState, ImportHistory } from "./types";
+import {
+  ImportResolveState,
+  ProcessedImportState,
+  ImportHistory
+} from "./types";
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Home = lazy(() => import("./home/Home"));
@@ -33,10 +37,10 @@ class App extends Component {
                       let params = new URLSearchParams(location.search);
                       return (
                         <Bundle
-                          trimmedNetwork={(location.state).trimmedNetwork}
-                          rollups={(location.state).rollups}
+                          trimmedNetwork={location.state.trimmedNetwork}
+                          rollups={location.state.rollups}
                           duplicateNodeModules={
-                            (location.state).duplicateNodeModules
+                            location.state.duplicateNodeModules
                           }
                           selected={params.get("selected")}
                           hierarchy={location.state.hierarchy}

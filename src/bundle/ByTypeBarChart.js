@@ -149,7 +149,7 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
         </div>
       </div>
       <div style={{ width: "25vw" }}>
-        {totalSize &&
+        {totalSize && (
           <div>
             <p>
               <b>
@@ -157,7 +157,8 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
               </b>
             </p>
             <h2>{getFileSize(totalSize)}</h2>
-          </div>}
+          </div>
+        )}
       </div>
     </div>
   );

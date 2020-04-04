@@ -69,20 +69,18 @@ export function processSourcemap(
   }
 
   return new Promise((res, rej) => {
-    sourceMap.SourceMapConsumer
-      .with(contents, null, consumer => {
-        const files: ProcessedSourceMap = {};
-        const cursor = { line: 1, column: 1 };
-        try {
-          consumer.computeColumnSpans();
-        } catch (e) {
-          rej(e);
-          return;
-        }
+    sourceMap.SourceMapConsumer.with(contents, null, consumer => {
+      const files: ProcessedSourceMap = {};
+      const cursor = { line: 1, column: 1 };
+      try {
+        consumer.computeColumnSpans();
+      } catch (e) {
+        rej(e);
+        return;
+      }
 
-        consumer.eachMapping(m => onMapping(cursor, files, m));
-        res(files);
-      })
-      .catch(e => rej(e));
+      consumer.eachMapping(m => onMapping(cursor, files, m));
+      res(files);
+    }).catch(e => rej(e));
   });
 }

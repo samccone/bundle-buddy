@@ -30,7 +30,7 @@ export default function BarChart(props) {
 
   return (
     <div className="bar-chart relative">
-      {foregroundGraphics &&
+      {foregroundGraphics && (
         <svg
           style={{
             position: "absolute",
@@ -41,7 +41,8 @@ export default function BarChart(props) {
           }}
         >
           {foregroundGraphics}
-        </svg>}
+        </svg>
+      )}
       <div style={{ paddingTop: margin.top }}>
         {data.map(d => {
           const o = oAccessor(d);

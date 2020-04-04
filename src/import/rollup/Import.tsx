@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { toClipboard } from "../clipboard";
 import { readFileAsText, readFilesAsText } from "../file_reader";
 import { processImports, buildImportErrorReport } from "../process_imports";
-import { ImportProps, ImportResolveState, ImportState, ImportTypes } from "../../types";
+import {
+  ImportProps,
+  ImportResolveState,
+  ImportState,
+  ImportTypes
+} from "../../types";
 
 // noopener noreferrer
 class RollupImport extends Component<ImportProps, ImportState> {
@@ -24,7 +29,6 @@ class RollupImport extends Component<ImportProps, ImportState> {
     if (type === ImportTypes.ROLLUP) {
       return (
         <div className="col-container">
-
           <div>
             <h5>{this.props.graphFileName}</h5>
             <p>via rollup.config.js</p>
@@ -58,8 +62,7 @@ plugins: [{
               <button
                 onClick={() =>
                   toClipboard(
-                    this.generateGraphContents.current!.textContent ||
-                    ""
+                    this.generateGraphContents.current!.textContent || ""
                   )
                 }
                 className="copy-button"
@@ -78,7 +81,7 @@ plugins: [{
     name: 'PROJECT_NAME',\n`}
                 <span className="add-diff">
                   &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
-                        </span>
+                </span>
                 {`
 }`}
               </pre>
@@ -89,25 +92,25 @@ plugins: [{
               />
             </code>
           </div>
-        </div>);
-
+        </div>
+      );
     }
 
     if (type === ImportTypes.ROME) {
-      return (<div>
-        <p>
-          Run the <code>bundle</code> command of rome to generate the sourcemap files and bundlebuddy.json for your project
-        </p>
-       <code>
-          <pre>
-            rome bundle .
-         </pre>
-        </code>
-      </div>)
+      return (
+        <div>
+          <p>
+            Run the <code>bundle</code> command of rome to generate the
+            sourcemap files and bundlebuddy.json for your project
+          </p>
+          <code>
+            <pre>rome bundle .</pre>
+          </code>
+        </div>
+      );
     }
 
-    return <div />
-
+    return <div />;
   }
 
   onGraphInput() {
@@ -199,7 +202,7 @@ plugins: [{
               <code>
                 <pre>{`${this.state.importError}`}</pre>
               </code>
-              <a href={this.state.importErrorUri || ''} target="_blank">
+              <a href={this.state.importErrorUri || ""} target="_blank">
                 File a bug
               </a>
             </div>
@@ -208,7 +211,12 @@ plugins: [{
           <div className="upload-files-container flex">
             <div className="button-import-container">
               <button tabIndex={-1} className="import-asset">
-                <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
+                <img
+                  height="20px"
+                  width="20px"
+                  className="attach-icon"
+                  src="/img/attach_icon.svg"
+                />
                 {this.props.graphFileName}
                 <input
                   id="stats"
@@ -231,7 +239,12 @@ plugins: [{
             </div>
             <div className="button-import-container">
               <button tabIndex={-1} className="import-asset">
-                <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
+                <img
+                  height="20px"
+                  width="20px"
+                  className="attach-icon"
+                  src="/img/attach_icon.svg"
+                />
                 sourcemaps
                 <input
                   id="sourcemap"
@@ -244,7 +257,8 @@ plugins: [{
               </button>
               <img
                 src={
-                  this.hasSourceMapFile(this.state.sourceMapFiles) || this.props.imported
+                  this.hasSourceMapFile(this.state.sourceMapFiles) ||
+                  this.props.imported
                     ? "/img/ok_icon.svg"
                     : "/img/warn_icon.svg"
                 }

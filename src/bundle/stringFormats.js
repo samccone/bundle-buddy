@@ -8,7 +8,7 @@ export const getFileSize = size => {
 };
 
 export const getPercent = (size, total) => {
-  let rounded = size < 1 ? size * 100 : size / total * 100;
+  let rounded = size < 1 ? size * 100 : (size / total) * 100;
 
   if (rounded < 0.1) rounded = "<.1";
   else if (rounded >= 99.5) rounded = rounded.toFixed(1);

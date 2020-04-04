@@ -10,11 +10,11 @@ import { ProcessedSourceMap } from "../process_sourcemaps";
 
 const IGNORE_FILES = [
   // https://twitter.com/samccone/status/1137776153148583936
-  'webpack/bootstrap',
+  "webpack/bootstrap"
 ];
 
 function removeWebpackMagicFiles(v: ProcessedSourceMap) {
-  const ret: ProcessedSourceMap = {}
+  const ret: ProcessedSourceMap = {};
   for (const k of Object.keys(v)) {
     let skip = false;
     for (const i of IGNORE_FILES) {
@@ -29,7 +29,6 @@ function removeWebpackMagicFiles(v: ProcessedSourceMap) {
 
   return ret;
 }
-
 
 class WebpackImport extends Component<ImportProps, ImportState> {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
@@ -70,7 +69,9 @@ class WebpackImport extends Component<ImportProps, ImportState> {
     });
 
     if (processed.proccessedSourcemap != null) {
-      processed.proccessedSourcemap = removeWebpackMagicFiles(processed.proccessedSourcemap);
+      processed.proccessedSourcemap = removeWebpackMagicFiles(
+        processed.proccessedSourcemap
+      );
     }
 
     const { importError, importErrorUri } = buildImportErrorReport(processed, {
@@ -144,10 +145,14 @@ class WebpackImport extends Component<ImportProps, ImportState> {
         ) : null}
         <h3>Upload assets</h3>
         <div className="upload-files-container flex">
-         
           <div className="button-import-container">
             <button className="import-asset" tabIndex={-1}>
-              <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
+              <img
+                height="20px"
+                width="20px"
+                className="attach-icon"
+                src="/img/attach_icon.svg"
+              />
               stats.json
               <input
                 id="stats"
@@ -159,7 +164,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             </button>
             <img
               src={
-                this.hasStatsFile(this.state.graphFile) || this.props.imported 
+                this.hasStatsFile(this.state.graphFile) || this.props.imported
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
@@ -170,7 +175,12 @@ class WebpackImport extends Component<ImportProps, ImportState> {
           </div>
           <div className="button-import-container">
             <button tabIndex={-1} className="import-asset">
-              <img height="20px" width="20px" className="attach-icon" src="/img/attach_icon.svg" />
+              <img
+                height="20px"
+                width="20px"
+                className="attach-icon"
+                src="/img/attach_icon.svg"
+              />
               sourcemaps
               <input
                 id="sourcemap"
@@ -183,7 +193,8 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             </button>
             <img
               src={
-                this.hasSourceMapFile(this.state.sourceMapFiles) || this.props.imported 
+                this.hasSourceMapFile(this.state.sourceMapFiles) ||
+                this.props.imported
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
@@ -251,7 +262,9 @@ fs.writeFileSync(
                     </pre>
                     <button
                       onClick={() =>
-                        toClipboard(`fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`)
+                        toClipboard(
+                          `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
+                        )
                       }
                       className="copy-button"
                       aria-label="Copy stats.json programatic snippit to clipboard"
@@ -280,7 +293,8 @@ fs.writeFileSync(
                 <pre>
                   <span className="add-diff">
                     GENERATE_SOURCEMAP=true yarn run build -- --stats
-                    </span ><br/>
+                  </span>
+                  <br />
                 </pre>
                 <button
                   onClick={() => toClipboard("devtool: 'source-map'")}
@@ -288,13 +302,12 @@ fs.writeFileSync(
                   aria-label="Copy sourcemap snippet to clipboard"
                 />
               </code>
-                 <p>Using npm, your project directory run: </p>
+              <p>Using npm, your project directory run: </p>
               <code>
                 <pre>
-     
-                <span className="add-diff">
-                GENERATE_SOURCEMAP=true npm run build -- --stats
-                    </span>
+                  <span className="add-diff">
+                    GENERATE_SOURCEMAP=true npm run build -- --stats
+                  </span>
                 </pre>
                 <button
                   onClick={() => toClipboard("devtool: 'source-map'")}

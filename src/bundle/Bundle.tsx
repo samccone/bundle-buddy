@@ -109,10 +109,12 @@ class Bundle extends Component<BundleProps, BundleState> {
   }
 
   download() {
-    const blob = new Blob([JSON.stringify(this.props)], {type : 'application/json'});
+    const blob = new Blob([JSON.stringify(this.props)], {
+      type: "application/json"
+    });
     const objectURL = URL.createObjectURL(blob);
-    const a: HTMLAnchorElement = document.createElement('a');
-    a.setAttribute('download', 'bundle-buddy-share.json');
+    const a: HTMLAnchorElement = document.createElement("a");
+    a.setAttribute("download", "bundle-buddy-share.json");
     a.href = objectURL;
     a.click();
   }

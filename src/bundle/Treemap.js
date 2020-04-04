@@ -53,7 +53,7 @@ export default class Treemap extends React.Component {
                   .find(node => node.data.name === this.state.zoomed)
                   .ancestors()
                   .reverse()
-                  .map((node, i) =>
+                  .map((node, i) => (
                     <Fragment key={node.data.name}>
                       {i > 0 ? " - " : ""}
                       <a
@@ -66,7 +66,7 @@ export default class Treemap extends React.Component {
                         {node.data.name}
                       </a>
                     </Fragment>
-                  )}
+                  ))}
           </div>
 
           <div
@@ -104,9 +104,9 @@ export default class Treemap extends React.Component {
                     }}
                   >
                     <div
-                      className={`treemap__label${node.children
-                        ? " treemap__label--children"
-                        : ""}`}
+                      className={`treemap__label${
+                        node.children ? " treemap__label--children" : ""
+                      }`}
                       onClick={() => {
                         this.handleClick(node);
                       }}
@@ -116,17 +116,20 @@ export default class Treemap extends React.Component {
                         color: "black" //textColorsMap.get(node.data.key),
                       }}
                     >
-                      {posStyle.height > 5 &&
+                      {posStyle.height > 5 && (
                         <div>
                           <span>{fileName}</span>
                           {posStyle.height > 2 * padding[0] &&
-                            (!node.children || node.children.length === 0)
-                            ? <span>
-                                <br />
-                                {getFileSize(node.value)}
-                              </span>
-                            : <span> ({getFileSize(node.value)})</span>}
-                        </div>}
+                          (!node.children || node.children.length === 0) ? (
+                            <span>
+                              <br />
+                              {getFileSize(node.value)}
+                            </span>
+                          ) : (
+                            <span> ({getFileSize(node.value)})</span>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
