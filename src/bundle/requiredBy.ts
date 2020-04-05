@@ -6,12 +6,15 @@ function getModules(
 ): string[] {
   seen.add(node);
 
+  // Filter out duplicate nodes that we have already handled
   const names = (graph[node].requiredBy as string[]).filter(v => !seen.has(v));
 
+  // Add all new nodes to the seen list
   for (const n of names) {
     seen.add(n);
   }
 
+  // Walk graph gathering all new nodes
   const allNames = names.map(v => {
     return getModules(graph, v, { isRoot: false }, seen);
   });
@@ -21,12 +24,13 @@ function getModules(
     allNames.push([node]);
   }
 
+  // Flatten the list now and return.
   const ret: string[] = [];
   for (const nameList of allNames) {
     ret.push(...nameList);
   }
 
-  return Array.from(new Set<string>(ret));
+  return ret;
 }
 
 export function requiredBy(d: {
