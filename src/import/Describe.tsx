@@ -47,6 +47,7 @@ class DescribeImport extends Component<{ history: ImportHistory }> {
                 width="35px"
                 height="36px"
                 className="rollup-logo"
+                alt="webpack logo"
                 src="/img/webpack_logo.png"
               />
               Webpack / Create React App
@@ -61,6 +62,7 @@ class DescribeImport extends Component<{ history: ImportHistory }> {
               <img
                 width="34px"
                 height="36px"
+                alt="rollup logo"
                 src="/img/rollup_logo.png"
                 className="rollup-logo"
               />{" "}
@@ -76,6 +78,7 @@ class DescribeImport extends Component<{ history: ImportHistory }> {
               <img
                 width="31px"
                 height="36px"
+                alt="rome logo"
                 src="/img/rome_logo.png"
                 className="rome-logo"
               />{" "}
