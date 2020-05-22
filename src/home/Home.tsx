@@ -57,19 +57,6 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                 />
                 <Route
                   exact
-                  path="/webpack/resolve"
-                  component={(h: { history: History }) => {
-                    return (
-                      <WebpackImport
-                        graphFileName="stats.json"
-                        importType={ImportTypes.WEBPACK}
-                        history={h.history as any}
-                      />
-                    );
-                  }}
-                />
-                <Route
-                  exact
                   path="/rollup"
                   component={(h: { history: History }) => {
                     return (
@@ -83,33 +70,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                 />
                 <Route
                   exact
-                  path="/rollup/resolve"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.ROLLUP}
-                        graphFileName="graph.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
-                />
-                <Route
-                  exact
                   path="/rome"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.ROME}
-                        graphFileName="bundlebuddy.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
-                />
-                <Route
-                  exact
-                  path="/rome/resolve"
                   component={(h: { history: History }) => {
                     return (
                       <Importer

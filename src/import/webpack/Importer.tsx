@@ -128,8 +128,6 @@ class WebpackImport extends Component<ImportProps, ImportState> {
   }
 
   render() {
-    const resolve = window.location.pathname.indexOf("resolve") !== -1;
-
     return (
       <div>
         {this.state.importError != null ? (
@@ -228,32 +226,31 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             </button>
           </div>
         </div>
-        {!resolve && (
-          <div className="col-container">
-            <div className="import-instruction">
-              <h3>How to create assets from Webpack:</h3>
-              <div className="col-container">
-                <div>
-                  <h5>{this.props.graphFileName}</h5>
-                  <p>via command line</p>
-                  <code>
-                    <pre>
-                      <span className="add-diff">
-                        webpack --profile --json > stats.json
-                      </span>
-                    </pre>
-                    <button
-                      onClick={() =>
-                        toClipboard("webpack --profile --json > stats.json")
-                      }
-                      className="copy-button"
-                      aria-label="Copy stats.json CLI command to clipboard"
-                    />
-                  </code>
-                  <p>via programatic compilation </p>
-                  <code>
-                    <pre>
-                      {`const webpack = require("webpack");
+        <div className="col-container">
+          <div className="import-instruction">
+            <h3>How to create assets from Webpack:</h3>
+            <div className="col-container">
+              <div>
+                <h5>{this.props.graphFileName}</h5>
+                <p>via command line</p>
+                <code>
+                  <pre>
+                    <span className="add-diff">
+                      webpack --profile --json > stats.json
+                    </span>
+                  </pre>
+                  <button
+                    onClick={() =>
+                      toClipboard("webpack --profile --json > stats.json")
+                    }
+                    className="copy-button"
+                    aria-label="Copy stats.json CLI command to clipboard"
+                  />
+                </code>
+                <p>via programatic compilation </p>
+                <code>
+                  <pre>
+                    {`const webpack = require("webpack");
 webpack({
 // Configuration Object
 }, (err, stats) => {
@@ -261,74 +258,73 @@ if (err) {
     console.error(err);
     return;
 }`}
-                      <span className="add-diff">
-                        {`
+                    <span className="add-diff">
+                      {`
 fs.writeFileSync(
   path.join(__dirname, "stats.json"), 
   JSON.stringify(stats.toJson()), 
   'utf-8');
 });
 `}
-                      </span>
-                    </pre>
-                    <button
-                      onClick={() =>
-                        toClipboard(
-                          `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
-                        )
-                      }
-                      className="copy-button"
-                      aria-label="Copy stats.json programatic snippit to clipboard"
-                    />
-                  </code>
-                </div>
-                <div>
-                  <h5>sourcemaps</h5>
-                  <p>webpack.conf.js</p>
-                  <code>
-                    <pre>
-                      <span className="add-diff">devtool: "source-map"</span>
-                    </pre>
-                    <button
-                      onClick={() => toClipboard("devtool: 'source-map'")}
-                      className="copy-button"
-                      aria-label="Copy sourcemap snippet to clipboard"
-                    />
-                  </code>
-                </div>
+                    </span>
+                  </pre>
+                  <button
+                    onClick={() =>
+                      toClipboard(
+                        `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
+                      )
+                    }
+                    className="copy-button"
+                    aria-label="Copy stats.json programatic snippit to clipboard"
+                  />
+                </code>
               </div>
-              <h3>How to create assets from Create React App:</h3>{" "}
-              <h5>sourcemaps & bundle-stats.json</h5>
-              <p>Using yarn, your project directory run: </p>
-              <code>
-                <pre>
-                  <span className="add-diff">
-                    GENERATE_SOURCEMAP=true yarn run build -- --stats
-                  </span>
-                  <br />
-                </pre>
-                <button
-                  onClick={() => toClipboard("devtool: 'source-map'")}
-                  className="copy-button"
-                  aria-label="Copy sourcemap snippet to clipboard"
-                />
-              </code>
-              <p>Using npm, your project directory run: </p>
-              <code>
-                <pre>
-                  <span className="add-diff">
-                    GENERATE_SOURCEMAP=true npm run build -- --stats
-                  </span>
-                </pre>
-                <button
-                  onClick={() => toClipboard("devtool: 'source-map'")}
-                  className="copy-button"
-                  aria-label="Copy sourcemap snippet to clipboard"
-                />
-              </code>
+              <div>
+                <h5>sourcemaps</h5>
+                <p>webpack.conf.js</p>
+                <code>
+                  <pre>
+                    <span className="add-diff">devtool: "source-map"</span>
+                  </pre>
+                  <button
+                    onClick={() => toClipboard("devtool: 'source-map'")}
+                    className="copy-button"
+                    aria-label="Copy sourcemap snippet to clipboard"
+                  />
+                </code>
+              </div>
             </div>
+            <h3>How to create assets from Create React App:</h3>{" "}
+            <h5>sourcemaps & bundle-stats.json</h5>
+            <p>Using yarn, your project directory run: </p>
+            <code>
+              <pre>
+                <span className="add-diff">
+                  GENERATE_SOURCEMAP=true yarn run build -- --stats
+                </span>
+                <br />
+              </pre>
+              <button
+                onClick={() => toClipboard("devtool: 'source-map'")}
+                className="copy-button"
+                aria-label="Copy sourcemap snippet to clipboard"
+              />
+            </code>
+            <p>Using npm, your project directory run: </p>
+            <code>
+              <pre>
+                <span className="add-diff">
+                  GENERATE_SOURCEMAP=true npm run build -- --stats
+                </span>
+              </pre>
+              <button
+                onClick={() => toClipboard("devtool: 'source-map'")}
+                className="copy-button"
+                aria-label="Copy sourcemap snippet to clipboard"
+              />
+            </code>
           </div>
-        )}
+        </div>
       </div>
     );
   }

@@ -191,8 +191,6 @@ plugins: [{
   }
 
   render() {
-    const resolve = window.location.pathname.indexOf("resolve") !== -1;
-
     return (
       <div>
         <div>
@@ -292,14 +290,12 @@ plugins: [{
               </button>
             </div>
           </div>
-          {!resolve && (
-            <div className="col-container">
-              <div className="col-narrow" />
-              <div className="import-instruction">
-                {this.importInstructions(this.props.importType)}
-              </div>
+          <div className="col-container">
+            <div className="col-narrow" />
+            <div className="import-instruction">
+              {this.importInstructions(this.props.importType)}
             </div>
-          )}
+          </div>
         </div>
       </div>
     );
