@@ -2,7 +2,9 @@ import { History } from "history";
 import { ProcessedSourceMap } from "./import/process_sourcemaps";
 
 export interface GraphNode {
+  // current file
   source: string;
+  // imports the following
   target: string | null;
 }
 
