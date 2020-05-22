@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { toClipboard } from "../clipboard";
-import { readFileAsText, readFilesAsText } from "../file_reader";
-import { processImports, buildImportErrorReport } from "../process_imports";
+import { toClipboard } from "./clipboard";
+import { readFileAsText, readFilesAsText } from "./file_reader";
+import { processImports, buildImportErrorReport } from "./process_imports";
 import {
   ImportProps,
   ImportResolveState,
   ImportState,
   ImportTypes
-} from "../../types";
+} from "../types";
 
 // noopener noreferrer
 class RollupImport extends Component<ImportProps, ImportState> {

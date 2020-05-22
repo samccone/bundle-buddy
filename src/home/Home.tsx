@@ -2,10 +2,11 @@ import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
 import Introduction from "./Introduction";
 import Guide from "./Guide";
-import Import from "../import/Import";
 import Resolve from "../resolve/Resolve";
-import { ImportResolveState, ImportHistory } from "../types";
-
+import { ImportResolveState, ImportHistory, ImportTypes } from "../types";
+import Importer from "../import/Importer";
+import Describe from "../import/Describe";
+import WebpackImport from "../import/webpack/Importer";
 class Home extends Component<ImportResolveState & { history: ImportHistory }> {
   render() {
     const {
@@ -32,7 +33,95 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
         </Switch>
         <div className="right-col">
           <div className="padding">
-            {!imported && <Import />}
+            {!imported && (
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={(h: { history: History }) => {
+                    return <Describe history={h.history as any} />;
+                  }}
+                />
+                <Route
+                  exact
+                  path="/webpack"
+                  component={(h: { history: History }) => {
+                    return (
+                      <WebpackImport
+                        graphFileName="stats.json"
+                        history={h.history as any}
+                        importType={ImportTypes.WEBPACK}
+                      />
+                    );
+                  }}
+                />
+                <Route
+                  exact
+                  path="/webpack/resolve"
+                  component={(h: { history: History }) => {
+                    return (
+                      <WebpackImport
+                        graphFileName="stats.json"
+                        importType={ImportTypes.WEBPACK}
+                        history={h.history as any}
+                      />
+                    );
+                  }}
+                />
+                <Route
+                  exact
+                  path="/rollup"
+                  component={(h: { history: History }) => {
+                    return (
+                      <Importer
+                        importType={ImportTypes.ROLLUP}
+                        graphFileName="graph.json"
+                        history={h.history as any}
+                      />
+                    );
+                  }}
+                />
+                <Route
+                  exact
+                  path="/rollup/resolve"
+                  component={(h: { history: History }) => {
+                    return (
+                      <Importer
+                        importType={ImportTypes.ROLLUP}
+                        graphFileName="graph.json"
+                        history={h.history as any}
+                      />
+                    );
+                  }}
+                />
+                <Route
+                  exact
+                  path="/rome"
+                  component={(h: { history: History }) => {
+                    return (
+                      <Importer
+                        importType={ImportTypes.ROME}
+                        graphFileName="bundlebuddy.json"
+                        history={h.history as any}
+                      />
+                    );
+                  }}
+                />
+                <Route
+                  exact
+                  path="/rome/resolve"
+                  component={(h: { history: History }) => {
+                    return (
+                      <Importer
+                        importType={ImportTypes.ROME}
+                        graphFileName="bundlebuddy.json"
+                        history={h.history as any}
+                      />
+                    );
+                  }}
+                />
+              </Switch>
+            )}
 
             {imported && (
               <Resolve
