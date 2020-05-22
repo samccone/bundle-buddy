@@ -30,8 +30,6 @@ class DescribeImport extends Component<{ history: ImportHistory }> {
   state: never;
 
   render() {
-    const selected = window.location.pathname;
-
     return (
       <div>
         <h1>Analyze</h1>
