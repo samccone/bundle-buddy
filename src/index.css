@@ -347,6 +347,7 @@ input[type="file"] {
   height: 100%;
   cursor: pointer;
   color: transparent;
+  opacity: 0;
 }
 
 input[type="file"]::-webkit-file-upload-button {
