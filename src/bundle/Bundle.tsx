@@ -55,8 +55,6 @@ function countsFromNetwork(
 
   const deps = requiredBy(d);
   for (const moduleName of Object.keys(d)) {
-    d[moduleName].indirectDependedOnCount =
-      deps[moduleName].indirectDependedOnCount;
     d[moduleName].transitiveRequiredBy = deps[moduleName].transitiveRequiredBy;
   }
 

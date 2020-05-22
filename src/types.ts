@@ -74,7 +74,6 @@ export interface BundleState {
 export interface BundleNetworkCount {
   requiredBy: Set<string> | string[];
   requires: Set<string> | string[];
-  indirectDependedOnCount?: number;
   transitiveRequiredBy?: string[];
 }
 
