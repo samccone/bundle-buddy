@@ -10,7 +10,7 @@ import {
   BundleNetworkCount,
   ProcessedImportState
 } from "../types";
-import { requiredBy } from "../graph/requiredBy";
+import { requiredBy } from "../graph";
 
 // noopener noreferrer
 function countsFromNetwork(

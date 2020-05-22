@@ -1,8 +1,4 @@
-import {
-  requiredBy,
-  directRequires,
-  calculateTransitiveRequires
-} from "./requiredBy";
+import { requiredBy, directRequires, calculateTransitiveRequires } from ".";
 
 it("calculate transitive requires cycles", () => {
   const input = {
