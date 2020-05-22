@@ -58,20 +58,15 @@ class App extends Component {
                       return (
                         <Home
                           history={h.history}
-                          graphNodes={
-                            h.location.state && h.location.state.graphNodes
-                          }
+                          graphNodes={h.location.state?.graphNodes}
                           processedSourceMap={
-                            h.location.state &&
-                            h.location.state.processedSourceMap
+                            h.location.state?.processedSourceMap
                           }
                           sourceMapFileTransform={
-                            h.location.state &&
-                            h.location.state.sourceMapFileTransform
+                            h.location.state?.sourceMapFileTransform
                           }
                           graphFileTransform={
-                            h.location.state &&
-                            h.location.state.graphFileTransform
+                            h.location.state?.graphFileTransform
                           }
                         />
                       );
