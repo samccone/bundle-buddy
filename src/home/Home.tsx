@@ -32,7 +32,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
         </Switch>
         <div className="right-col">
           <div className="padding">
-            {!imported && <Import imported={imported} />}
+            {!imported && <Import />}
 
             {imported && (
               <Resolve

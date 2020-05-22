@@ -164,7 +164,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             </button>
             <img
               src={
-                this.hasStatsFile(this.state.graphFile) || this.props.imported
+                this.hasStatsFile(this.state.graphFile)
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
@@ -193,8 +193,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
             </button>
             <img
               src={
-                this.hasSourceMapFile(this.state.sourceMapFiles) ||
-                this.props.imported
+                this.hasSourceMapFile(this.state.sourceMapFiles)
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }

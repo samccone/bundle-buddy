@@ -50,7 +50,6 @@ export type ImportHistory = History<ImportResolveState>;
 export interface ImportProps {
   history: ImportHistory;
   graphFileName: string;
-  imported: boolean;
   importType: ImportTypes;
 }
 

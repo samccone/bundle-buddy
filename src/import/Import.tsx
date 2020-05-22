@@ -8,9 +8,8 @@ import { ImportTypes } from "../types";
 
 // noopener noreferrer
 
-class Import extends Component<{ imported: boolean }> {
+class Import extends Component {
   render() {
-    const { imported } = this.props;
     return (
       <div>
         <Switch>
@@ -28,7 +27,6 @@ class Import extends Component<{ imported: boolean }> {
               return (
                 <WebpackImport
                   graphFileName="stats.json"
-                  imported={false}
                   history={h.history as any}
                   importType={ImportTypes.WEBPACK}
                 />
@@ -43,7 +41,6 @@ class Import extends Component<{ imported: boolean }> {
                 <WebpackImport
                   graphFileName="stats.json"
                   importType={ImportTypes.WEBPACK}
-                  imported={imported}
                   history={h.history as any}
                 />
               );
@@ -57,7 +54,6 @@ class Import extends Component<{ imported: boolean }> {
                 <RollupImport
                   importType={ImportTypes.ROLLUP}
                   graphFileName="graph.json"
-                  imported={false}
                   history={h.history as any}
                 />
               );
@@ -71,7 +67,6 @@ class Import extends Component<{ imported: boolean }> {
                 <RollupImport
                   importType={ImportTypes.ROLLUP}
                   graphFileName="graph.json"
-                  imported={imported}
                   history={h.history as any}
                 />
               );
@@ -85,7 +80,6 @@ class Import extends Component<{ imported: boolean }> {
                 <RollupImport
                   importType={ImportTypes.ROME}
                   graphFileName="bundlebuddy.json"
-                  imported={false}
                   history={h.history as any}
                 />
               );
@@ -99,7 +93,6 @@ class Import extends Component<{ imported: boolean }> {
                 <RollupImport
                   importType={ImportTypes.ROME}
                   graphFileName="bundlebuddy.json"
-                  imported={imported}
                   history={h.history as any}
                 />
               );

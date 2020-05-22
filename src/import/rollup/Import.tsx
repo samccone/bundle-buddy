@@ -228,7 +228,7 @@ plugins: [{
               </button>
               <img
                 src={
-                  this.hasGraphFile(this.state.graphFile) || this.props.imported
+                  this.hasGraphFile(this.state.graphFile)
                     ? "/img/ok_icon.svg"
                     : "/img/warn_icon.svg"
                 }
@@ -257,8 +257,7 @@ plugins: [{
               </button>
               <img
                 src={
-                  this.hasSourceMapFile(this.state.sourceMapFiles) ||
-                  this.props.imported
+                  this.hasSourceMapFile(this.state.sourceMapFiles)
                     ? "/img/ok_icon.svg"
                     : "/img/warn_icon.svg"
                 }
