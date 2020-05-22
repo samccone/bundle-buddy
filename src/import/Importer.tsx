@@ -215,6 +215,7 @@ plugins: [{
                   height="20px"
                   width="20px"
                   className="attach-icon"
+                  alt="attach file"
                   src="/img/attach_icon.svg"
                 />
                 {this.props.graphFileName}
@@ -234,6 +235,11 @@ plugins: [{
                 }
                 height="24px"
                 width="24px"
+                alt={
+                  this.hasGraphFile(this.state.graphFile)
+                    ? "OK import"
+                    : "missing import"
+                }
                 className="status-icon"
               />
             </div>
@@ -243,6 +249,7 @@ plugins: [{
                   height="20px"
                   width="20px"
                   className="attach-icon"
+                  alt="attach file"
                   src="/img/attach_icon.svg"
                 />
                 sourcemaps
@@ -263,6 +270,11 @@ plugins: [{
                 }
                 height="24px"
                 width="24px"
+                alt={
+                  this.hasSourceMapFile(this.state.sourceMapFiles)
+                    ? "OK import"
+                    : "missing import"
+                }
                 className="status-icon"
               />
             </div>

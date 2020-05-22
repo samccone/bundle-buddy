@@ -151,6 +151,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                 height="20px"
                 width="20px"
                 className="attach-icon"
+                alt="attach file"
                 src="/img/attach_icon.svg"
               />
               stats.json
@@ -168,6 +169,11 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
               }
+              alt={
+                this.hasStatsFile(this.state.graphFile)
+                  ? "OK import"
+                  : "missing import"
+              }
               height="24px"
               width="24px"
               className="status-icon"
@@ -179,6 +185,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                 height="20px"
                 width="20px"
                 className="attach-icon"
+                alt="attach file"
                 src="/img/attach_icon.svg"
               />
               sourcemaps
@@ -196,6 +203,11 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                 this.hasSourceMapFile(this.state.sourceMapFiles)
                   ? "/img/ok_icon.svg"
                   : "/img/warn_icon.svg"
+              }
+              alt={
+                this.hasSourceMapFile(this.state.sourceMapFiles)
+                  ? "OK import"
+                  : "missing import"
               }
               height="24px"
               width="24px"
