@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Component, Suspense, lazy } from "react";
 import Header from "./Header";
 import ErrorBoundry from "./ErrorBoundry";
-import { History, Location } from "history";
+import { Location } from "history";
 import {
   ImportResolveState,
   ProcessedImportState,
@@ -11,9 +11,6 @@ import {
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Home = lazy(() => import("./home/Home"));
-const Resolve = lazy(() => import("./resolve/Resolve"));
-
-type T = typeof Resolve;
 
 class App extends Component {
   state = {};
