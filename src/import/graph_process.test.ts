@@ -1,4 +1,5 @@
-import { cleanGraph, GraphNodes } from "./graph_process";
+import { GraphNodes } from "../types";
+import { cleanGraph } from "./graph_process";
 
 it("strips magic prefixes", () => {
   const nodes: GraphNodes = [

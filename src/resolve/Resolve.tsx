@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { GraphNodes } from "../import/graph_process";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import { transform } from "./process";
-import { ResolveProps, ProcessedImportState } from "../types";
+import { ResolveProps, ProcessedImportState, GraphNodes } from "../types";
 import { findCommonPrefix } from "../import/prefix_cleaner";
 import { History } from "history";
 import { findTrims } from "./trim";

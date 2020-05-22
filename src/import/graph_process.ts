@@ -1,12 +1,6 @@
 import builtins from "./builtins";
 import { findFirstIndex, findCommonPrefix } from "../import/prefix_cleaner";
-
-export interface GraphNode {
-  source: string;
-  target: string | null;
-}
-
-export type GraphNodes = GraphNode[];
+import { GraphNodes } from "../types";
 
 const prefixStrips = [
   // Rollup specific prefix added to add commonjs proxy nodes.

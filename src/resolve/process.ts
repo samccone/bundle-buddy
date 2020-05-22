@@ -1,9 +1,14 @@
-import { GraphNodes } from "../import/graph_process";
 import {
   ProcessedSourceMap
   // processSourcemap,
 } from "../import/process_sourcemaps";
-import { TrimmedNode, Edge, ProcessedImportState, TreemapNode } from "../types";
+import {
+  TrimmedNode,
+  Edge,
+  ProcessedImportState,
+  TreemapNode,
+  GraphNodes
+} from "../types";
 
 const EMPTY_NAME = "No Directory";
 

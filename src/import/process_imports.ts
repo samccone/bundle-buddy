@@ -1,5 +1,6 @@
 import { processSourcemap, ProcessedSourceMap } from "./process_sourcemaps";
-import { cleanGraph, GraphNodes } from "./graph_process";
+import { GraphNodes } from "../types";
+import { cleanGraph } from "./graph_process";
 
 export interface ImportProcess {
   proccessedSourcemap?: ProcessedSourceMap;

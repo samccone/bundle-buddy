@@ -1,6 +1,12 @@
 import { History } from "history";
-import { GraphNodes } from "./import/graph_process";
 import { ProcessedSourceMap } from "./import/process_sourcemaps";
+
+export interface GraphNode {
+  source: string;
+  target: string | null;
+}
+
+export type GraphNodes = GraphNode[];
 
 export enum ImportTypes {
   ROLLUP,
