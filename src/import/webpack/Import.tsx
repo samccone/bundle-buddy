@@ -186,7 +186,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
                 id="sourcemap"
                 type="file"
                 multiple
-                accept=".map"
+                accept=".map,.sourcemap"
                 ref={this.sourceMapInput}
                 onInput={() => this.onSourceMapInput()}
               />

@@ -250,7 +250,7 @@ plugins: [{
                   id="sourcemap"
                   multiple
                   type="file"
-                  accept=".map"
+                  accept=".map,.sourcemap"
                   ref={this.sourceMapInput}
                   onInput={() => this.onSourceMapInput()}
                 />
