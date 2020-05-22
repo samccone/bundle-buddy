@@ -132,17 +132,23 @@ export default function Bundle(props: Props) {
     d.color = directoryColors[d.name];
   });
 
-  network.nodes.forEach(d => {
+  const nodesWithMetadata = nodes.map(d => {
     const index = d.id.indexOf("/");
     if (index !== -1) d.directory = d.id.slice(0, index);
     else d.directory = "No Directory";
-    d.text =
-      (d.directory !== "No Directory" && d.id.replace(d.directory + "/", "")) ||
-      d.id;
-
     const lastSlash = d.id.lastIndexOf("/");
-    d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
-    d.count = counts[d.id];
+
+    const nodeWithMetadata = {
+      ...d,
+      text:
+        (d.directory !== "No Directory" &&
+          d.id.replace(d.directory + "/", "")) ||
+        d.id,
+      fileName: d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0),
+      count: counts[d.id]
+    };
+
+    return nodeWithMetadata;
   });
 
   return (
@@ -167,7 +173,7 @@ export default function Bundle(props: Props) {
           {selected ? (
             <RippleChart
               changeSelected={changeSelected}
-              nodes={nodes.map(d => Object.assign({}, d))}
+              nodes={nodesWithMetadata.map(d => Object.assign({}, d))}
               edges={edges.map(d => Object.assign({}, d))}
               max={max}
               selected={selected}

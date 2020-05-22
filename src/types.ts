@@ -79,6 +79,13 @@ export interface BundleNetworkCount {
   transitiveRequiredBy?: string[];
 }
 
+export interface BundleNetworkData extends BundleNetworkCount {
+  requiredBy: string[];
+  requires: string[];
+  indirectDependedOnCount: number;
+  transitiveRequiredBy: string[];
+}
+
 export interface ResolveProps {
   history: ImportHistory;
   graphNodes: GraphNodes;
@@ -104,6 +111,15 @@ export interface TrimmedNode {
   fileName?: string;
   text?: string;
   count?: BundleNetworkCount;
+}
+
+export interface TrimmedDataNode {
+  id: string;
+  totalBytes: number;
+  directory: string;
+  fileName: string;
+  text: string;
+  count: BundleNetworkData;
 }
 
 export interface ImportState {
