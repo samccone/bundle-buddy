@@ -4,9 +4,11 @@ import * as Sentry from "@sentry/browser";
 class ErrorBoundry extends Component {
   constructor(props: {}) {
     super(props);
-    Sentry.init({
-      dsn: "https://9e475abe454047779775876c0d1af187@sentry.io/1365297"
-    });
+    if (process.env.NODE_ENV === "production") {
+      Sentry.init({
+        dsn: "https://9e475abe454047779775876c0d1af187@sentry.io/1365297"
+      });
+    }
     this.state = { error: null };
   }
 
