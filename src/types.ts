@@ -95,22 +95,13 @@ export interface ResolveProps {
 }
 
 export interface TrimmedNetwork {
-  nodes: TrimmedNode[];
+  nodes: TrimmedDataNode[];
   edges: Edge[];
 }
 
 export interface Edge {
   source: string;
   target: string;
-}
-
-export interface TrimmedNode {
-  id: string;
-  totalBytes?: number;
-  directory?: string;
-  fileName?: string;
-  text?: string;
-  count?: BundleNetworkCount;
 }
 
 export interface TrimmedDataNode {

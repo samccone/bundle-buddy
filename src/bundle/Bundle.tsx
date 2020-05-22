@@ -1,65 +1,11 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Report from "./Report";
 import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
 import Treemap from "./Treemap";
 import { colors } from "../theme";
-import {
-  TrimmedNetwork,
-  BundleNetworkCount,
-  ProcessedImportState
-} from "../types";
-import { requiredBy } from "../graph";
-
-// noopener noreferrer
-function countsFromNetwork(
-  network: TrimmedNetwork
-): { [target: string]: BundleNetworkCount } {
-  const d: { [target: string]: BundleNetworkCount } = {};
-
-  for (const n of network.edges) {
-    if (d[n.target] == null) {
-      d[n.target] = {
-        requiredBy: new Set(),
-        requires: new Set()
-      };
-    }
-
-    (d[n.target].requires as Set<string>).add(n.source);
-
-    if (d[n.source] == null) {
-      d[n.source] = {
-        requiredBy: new Set(),
-        requires: new Set()
-      };
-    }
-  }
-
-  const keys = Object.keys(d);
-
-  for (const k of keys) {
-    for (const k2 of keys) {
-      if (k !== k2 && (d[k2].requires as Set<string>).has(k)) {
-        (d[k].requiredBy as Set<string>).add(k2);
-      }
-    }
-  }
-
-  for (const k of keys) {
-    d[k] = {
-      requiredBy: Array.from(d[k].requiredBy),
-      requires: Array.from(d[k].requires)
-    };
-  }
-
-  const deps = requiredBy(d);
-  for (const moduleName of Object.keys(d)) {
-    d[moduleName].transitiveRequiredBy = deps[moduleName].transitiveRequiredBy;
-  }
-
-  return d;
-}
+import { ProcessedImportState } from "../types";
 
 function storeSelected(selected?: string | null) {
   if (selected) {
@@ -77,7 +23,7 @@ function storeSelected(selected?: string | null) {
 
 function download(props: Props) {
   const blob = new Blob([JSON.stringify(props)], {
-    type: "application/json"
+    type: "application/json",
   });
   const objectURL = URL.createObjectURL(blob);
   const a: HTMLAnchorElement = document.createElement("a");
@@ -94,9 +40,6 @@ export default function Bundle(props: Props) {
 
   const [selected, changeSelected] = useState(props.selected);
   useEffect(() => storeSelected(selected), [selected]);
-  const counts = useMemo(() => countsFromNetwork(trimmedNetwork), [
-    trimmedNetwork
-  ]);
 
   const network = trimmedNetwork;
 
@@ -115,11 +58,11 @@ export default function Bundle(props: Props) {
 
   const directories = rollups.directories
     .sort((a, b) => b.totalBytes - a.totalBytes)
-    .map(d => d.name);
+    .map((d) => d.name);
 
   const directoryColors: { [dir: string]: string } = {};
   let i = 0;
-  directories.forEach(d => {
+  directories.forEach((d) => {
     if (d.indexOf("node_modules") !== -1) {
       directoryColors[d] = "url(#dags)";
     } else {
@@ -128,28 +71,19 @@ export default function Bundle(props: Props) {
     }
   });
 
-  rollups.directories.forEach(d => {
+  rollups.directories.forEach((d) => {
     d.color = directoryColors[d.name];
   });
 
-  const nodesWithMetadata = nodes.map(d => {
-    const index = d.id.indexOf("/");
-    if (index !== -1) d.directory = d.id.slice(0, index);
-    else d.directory = "No Directory";
-    const lastSlash = d.id.lastIndexOf("/");
+  // const nodesWithMetadata = nodes.map((d) => {
+  //   const nodeWithMetadata = {
+  //     ...d,
 
-    const nodeWithMetadata = {
-      ...d,
-      text:
-        (d.directory !== "No Directory" &&
-          d.id.replace(d.directory + "/", "")) ||
-        d.id,
-      fileName: d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0),
-      count: counts[d.id]
-    };
+  //     count: counts[d.id],
+  //   };
 
-    return nodeWithMetadata;
-  });
+  //   return nodeWithMetadata;
+  // });
 
   return (
     <div>
@@ -173,8 +107,8 @@ export default function Bundle(props: Props) {
           {selected ? (
             <RippleChart
               changeSelected={changeSelected}
-              nodes={nodesWithMetadata.map(d => Object.assign({}, d))}
-              edges={edges.map(d => Object.assign({}, d))}
+              nodes={nodes.map((d) => Object.assign({}, d))}
+              edges={edges.map((d) => Object.assign({}, d))}
               max={max}
               selected={selected}
               directories={directories}
