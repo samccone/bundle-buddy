@@ -74,15 +74,8 @@ export interface BundleState {
 }
 
 export interface BundleNetworkCount {
-  requiredBy: Set<string> | string[];
-  requires: Set<string> | string[];
-  transitiveRequiredBy?: string[];
-}
-
-export interface BundleNetworkData extends BundleNetworkCount {
   requiredBy: string[];
   requires: string[];
-  indirectDependedOnCount: number;
   transitiveRequiredBy: string[];
 }
 
@@ -110,7 +103,7 @@ export interface TrimmedDataNode {
   directory: string;
   fileName: string;
   text: string;
-  count: BundleNetworkData;
+  count: BundleNetworkCount;
 }
 
 export interface ImportState {

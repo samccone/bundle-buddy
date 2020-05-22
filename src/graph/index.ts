@@ -13,7 +13,7 @@ function getModules(
   seen.add(node);
 
   // Filter out duplicate nodes that we have already handled
-  const names = (graph[node].requiredBy as string[]).filter(v => !seen.has(v));
+  const names = Array.from(graph[node].requiredBy).filter(v => !seen.has(v));
 
   // Add all new nodes to the seen list
   for (const n of names) {

@@ -23,7 +23,7 @@ function storeSelected(selected?: string | null) {
 
 function download(props: Props) {
   const blob = new Blob([JSON.stringify(props)], {
-    type: "application/json",
+    type: "application/json"
   });
   const objectURL = URL.createObjectURL(blob);
   const a: HTMLAnchorElement = document.createElement("a");
@@ -58,11 +58,11 @@ export default function Bundle(props: Props) {
 
   const directories = rollups.directories
     .sort((a, b) => b.totalBytes - a.totalBytes)
-    .map((d) => d.name);
+    .map(d => d.name);
 
   const directoryColors: { [dir: string]: string } = {};
   let i = 0;
-  directories.forEach((d) => {
+  directories.forEach(d => {
     if (d.indexOf("node_modules") !== -1) {
       directoryColors[d] = "url(#dags)";
     } else {
@@ -71,19 +71,9 @@ export default function Bundle(props: Props) {
     }
   });
 
-  rollups.directories.forEach((d) => {
+  rollups.directories.forEach(d => {
     d.color = directoryColors[d.name];
   });
-
-  // const nodesWithMetadata = nodes.map((d) => {
-  //   const nodeWithMetadata = {
-  //     ...d,
-
-  //     count: counts[d.id],
-  //   };
-
-  //   return nodeWithMetadata;
-  // });
 
   return (
     <div>
@@ -107,8 +97,8 @@ export default function Bundle(props: Props) {
           {selected ? (
             <RippleChart
               changeSelected={changeSelected}
-              nodes={nodes.map((d) => Object.assign({}, d))}
-              edges={edges.map((d) => Object.assign({}, d))}
+              nodes={nodes.map(d => Object.assign({}, d))}
+              edges={edges.map(d => Object.assign({}, d))}
               max={max}
               selected={selected}
               directories={directories}

@@ -1,5 +1,5 @@
 import {
-  ProcessedSourceMap,
+  ProcessedSourceMap
   // processSourcemap,
 } from "../import/process_sourcemaps";
 import {
@@ -7,9 +7,9 @@ import {
   Edge,
   ProcessedImportState,
   TreemapNode,
-  GraphNodes,
-  TrimmedNetwork,
-  BundleNetworkCount,
+  GraphNodes
+  // TrimmedNetwork,
+  // BundleNetworkCount,
 } from "../types";
 import { requiredBy } from "../graph";
 
@@ -30,20 +30,20 @@ function nodesToTreeMap(data: {
   const rel = [
     {
       parent: "",
-      name: "rootNode",
-    },
+      name: "rootNode"
+    }
   ];
 
   const unique: { [hash: string]: Boolean } = {};
 
-  Object.keys(data).forEach((d) => {
-    const parents = d.split(/\/(?!\/)/).filter((d) => d);
+  Object.keys(data).forEach(d => {
+    const parents = d.split(/\/(?!\/)/).filter(d => d);
 
     parents.forEach((p, i, array) => {
       const value = {
         name: array.slice(0, i + 1).join("/"),
         parent: array.slice(0, i).join("/") || "rootNode",
-        totalBytes: 0,
+        totalBytes: 0
       };
 
       if (i === array.length - 1) {
@@ -63,53 +63,6 @@ function nodesToTreeMap(data: {
 }
 
 // noopener noreferrer
-function countsFromNetwork(
-  network: TrimmedNetwork
-): { [target: string]: BundleNetworkCount } {
-  const d: { [target: string]: BundleNetworkCount } = {};
-
-  for (const n of network.edges) {
-    if (d[n.target] == null) {
-      d[n.target] = {
-        requiredBy: new Set(),
-        requires: new Set(),
-      };
-    }
-
-    (d[n.target].requires as Set<string>).add(n.source);
-
-    if (d[n.source] == null) {
-      d[n.source] = {
-        requiredBy: new Set(),
-        requires: new Set(),
-      };
-    }
-  }
-
-  const keys = Object.keys(d);
-
-  for (const k of keys) {
-    for (const k2 of keys) {
-      if (k !== k2 && (d[k2].requires as Set<string>).has(k)) {
-        (d[k].requiredBy as Set<string>).add(k2);
-      }
-    }
-  }
-
-  for (const k of keys) {
-    d[k] = {
-      requiredBy: Array.from(d[k].requiredBy),
-      requires: Array.from(d[k].requires),
-    };
-  }
-
-  const deps = requiredBy(d);
-  for (const moduleName of Object.keys(d)) {
-    d[moduleName].transitiveRequiredBy = deps[moduleName].transitiveRequiredBy;
-  }
-
-  return d;
-}
 
 export function transform(
   graphNodes: GraphNodes,
@@ -179,13 +132,12 @@ export function transform(
       count: {
         requiredBy: [],
         requires: [],
-        indirectDependedOnCount: 0,
-        transitiveRequiredBy: [],
-      },
+        transitiveRequiredBy: []
+      }
     };
   }
 
-  graphNodes.forEach((e) => {
+  graphNodes.forEach(e => {
     //trimmed network functions
     addedNodes[e.source] = true;
 
@@ -204,7 +156,7 @@ export function transform(
     if (e.target != null && e.target.indexOf("node_modules") === -1) {
       trimmedEdges.push({
         source: sourceKey,
-        target: e.target,
+        target: e.target
       });
 
       if (!trimmedNodes[sourceKey]) {
@@ -247,30 +199,13 @@ export function transform(
     }
   });
 
-  Object.keys(sourceMapData).forEach((d) => {
+  Object.keys(sourceMapData).forEach(d => {
     if (!addedNodes[d]) {
       if (d.indexOf("node_modules") === -1) {
         trimmedNodes[d] = initializeNode(d);
       }
       console.log(d, sourceMapData[d].totalBytes);
     }
-  });
-
-  const trimmedNetwork = {
-    nodes: values(trimmedNodes),
-    edges: trimmedEdges,
-  };
-
-  trimmedNetwork.nodes.forEach((d) => {
-    const index = d.id.indexOf("/");
-    if (index !== -1) d.directory = d.id.slice(0, index);
-    else d.directory = EMPTY_NAME;
-    d.text =
-      (d.directory !== EMPTY_NAME && d.id.replace(d.directory + "/", "")) ||
-      d.id;
-
-    const lastSlash = d.id.lastIndexOf("/");
-    d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
   });
 
   const summary: {
@@ -292,10 +227,10 @@ export function transform(
   } = {
     value: 0,
     fileTypes: {},
-    directories: {},
+    directories: {}
   };
 
-  Object.keys(sourceMapData).forEach((key) => {
+  Object.keys(sourceMapData).forEach(key => {
     summary.value += sourceMapData[key].totalBytes;
     const index = key.lastIndexOf("/");
     const fileName = key.slice(index + 1).split(/\./g);
@@ -316,7 +251,7 @@ export function transform(
       } else {
         summary.fileTypes[extension] = {
           name: extension,
-          totalBytes: sourceMapData[key].totalBytes,
+          totalBytes: sourceMapData[key].totalBytes
         };
       }
 
@@ -325,7 +260,7 @@ export function transform(
       } else {
         summary.directories[parent] = {
           name: parent,
-          totalBytes: sourceMapData[key].totalBytes,
+          totalBytes: sourceMapData[key].totalBytes
         };
       }
     }
@@ -333,19 +268,80 @@ export function transform(
 
   const rollups = {
     value: summary.value,
-    fileTypes: values(summary.fileTypes).map((d) => ({
+    fileTypes: values(summary.fileTypes).map(d => ({
       ...d,
-      pct: d.totalBytes / summary.value,
+      pct: d.totalBytes / summary.value
     })),
-    directories: values(summary.directories).map((d) => ({
+    directories: values(summary.directories).map(d => ({
       ...d,
-      pct: d.totalBytes / summary.value,
-    })),
+      pct: d.totalBytes / summary.value
+    }))
   };
 
   const hierarchy = nodesToTreeMap(trimmedNodes);
 
-  countsFromNetwork(trimmedNetwork);
+  const counts: {
+    [target: string]: {
+      requiredBy: Set<string>;
+      requires: Set<string>;
+    };
+  } = {};
+
+  for (const n of trimmedEdges) {
+    if (counts[n.target] == null) {
+      counts[n.target] = {
+        requiredBy: new Set(),
+        requires: new Set()
+      };
+    }
+
+    (counts[n.target].requires as Set<string>).add(n.source);
+
+    if (counts[n.source] == null) {
+      counts[n.source] = {
+        requiredBy: new Set(),
+        requires: new Set()
+      };
+    }
+  }
+
+  const keys = Object.keys(counts);
+
+  for (const k of keys) {
+    for (const k2 of keys) {
+      if (k !== k2 && (counts[k2].requires as Set<string>).has(k)) {
+        (counts[k].requiredBy as Set<string>).add(k2);
+      }
+    }
+  }
+
+  for (const k of keys) {
+    trimmedNodes[k].count.requiredBy = Array.from(counts[k].requiredBy);
+    trimmedNodes[k].count.requires = Array.from(counts[k].requires);
+  }
+
+  const deps = requiredBy(counts);
+  for (const moduleName of Object.keys(counts)) {
+    trimmedNodes[moduleName].count.transitiveRequiredBy =
+      deps[moduleName].transitiveRequiredBy;
+  }
+
+  const trimmedNetwork = {
+    nodes: values(trimmedNodes),
+    edges: trimmedEdges
+  };
+
+  trimmedNetwork.nodes.forEach(d => {
+    const index = d.id.indexOf("/");
+    if (index !== -1) d.directory = d.id.slice(0, index);
+    else d.directory = EMPTY_NAME;
+    d.text =
+      (d.directory !== EMPTY_NAME && d.id.replace(d.directory + "/", "")) ||
+      d.id;
+
+    const lastSlash = d.id.lastIndexOf("/");
+    d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
+  });
 
   return { rollups, trimmedNetwork, duplicateNodeModules, hierarchy };
 }
