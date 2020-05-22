@@ -1,11 +1,12 @@
 import React from "react";
-// noopener noreferrer
+import { ProcessedImportState } from "../types";
 
-export default function Report({
-  duplicateNodeModules
-}: {
-  duplicateNodeModules: [{ key: string; value: string[] }];
-}) {
+type Props = {
+  duplicateNodeModules: ProcessedImportState["duplicateNodeModules"];
+};
+
+export default function Report(props: Props) {
+  const { duplicateNodeModules } = props;
   return (
     <div className="flex padding top-panel">
       <div style={{ width: "25vw" }} />
@@ -26,6 +27,7 @@ export default function Report({
             To learn more, check out{" "}
             <a
               target="_blank"
+              rel="noopener noreferrer"
               href="https://github.com/formidablelabs/inspectpack/"
             >
               inspectpack

@@ -21,22 +21,21 @@ export interface ImportResolveState {
   sourceMapFileTransform?: string;
 }
 
+export type SizeData = {
+  id?: string;
+  pct: number;
+  name: string;
+  totalBytes: number;
+  color?: string;
+};
+
 export interface ProcessedImportState {
   trimmedNetwork: TrimmedNetwork;
   hierarchy: TreemapNode[];
   rollups: {
     value: number;
-    fileTypes: {
-      pct: number;
-      name: string;
-      totalBytes: number;
-    }[];
-    directories: {
-      pct: number;
-      name: string;
-      totalBytes: number;
-      color?: string;
-    }[];
+    fileTypes: SizeData[];
+    directories: SizeData[];
   };
   duplicateNodeModules: Array<{
     key: string;

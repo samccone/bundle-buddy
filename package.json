@@ -5,6 +5,7 @@
   "dependencies": {
     "@sentry/browser": "^4.4.2",
     "@storybook/preset-create-react-app": "^2.1.1",
+    "@types/d3-scale": "^2.2.0",
     "@types/history": "^4.7.5",
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.18",

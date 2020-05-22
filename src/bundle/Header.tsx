@@ -4,6 +4,7 @@ import { primary, mainFileColor, secondaryFileColor } from "../theme";
 
 import { getFileSize, getPercent } from "./stringFormats";
 import BarChart from "./BarChart";
+import { ProcessedImportState, SizeData } from "../types";
 
 export const typeColors = {
   js: mainFileColor,
@@ -14,26 +15,29 @@ export const typeColors = {
 
 const frameProps = {
   margin: { top: 5, right: 50, left: 140 },
-  oAccessor: d => d.name,
-  rAccessor: d => d.totalBytes,
+  oAccessor: (d: SizeData) => d.name,
+  rAccessor: (d: SizeData) => d.totalBytes,
   oPadding: 10,
   responsiveWidth: true,
-  style: d => {
-    return {};
-  },
+  // style: (d: ) => {
+  //   return {};
+  // },
   barHeight: 45,
-  bar: (d, width) => {
+  bar: (d: SizeData, width: number | string | undefined) => {
     return (
       <div
         style={{
-          background: typeColors[d.name] || d.color || secondaryFileColor,
+          background:
+            typeColors[d.name as keyof typeof typeColors] ||
+            d.color ||
+            secondaryFileColor,
           height: "100%",
           width
         }}
       />
     );
   },
-  oLabel: (d, o, r) => {
+  oLabel: (d: SizeData, o: string, r: number) => {
     return (
       <div>
         <span>{o}</span>
@@ -81,10 +85,15 @@ const directoryProps = {
   ]
 };
 
-export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
-  const totalSize = total || totalsByType.value;
-  const types = totalsByType.fileTypes || [];
-  const folders = totalsByType.directories || [];
+type Props = {
+  rollups?: ProcessedImportState["rollups"];
+};
+
+export default function ByTypeBarChart(props: Props) {
+  const { rollups = {} as ProcessedImportState["rollups"] } = props;
+  const totalSize = rollups.value;
+  const types = rollups.fileTypes || [];
+  const folders = rollups.directories || [];
 
   const fileTypes = types.sort((a, b) => b.totalBytes - a.totalBytes);
   const directories = folders.sort((a, b) => b.totalBytes - a.totalBytes);
@@ -116,6 +125,18 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
 
   return (
     <div className="flex padding top-panel">
+      <div style={{ width: "25vw" }}>
+        {totalSize && (
+          <div>
+            <p>
+              <b>
+                <small>Total Size</small>
+              </b>
+            </p>
+            <h2>{getFileSize(totalSize)}</h2>
+          </div>
+        )}
+      </div>
       <div className="scroll-y" style={{ width: "37vw" }}>
         <div className="sticky-wrapper">
           <div className="sticky">
@@ -147,18 +168,6 @@ export default function ByTypeBarChart({ totalsByType = {}, total, name }) {
           </div>
           <BarChart {...directoryProps} data={directories} />
         </div>
-      </div>
-      <div style={{ width: "25vw" }}>
-        {totalSize && (
-          <div>
-            <p>
-              <b>
-                <small>Total Size</small>
-              </b>
-            </p>
-            <h2>{getFileSize(totalSize)}</h2>
-          </div>
-        )}
       </div>
     </div>
   );

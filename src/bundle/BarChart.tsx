@@ -3,12 +3,26 @@ import { scaleLinear } from "d3-scale";
 
 //handle pattern
 
-export default function BarChart(props) {
+type Props = {
+  margin: { top?: number; bottom?: number; left?: number };
+  barHeight?: number;
+  rExtent?: [number, number];
+  oAccessor: (d: any) => string;
+  oLabel: (d: any, o: string, r: number) => string | JSX.Element;
+  rAccessor: (d: any) => number;
+  bar?: (d: any, width: number | string | undefined) => JSX.Element;
+  oPadding?: number;
+  foregroundGraphics?: JSX.Element | JSX.Element[];
+  data?: any[];
+  onBarClick?: (id: string) => {} | React.Dispatch<string> | undefined | void;
+};
+
+export default function BarChart(props: Props) {
   const {
     data = [],
     rAccessor,
     oAccessor,
-    margin = {},
+    margin = {} as Props["margin"],
     oLabel,
     bar,
     oPadding = 3,

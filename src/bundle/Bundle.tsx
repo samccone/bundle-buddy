@@ -1,19 +1,16 @@
-import React, { Component } from "react";
-import ByTypeBarChart from "./ByTypeBarChart";
+import React, { useState, useMemo, useEffect } from "react";
+import Header from "./Header";
 import Report from "./Report";
-import OverviewBarChart from "./FileDetails";
+import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
 import Treemap from "./Treemap";
 import { colors } from "../theme";
 import {
-  BundleProps,
-  BundleState,
   TrimmedNetwork,
-  BundleNetworkCount
+  BundleNetworkCount,
+  ProcessedImportState
 } from "../types";
 import { requiredBy } from "./requiredBy";
-const _untypedByTypeByChart: any = ByTypeBarChart;
-const _untypedReport: any = Report;
 
 // noopener noreferrer
 function countsFromNetwork(
@@ -66,30 +63,8 @@ function countsFromNetwork(
   return d;
 }
 
-class Bundle extends Component<BundleProps, BundleState> {
-  constructor(props: BundleProps) {
-    super(props);
-
-    this.changeSelected = this.changeSelected.bind(this);
-
-    this.state = {
-      selected: props.selected,
-      counts: countsFromNetwork(props.trimmedNetwork)
-    };
-  }
-
-  download() {
-    const blob = new Blob([JSON.stringify(this.props)], {
-      type: "application/json"
-    });
-    const objectURL = URL.createObjectURL(blob);
-    const a: HTMLAnchorElement = document.createElement("a");
-    a.setAttribute("download", "bundle-buddy-share.json");
-    a.href = objectURL;
-    a.click();
-  }
-
-  changeSelected(selected: string) {
+function storeSelected(selected?: string | null) {
+  if (selected) {
     window.history.pushState(
       { ...window.history.state, selected },
       "",
@@ -99,109 +74,117 @@ class Bundle extends Component<BundleProps, BundleState> {
           }?selected=${encodeURIComponent(selected)}`
         : `${window.location.origin}${window.location.pathname}`
     );
-    this.setState({ selected });
-  }
-
-  render() {
-    const network = this.props.trimmedNetwork;
-    const totalsByType = this.props.rollups;
-    const hierarchy = this.props.hierarchy;
-    const duplicateNodeModules = this.props.duplicateNodeModules || {};
-
-    let edges = network.edges || [],
-      nodes = network.nodes || [];
-
-    const max =
-      network &&
-      network.nodes &&
-      network.nodes.sort((a, b) => {
-        if (a.totalBytes == null || b.totalBytes == null) {
-          return 0;
-        }
-        return b.totalBytes - a.totalBytes;
-      })[0].totalBytes;
-
-    const directories = totalsByType.directories
-      .sort((a, b) => b.totalBytes - a.totalBytes)
-      .map(d => d.name);
-
-    const directoryColors: { [dir: string]: string } = {};
-    let i = 0;
-    directories.forEach(d => {
-      if (d.indexOf("node_modules") !== -1) {
-        directoryColors[d] = "url(#dags)";
-      } else {
-        directoryColors[d] = colors[i] || "black";
-        i++;
-      }
-    });
-
-    totalsByType.directories.forEach(d => {
-      d.color = directoryColors[d.name];
-    });
-
-    network.nodes.forEach(d => {
-      const index = d.id.indexOf("/");
-      if (index !== -1) d.directory = d.id.slice(0, index);
-      else d.directory = "No Directory";
-      d.text =
-        (d.directory !== "No Directory" &&
-          d.id.replace(d.directory + "/", "")) ||
-        d.id;
-
-      const lastSlash = d.id.lastIndexOf("/");
-      d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
-      d.count = this.state.counts[d.id];
-    });
-
-    const total = totalsByType.value;
-
-    return (
-      <div>
-        <button onClick={() => this.download()}>download analysis</button>
-        <div>
-          <_untypedByTypeByChart
-            totalsByType={totalsByType}
-            network={network}
-            changeSelected={this.changeSelected}
-            total={total}
-          />
-        </div>
-        <div>
-          <_untypedReport duplicateNodeModules={duplicateNodeModules} />
-        </div>
-        <div className="flex page">
-          <div className="panel">
-            <OverviewBarChart
-              total={total}
-              network={network}
-              changeSelected={this.changeSelected}
-              directoryColors={directoryColors}
-            />
-          </div>
-          <div className="panel large">
-            {this.state.selected ? (
-              <RippleChart
-                changeSelected={this.changeSelected}
-                nodes={nodes.map(d => Object.assign({}, d))}
-                edges={edges.map(d => Object.assign({}, d))}
-                max={max}
-                selected={this.state.selected}
-                directories={directories}
-                directoryColors={directoryColors}
-              />
-            ) : (
-              <Treemap
-                hierarchy={hierarchy}
-                bgColorsMap={directoryColors}
-                changeSelected={this.changeSelected}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    );
   }
 }
 
-export default Bundle;
+function download(props: Props) {
+  const blob = new Blob([JSON.stringify(props)], {
+    type: "application/json"
+  });
+  const objectURL = URL.createObjectURL(blob);
+  const a: HTMLAnchorElement = document.createElement("a");
+  a.setAttribute("download", "bundle-buddy-share.json");
+  a.href = objectURL;
+  a.click();
+}
+
+interface Props extends ProcessedImportState {
+  selected?: string | null;
+}
+export default function Bundle(props: Props) {
+  const { trimmedNetwork, rollups, hierarchy, duplicateNodeModules } = props;
+
+  const [selected, changeSelected] = useState(props.selected);
+  useEffect(() => storeSelected(selected), [selected]);
+  const counts = useMemo(() => countsFromNetwork(trimmedNetwork), [
+    trimmedNetwork
+  ]);
+
+  const network = trimmedNetwork;
+
+  let edges = network.edges || [],
+    nodes = network.nodes || [];
+
+  const max =
+    network &&
+    network.nodes &&
+    network.nodes.sort((a, b) => {
+      if (a.totalBytes == null || b.totalBytes == null) {
+        return 0;
+      }
+      return b.totalBytes - a.totalBytes;
+    })[0].totalBytes;
+
+  const directories = rollups.directories
+    .sort((a, b) => b.totalBytes - a.totalBytes)
+    .map(d => d.name);
+
+  const directoryColors: { [dir: string]: string } = {};
+  let i = 0;
+  directories.forEach(d => {
+    if (d.indexOf("node_modules") !== -1) {
+      directoryColors[d] = "url(#dags)";
+    } else {
+      directoryColors[d] = colors[i] || "black";
+      i++;
+    }
+  });
+
+  rollups.directories.forEach(d => {
+    d.color = directoryColors[d.name];
+  });
+
+  network.nodes.forEach(d => {
+    const index = d.id.indexOf("/");
+    if (index !== -1) d.directory = d.id.slice(0, index);
+    else d.directory = "No Directory";
+    d.text =
+      (d.directory !== "No Directory" && d.id.replace(d.directory + "/", "")) ||
+      d.id;
+
+    const lastSlash = d.id.lastIndexOf("/");
+    d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
+    d.count = counts[d.id];
+  });
+
+  return (
+    <div>
+      <button onClick={() => download(props)}>download analysis</button>
+      <div>
+        <Header rollups={rollups} />
+      </div>
+      <div>
+        <Report duplicateNodeModules={duplicateNodeModules} />
+      </div>
+      <div className="flex page">
+        <div className="panel">
+          <FileDetails
+            total={rollups.value}
+            network={network}
+            changeSelected={changeSelected}
+            directoryColors={directoryColors}
+          />
+        </div>
+        <div className="panel large">
+          {selected ? (
+            <RippleChart
+              changeSelected={changeSelected}
+              nodes={nodes.map(d => Object.assign({}, d))}
+              edges={edges.map(d => Object.assign({}, d))}
+              max={max}
+              selected={selected}
+              directories={directories}
+              directoryColors={directoryColors}
+            />
+          ) : (
+            <Treemap
+              hierarchy={hierarchy}
+              bgColorsMap={directoryColors}
+              changeSelected={changeSelected}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
