@@ -1,6 +1,5 @@
 import { processSourcemap, ProcessedSourceMap } from "./process_sourcemaps";
 import { GraphNodes } from "../types";
-import { cleanGraph } from "./graph_process";
 import { ReportErrorUri } from "../report_error";
 
 export interface ImportProcess {
@@ -71,9 +70,9 @@ export async function processImports(opts: {
         parsedNodes = opts.graphPreProcessFn(parsedNodes);
       }
 
-      ret.processedGraph = cleanGraph(parsedNodes as GraphNodes);
+      ret.processedGraph = parsedNodes as GraphNodes;
     } else {
-      ret.processedGraph = cleanGraph(opts.graphNodes);
+      ret.processedGraph = opts.graphNodes;
     }
   } catch (e) {
     ret.graphProcessError = new Error(humanizeGraphProcessError(e));
