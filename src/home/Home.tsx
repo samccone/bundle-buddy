@@ -10,14 +10,11 @@ import WebpackImport from "../import/webpack/Importer";
 class Home extends Component<ImportResolveState & { history: ImportHistory }> {
   render() {
     const {
-      history,
       graphNodes,
       processedSourceMap,
       sourceMapFileTransform,
       graphFileTransform
     } = this.props;
-
-    const imported = !!(graphNodes && processedSourceMap);
 
     return (
       <div className="col-container">
@@ -33,66 +30,68 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
         </Switch>
         <div className="right-col">
           <div className="padding">
-            {!imported && (
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  component={(h: { history: History }) => {
-                    return <Describe history={h.history as any} />;
-                  }}
-                />
-                <Route
-                  exact
-                  path="/webpack"
-                  component={(h: { history: History }) => {
-                    return (
-                      <WebpackImport
-                        graphFileName="stats.json"
-                        history={h.history as any}
-                        importType={ImportTypes.WEBPACK}
-                      />
-                    );
-                  }}
-                />
-                <Route
-                  exact
-                  path="/rollup"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.ROLLUP}
-                        graphFileName="graph.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
-                />
-                <Route
-                  exact
-                  path="/rome"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.ROME}
-                        graphFileName="bundlebuddy.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
-                />
-              </Switch>
-            )}
-
-            {imported && (
-              <Resolve
-                history={history}
-                graphNodes={graphNodes}
-                processedSourceMap={processedSourceMap}
-                sourceMapFileTransform={sourceMapFileTransform}
-                graphFileTransform={graphFileTransform}
+            <Switch>
+              <Route
+                exact
+                path="/"
+                component={(h: { history: History }) => {
+                  return <Describe history={h.history as any} />;
+                }}
               />
-            )}
+              <Route
+                exact
+                path="/webpack"
+                component={(h: { history: History }) => {
+                  return (
+                    <WebpackImport
+                      graphFileName="stats.json"
+                      history={h.history as any}
+                      importType={ImportTypes.WEBPACK}
+                    />
+                  );
+                }}
+              />
+              <Route
+                exact
+                path="/rollup"
+                component={(h: { history: History }) => {
+                  return (
+                    <Importer
+                      importType={ImportTypes.ROLLUP}
+                      graphFileName="graph.json"
+                      history={h.history as any}
+                    />
+                  );
+                }}
+              />
+              <Route
+                exact
+                path="/rome"
+                component={(h: { history: History }) => {
+                  return (
+                    <Importer
+                      importType={ImportTypes.ROME}
+                      graphFileName="bundlebuddy.json"
+                      history={h.history as any}
+                    />
+                  );
+                }}
+              />
+              <Route
+                path="/:importer/resolve"
+                component={(h: { history: History }) => {
+                  return (
+                    <Resolve
+                      history={h.history as any}
+                      graphNodes={graphNodes}
+                      processedSourceMap={processedSourceMap}
+                      sourceMapFileTransform={sourceMapFileTransform}
+                      graphFileTransform={graphFileTransform}
+                    />
+                  );
+                }}
+              />
+            </Switch>
           </div>
         </div>
       </div>
