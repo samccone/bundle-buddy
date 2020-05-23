@@ -152,7 +152,7 @@ export function transform(
             .join("/")
         : e.source;
 
-    if (e.target != null && e.target.indexOf("node_modules") === -1) {
+    if (e.target != null) {
       trimmedEdges.push({
         source: sourceKey,
         target: e.target

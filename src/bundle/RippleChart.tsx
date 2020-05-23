@@ -343,6 +343,22 @@ export default function RippleChart(props: Props) {
           className="overflow-visible"
           style={{ border: `1px solid black` }}
         >
+          <defs>
+            <pattern
+              key="2"
+              id="dags"
+              patternUnits="userSpaceOnUse"
+              width="4"
+              height="4"
+            >
+              <path
+                d="M 0,4 l 4,-4 M -1,1 l 2,-2 M 3,5 l 2,-2"
+                shapeRendering="auto"
+                stroke={"#ddd"}
+                strokeLinecap="square"
+              />
+            </pattern>
+          </defs>
           <g transform={`translate(${selectedXPos},${selectedYPos + 30})`}>
             <circle
               r={primaryRadius}

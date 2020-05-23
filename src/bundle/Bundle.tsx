@@ -61,6 +61,7 @@ export default function Bundle(props: Props) {
     .map(d => d.name);
 
   const directoryColors: { [dir: string]: string } = {};
+  const svgDirectoryColors: { [dir: string]: string } = {};
   let i = 0;
   directories.forEach(d => {
     if (d.indexOf("node_modules") !== -1) {
@@ -71,8 +72,10 @@ export default function Bundle(props: Props) {
         #fff 2px,
         #fff 4px
       )`;
+      svgDirectoryColors[d] = "url(#dags)";
     } else {
       directoryColors[d] = colors[i] || "black";
+      svgDirectoryColors[d] = colors[i] || "black";
       i++;
     }
   });
@@ -105,7 +108,7 @@ export default function Bundle(props: Props) {
             max={max}
             selected={selected}
             directories={directories}
-            directoryColors={directoryColors}
+            directoryColors={svgDirectoryColors}
           />
         ) : (
           <Treemap
