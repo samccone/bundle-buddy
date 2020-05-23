@@ -12,6 +12,7 @@ export type GraphEdges = Edge[];
 
 export enum ImportTypes {
   ROLLUP,
+  PARCEL,
   ROME,
   WEBPACK
 }

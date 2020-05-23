@@ -305,6 +305,10 @@ img.rome-logo {
   zoom: 0.9;
 }
 
+img.parcel-logo {
+  margin: -10px 0 -10px -2px;
+}
+
 button.rome-import {
   display: flex;
   align-items: center;

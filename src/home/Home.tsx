@@ -78,6 +78,19 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                 }}
               />
               <Route
+                exact
+                path="/parcel"
+                component={(h: { history: History }) => {
+                  return (
+                    <Importer
+                      importType={ImportTypes.PARCEL}
+                      graphFileName="bundle-buddy.json"
+                      history={h.history as any}
+                    />
+                  );
+                }}
+              />
+              <Route
                 path="/:importer/resolve"
                 component={(h: { history: History }) => {
                   return (

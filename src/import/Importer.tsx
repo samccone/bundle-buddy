@@ -110,6 +110,20 @@ plugins: [{
       );
     }
 
+    if (type === ImportTypes.PARCEL) {
+      return (
+        <div>
+          <p>
+            run <code>BUNDLE_BUDDY=true parcel build</code>&nbsp; to generate
+            the sourcemap files and bundle-buddy.json file for your project
+          </p>
+          <code>
+            <pre>BUNDLE_BUDDY=true parcel build</pre>
+          </code>
+        </div>
+      );
+    }
+
     return <div />;
   }
 

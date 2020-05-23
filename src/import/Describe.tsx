@@ -83,6 +83,22 @@ class DescribeImport extends Component<{ history: ImportHistory }> {
               Rome
             </button>
           </Link>
+          <Link
+            to="/parcel"
+            aria-label="parcel project import"
+            className="no-link-underline"
+          >
+            <button className={`type-button project-import parcel-import`}>
+              <img
+                width="35px"
+                height="26px"
+                alt="parcel logo"
+                src="/img/parcel_logo.png"
+                className="parcel-logo"
+              />{" "}
+              Parcel
+            </button>
+          </Link>
         </div>
         <div className="flex">
           <button className="project-import" tabIndex={-1}>
