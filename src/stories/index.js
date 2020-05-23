@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import ByTypeBarChart from "../bundle/ByTypeBarChart";
+import ByTypeBarChart from "../bundle/Header";
 import Report from "../bundle/Report";
 import FileDetails from "../bundle/FileDetails";
 

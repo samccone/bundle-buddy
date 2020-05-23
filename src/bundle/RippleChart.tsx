@@ -255,6 +255,14 @@ export default function RippleChart(props: Props) {
     } else {
       selectedXPos += 150;
     }
+
+    usedNodes[selected] = {
+      ...selectedNode,
+      x: 0,
+      y: 0,
+      r: radiusScale(selectedNode.totalBytes),
+      degrees: undefined
+    };
   }
 
   const primaryRadius = radiusScale(selectedNode.totalBytes);
@@ -410,7 +418,6 @@ export default function RippleChart(props: Props) {
               showEdges.map((d, i) => {
                 const source = usedNodes[d.source];
                 const target = usedNodes[d.target];
-
                 const middle = {
                   x: source.x + ((target.x - source.x) * 2) / 3,
                   y: source.y + ((target.y - source.y) * 2) / 3
