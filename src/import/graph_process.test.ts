@@ -1,8 +1,8 @@
-import { GraphNodes } from "../types";
+import { GraphEdges } from "../types";
 import { cleanGraph } from "./graph_process";
 
 it("strips magic prefixes", () => {
-  const nodes: GraphNodes = [
+  const nodes: GraphEdges = [
     { source: "commonjs-proxy:/foo.js", target: "zap.ts" }
   ];
   const ret = cleanGraph(nodes);
@@ -11,7 +11,7 @@ it("strips magic prefixes", () => {
 });
 
 it("strips common prefix", () => {
-  const nodes: GraphNodes = [{ source: "wow/foo.js", target: "wow/zap.ts" }];
+  const nodes: GraphEdges = [{ source: "wow/foo.js", target: "wow/zap.ts" }];
   const ret = cleanGraph(nodes);
 
   expect(ret[0].source).toBe("foo.js");
@@ -19,7 +19,7 @@ it("strips common prefix", () => {
 });
 
 it("strips common prefix ignoring ignored nodes", () => {
-  const nodes: GraphNodes = [
+  const nodes: GraphEdges = [
     {
       source: "wow/foo.js",
       target: "wow/zap.ts"
@@ -37,7 +37,7 @@ it("strips common prefix ignoring ignored nodes", () => {
 });
 
 it("strips no matching prefix but common /", () => {
-  const nodes: GraphNodes = [
+  const nodes: GraphEdges = [
     {
       source: "(foo) ./wow.js",
       target: "./zap.ts"

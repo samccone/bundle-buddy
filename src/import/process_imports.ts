@@ -1,10 +1,10 @@
 import { processSourcemap, ProcessedSourceMap } from "./process_sourcemaps";
-import { GraphNodes } from "../types";
+import { GraphEdges } from "../types";
 import { ReportErrorUri } from "../report_error";
 
 export interface ImportProcess {
   proccessedSourcemap?: ProcessedSourceMap;
-  processedGraph?: GraphNodes;
+  processedGraph?: GraphEdges;
   sourceMapProcessError?: Error;
   graphProcessError?: Error;
 }
@@ -39,8 +39,8 @@ function mergeProcessedSourceMaps(processed: {
 
 export async function processImports(opts: {
   sourceMapContents: { [filename: string]: string };
-  graphNodes: GraphNodes | string;
-  graphPreProcessFn?: (contents: any) => GraphNodes;
+  graphNodes: GraphEdges | string;
+  graphPreProcessFn?: (contents: any) => GraphEdges;
 }): Promise<ImportProcess> {
   const ret: ImportProcess = { proccessedSourcemap: {} };
 
@@ -70,7 +70,7 @@ export async function processImports(opts: {
         parsedNodes = opts.graphPreProcessFn(parsedNodes);
       }
 
-      ret.processedGraph = parsedNodes as GraphNodes;
+      ret.processedGraph = parsedNodes as GraphEdges;
     } else {
       ret.processedGraph = opts.graphNodes;
     }

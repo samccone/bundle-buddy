@@ -1,6 +1,6 @@
 import builtins from "./builtins";
 import { findFirstIndex, findCommonPrefix } from "../import/prefix_cleaner";
-import { GraphNodes } from "../types";
+import { GraphEdges } from "../types";
 
 const prefixStrips = [
   // Rollup specific prefix added to add commonjs proxy nodes.
@@ -25,7 +25,7 @@ function removedIgnoredFiles(nodes: string[]) {
   return nodes.filter(v => !ignoreNodes.has(v));
 }
 
-function getAllGraphFiles(graph: GraphNodes): string[] {
+function getAllGraphFiles(graph: GraphEdges): string[] {
   const ret = new Set<string>();
   for (const { target, source } of graph) {
     if (target != null) {
@@ -37,7 +37,7 @@ function getAllGraphFiles(graph: GraphNodes): string[] {
   return Array.from(ret);
 }
 
-export function cleanGraph(graph: GraphNodes): GraphNodes {
+export function cleanGraph(graph: GraphEdges): GraphEdges {
   // Strip all magic prefixes
   for (const node of graph) {
     for (const key of Object.keys(node) as Array<"target" | "source">) {
@@ -86,7 +86,7 @@ export function cleanGraph(graph: GraphNodes): GraphNodes {
   }
 
   // Remove null nodes in graph
-  const ret: GraphNodes = [];
+  const ret: GraphEdges = [];
   for (const node of graph) {
     if (
       node.target !== node.source &&

@@ -1,4 +1,4 @@
-import { Edge } from "../types";
+import { Edge, GraphEdges } from "../types";
 
 interface Module {
   name: string;
@@ -23,8 +23,11 @@ function cleanWebpackMagicFiles(f: string): string {
   return f;
 }
 
-function cleanEdges(edges: Edge[], plusMap: Map<string, Set<string>>): Edge[] {
-  const exploded: Edge[] = [];
+function cleanEdges(
+  edges: Edge[],
+  plusMap: Map<string, Set<string>>
+): GraphEdges {
+  const exploded: GraphEdges = [];
 
   let pushedMore = false;
   for (const uncleanEdge of edges) {

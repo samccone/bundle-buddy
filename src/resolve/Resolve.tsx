@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import { transform } from "./process";
-import { ResolveProps, ProcessedImportState, GraphNodes } from "../types";
+import { ResolveProps, ProcessedImportState, GraphEdges } from "../types";
 import { findCommonPrefix } from "../import/prefix_cleaner";
 import { History } from "history";
 import { findTrims } from "./trim";
@@ -31,10 +31,10 @@ function toFunctionRef(func: string) {
 }
 
 function transformGraphNames(
-  nodes: GraphNodes,
+  nodes: GraphEdges,
   graphTransform: (v: string) => string,
   trims: string[]
-): GraphNodes {
+): GraphEdges {
   return nodes.map(n => {
     n.source = graphTransform(trimClean(trims, n.source));
     if (n.target != null) {
@@ -58,7 +58,7 @@ function transformSourceMapNames(
   return ret;
 }
 
-function getGraphFiles(graphNodes: GraphNodes) {
+function getGraphFiles(graphNodes: GraphEdges) {
   const ret = new Set<string>();
 
   for (const node of graphNodes) {
@@ -82,7 +82,7 @@ function trimClean(trims: string[], word: string) {
 
 function autoclean(opts: {
   processedSourceMap: ProcessedSourceMap;
-  graphNodes: GraphNodes;
+  graphNodes: GraphEdges;
 }): { sourceMapFiles: string[]; graphFiles: string[]; trims: string[] } {
   const sourceMapFiles = Object.keys(
     cleanSouremapFiles(opts.processedSourceMap)

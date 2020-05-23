@@ -1,14 +1,14 @@
 import { History } from "history";
 import { ProcessedSourceMap } from "./import/process_sourcemaps";
 
-export interface GraphNode {
+export interface Edge {
   // current file
   source: string;
   // imports the following
-  target: string | null;
+  target: string;
 }
 
-export type GraphNodes = GraphNode[];
+export type GraphEdges = Edge[];
 
 export enum ImportTypes {
   ROLLUP,
@@ -17,7 +17,7 @@ export enum ImportTypes {
 }
 
 export interface ImportResolveState {
-  graphNodes: GraphNodes;
+  graphNodes: GraphEdges;
   processedSourceMap: ProcessedSourceMap;
   graphFileTransform?: string;
   sourceMapFileTransform?: string;
@@ -81,7 +81,7 @@ export interface BundleNetworkCount {
 
 export interface ResolveProps {
   history: ImportHistory;
-  graphNodes: GraphNodes;
+  graphNodes: GraphEdges;
   processedSourceMap: ProcessedSourceMap;
   graphFileTransform?: string;
   sourceMapFileTransform?: string;
@@ -90,11 +90,6 @@ export interface ResolveProps {
 export interface TrimmedNetwork {
   nodes: TrimmedDataNode[];
   edges: Edge[];
-}
-
-export interface Edge {
-  source: string;
-  target: string;
 }
 
 export interface TrimmedDataNode {

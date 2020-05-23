@@ -7,7 +7,7 @@ import {
   Edge,
   ProcessedImportState,
   TreemapNode,
-  GraphNodes
+  GraphEdges
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";
@@ -65,7 +65,7 @@ function nodesToTreeMap(data: {
 // noopener noreferrer
 
 export function transform(
-  graphNodes: GraphNodes,
+  graphNodes: GraphEdges,
   sourceMapData: ProcessedSourceMap,
   sourceMapFiles: string[]
 ): ProcessedImportState {
