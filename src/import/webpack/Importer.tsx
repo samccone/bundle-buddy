@@ -6,6 +6,7 @@ import { ImportProps, ImportResolveState, ImportState } from "../../types";
 
 import React, { Component } from "react";
 import { ProcessedSourceMap } from "../process_sourcemaps";
+import { cleanGraph } from "../graph_process";
 // noopener noreferrer
 
 const IGNORE_FILES = [
@@ -65,7 +66,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
     const processed = await processImports({
       sourceMapContents,
       graphNodes: statsFileContents,
-      graphPreProcessFn: statsToGraph
+      graphPreProcessFn: g => cleanGraph(statsToGraph(g))
     });
 
     if (processed.proccessedSourcemap != null) {
