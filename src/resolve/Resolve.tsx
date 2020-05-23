@@ -84,9 +84,7 @@ function autoclean(opts: {
   processedSourceMap: ProcessedSourceMap;
   graphNodes: GraphEdges;
 }): { sourceMapFiles: string[]; graphFiles: string[]; trims: string[] } {
-  const sourceMapFiles = Object.keys(
-    cleanSouremapFiles(opts.processedSourceMap)
-  );
+  const sourceMapFiles = Object.keys(opts.processedSourceMap);
   const graphFiles = getGraphFiles(opts.graphNodes);
   const trims = Object.keys(findTrims(sourceMapFiles, graphFiles));
 
@@ -95,22 +93,6 @@ function autoclean(opts: {
     graphFiles: graphFiles.map(v => trimClean(trims, v)),
     trims
   };
-}
-
-function cleanSouremapFiles(
-  processedSourceMap: ProcessedSourceMap
-): ProcessedSourceMap {
-  const ret: ProcessedSourceMap = {};
-  const prefix = findCommonPrefix(Object.keys(processedSourceMap)) || "";
-  if (prefix.length === 0) {
-    return processedSourceMap;
-  }
-
-  for (const filename of Object.keys(processedSourceMap)) {
-    ret[filename.slice(prefix.length)] = processedSourceMap[filename];
-  }
-
-  return ret;
 }
 
 class Resolve extends Component<ResolveProps, ResolveState> {
@@ -274,7 +256,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         this.trims
       ),
       transformSourceMapNames(
-        cleanSouremapFiles(this.props.processedSourceMap),
+        this.props.processedSourceMap,
         this.state.transforms.sourceMapFileTransform,
         this.trims
       ),
