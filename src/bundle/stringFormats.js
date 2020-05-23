@@ -1,6 +1,7 @@
 const mb = 1024 * 1024;
 const kb = 1024;
 export const getFileSize = size => {
+  if (!size || size === 0) return "0 KB";
   let value = size && size >= mb ? size / mb : size / kb;
   if (value < 1 || size >= mb) value = value.toFixed(2);
   else value = value.toFixed(0);

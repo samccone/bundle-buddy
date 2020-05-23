@@ -19,6 +19,7 @@
     "react-dom": "^16.6.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.4.1",
+    "react-table": "6.11.5",
     "source-map": "^0.7.3",
     "storybook": "^5.3.17",
     "typescript": "^3.8.3",

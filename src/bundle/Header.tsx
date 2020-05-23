@@ -18,10 +18,6 @@ const frameProps = {
   oAccessor: (d: SizeData) => d.name,
   rAccessor: (d: SizeData) => d.totalBytes,
   oPadding: 10,
-  responsiveWidth: true,
-  // style: (d: ) => {
-  //   return {};
-  // },
   barHeight: 45,
   bar: (d: SizeData, width: number | string | undefined) => {
     return (

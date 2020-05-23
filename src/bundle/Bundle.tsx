@@ -64,7 +64,13 @@ export default function Bundle(props: Props) {
   let i = 0;
   directories.forEach(d => {
     if (d.indexOf("node_modules") !== -1) {
-      directoryColors[d] = "url(#dags)";
+      directoryColors[d] = `repeating-linear-gradient(
+        45deg,
+        #dfe1e5,
+        #dfe1e5 2px,
+        #fff 2px,
+        #fff 4px
+      )`;
     } else {
       directoryColors[d] = colors[i] || "black";
       i++;
@@ -84,34 +90,30 @@ export default function Bundle(props: Props) {
       <div>
         <Report duplicateNodeModules={duplicateNodeModules} />
       </div>
-      <div className="flex page">
-        <div className="panel">
-          <FileDetails
-            total={rollups.value}
-            network={network}
+      <div className="left-padding right-padding">
+        <FileDetails
+          total={rollups.value}
+          network={network}
+          changeSelected={changeSelected}
+          directoryColors={directoryColors}
+        />
+        {selected ? (
+          <RippleChart
             changeSelected={changeSelected}
+            nodes={nodes.map(d => Object.assign({}, d))}
+            edges={edges.map(d => Object.assign({}, d))}
+            max={max}
+            selected={selected}
+            directories={directories}
             directoryColors={directoryColors}
           />
-        </div>
-        <div className="panel large">
-          {selected ? (
-            <RippleChart
-              changeSelected={changeSelected}
-              nodes={nodes.map(d => Object.assign({}, d))}
-              edges={edges.map(d => Object.assign({}, d))}
-              max={max}
-              selected={selected}
-              directories={directories}
-              directoryColors={directoryColors}
-            />
-          ) : (
-            <Treemap
-              hierarchy={hierarchy}
-              bgColorsMap={directoryColors}
-              changeSelected={changeSelected}
-            />
-          )}
-        </div>
+        ) : (
+          <Treemap
+            hierarchy={hierarchy}
+            bgColorsMap={directoryColors}
+            changeSelected={changeSelected}
+          />
+        )}
       </div>
     </div>
   );

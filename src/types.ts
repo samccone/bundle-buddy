@@ -78,6 +78,8 @@ export interface BundleNetworkCount {
   requiredBy: string[];
   requires: string[];
   transitiveRequiredBy: string[];
+  transitiveRequires: string[];
+  transitiveRequiresSize: number;
 }
 
 export interface ResolveProps {

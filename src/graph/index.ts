@@ -1,4 +1,4 @@
-interface RequireGraph {
+export interface RequireGraph {
   [target: string]: {
     requires: Set<string>;
   };

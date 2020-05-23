@@ -27,7 +27,6 @@ export default function BarChart(props: Props) {
     bar,
     oPadding = 3,
     barHeight = 45,
-    foregroundGraphics,
     onBarClick,
     rExtent
   } = props;
@@ -44,19 +43,6 @@ export default function BarChart(props: Props) {
 
   return (
     <div className="bar-chart relative">
-      {foregroundGraphics && (
-        <svg
-          style={{
-            position: "absolute",
-            width: "100%",
-            top: 0,
-            height:
-              (margin.top || 0) + (margin.bottom || 0) + barHeight * data.length
-          }}
-        >
-          {foregroundGraphics}
-        </svg>
-      )}
       <div style={{ paddingTop: margin.top }}>
         {data.map(d => {
           const o = oAccessor(d);

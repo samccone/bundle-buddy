@@ -43,6 +43,20 @@ a {
   padding-right: 15px;
 }
 
+.right-padding {
+  padding-right: 24px;
+}
+.left-padding {
+  padding-left: 24px;
+}
+.left-spacing {
+  padding-left: 12px;
+}
+
+.right-spacing {
+  padding-right: 12px;
+}
+
 .inline-block {
   display: inline-block;
 }
