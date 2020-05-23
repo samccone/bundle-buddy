@@ -18,7 +18,7 @@ export enum ImportTypes {
 }
 
 export interface ImportResolveState {
-  graphNodes: GraphEdges;
+  graphEdges: GraphEdges;
   processedSourceMap: ProcessedSourceMap;
   graphFileTransform?: string;
   sourceMapFileTransform?: string;

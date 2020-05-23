@@ -55,7 +55,7 @@ class App extends Component {
                       return (
                         <Home
                           history={h.history}
-                          graphNodes={h.location.state?.graphNodes}
+                          graphEdges={h.location.state?.graphEdges}
                           processedSourceMap={
                             h.location.state?.processedSourceMap
                           }

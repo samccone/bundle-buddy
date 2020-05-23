@@ -196,7 +196,7 @@ plugins: [{
 
     if (this.props.history != null && this.state.importError == null) {
       const state: ImportResolveState = {
-        graphNodes: processed.processedGraph!,
+        graphEdges: processed.processedGraph!,
         processedSourceMap: processed.proccessedSourcemap!
       };
 

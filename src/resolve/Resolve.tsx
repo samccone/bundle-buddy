@@ -199,7 +199,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       }
 
       this.props.history.replace(window.location.pathname, {
-        graphNodes: this.props.graphNodes,
+        graphEdges: this.props.graphNodes,
         processedSourceMap: this.props.processedSourceMap,
         graphFileTransform: this.state.transforms.graphFileTransform.toString(),
         sourceMapFileTransform: transformRef.toString()
@@ -227,7 +227,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       }
 
       this.props.history.replace(window.location.pathname, {
-        graphNodes: this.props.graphNodes,
+        graphEdges: this.props.graphNodes,
         processedSourceMap: this.props.processedSourceMap,
         graphFileTransform: transformRef.toString(),
         sourceMapFileTransform: this.state.transforms.sourceMapFileTransform.toString()

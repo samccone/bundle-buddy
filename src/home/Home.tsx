@@ -10,7 +10,7 @@ import WebpackImport from "../import/webpack/Importer";
 class Home extends Component<ImportResolveState & { history: ImportHistory }> {
   render() {
     const {
-      graphNodes,
+      graphEdges: graphNodes,
       processedSourceMap,
       sourceMapFileTransform,
       graphFileTransform
