@@ -4,7 +4,7 @@ import {
   Edge,
   ProcessedImportState,
   TreemapNode,
-  GraphEdges
+  GraphEdges,
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";
@@ -20,6 +20,46 @@ function values<V>(entity: { [k: string]: V }): V[] {
 
   return ret;
 }
+
+function nodesToTreeMap(data: {
+  [id: string]: TrimmedDataNode;
+}): TreemapNode[] {
+  const rel = [
+    {
+      parent: "",
+      name: "rootNode",
+    },
+  ];
+
+  const unique: { [hash: string]: Boolean } = {};
+
+  Object.keys(data).forEach((d) => {
+    const parents = d.split(/\/(?!\/)/).filter((d) => d);
+
+    parents.forEach((p, i, array) => {
+      const value = {
+        name: array.slice(0, i + 1).join("/"),
+        parent: array.slice(0, i).join("/") || "rootNode",
+        totalBytes: 0,
+      };
+
+      if (i === array.length - 1) {
+        value.totalBytes = data[d].totalBytes || 0;
+      }
+
+      const key = JSON.stringify(value);
+
+      if (!unique[key]) {
+        rel.push(value);
+        unique[key] = true;
+      }
+    });
+  });
+
+  return rel;
+}
+
+// noopener noreferrer
 
 function initializeNode(id: string) {
   const index = id.indexOf("/");
@@ -43,56 +83,17 @@ function initializeNode(id: string) {
       requires: [],
       transitiveRequiredBy: [],
       transitiveRequires: [],
-      transitiveRequiresSize: 0
-    }
+      transitiveRequiresSize: 0,
+    },
   };
 }
 
-function nodesToTreeMap(data: {
-  [id: string]: TrimmedDataNode;
-}): TreemapNode[] {
-  const rel = [
-    {
-      parent: "",
-      name: "rootNode"
-    }
-  ];
-
-  const unique: { [hash: string]: Boolean } = {};
-
-  Object.keys(data).forEach(d => {
-    const parents = d.split(/\/(?!\/)/).filter(d => d);
-
-    parents.forEach((p, i, array) => {
-      const value = {
-        name: array.slice(0, i + 1).join("/"),
-        parent: array.slice(0, i).join("/") || "rootNode",
-        totalBytes: 0
-      };
-
-      if (i === array.length - 1) {
-        value.totalBytes = data[d].totalBytes || 0;
-      }
-
-      const key = JSON.stringify(value);
-
-      if (!unique[key]) {
-        rel.push(value);
-        unique[key] = true;
-      }
-    });
-  });
-
-  return rel;
-}
-
-// noopener noreferrer
-
 export function transform(
-  graphNodes: GraphEdges,
+  graphEdges: GraphEdges,
   sourceMapData: ProcessedSourceMap,
   sourceMapFiles: string[]
 ): ProcessedImportState {
+  console.log("HERE", graphEdges, sourceMapData, sourceMapFiles);
   const addedNodes: { [name: string]: boolean } = {};
   const trimmedNodes: { [name: string]: TrimmedDataNode } = {};
   const trimmedEdges: Edge[] = [];
@@ -136,7 +137,7 @@ export function transform(
     }>
   );
 
-  graphNodes.forEach(e => {
+  graphEdges.forEach((e) => {
     //trimmed network functions
     addedNodes[e.source] = true;
 
@@ -155,7 +156,7 @@ export function transform(
     if (e.target != null && e.target.indexOf("node_modules") === -1) {
       trimmedEdges.push({
         source: sourceKey,
-        target: e.target
+        target: e.target,
       });
 
       if (!trimmedNodes[sourceKey]) {
@@ -198,7 +199,7 @@ export function transform(
     }
   });
 
-  Object.keys(sourceMapData).forEach(d => {
+  Object.keys(sourceMapData).forEach((d) => {
     if (!addedNodes[d]) {
       if (d.indexOf("node_modules") === -1) {
         trimmedNodes[d] = initializeNode(d);
@@ -226,10 +227,10 @@ export function transform(
   } = {
     value: 0,
     fileTypes: {},
-    directories: {}
+    directories: {},
   };
 
-  Object.keys(sourceMapData).forEach(key => {
+  Object.keys(sourceMapData).forEach((key) => {
     summary.value += sourceMapData[key].totalBytes;
     const index = key.lastIndexOf("/");
     const fileName = key.slice(index + 1).split(/\./g);
@@ -250,7 +251,7 @@ export function transform(
       } else {
         summary.fileTypes[extension] = {
           name: extension,
-          totalBytes: sourceMapData[key].totalBytes
+          totalBytes: sourceMapData[key].totalBytes,
         };
       }
 
@@ -259,7 +260,7 @@ export function transform(
       } else {
         summary.directories[parent] = {
           name: parent,
-          totalBytes: sourceMapData[key].totalBytes
+          totalBytes: sourceMapData[key].totalBytes,
         };
       }
     }
@@ -267,14 +268,14 @@ export function transform(
 
   const rollups = {
     value: summary.value,
-    fileTypes: values(summary.fileTypes).map(d => ({
+    fileTypes: values(summary.fileTypes).map((d) => ({
       ...d,
-      pct: d.totalBytes / summary.value
+      pct: d.totalBytes / summary.value,
     })),
-    directories: values(summary.directories).map(d => ({
+    directories: values(summary.directories).map((d) => ({
       ...d,
-      pct: d.totalBytes / summary.value
-    }))
+      pct: d.totalBytes / summary.value,
+    })),
   };
 
   const hierarchy = nodesToTreeMap(trimmedNodes);
@@ -290,7 +291,7 @@ export function transform(
     if (counts[n.target] == null) {
       counts[n.target] = {
         requiredBy: new Set(),
-        requires: new Set()
+        requires: new Set(),
       };
     }
 
@@ -299,7 +300,7 @@ export function transform(
     if (counts[n.source] == null) {
       counts[n.source] = {
         requiredBy: new Set(),
-        requires: new Set()
+        requires: new Set(),
       };
     }
   }
@@ -343,10 +344,10 @@ export function transform(
 
   const trimmedNetwork = {
     nodes: values(trimmedNodes),
-    edges: trimmedEdges
+    edges: trimmedEdges,
   };
 
-  trimmedNetwork.nodes.forEach(d => {
+  trimmedNetwork.nodes.forEach((d) => {
     const index = d.id.indexOf("/");
     if (index !== -1) d.directory = d.id.slice(0, index);
     else d.directory = EMPTY_NAME;
