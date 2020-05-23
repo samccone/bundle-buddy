@@ -1,42 +1,13 @@
 import { processSourcemap, ProcessedSourceMap } from "./process_sourcemaps";
 import { GraphNodes } from "../types";
 import { cleanGraph } from "./graph_process";
+import { ReportErrorUri } from "../report_error";
 
 export interface ImportProcess {
   proccessedSourcemap?: ProcessedSourceMap;
   processedGraph?: GraphNodes;
   sourceMapProcessError?: Error;
   graphProcessError?: Error;
-}
-
-class ReportErrorUri {
-  erroredFiles: string[] = [];
-  errorBodies: { [file: string]: string } = {};
-
-  addError(fileName: string, error: Error) {
-    this.erroredFiles.push(fileName);
-    this.errorBodies[fileName] = error.toString();
-  }
-
-  toUri() {
-    const base = "https://github.com/samccone/bundle-buddy/issues/new";
-    const params = new URLSearchParams();
-
-    params.append(
-      "title",
-      `Error importing from ${this.erroredFiles.join(" & ")}`
-    );
-
-    let body = "";
-
-    for (const filename of Object.keys(this.errorBodies)) {
-      body += `\`${filename}\`:\n\`\`\`${this.errorBodies[filename]}\`\`\`\n`;
-    }
-
-    params.append("body", body);
-
-    return `${base}?${params}`;
-  }
 }
 
 // TODO(samccone) we will want to handle more error types.
