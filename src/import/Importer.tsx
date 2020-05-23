@@ -186,7 +186,7 @@ plugins: [{
         processedSourceMap: processed.proccessedSourcemap!
       };
 
-      this.props.history.push("/rollup/resolve", state);
+      this.props.history.push("/_/resolve", state);
     }
   }
 
