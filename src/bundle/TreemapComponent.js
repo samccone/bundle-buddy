@@ -3,14 +3,13 @@
 /* eslint-disable no-param-reassign */
 import React, { Fragment } from "react";
 import PropTypes from "prop-types"; // eslint-disable-line import/no-extraneous-dependencies
-import { treemap, treemapSquarify } from "d3-hierarchy";
+import { treemap, treemapBinary } from "d3-hierarchy";
+import {} from "d3-hierarchy";
 
 function canDisplay(node) {
   const width = node.x1 - node.x0;
   const height = node.y1 - node.y0;
-  // if (node.data.name.indexOf("functions") !== -1)
   if (width <= 3 || height <= 3) {
-    // console.log(node, width, height);
     return false;
   }
 
@@ -21,29 +20,27 @@ function calculatePos(node) {
   return {
     transform: `translate(${node.x0}px, ${node.y0}px)`,
     width: node.x1 - node.x0,
-    height: node.y1 - node.y0
+    height: node.y1 - node.y0,
   };
 }
 
 export default function TreemapComponent({
   root,
-  tile,
+  tile = treemapBinary,
   zoomed,
   width,
   height,
   padding,
-  nodeComponent
+  nodeComponent,
 }) {
   root
-    .sum(d => d.totalBytes)
+    .sum((d) => d.totalBytes)
     .sort((a, b) => b.height - a.height || b.value - a.value);
 
-  treemap()
-    .tile(tile)
-    .size([width, height])(root);
+  treemap().tile(tile).size([width, height])(root);
 
   const zoomedEl = zoomed
-    ? root.descendants().find(node => node.data.name === zoomed)
+    ? root.descendants().find((node) => node.data.name === zoomed)
     : root;
 
   if (zoomedEl.depth > 0) {
@@ -51,7 +48,7 @@ export default function TreemapComponent({
     const scaleY = (root.y1 - root.y0) / (zoomedEl.y1 - zoomedEl.y0);
     const refPointY = zoomedEl.y0;
     const refPointX = zoomedEl.x0;
-    root.descendants().forEach(node => {
+    root.descendants().forEach((node) => {
       node.y0 = scaleY * (node.y0 - refPointY);
       node.y1 = scaleY * (node.y1 - refPointY);
       node.x0 = scaleX * (node.x0 - refPointX);
@@ -59,40 +56,45 @@ export default function TreemapComponent({
     });
   }
 
-  // root
-  //   .descendants()
-  //   .filter(node => node.depth >= zoomedEl.depth)
-  zoomedEl.descendants().forEach(relativeRoot => {
+  zoomedEl.descendants().forEach((relativeRoot) => {
     relativeRoot
       .descendants()
       .slice(1)
-      .forEach(node => {
+      .forEach((node) => {
         let refPoint;
         let scale;
 
         // Scale vertically to bottom.
         scale = 1 - padding[0] / (relativeRoot.y1 - relativeRoot.y0);
-        refPoint = relativeRoot.y1;
-        node.y0 = refPoint + scale * (node.y0 - refPoint);
-        node.y1 = refPoint + scale * (node.y1 - refPoint);
+
+        if (scale > 0) {
+          refPoint = relativeRoot.y1;
+          node.y0 = refPoint + scale * (node.y0 - refPoint);
+          node.y1 = refPoint + scale * (node.y1 - refPoint);
+        }
 
         // Scale vertically to top.
         scale = 1 - padding[2] / (relativeRoot.y1 - relativeRoot.y0);
-        refPoint = relativeRoot.y0;
-        node.y0 = refPoint + scale * (node.y0 - refPoint);
-        node.y1 = refPoint + scale * (node.y1 - refPoint);
 
+        if (scale > 0) {
+          refPoint = relativeRoot.y0;
+          node.y0 = refPoint + scale * (node.y0 - refPoint);
+          node.y1 = refPoint + scale * (node.y1 - refPoint);
+        }
         // Scale horizontally to left.
         scale = 1 - padding[1] / (relativeRoot.x1 - relativeRoot.x0);
-        refPoint = relativeRoot.x0;
-        node.x0 = refPoint + scale * (node.x0 - refPoint);
-        node.x1 = refPoint + scale * (node.x1 - refPoint);
-
+        if (scale > 0) {
+          refPoint = relativeRoot.x0;
+          node.x0 = refPoint + scale * (node.x0 - refPoint);
+          node.x1 = refPoint + scale * (node.x1 - refPoint);
+        }
         // Scale horizontally to right.
         scale = 1 - padding[3] / (relativeRoot.x1 - relativeRoot.x0);
-        refPoint = relativeRoot.x1;
-        node.x0 = refPoint + scale * (node.x0 - refPoint);
-        node.x1 = refPoint + scale * (node.x1 - refPoint);
+        if (scale > 0) {
+          refPoint = relativeRoot.x1;
+          node.x0 = refPoint + scale * (node.x0 - refPoint);
+          node.x1 = refPoint + scale * (node.x1 - refPoint);
+        }
       });
   });
 
@@ -100,7 +102,7 @@ export default function TreemapComponent({
   //   .descendants()
   return zoomedEl
     .descendants()
-    .filter(node => canDisplay(node))
+    .filter((node) => canDisplay(node))
     .map((node, i) => (
       <Fragment key={node.data.name + node.depth}>
         {nodeComponent(node, i, calculatePos(node))}
@@ -115,7 +117,7 @@ TreemapComponent.propTypes = {
   padding: PropTypes.arrayOf(PropTypes.number),
   nodeComponent: PropTypes.func,
   zoomed: PropTypes.string,
-  tile: PropTypes.func.isRequired
+  tile: PropTypes.func.isRequired,
 };
 
 TreemapComponent.defaultProps = {
@@ -125,12 +127,11 @@ TreemapComponent.defaultProps = {
       style={{
         ...posStyle,
         position: "absolute",
-        background: "rgba(255,0,0,0.1)"
+        background: "rgba(255,0,0,0.1)",
       }}
     >
       {node.data.key}
     </div>
   ),
   padding: [20, 2, 2, 2],
-  tile: treemapSquarify
 };

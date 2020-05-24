@@ -2,7 +2,6 @@
 
 import React, { Fragment } from "react";
 import { stratify } from "d3-hierarchy";
-import { treemapBinary } from "d3-hierarchy";
 import TreemapComponent from "./TreemapComponent";
 import { getFileSize } from "./stringFormats";
 
@@ -40,7 +39,6 @@ export default class Treemap extends React.Component {
       .parentId(function (d) {
         return d.parent;
       })(hierarchy);
-    // .sum(d => d.totalBytes);
 
     return (
       <div>
@@ -79,7 +77,6 @@ export default class Treemap extends React.Component {
             }}
           >
             <TreemapComponent
-              tile={treemapBinary}
               root={tree}
               zoomed={this.state.zoomed}
               width={size[0]}
@@ -95,6 +92,7 @@ export default class Treemap extends React.Component {
                 const dirIndex = name.indexOf("/");
                 let directory = name;
                 if (dirIndex !== -1) directory = name.slice(0, dirIndex);
+
                 return (
                   <div
                     className="treemap__node"

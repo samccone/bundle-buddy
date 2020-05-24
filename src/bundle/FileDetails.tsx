@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import ReactTable from "react-table";
 
 // import { colors } from "../theme";
-import { getPercent, getFileSize } from "./stringFormats";
+import { getCSSPercent, getFileSize } from "./stringFormats";
 import { ProcessedImportState, TrimmedDataNode } from "../types";
 
 type Column = {
@@ -62,10 +62,10 @@ function getColumns(
           background: directoryColors[d.original.directory] || "black",
           border: "1px solid white",
           height: 8,
-          width: d.value ? getPercent(d.value, maxes[id]) : "0px",
+          width: d.value ? getCSSPercent(d.value, maxes[id]) : "0px",
           position: "relative",
           top: 15,
-          left: getPercent(maxes[id] - accessor(d.original), maxes[id]),
+          left: getCSSPercent(maxes[id] - accessor(d.original), maxes[id]),
         }}
       />
     );
@@ -85,7 +85,7 @@ function getColumns(
       Header: "Size",
       minWidth: 50,
       label: (d: Column) =>
-        `${getFileSize(d.value)}, ${getPercent(d.value, total)}`,
+        `${getFileSize(d.value)}, ${getCSSPercent(d.value, total)}`,
     },
     {
       id: "requires",

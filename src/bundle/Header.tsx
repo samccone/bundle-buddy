@@ -131,14 +131,13 @@ export default function ByTypeBarChart(props: Props) {
                 <small>Total Size</small>
               </b>
             </p>
-            <h2>{getFileSize(totalSize)}</h2>
+            <p>{getFileSize(totalSize)}</p>
           </div>
         )}
       </div>
       <div className="scroll-y" style={{ width: "37vw" }}>
         <div className="sticky-wrapper">
           <div className="sticky">
-            {" "}
             <p>
               <img className="icon" alt="file types" src="/img/file.png" />
               <b>
