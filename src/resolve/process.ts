@@ -1,18 +1,18 @@
 import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import {
   TrimmedDataNode,
-  Edge,
+  Imported,
   ProcessedImportState,
   TreemapNode,
   GraphEdges,
-  FlattendGraph
+  FlattendGraph,
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";
 import {
   requiredBy,
   calculateTransitiveRequires,
-  edgesToGraph
+  edgesToGraph,
 } from "../graph";
 import { findDuplicateModules } from "./duplicateModules";
 
@@ -31,20 +31,20 @@ function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
   const rel = [
     {
       parent: "",
-      name: "rootNode"
-    }
+      name: "rootNode",
+    },
   ];
 
   const unique: { [hash: string]: Boolean } = {};
 
-  Object.keys(data).forEach(d => {
-    const parents = d.split(/\/(?!\/)/).filter(d => d);
+  Object.keys(data).forEach((d) => {
+    const parents = d.split(/\/(?!\/)/).filter((d) => d);
 
     parents.forEach((p, i, array) => {
       const value = {
         name: array.slice(0, i + 1).join("/"),
         parent: array.slice(0, i).join("/") || "rootNode",
-        totalBytes: 0
+        totalBytes: 0,
       };
 
       if (i === array.length - 1) {
@@ -64,33 +64,6 @@ function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
 }
 
 // noopener noreferrer
-
-function initializeNode(id: string) {
-  const index = id.indexOf("/");
-  let directory = "";
-  if (index !== -1) directory = id.slice(0, index);
-  else directory = EMPTY_NAME;
-  const text =
-    (directory !== EMPTY_NAME && id.replace(directory + "/", "")) || id;
-
-  const lastSlash = id.lastIndexOf("/");
-  const fileName = id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
-
-  return {
-    id,
-    totalBytes: 0,
-    text,
-    fileName,
-    directory,
-    count: {
-      requiredBy: [],
-      requires: [],
-      transitiveRequiredBy: [],
-      transitiveRequires: [],
-      transitiveRequiresSize: 0
-    }
-  };
-}
 
 function getRollups(fileSizes: ProcessedSourceMap) {
   const summary: {
@@ -112,10 +85,10 @@ function getRollups(fileSizes: ProcessedSourceMap) {
   } = {
     value: 0,
     fileTypes: {},
-    directories: {}
+    directories: {},
   };
 
-  Object.keys(fileSizes).forEach(key => {
+  Object.keys(fileSizes).forEach((key) => {
     summary.value += fileSizes[key].totalBytes;
     const index = key.lastIndexOf("/");
     const fileName = key.slice(index + 1).split(/\./g);
@@ -135,7 +108,7 @@ function getRollups(fileSizes: ProcessedSourceMap) {
       } else {
         summary.fileTypes[extension] = {
           name: extension,
-          totalBytes: fileSizes[key].totalBytes
+          totalBytes: fileSizes[key].totalBytes,
         };
       }
 
@@ -144,7 +117,7 @@ function getRollups(fileSizes: ProcessedSourceMap) {
       } else {
         summary.directories[parent] = {
           name: parent,
-          totalBytes: fileSizes[key].totalBytes
+          totalBytes: fileSizes[key].totalBytes,
         };
       }
     }
@@ -152,110 +125,138 @@ function getRollups(fileSizes: ProcessedSourceMap) {
 
   return {
     value: summary.value,
-    fileTypes: values(summary.fileTypes).map(d => ({
+    fileTypes: values(summary.fileTypes).map((d) => ({
       ...d,
-      pct: d.totalBytes / summary.value
+      pct: d.totalBytes / summary.value,
     })),
-    directories: values(summary.directories).map(d => ({
+    directories: values(summary.directories).map((d) => ({
       ...d,
-      pct: d.totalBytes / summary.value
-    }))
+      pct: d.totalBytes / summary.value,
+    })),
   };
 }
 
-export function transform(
+function initializeNode(id: string, size: number = 0) {
+  const index = id.indexOf("/");
+  let directory = "";
+  if (index !== -1) directory = id.slice(0, index);
+  else directory = EMPTY_NAME;
+  const text =
+    (directory !== EMPTY_NAME && id.replace(directory + "/", "")) || id;
+
+  const lastSlash = id.lastIndexOf("/");
+  const fileName = id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
+
+  return {
+    id,
+    totalBytes: size,
+    text,
+    fileName,
+    directory,
+    requiredBy: [],
+    requires: [],
+    transitiveRequiredBy: [],
+    transitiveRequires: [],
+    transitiveRequiresSize: 0,
+  };
+}
+
+export function getTrimmedNetwork(
   graphEdges: GraphEdges,
-  fileSizes: ProcessedSourceMap,
-  sourceMapFiles: string[]
-): ProcessedImportState {
+  fileSizes: ProcessedSourceMap
+) {
   const addedNodes: { [name: string]: boolean } = {};
+  const addedEdges: { [name: string]: boolean } = {};
+
   const trimmedNodes: { [name: string]: TrimmedDataNode } = {};
-  const trimmedEdges: Edge[] = [];
-  const unique: { [k: string]: boolean } = {};
+  const trimmedEdges: { [edgeKey: string]: Imported } = {};
 
-  graphEdges.forEach(e => {
+  //Add node from edges
+  graphEdges.forEach((e) => {
     //trimmed network functions
-    addedNodes[e.source] = true;
+    const fileName = typeof e.source === "string" && e.source;
+    const importedShortedName = e.target.includes("node_modules")
+      ? e.target.split("/").slice(0, 2).join("/")
+      : e.target;
+    const importedFileName = e.target;
 
-    if (e.target != null) {
-      addedNodes[e.target] = true;
-    }
+    if (fileName) {
+      addedNodes[fileName] = true;
 
-    const sourceKey =
-      e.source.indexOf("node_modules") !== -1
-        ? e.source
-            .split("/")
-            .slice(0, 2)
-            .join("/")
-        : e.source;
+      //if fileName does not include node modules
+      if (!fileName.includes("node_modules")) {
+        const edgeKey = `${importedShortedName} -> ${fileName}`;
+        if (!addedEdges[edgeKey]) {
+          addedEdges[edgeKey] = true;
+          trimmedEdges[edgeKey] = {
+            fileName,
+            imported: importedShortedName,
+            importedFileNames: [],
+          };
+        }
+        if (importedFileName !== importedShortedName) {
+          trimmedEdges[edgeKey].importedFileNames!.push(importedFileName);
+        }
 
-    if (e.target != null) {
-      trimmedEdges.push({
-        source: sourceKey,
-        target: e.target
-      });
+        //add filename
+        if (!trimmedNodes[fileName]) {
+          trimmedNodes[fileName] = initializeNode(
+            fileName,
+            fileSizes[fileName] && fileSizes[fileName].totalBytes
+          );
+        }
 
-      if (!trimmedNodes[sourceKey]) {
-        trimmedNodes[sourceKey] = initializeNode(sourceKey);
+        //add shortened name
+        if (!trimmedNodes[importedShortedName]) {
+          addedNodes[importedFileName] = true;
+
+          trimmedNodes[importedShortedName] = initializeNode(
+            importedShortedName,
+            fileSizes[importedFileName] &&
+              fileSizes[importedFileName].totalBytes
+          );
+        }
       }
 
-      if (e.target != null && !trimmedNodes[e.target]) {
-        trimmedNodes[e.target] = initializeNode(e.target);
-      }
-    }
+      //aggregate total bytes for node_modules files under shortend name
+      if (!addedNodes[importedFileName] && trimmedNodes[importedShortedName]) {
+        addedNodes[importedFileName] = true;
 
-    if (e.target != null && !unique[e.target] && trimmedNodes[e.target]) {
-      unique[e.target] = true;
-
-      if (fileSizes[e.target]) {
-        if (
-          trimmedNodes[e.target] != null &&
-          trimmedNodes[e.target].totalBytes != null &&
-          fileSizes[e.target].totalBytes != null
-        ) {
-          trimmedNodes[e.target].totalBytes! += fileSizes[e.target].totalBytes;
+        if (fileSizes[importedFileName]) {
+          trimmedNodes[importedShortedName].totalBytes +=
+            fileSizes[importedFileName].totalBytes || 0;
         }
       }
     }
+  });
 
-    if (!unique[e.source] && trimmedNodes[sourceKey]) {
-      unique[e.source] = true;
-
-      if (
-        fileSizes[e.source] != null &&
-        trimmedNodes[sourceKey] != null &&
-        trimmedNodes[sourceKey].totalBytes != null
-      ) {
-        trimmedNodes[sourceKey].totalBytes! += fileSizes[e.source].totalBytes;
+  //Add any additional nodes from file sizes that were not in edges
+  Object.keys(fileSizes).forEach((fileName) => {
+    if (!addedNodes[fileName]) {
+      if (!fileName.includes("node_modules")) {
+        trimmedNodes[fileName] = initializeNode(
+          fileName,
+          fileSizes[fileName].totalBytes
+        );
       }
     }
   });
 
-  Object.keys(fileSizes).forEach(d => {
-    if (!addedNodes[d]) {
-      if (d.indexOf("node_modules") === -1) {
-        trimmedNodes[d] = initializeNode(d);
-      }
-    }
-  });
+  //Add requires / required by and transitive fields
+  const counts: FlattendGraph = edgesToGraph(values(trimmedEdges));
+  const transitiveRequiredBy = requiredBy(counts);
 
-  const counts: FlattendGraph = edgesToGraph(trimmedEdges);
+  for (const fileName of Object.keys(counts)) {
+    trimmedNodes[fileName].requiredBy = Array.from(counts[fileName].requiredBy);
 
-  for (const k of Object.keys(counts)) {
-    trimmedNodes[k].count.requiredBy = Array.from(counts[k].requiredBy);
-    trimmedNodes[k].count.requires = Array.from(counts[k].requires);
-  }
+    trimmedNodes[fileName].requires = Array.from(counts[fileName].requires);
 
-  const deps = requiredBy(counts);
-  for (const moduleName of Object.keys(counts)) {
-    trimmedNodes[moduleName].count.transitiveRequiredBy =
-      deps[moduleName].transitiveRequiredBy;
+    trimmedNodes[fileName].transitiveRequiredBy =
+      transitiveRequiredBy[fileName].transitiveRequiredBy;
 
-    const transitiveRequires = calculateTransitiveRequires(moduleName, counts);
+    const transitiveRequires = calculateTransitiveRequires(fileName, counts);
 
-    trimmedNodes[moduleName].count.transitiveRequires = Array.from(
-      transitiveRequires
-    );
+    trimmedNodes[fileName].transitiveRequires = Array.from(transitiveRequires);
 
     let transitiveRequiresSize = 0;
 
@@ -263,17 +264,15 @@ export function transform(
       transitiveRequiresSize += trimmedNodes[name].totalBytes;
     }
 
-    trimmedNodes[
-      moduleName
-    ].count.transitiveRequiresSize = transitiveRequiresSize;
+    trimmedNodes[fileName].transitiveRequiresSize = transitiveRequiresSize;
   }
 
   const trimmedNetwork = {
     nodes: values(trimmedNodes),
-    edges: trimmedEdges
+    edges: values(trimmedEdges),
   };
 
-  trimmedNetwork.nodes.forEach(d => {
+  trimmedNetwork.nodes.forEach((d) => {
     const index = d.id.indexOf("/");
     if (index !== -1) d.directory = d.id.slice(0, index);
     else d.directory = EMPTY_NAME;
@@ -285,10 +284,18 @@ export function transform(
     d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
   });
 
+  return trimmedNetwork;
+}
+
+export function transform(
+  graphEdges: GraphEdges,
+  fileSizes: ProcessedSourceMap,
+  sourceMapFiles: string[]
+): ProcessedImportState {
   return {
     rollups: getRollups(fileSizes),
-    trimmedNetwork,
+    trimmedNetwork: getTrimmedNetwork(graphEdges, fileSizes),
     duplicateNodeModules: findDuplicateModules(sourceMapFiles),
-    hierarchy: nodesToTreeMap(fileSizes)
+    hierarchy: nodesToTreeMap(fileSizes),
   };
 }

@@ -2,23 +2,23 @@ import {
   requiredBy,
   directRequires,
   calculateTransitiveRequires,
-  edgesToGraph
+  edgesToGraph,
 } from ".";
 
 it("generates a flattend graph", () => {
   const flat = edgesToGraph([
     {
-      source: "susie",
-      target: "randy"
+      fileName: "susie",
+      imported: "randy",
     },
     {
-      source: "susie",
-      target: "sam"
+      fileName: "susie",
+      imported: "sam",
     },
     {
-      source: "sam",
-      target: "randy"
-    }
+      fileName: "sam",
+      imported: "randy",
+    },
   ]);
 
   expect(Array.from(flat["randy"].requires).sort()).toEqual([]);
@@ -35,7 +35,7 @@ it("calculate transitive requires cycles", () => {
   const input = {
     a: { requiredBy: ["b"] },
     c: { requiredBy: ["a"] },
-    b: { requiredBy: ["c", "a"] }
+    b: { requiredBy: ["c", "a"] },
   };
 
   expect(
@@ -56,7 +56,7 @@ it("calculate transitive requires", () => {
     a: { requiredBy: ["b"] },
     c: { requiredBy: ["a"] },
     z: { requiredBy: ["a"] },
-    q: { requiredBy: ["c"] }
+    q: { requiredBy: ["c"] },
   };
 
   // handles when a node is not in the graph
@@ -74,7 +74,7 @@ it("builds direct requires (depends on) graph", () => {
     a: { requiredBy: ["b"] },
     c: { requiredBy: ["a"] },
     z: { requiredBy: ["a", "t"] },
-    q: { requiredBy: ["c"] }
+    q: { requiredBy: ["c"] },
   };
 
   const ret = directRequires(input);
@@ -93,7 +93,7 @@ it("calulates transitive required by (required by)", () => {
     a: { requiredBy: ["b"] },
     b: { requiredBy: [] },
     c: { requiredBy: ["a", "b"] },
-    d: { requiredBy: ["a"] }
+    d: { requiredBy: ["a"] },
   };
 
   const ret = requiredBy(input);
@@ -107,7 +107,7 @@ it("calulates transitive required by (required by)", () => {
 it("does not cycle", () => {
   const input = {
     a: { requiredBy: ["b"] },
-    b: { requiredBy: ["a"] }
+    b: { requiredBy: ["a"] },
   };
 
   const ret = requiredBy(input);

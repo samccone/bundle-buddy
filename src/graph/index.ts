@@ -1,4 +1,4 @@
-import { GraphEdges, FlattendGraph } from "../types";
+import { Imported, FlattendGraph } from "../types";
 
 export interface RequireGraph {
   [target: string]: {
@@ -6,34 +6,34 @@ export interface RequireGraph {
   };
 }
 
-export function edgesToGraph(edges: GraphEdges): FlattendGraph {
+export function edgesToGraph(edges: Imported[]): FlattendGraph {
   const ret: FlattendGraph = {};
 
   // materialze the graph with all nodes.
   for (const edge of edges) {
-    if (ret[edge.source] == null) {
-      ret[edge.source] = {
+    if (ret[edge.fileName] == null) {
+      ret[edge.fileName] = {
         requires: new Set<string>(),
-        requiredBy: new Set<string>()
+        requiredBy: new Set<string>(),
       };
     }
 
-    if (ret[edge.target] == null) {
-      ret[edge.target] = {
+    if (ret[edge.imported] == null) {
+      ret[edge.imported] = {
         requires: new Set<string>(),
-        requiredBy: new Set<string>()
+        requiredBy: new Set<string>(),
       };
     }
   }
 
   for (const key of Object.keys(ret)) {
     for (const edge of Object.values(edges)) {
-      if (edge.source === key) {
-        ret[key].requires.add(edge.target);
+      if (edge.fileName === key) {
+        ret[key].requires.add(edge.imported);
       }
 
-      if (edge.target === key) {
-        ret[key].requiredBy.add(edge.source);
+      if (edge.imported === key) {
+        ret[key].requiredBy.add(edge.fileName);
       }
     }
   }
@@ -50,7 +50,7 @@ function getModules(
   seen.add(node);
 
   // Filter out duplicate nodes that we have already handled
-  const names = Array.from(graph[node].requiredBy).filter(v => !seen.has(v));
+  const names = Array.from(graph[node].requiredBy).filter((v) => !seen.has(v));
 
   // Add all new nodes to the seen list
   for (const n of names) {
@@ -58,7 +58,7 @@ function getModules(
   }
 
   // Walk graph gathering all new nodes
-  const allNames = names.map(v => {
+  const allNames = names.map((v) => {
     return getModules(graph, v, { isRoot: false }, seen);
   });
 
@@ -176,7 +176,7 @@ export function requiredBy(d: {
   for (const rootK of Object.keys(d)) {
     const moduleDeps = getModules(d, rootK, { isRoot: true });
     ret[rootK] = {
-      transitiveRequiredBy: moduleDeps
+      transitiveRequiredBy: moduleDeps,
     };
   }
 

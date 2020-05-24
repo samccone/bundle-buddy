@@ -3,7 +3,7 @@ import { scaleSqrt, scaleLinear, ScaleLinear } from "d3-scale";
 import { primary } from "../theme";
 
 import arrow from "viz-annotation/lib/Connector/end-arrow";
-import { TrimmedDataNode, Edge } from "../types";
+import { TrimmedDataNode, Imported } from "../types";
 
 type Props = {
   selected: string;
@@ -12,7 +12,7 @@ type Props = {
   max?: number;
   changeSelected: React.Dispatch<string | undefined>;
   nodes: TrimmedDataNode[];
-  edges: Edge[];
+  edges: Imported[];
 };
 
 type InOut = "in" | "out";
@@ -46,7 +46,7 @@ function mapLocation(
         ...d,
         r: radiusScale(d.totalBytes),
         spacing,
-        offset: total + spacing / 2
+        offset: total + spacing / 2,
       };
 
       total += value.spacing;
@@ -69,21 +69,21 @@ function mapLocation(
       .domain([0, total || 0])
       .range([
         center + overallArcStart * sign,
-        center - overallArcStart * sign
+        center - overallArcStart * sign,
       ]),
     yScale = (degrees: number, r: number) =>
       -Math.cos(degrees * (Math.PI / 180)) * r,
     xScale = (degrees: number, r: number) =>
       Math.sin(degrees * (Math.PI / 180)) * r;
 
-  const nodesWithPosition = requires.map(d => {
+  const nodesWithPosition = requires.map((d) => {
     const degrees = angleScale(d.offset);
     const node: NodeWithPosition = {
       ...d,
       x: xScale(degrees, rSize) + sign * (rSize - rOffset),
       y: yScale(degrees, rSize),
       r: radiusScale(d.totalBytes),
-      degrees: undefined
+      degrees: undefined,
     };
 
     if (-(node.x + node.r) > translateX) translateX = -(node.x + node.r);
@@ -110,7 +110,7 @@ function getPlaceCircles(
     placeCircles: (inOrOut: InOut, files: NodeWithPosition[]) => {
       return files
         .sort((a, b) => a.r - b.r)
-        .map(d => {
+        .map((d) => {
           return (
             <g
               key={d.id}
@@ -134,7 +134,7 @@ function getPlaceCircles(
           );
         });
     },
-    getFill
+    getFill,
   };
 }
 
@@ -146,11 +146,11 @@ export default function RippleChart(props: Props) {
     selected,
     directories,
     directoryColors,
-    changeSelected
+    changeSelected,
   } = props;
 
   const [hover, updateHover] = useState<string>();
-  const selectedNode = nodes.find(d => d.id === selected);
+  const selectedNode = nodes.find((d) => d.id === selected);
   const { placeCircles, getFill } = useMemo(
     () => getPlaceCircles(changeSelected, updateHover, directoryColors),
     [changeSelected, updateHover, directoryColors]
@@ -162,116 +162,113 @@ export default function RippleChart(props: Props) {
       nodesWithPosition: [] as NodeWithPosition[],
       x: 0,
       y: 0,
-      maxX: 0
+      maxX: 0,
     },
     requiredBy = {
       nodesWithPosition: [] as NodeWithPosition[],
       x: 0,
       y: 0,
-      maxX: 0
+      maxX: 0,
     },
     nextLevelNodes: NodeWithPosition[] = [],
-    nextLevelEdges: Edge[] = [];
+    nextLevelEdges: Imported[] = [];
 
-  const count = selectedNode.count;
-
-  const radiusScale = scaleSqrt()
-    .domain([0, max])
-    .range([0, 100]);
+  const radiusScale = scaleSqrt().domain([0, max]).range([0, 100]);
 
   let usedNodes: { [key: string]: NodeWithPosition } = {};
   let selectedXPos = 0;
   let selectedYPos = 0;
   let maxXPos = 0;
-  if (count) {
-    requires = mapLocation(
-      radiusScale,
-      "in",
-      nodes.filter(d => count.requires.indexOf(d.id) !== -1)
+  requires = mapLocation(
+    radiusScale,
+    "in",
+    nodes.filter((d) => selectedNode.requires.indexOf(d.id) !== -1)
+  );
+  requiredBy = mapLocation(
+    radiusScale,
+    "out",
+    nodes.filter((d) => selectedNode.requiredBy.indexOf(d.id) !== -1)
+  );
+
+  nextLevelEdges = [
+    ...selectedNode.requires.map((d) => ({ imported: d, fileName: selected })),
+    ...selectedNode.requiredBy.map((d) => ({
+      fileName: d,
+      imported: selected,
+    })),
+  ];
+
+  usedNodes = [
+    ...requires.nodesWithPosition,
+    ...requiredBy.nodesWithPosition,
+  ].reduce((p: { [key: string]: NodeWithPosition }, c: NodeWithPosition) => {
+    p[c.id] = c;
+    return p;
+  }, {});
+
+  selectedXPos = Math.max(requires.x, requiredBy.x);
+  selectedYPos = Math.max(requires.y, requiredBy.y);
+  maxXPos = Math.max(requires.maxX, requiredBy.maxX);
+
+  const getNextLevel = (requiredByKeys: string[], level = 0) => {
+    const edgeLevel = edges.filter(
+      (d) => requiredByKeys.indexOf(d.imported) !== -1
     );
-    requiredBy = mapLocation(
-      radiusScale,
-      "out",
-      nodes.filter(d => count.requiredBy.indexOf(d.id) !== -1)
+    nextLevelEdges.push(...edgeLevel);
+
+    const edgeLevelKeys = edgeLevel.map((d) => d.fileName);
+
+    const matchingNodes = nodes.filter(
+      (d) => edgeLevelKeys.indexOf(d.id) !== -1 && !usedNodes[d.id]
     );
 
-    nextLevelEdges = [
-      ...count.requires.map(d => ({ source: d, target: selected })),
-      ...count.requiredBy.map(d => ({ target: d, source: selected }))
-    ];
-
-    usedNodes = [
-      ...requires.nodesWithPosition,
-      ...requiredBy.nodesWithPosition
-    ].reduce((p: { [key: string]: NodeWithPosition }, c: NodeWithPosition) => {
-      p[c.id] = c;
-      return p;
-    }, {});
-
-    selectedXPos = Math.max(requires.x, requiredBy.x);
-    selectedYPos = Math.max(requires.y, requiredBy.y);
-    maxXPos = Math.max(requires.maxX, requiredBy.maxX);
-
-    const getNextLevel = (requiredByKeys: string[], level = 0) => {
-      const edgeLevel = edges.filter(
-        d => requiredByKeys.indexOf(d.source) !== -1
-      );
-      nextLevelEdges.push(...edgeLevel);
-
-      const edgeLevelKeys = edgeLevel.map(d => d.target);
-
-      const matchingNodes = nodes.filter(
-        d => edgeLevelKeys.indexOf(d.id) !== -1 && !usedNodes[d.id]
+    if (matchingNodes.length > 0) {
+      const newNodes = mapLocation(
+        radiusScale,
+        "out",
+        matchingNodes,
+        OFFSET * (level + 2)
       );
 
-      if (matchingNodes.length > 0) {
-        const newNodes = mapLocation(
-          radiusScale,
-          "out",
-          matchingNodes,
-          OFFSET * (level + 2)
-        );
+      newNodes.nodesWithPosition.forEach((n) => {
+        usedNodes[n.id] = n;
+        nextLevelNodes.push(n);
+      });
 
-        newNodes.nodesWithPosition.forEach(n => {
-          usedNodes[n.id] = n;
-          nextLevelNodes.push(n);
-        });
+      selectedXPos = Math.max(selectedXPos, newNodes.x);
+      selectedYPos = Math.max(selectedYPos, newNodes.y);
+      maxXPos = Math.max(maxXPos, newNodes.maxX);
 
-        selectedXPos = Math.max(selectedXPos, newNodes.x);
-        selectedYPos = Math.max(selectedYPos, newNodes.y);
-        maxXPos = Math.max(maxXPos, newNodes.maxX);
-
-        getNextLevel(
-          newNodes.nodesWithPosition.map(d => d.id),
-          level + 1
-        );
-      }
-    };
-
-    getNextLevel(count.requiredBy);
-
-    if (requires.nodesWithPosition.length === 0) {
-      selectedXPos = 150;
-    } else {
-      selectedXPos += 150;
+      getNextLevel(
+        newNodes.nodesWithPosition.map((d) => d.id),
+        level + 1
+      );
     }
+  };
 
-    usedNodes[selected] = {
-      ...selectedNode,
-      x: 0,
-      y: 0,
-      r: radiusScale(selectedNode.totalBytes),
-      degrees: undefined
-    };
+  getNextLevel(selectedNode.requiredBy);
+
+  if (requires.nodesWithPosition.length === 0) {
+    selectedXPos = 150;
+  } else {
+    selectedXPos += 150;
   }
+
+  usedNodes[selected] = {
+    ...selectedNode,
+    x: 0,
+    y: 0,
+    r: radiusScale(selectedNode.totalBytes),
+    degrees: undefined,
+  };
 
   const primaryRadius = radiusScale(selectedNode.totalBytes);
 
-  let showEdges: Edge[] = [];
+  let showEdges: Imported[] = [];
   let showNodes: { id: string; anchor: string }[] = [];
   if (hover) {
     showEdges = nextLevelEdges.filter(
-      d => d.source === hover || d.target === hover
+      (d) => d.imported === hover || d.fileName === hover
     );
 
     showNodes = Object.values(
@@ -285,11 +282,11 @@ export default function RippleChart(props: Props) {
           },
           c
         ) => {
-          p[c.source] = {
-            id: c.source,
-            anchor: c.target === selected ? "end" : "start"
+          p[c.imported] = {
+            id: c.imported,
+            anchor: c.fileName === selected ? "end" : "start",
           };
-          p[c.target] = { id: c.target, anchor: "start" };
+          p[c.fileName] = { id: c.fileName, anchor: "start" };
           return p;
         },
         {}
@@ -316,9 +313,9 @@ export default function RippleChart(props: Props) {
       <b>Ripple Chart </b>
       <br />
       <p>
-        A detailed look at how a <span className="primary">resource</span> is
+        A detailed look at how a <span className="primary">reimported</span> is
         linked to an entry point of your application.{" "}
-        <span className="primary">Resources</span> with many required bys are
+        <span className="primary">Reimporteds</span> with many required bys are
         harder to remove as a dependency.
       </p>
       <p>
@@ -376,7 +373,7 @@ export default function RippleChart(props: Props) {
                   Required by
                 </text>
                 <text fontSize="11" fontWeight="bold" x={5} y={14}>
-                  {count.transitiveRequiredBy.length} files
+                  {selectedNode.transitiveRequiredBy.length} files
                 </text>
               </g>
             )}
@@ -399,15 +396,15 @@ export default function RippleChart(props: Props) {
                   x={-8}
                   y={14}
                 >
-                  {count.requires.length} files/modules
+                  {selectedNode.requires.length} files/modules
                 </text>
               </g>
             )}
 
             <g
-              transform={`translate(0, ${-primaryRadius -
-                14 -
-                14 * selected.split("/").length})`}
+              transform={`translate(0, ${
+                -primaryRadius - 14 - 14 * selected.split("/").length
+              })`}
             >
               <text x={-200} fill={primary} textAnchor="middle">
                 {selected.split("/").map((d, i, array) => {
@@ -432,37 +429,37 @@ export default function RippleChart(props: Props) {
 
             {hover &&
               showEdges.map((d, i) => {
-                const source = usedNodes[d.source];
-                const target = usedNodes[d.target];
+                const imported = usedNodes[d.imported];
+                const fileName = usedNodes[d.fileName];
                 const middle = {
-                  x: source.x + ((target.x - source.x) * 2) / 3,
-                  y: source.y + ((target.y - source.y) * 2) / 3
+                  x: imported.x + ((fileName.x - imported.x) * 2) / 3,
+                  y: imported.y + ((fileName.y - imported.y) * 2) / 3,
                 };
 
                 const a = arrow({
-                  start: [source.x, source.y],
+                  start: [imported.x, imported.y],
                   end: [middle.x, middle.y],
-                  scale: 1.5
+                  scale: 1.5,
                 });
 
                 const color =
-                  d.source === hover
+                  d.imported === hover
                     ? "rgba(62, 156, 254,.5)"
                     : "rgba(232, 212, 26, .5)";
 
                 return (
                   <g pointerEvents="none" key={i}>
                     <line
-                      x1={source.x}
-                      y1={source.y}
-                      x2={target.x}
-                      y2={target.y}
+                      x1={imported.x}
+                      y1={imported.y}
+                      x2={fileName.x}
+                      y2={fileName.y}
                       stroke={color}
                     />
                     <circle
-                      r={source.r}
-                      cx={source.x}
-                      cy={source.y}
+                      r={imported.r}
+                      cx={imported.x}
+                      cy={imported.y}
                       stroke={color}
                       fill={"none"}
                     />
@@ -472,9 +469,9 @@ export default function RippleChart(props: Props) {
                       stroke={color}
                     />
                     <circle
-                      r={target.r}
-                      cx={target.x}
-                      cy={target.y}
+                      r={fileName.r}
+                      cx={fileName.x}
+                      cy={fileName.y}
                       stroke={color}
                       fill={"none"}
                     />

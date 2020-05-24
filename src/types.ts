@@ -15,13 +15,21 @@ export interface Edge {
   target: string;
 }
 
+export interface Imported {
+  // current file
+  fileName: string;
+  // imported the following
+  imported: string;
+  importedFileNames?: string[];
+}
+
 export type GraphEdges = Edge[];
 
 export enum ImportTypes {
   ROLLUP,
   PARCEL,
   ROME,
-  WEBPACK
+  WEBPACK,
 }
 
 export interface ImportResolveState {
@@ -76,19 +84,6 @@ export interface BundleProps {
   hierarchy: ProcessedImportState["hierarchy"];
 }
 
-export interface BundleState {
-  selected: string | null;
-  counts: { [k: string]: BundleNetworkCount };
-}
-
-export interface BundleNetworkCount {
-  requiredBy: string[];
-  requires: string[];
-  transitiveRequiredBy: string[];
-  transitiveRequires: string[];
-  transitiveRequiresSize: number;
-}
-
 export interface ResolveProps {
   history: ImportHistory;
   graphNodes: GraphEdges;
@@ -99,7 +94,7 @@ export interface ResolveProps {
 
 export interface TrimmedNetwork {
   nodes: TrimmedDataNode[];
-  edges: Edge[];
+  edges: Imported[];
 }
 
 export interface TrimmedDataNode {
@@ -108,7 +103,11 @@ export interface TrimmedDataNode {
   directory: string;
   fileName: string;
   text: string;
-  count: BundleNetworkCount;
+  requiredBy: string[];
+  requires: string[];
+  transitiveRequiredBy: string[];
+  transitiveRequires: string[];
+  transitiveRequiresSize: number;
 }
 
 export interface ImportState {
