@@ -93,15 +93,7 @@ function initializeNode(id: string) {
   };
 }
 
-export function transform(
-  graphEdges: GraphEdges,
-  sourceMapData: ProcessedSourceMap,
-  sourceMapFiles: string[]
-): ProcessedImportState {
-  const addedNodes: { [name: string]: boolean } = {};
-  const trimmedNodes: { [name: string]: TrimmedDataNode } = {};
-  const trimmedEdges: Edge[] = [];
-  const unique: { [k: string]: boolean } = {};
+export function findDuplicateModules(sourceMapFiles: string[]) {
   const nmLength = "node_modules".length + 1;
   const dps = sourceMapFiles.reduce<{
     [key: string]: string[];
@@ -128,7 +120,7 @@ export function transform(
     return p;
   }, {});
 
-  const duplicateNodeModules = Object.keys(dps).reduce(
+  return Object.keys(dps).reduce(
     (p, c) => {
       const v = dps[c];
 
@@ -140,6 +132,17 @@ export function transform(
       value: string[];
     }>
   );
+}
+
+export function transform(
+  graphEdges: GraphEdges,
+  sourceMapData: ProcessedSourceMap,
+  sourceMapFiles: string[]
+): ProcessedImportState {
+  const addedNodes: { [name: string]: boolean } = {};
+  const trimmedNodes: { [name: string]: TrimmedDataNode } = {};
+  const trimmedEdges: Edge[] = [];
+  const unique: { [k: string]: boolean } = {};
 
   graphEdges.forEach(e => {
     //trimmed network functions
@@ -329,5 +332,10 @@ export function transform(
     d.fileName = d.id.slice(lastSlash !== -1 ? lastSlash + 1 : 0);
   });
 
-  return { rollups, trimmedNetwork, duplicateNodeModules, hierarchy };
+  return {
+    rollups,
+    trimmedNetwork,
+    duplicateNodeModules: findDuplicateModules(sourceMapFiles),
+    hierarchy
+  };
 }
