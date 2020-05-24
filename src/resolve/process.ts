@@ -307,7 +307,6 @@ export function transform(
       if (d.indexOf("node_modules") === -1) {
         trimmedNodes[d] = initializeNode(d);
       }
-      console.log(d, fileSizes[d].totalBytes);
     }
   });
 
