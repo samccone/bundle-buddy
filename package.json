@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "@rehooks/window-size": "^1.0.2",
     "@sentry/browser": "^4.4.2",
     "@storybook/preset-create-react-app": "^2.1.1",
     "@types/d3-scale": "^2.2.0",

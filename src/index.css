@@ -9,6 +9,15 @@
   --side-panel-width: 100px;
   --total-width: 580px;
   --default-text: #111;
+  --grey100: #f1f2f4;
+  --grey200: #dfe1e5;
+  --grey300: #ccd1d7;
+  --grey400: #a8b1bc;
+  --grey500: #8892a0;
+  --grey600: #6a7585;
+  --grey700: #4e5a6a;
+  --grey800: #36404e;
+  --grey900: #212833;
 }
 
 body {
@@ -473,7 +482,7 @@ a:hover {
   color: #0056b3;
   text-decoration: underline;
 }
-
+/* 
 table {
   border-spacing: 0px;
 }
@@ -489,6 +498,55 @@ th {
 th,
 td {
   padding: 3px;
+} */
+
+.Table {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+  position: relative;
+}
+
+.Table tr td {
+  padding: 12px;
+  font-size: 14px;
+}
+
+.Table thead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.Table thead th.top {
+  top: -4px;
+  position: sticky;
+  z-index: 100;
+}
+
+.Table thead th.bottom {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--grey700);
+  position: sticky;
+  top: calc(30vh + 40px);
+  z-index: 100;
+  padding: 15px;
+}
+
+.Table th,
+.Table td {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.Table tbody td {
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+}
+
+.Table th {
+  font-size: 14px;
+  background: var(--grey100);
 }
 
 .bar-chart .fixed-label {

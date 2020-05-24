@@ -1,13 +1,12 @@
 import React, { useMemo } from "react";
 import { useTable, useSortBy } from "react-table";
 
-// import { colors } from "../theme";
 import { getCSSPercent, getFileSize } from "./stringFormats";
 import { ProcessedImportState, TrimmedDataNode } from "../types";
 
 type Column = {
   value: number;
-  original: TrimmedDataNode;
+  row: { original: TrimmedDataNode };
 };
 
 type Maxes = {
@@ -52,20 +51,21 @@ function getColumns(
   });
 
   function getBar(
-    d: Column,
+    // d: Column,
+    d: any,
     accessor: (d: TrimmedDataNode) => number,
     id: keyof Maxes
   ) {
     return (
       <div
         style={{
-          background: directoryColors[d.original.directory] || "black",
+          background: directoryColors[d.row.original.directory] || "black",
           border: "1px solid white",
           height: 8,
-          width: d.value ? getCSSPercent(d.value, maxes[id]) : "0px",
+          width: d.value ? getCSSPercent(d.value / maxes[id]) : "0px",
           position: "relative",
           top: 15,
-          left: getCSSPercent(maxes[id] - accessor(d.original), maxes[id]),
+          left: getCSSPercent(maxes[id] - accessor(d.row.original), maxes[id]),
         }}
       />
     );
@@ -76,44 +76,40 @@ function getColumns(
       accessor: "text" as any,
       Header: "Name",
       Cell: (d: Column) => {
-        return <span style={{ fontSize: 12 }}>{d.value}</span>;
+        return d.value;
       },
     },
     {
       id: "totalBytes",
       accessor: (d: TrimmedDataNode) => d.totalBytes,
       Header: "Size",
-      minWidth: 50,
+      minWidth: 100,
       label: (d: Column) =>
         `${getFileSize(d.value)}, ${getCSSPercent(d.value, total)}`,
     },
     {
       id: "requires",
       accessor: (d: TrimmedDataNode) => d.requires.length,
-      Header: "Direct Requires",
-      headerClassName: "rotated",
+      Header: "Directly Requires",
       minWidth: 25,
     },
     {
       id: "transitiveRequires",
       accessor: (d: TrimmedDataNode) => d.transitiveRequires.length,
       Header: "All Requires",
-      headerClassName: "rotated",
       minWidth: 25,
     },
     {
       id: "transitiveRequiresSize",
       accessor: (d: TrimmedDataNode) => d.transitiveRequiresSize,
       Header: "All Requires Size",
-      headerClassName: "rotated",
       minWidth: 50,
       label: (d: Column) => getFileSize(d.value),
     },
     {
       id: "requiredBy",
       accessor: (d: TrimmedDataNode) => d.requiredBy.length,
-      Header: "Direct Required By",
-      headerClassName: "rotated",
+      Header: "Directly Required By",
       minWidth: 25,
     },
 
@@ -121,28 +117,29 @@ function getColumns(
       id: "transitiveRequiredBy",
       accessor: (d: TrimmedDataNode) => d.transitiveRequiredBy.length,
       Header: "All Required By",
-      headerClassName: "rotated",
       minWidth: 25,
     },
-  ].map((d) => {
+  ].map((d, i) => {
     return {
       ...d,
-      /*       Cell:
+      sortDescFirst: i === 0 ? false : true,
+      Cell:
         d.Cell ||
-        ((c: Column) => (
-          <div className="relative">
-            {getBar(c, d.accessor, d.id as keyof Maxes)}
+        ((c: Column) => {
+          return (
+            <div className="relative">
+              {getBar(c, d.accessor, d.id as keyof Maxes)}
 
-            <span
-              style={{ fontSize: 12, position: "absolute", top: 0, right: 0 }}
-            >
-              <span className="right">
-                {d.label ? d.label(c) : !c.value ? "--" : c.value}
+              <span
+                style={{ fontSize: 12, position: "absolute", top: 0, right: 0 }}
+              >
+                <span className="right">
+                  {d.label ? d.label(c) : !c.value ? "--" : c.value}
+                </span>
               </span>
-            </span>
-          </div>
-        )),
-  */
+            </div>
+          );
+        }),
     };
   });
 }
@@ -154,18 +151,12 @@ function filterMethod(filter: any, row: any, column: any) {
   );
 }
 
-const defaultSorted = [
-  {
-    id: "totalBytes",
-    desc: true,
-  },
-];
-
 type Props = {
   total?: number;
   changeSelected: React.Dispatch<string>;
   directoryColors: { [dir: string]: string };
   network: ProcessedImportState["trimmedNetwork"];
+  header?: JSX.Element;
 };
 
 export default function FileDetails(props: Props) {
@@ -174,6 +165,7 @@ export default function FileDetails(props: Props) {
     changeSelected,
     directoryColors,
     total,
+    header,
   } = props;
   const { nodes = [] } = network;
 
@@ -191,18 +183,34 @@ export default function FileDetails(props: Props) {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns: columns, data }, useSortBy);
+  } = useTable(
+    {
+      columns: columns,
+      data,
+      defaultCanSort: true,
+      disableSortRemove: true,
+      initialState: { sortBy: [{ id: "totalBytes", desc: true }] } as any,
+    } as any,
+    useSortBy
+  );
 
   return (
-    <table {...getTableProps()}>
+    <table {...getTableProps()} className="Table">
       <thead>
+        <tr>
+          <th className="top" scope="colgroup" colSpan={columns.length}>
+            {header}
+          </th>
+        </tr>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
               <th
+                className="bottom"
                 {...column.getHeaderProps(
                   (column as any).getSortByToggleProps()
                 )}
+                scope="col"
               >
                 {column.render("Header")}
                 <span>
@@ -221,9 +229,22 @@ export default function FileDetails(props: Props) {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+            <tr {...row.getRowProps()} className="pointer">
+              {row.cells.map((cell: any) => {
+                return (
+                  <td
+                    {...cell.getCellProps()}
+                    style={{
+                      minWidth: cell.column.minWidth,
+                      background:
+                        cell.column.Header === "Name"
+                          ? directoryColors[cell.row.original.directory]
+                          : undefined,
+                    }}
+                  >
+                    {cell.render("Cell")}
+                  </td>
+                );
               })}
             </tr>
           );

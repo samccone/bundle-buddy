@@ -52,7 +52,8 @@ export default function Analyze(props: Props) {
       <div className="flex">
         <div style={{ width: "25vw" }}>
           <h1>Analyze</h1>
-
+        </div>
+        <div>
           <p>
             <img className="icon" alt="details" src="/img/details.png" />
             <b>Details</b>
@@ -68,18 +69,21 @@ export default function Analyze(props: Props) {
             <b>{withoutNodeModules}</b> files
           </p>
         </div>
-        <Treemap
-          hierarchy={hierarchy}
-          bgColorsMap={directoryColors}
-          changeSelected={changeSelected}
-        />
       </div>
+
       <br />
       <FileDetails
         total={total}
         network={network}
         changeSelected={changeSelected}
         directoryColors={directoryColors}
+        header={
+          <Treemap
+            hierarchy={hierarchy}
+            bgColorsMap={directoryColors}
+            changeSelected={changeSelected}
+          />
+        }
       />
       {selected && (
         <RippleChart

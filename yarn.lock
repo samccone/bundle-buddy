@@ -1376,6 +1376,13 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@rehooks/window-size@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@rehooks/window-size/-/window-size-1.0.2.tgz#24583dda021969e7b7166b923b055a47cca4e4b5"
+  integrity sha512-sqPpGM4kivmOFHG+UKqmJbVDBSLOpjMZgqnCNzpzXRZey8R84LL3MaYiE5hulAAosiOh3UJopvJhgUauccaoeA==
+  dependencies:
+    react "^16.7.0-alpha.0"
+
 "@scarf/scarf@^1.0.4":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.0.5.tgz#accee0bce88a9047672f7c8faf3cada59c996b81"
@@ -12288,7 +12295,7 @@ react-textarea-autosize@^7.1.0:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
-react@^16.6.1, react@^16.8.3:
+react@^16.6.1, react@^16.7.0-alpha.0, react@^16.8.3:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
