@@ -1,4 +1,35 @@
-import { requiredBy, directRequires, calculateTransitiveRequires } from ".";
+import {
+  requiredBy,
+  directRequires,
+  calculateTransitiveRequires,
+  edgesToGraph
+} from ".";
+
+it("generates a flattend graph", () => {
+  const flat = edgesToGraph([
+    {
+      source: "susie",
+      target: "randy"
+    },
+    {
+      source: "susie",
+      target: "sam"
+    },
+    {
+      source: "sam",
+      target: "randy"
+    }
+  ]);
+
+  expect(Array.from(flat["randy"].requires).sort()).toEqual([]);
+  expect(Array.from(flat["randy"].requiredBy).sort()).toEqual(["sam", "susie"]);
+
+  expect(Array.from(flat["susie"].requires).sort()).toEqual(["randy", "sam"]);
+  expect(Array.from(flat["susie"].requiredBy).sort()).toEqual([]);
+
+  expect(Array.from(flat["sam"].requires).sort()).toEqual(["randy"]);
+  expect(Array.from(flat["sam"].requiredBy).sort()).toEqual(["susie"]);
+});
 
 it("calculate transitive requires cycles", () => {
   const input = {
