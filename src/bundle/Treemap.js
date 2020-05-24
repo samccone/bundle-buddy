@@ -15,7 +15,7 @@ export default class Treemap extends React.Component {
 
   handleClick(node) {
     if (node.children) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         if (node.depth === 0) {
           return { zoomed: null };
         }
@@ -30,14 +30,14 @@ export default class Treemap extends React.Component {
 
   render() {
     const padding = [20, 2, 2, 2];
-    const size = [800, 800];
+    const size = [800, 400];
     const { hierarchy, bgColorsMap } = this.props;
 
     const tree = stratify()
-      .id(function(d) {
+      .id(function (d) {
         return d.name;
       })
-      .parentId(function(d) {
+      .parentId(function (d) {
         return d.parent;
       })(hierarchy);
     // .sum(d => d.totalBytes);
@@ -50,7 +50,7 @@ export default class Treemap extends React.Component {
               ? "Fully zoomed out, click to zoom directories (bolded) "
               : tree
                   .descendants()
-                  .find(node => node.data.name === this.state.zoomed)
+                  .find((node) => node.data.name === this.state.zoomed)
                   .ancestors()
                   .reverse()
                   .map((node, i) => (
@@ -58,7 +58,7 @@ export default class Treemap extends React.Component {
                       {i > 0 ? " - " : ""}
                       <a
                         href="#"
-                        onClick={e => {
+                        onClick={(e) => {
                           e.preventDefault();
                           this.handleClick(node);
                         }}
@@ -75,7 +75,7 @@ export default class Treemap extends React.Component {
               position: "relative",
               overflow: "hidden",
               borderRadius: "2px",
-              backgroundClip: "padding-box"
+              backgroundClip: "padding-box",
             }}
           >
             <TreemapComponent
@@ -100,7 +100,7 @@ export default class Treemap extends React.Component {
                     className="treemap__node"
                     style={{
                       ...posStyle,
-                      background: bgColorsMap[directory] || "white"
+                      background: bgColorsMap[directory] || "white",
                     }}
                   >
                     <div
@@ -113,7 +113,7 @@ export default class Treemap extends React.Component {
                       style={{
                         lineHeight: `${padding[0] - 2}px`,
                         fontWeight: node.children ? "bold" : "100",
-                        color: "black" //textColorsMap.get(node.data.key),
+                        color: "black", //textColorsMap.get(node.data.key),
                       }}
                     >
                       {posStyle.height > 5 && (

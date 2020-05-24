@@ -187,14 +187,6 @@ export default function FileDetails(props: Props) {
   } = props;
   const { nodes = [] } = network;
 
-  let withNodeModules = 0;
-  let withoutNodeModules = 0;
-
-  nodes.forEach((n) => {
-    if (n.id.indexOf("node_modules") !== -1) withNodeModules++;
-    else withoutNodeModules++;
-  });
-
   const columns = useMemo(() => getColumns(directoryColors, nodes, total), [
     directoryColors,
     nodes,
@@ -205,23 +197,6 @@ export default function FileDetails(props: Props) {
 
   return (
     <div>
-      <h1>Analyze</h1>
-
-      <p>
-        <img className="icon" alt="details" src="/img/details.png" />
-        <b>Details</b>
-      </p>
-      <p>
-        Bundled{" "}
-        {withNodeModules && (
-          <span>
-            <b>{withNodeModules}</b> node_modules
-          </span>
-        )}{" "}
-        {withNodeModules && "with "}
-        <b>{withoutNodeModules}</b> files
-      </p>
-
       <ReactTable
         // getProps={getProps}
         data={nodes}

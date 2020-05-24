@@ -175,29 +175,19 @@ export function getTrimmedNetwork(
   graphEdges.forEach((e) => {
     //trimmed network functions
     const fileName = typeof e.source === "string" && e.source;
-    const importedShortedName = e.target.includes("node_modules")
-      ? e.target.split("/").slice(0, 2).join("/")
-      : e.target;
-    const importedFileName = e.target;
 
     if (fileName) {
       addedNodes[fileName] = true;
+      let importedShortedName, importedFileName;
+      if (typeof e.target === "string") {
+        importedShortedName = e.target.includes("node_modules")
+          ? e.target.split("/").slice(0, 2).join("/")
+          : e.target;
+        importedFileName = e.target;
+      }
 
       //if fileName does not include node modules
       if (!fileName.includes("node_modules")) {
-        const edgeKey = `${importedShortedName} -> ${fileName}`;
-        if (!addedEdges[edgeKey]) {
-          addedEdges[edgeKey] = true;
-          trimmedEdges[edgeKey] = {
-            fileName,
-            imported: importedShortedName,
-            importedFileNames: [],
-          };
-        }
-        if (importedFileName !== importedShortedName) {
-          trimmedEdges[edgeKey].importedFileNames!.push(importedFileName);
-        }
-
         //add filename
         if (!trimmedNodes[fileName]) {
           trimmedNodes[fileName] = initializeNode(
@@ -206,20 +196,40 @@ export function getTrimmedNetwork(
           );
         }
 
-        //add shortened name
-        if (!trimmedNodes[importedShortedName]) {
-          addedNodes[importedFileName] = true;
+        if (importedFileName && importedShortedName) {
+          const edgeKey = `${importedShortedName} -> ${fileName}`;
+          if (!addedEdges[edgeKey]) {
+            addedEdges[edgeKey] = true;
+            trimmedEdges[edgeKey] = {
+              fileName,
+              imported: importedShortedName,
+              importedFileNames: [],
+            };
+          }
+          if (importedFileName !== importedShortedName) {
+            trimmedEdges[edgeKey].importedFileNames!.push(importedFileName);
+          }
 
-          trimmedNodes[importedShortedName] = initializeNode(
-            importedShortedName,
-            fileSizes[importedFileName] &&
-              fileSizes[importedFileName].totalBytes
-          );
+          //add shortened name
+          if (!trimmedNodes[importedShortedName]) {
+            addedNodes[importedFileName] = true;
+
+            trimmedNodes[importedShortedName] = initializeNode(
+              importedShortedName,
+              fileSizes[importedFileName] &&
+                fileSizes[importedFileName].totalBytes
+            );
+          }
         }
       }
 
       //aggregate total bytes for node_modules files under shortend name
-      if (!addedNodes[importedFileName] && trimmedNodes[importedShortedName]) {
+      if (
+        importedShortedName &&
+        importedFileName &&
+        !addedNodes[importedFileName] &&
+        trimmedNodes[importedShortedName]
+      ) {
         addedNodes[importedFileName] = true;
 
         if (fileSizes[importedFileName]) {

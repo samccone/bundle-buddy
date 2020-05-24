@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Report from "./Report";
-import FileDetails from "./FileDetails";
-import RippleChart from "./RippleChart";
-import Treemap from "./Treemap";
+import Analyze from "./Analyze";
+
 import { colors } from "../theme";
 import { ProcessedImportState } from "../types";
 
@@ -23,7 +22,7 @@ function storeSelected(selected?: string | null) {
 
 function download(props: Props) {
   const blob = new Blob([JSON.stringify(props)], {
-    type: "application/json"
+    type: "application/json",
   });
   const objectURL = URL.createObjectURL(blob);
   const a: HTMLAnchorElement = document.createElement("a");
@@ -43,27 +42,14 @@ export default function Bundle(props: Props) {
 
   const network = trimmedNetwork;
 
-  let edges = network.edges || [],
-    nodes = network.nodes || [];
-
-  const max =
-    network &&
-    network.nodes &&
-    network.nodes.sort((a, b) => {
-      if (a.totalBytes == null || b.totalBytes == null) {
-        return 0;
-      }
-      return b.totalBytes - a.totalBytes;
-    })[0].totalBytes;
-
   const directories = rollups.directories
     .sort((a, b) => b.totalBytes - a.totalBytes)
-    .map(d => d.name);
+    .map((d) => d.name);
 
   const directoryColors: { [dir: string]: string } = {};
   const svgDirectoryColors: { [dir: string]: string } = {};
   let i = 0;
-  directories.forEach(d => {
+  directories.forEach((d) => {
     if (d.indexOf("node_modules") !== -1) {
       directoryColors[d] = `repeating-linear-gradient(
         45deg,
@@ -80,7 +66,7 @@ export default function Bundle(props: Props) {
     }
   });
 
-  rollups.directories.forEach(d => {
+  rollups.directories.forEach((d) => {
     d.color = directoryColors[d.name];
   });
 
@@ -94,29 +80,15 @@ export default function Bundle(props: Props) {
         <Report duplicateNodeModules={duplicateNodeModules} />
       </div>
       <div className="left-padding right-padding">
-        <FileDetails
+        <Analyze
           total={rollups.value}
           network={network}
           changeSelected={changeSelected}
+          hierarchy={hierarchy}
           directoryColors={directoryColors}
+          svgDirectoryColors={svgDirectoryColors}
+          directories={directories}
         />
-        {selected ? (
-          <RippleChart
-            changeSelected={changeSelected}
-            nodes={nodes.map(d => Object.assign({}, d))}
-            edges={edges.map(d => Object.assign({}, d))}
-            max={max}
-            selected={selected}
-            directories={directories}
-            directoryColors={svgDirectoryColors}
-          />
-        ) : (
-          <Treemap
-            hierarchy={hierarchy}
-            bgColorsMap={directoryColors}
-            changeSelected={changeSelected}
-          />
-        )}
       </div>
     </div>
   );
