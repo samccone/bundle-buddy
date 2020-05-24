@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ImportHistory, ProcessedHistory } from "../types";
 // noopener noreferrer
 
-class DescribeImport extends Component<{ history: ImportHistory }> {
+class ImportSelector extends Component<{ history: ImportHistory }> {
   existingImportInput: React.RefObject<HTMLInputElement & { files: FileList }>;
 
   constructor(props: { history: ImportHistory }) {
@@ -116,4 +116,4 @@ class DescribeImport extends Component<{ history: ImportHistory }> {
   }
 }
 
-export default DescribeImport;
+export default ImportSelector;
