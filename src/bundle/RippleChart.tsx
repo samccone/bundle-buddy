@@ -177,7 +177,7 @@ export default function RippleChart(props: Props) {
 
   const radiusScale = scaleSqrt()
     .domain([0, max])
-    .range([0, 20]);
+    .range([0, 100]);
 
   let usedNodes: { [key: string]: NodeWithPosition } = {};
   let selectedXPos = 0;

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Component, Suspense, lazy } from "react";
 import Header from "./Header";
+import TestProcess from "./TestProcess";
 import ErrorBoundry from "./ErrorBoundry";
 import { Location } from "history";
 import {
@@ -43,6 +44,17 @@ class App extends Component {
                           hierarchy={location.state.hierarchy}
                         />
                       );
+                    }}
+                  />
+
+                  <Route
+                    path="/testProcess"
+                    component={({
+                      location
+                    }: {
+                      location: Location<ProcessedImportState>;
+                    }) => {
+                      return <TestProcess />;
                     }}
                   />
 

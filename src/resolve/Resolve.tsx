@@ -249,6 +249,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     ) {
       throw new Error("Unable to find graphnodes or sourcemap data");
     }
+
     const processed = transform(
       transformGraphNames(
         this.props.graphNodes,

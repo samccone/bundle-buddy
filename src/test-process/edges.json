@@ -1,0 +1,2976 @@
+[
+  {
+    "source": "src/index.js",
+    "target": "node_modules/setimmediate/setImmediate.js"
+  },
+  { "source": "src/index.js", "target": "node_modules/react/react.js" },
+  { "source": "src/index.js", "target": "node_modules/react-dom/index.js" },
+  {
+    "source": "src/index.js",
+    "target": "node_modules/react-router/lib/Router.js"
+  },
+  { "source": "src/index.js", "target": "lib/createHashHistory.js" },
+  {
+    "source": "src/index.js",
+    "target": "node_modules/react-router-scroll/lib/useScroll.js"
+  },
+  {
+    "source": "src/index.js",
+    "target": "node_modules/react-router/lib/applyRouterMiddleware.js"
+  },
+  { "source": "src/index.js", "target": "src/routes.js" },
+  {
+    "source": "node_modules/setimmediate/setImmediate.js",
+    "target": "../../../parcel/node_modules/process/browser.js"
+  },
+  {
+    "source": "node_modules/react/react.js",
+    "target": "node_modules/react/lib/React.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactChildren.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactPureComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactDOMFactories.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactPropTypes.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/ReactVersion.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/react/lib/onlyChild.js"
+  },
+  {
+    "source": "node_modules/react/lib/React.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildren.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildren.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildren.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildren.js",
+    "target": "node_modules/react/lib/traverseAllChildren.js"
+  },
+  {
+    "source": "node_modules/react/lib/PooledClass.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/PooledClass.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactElement.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactElement.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactElement.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactElement.js",
+    "target": "node_modules/react/lib/canDefineProperty.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/warning.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/traverseAllChildren.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/traverseAllChildren.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/traverseAllChildren.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/traverseAllChildren.js",
+    "target": "node_modules/react/lib/getIteratorFn.js"
+  },
+  {
+    "source": "node_modules/react/lib/traverseAllChildren.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/traverseAllChildren.js",
+    "target": "node_modules/react/lib/KeyEscapeUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/traverseAllChildren.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponent.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponent.js",
+    "target": "node_modules/react/lib/ReactNoopUpdateQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponent.js",
+    "target": "node_modules/react/lib/canDefineProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponent.js",
+    "target": "node_modules/fbjs/lib/emptyObject.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponent.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponent.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactNoopUpdateQueue.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPureComponent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPureComponent.js",
+    "target": "node_modules/react/lib/ReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPureComponent.js",
+    "target": "node_modules/react/lib/ReactNoopUpdateQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPureComponent.js",
+    "target": "node_modules/fbjs/lib/emptyObject.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/react/lib/ReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/react/lib/ReactPropTypeLocations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/react/lib/ReactPropTypeLocationNames.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/react/lib/ReactNoopUpdateQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/fbjs/lib/emptyObject.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/fbjs/lib/keyMirror.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactClass.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPropTypeLocations.js",
+    "target": "node_modules/fbjs/lib/keyMirror.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/keyMirror.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMFactories.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPropTypes.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPropTypes.js",
+    "target": "node_modules/react/lib/ReactPropTypeLocationNames.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPropTypes.js",
+    "target": "node_modules/react/lib/ReactPropTypesSecret.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPropTypes.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPropTypes.js",
+    "target": "node_modules/react/lib/getIteratorFn.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactPropTypes.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/onlyChild.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/onlyChild.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/onlyChild.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react-dom/index.js",
+    "target": "node_modules/react/lib/ReactDOM.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/ReactDefaultInjection.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/ReactMount.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/ReactReconciler.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/ReactVersion.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/findDOMNode.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/getHostComponentFromComposite.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/react/lib/renderSubtreeIntoContainer.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOM.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponentTree.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponentTree.js",
+    "target": "node_modules/react/lib/DOMProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponentTree.js",
+    "target": "node_modules/react/lib/ReactDOMComponentFlags.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponentTree.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMProperty.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMProperty.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/BeforeInputEventPlugin.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ChangeEventPlugin.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/DefaultEventPluginOrder.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/EnterLeaveEventPlugin.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/HTMLDOMPropertyConfig.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactComponentBrowserEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactDOMComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactDOMEmptyComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactDOMTreeTraversal.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactDOMTextComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactDefaultBatchingStrategy.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactEventListener.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactInjection.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/ReactReconcileTransaction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/SVGDOMPropertyConfig.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/SelectEventPlugin.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultInjection.js",
+    "target": "node_modules/react/lib/SimpleEventPlugin.js"
+  },
+  {
+    "source": "node_modules/react/lib/BeforeInputEventPlugin.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/BeforeInputEventPlugin.js",
+    "target": "node_modules/react/lib/EventPropagators.js"
+  },
+  {
+    "source": "node_modules/react/lib/BeforeInputEventPlugin.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/BeforeInputEventPlugin.js",
+    "target": "node_modules/react/lib/FallbackCompositionState.js"
+  },
+  {
+    "source": "node_modules/react/lib/BeforeInputEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticCompositionEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/BeforeInputEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticInputEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/BeforeInputEventPlugin.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventConstants.js",
+    "target": "node_modules/fbjs/lib/keyMirror.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPropagators.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPropagators.js",
+    "target": "node_modules/react/lib/EventPluginHub.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPropagators.js",
+    "target": "node_modules/react/lib/EventPluginUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPropagators.js",
+    "target": "node_modules/react/lib/accumulateInto.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPropagators.js",
+    "target": "node_modules/react/lib/forEachAccumulated.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPropagators.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginHub.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginHub.js",
+    "target": "node_modules/react/lib/EventPluginRegistry.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginHub.js",
+    "target": "node_modules/react/lib/EventPluginUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginHub.js",
+    "target": "node_modules/react/lib/ReactErrorUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginHub.js",
+    "target": "node_modules/react/lib/accumulateInto.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginHub.js",
+    "target": "node_modules/react/lib/forEachAccumulated.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginHub.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginRegistry.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginRegistry.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginUtils.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginUtils.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginUtils.js",
+    "target": "node_modules/react/lib/ReactErrorUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginUtils.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/EventPluginUtils.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/accumulateInto.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/accumulateInto.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/FallbackCompositionState.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/FallbackCompositionState.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/FallbackCompositionState.js",
+    "target": "node_modules/react/lib/getTextContentAccessor.js"
+  },
+  {
+    "source": "node_modules/react/lib/getTextContentAccessor.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticCompositionEvent.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticEvent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticEvent.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticEvent.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticEvent.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticInputEvent.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/EventPluginHub.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/EventPropagators.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/getEventTarget.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/isEventSupported.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/react/lib/isTextInputElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ChangeEventPlugin.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/react/lib/CallbackQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/react/lib/ReactFeatureFlags.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/react/lib/ReactReconciler.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/react/lib/Transaction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdates.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/CallbackQueue.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/CallbackQueue.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/CallbackQueue.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/CallbackQueue.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconciler.js",
+    "target": "node_modules/react/lib/ReactRef.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconciler.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconciler.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactRef.js",
+    "target": "node_modules/react/lib/ReactOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactOwner.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactOwner.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/Transaction.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/Transaction.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/isEventSupported.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/DefaultEventPluginOrder.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/EnterLeaveEventPlugin.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/EnterLeaveEventPlugin.js",
+    "target": "node_modules/react/lib/EventPropagators.js"
+  },
+  {
+    "source": "node_modules/react/lib/EnterLeaveEventPlugin.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/EnterLeaveEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticMouseEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/EnterLeaveEventPlugin.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticMouseEvent.js",
+    "target": "node_modules/react/lib/SyntheticUIEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticMouseEvent.js",
+    "target": "node_modules/react/lib/ViewportMetrics.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticMouseEvent.js",
+    "target": "node_modules/react/lib/getEventModifierState.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticUIEvent.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticUIEvent.js",
+    "target": "node_modules/react/lib/getEventTarget.js"
+  },
+  {
+    "source": "node_modules/react/lib/HTMLDOMPropertyConfig.js",
+    "target": "node_modules/react/lib/DOMProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentBrowserEnvironment.js",
+    "target": "node_modules/react/lib/DOMChildrenOperations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentBrowserEnvironment.js",
+    "target": "node_modules/react/lib/ReactDOMIDOperations.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/DOMLazyTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/Danger.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/ReactMultiChildUpdateTypes.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/createMicrosoftUnsafeLocalFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/setInnerHTML.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMChildrenOperations.js",
+    "target": "node_modules/react/lib/setTextContent.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMLazyTree.js",
+    "target": "node_modules/react/lib/DOMNamespaces.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMLazyTree.js",
+    "target": "node_modules/react/lib/setInnerHTML.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMLazyTree.js",
+    "target": "node_modules/react/lib/createMicrosoftUnsafeLocalFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMLazyTree.js",
+    "target": "node_modules/react/lib/setTextContent.js"
+  },
+  {
+    "source": "node_modules/react/lib/setInnerHTML.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/setInnerHTML.js",
+    "target": "node_modules/react/lib/DOMNamespaces.js"
+  },
+  {
+    "source": "node_modules/react/lib/setInnerHTML.js",
+    "target": "node_modules/react/lib/createMicrosoftUnsafeLocalFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/setTextContent.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/setTextContent.js",
+    "target": "node_modules/react/lib/escapeTextContentForBrowser.js"
+  },
+  {
+    "source": "node_modules/react/lib/setTextContent.js",
+    "target": "node_modules/react/lib/setInnerHTML.js"
+  },
+  {
+    "source": "node_modules/react/lib/Danger.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/Danger.js",
+    "target": "node_modules/react/lib/DOMLazyTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/Danger.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/Danger.js",
+    "target": "node_modules/fbjs/lib/createNodesFromMarkup.js"
+  },
+  {
+    "source": "node_modules/react/lib/Danger.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/Danger.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/createNodesFromMarkup.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/createNodesFromMarkup.js",
+    "target": "node_modules/fbjs/lib/createArrayFromMixed.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/createNodesFromMarkup.js",
+    "target": "node_modules/fbjs/lib/getMarkupWrap.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/createNodesFromMarkup.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/createArrayFromMixed.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/getMarkupWrap.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/getMarkupWrap.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChildUpdateTypes.js",
+    "target": "node_modules/fbjs/lib/keyMirror.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMIDOperations.js",
+    "target": "node_modules/react/lib/DOMChildrenOperations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMIDOperations.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/AutoFocusUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/CSSPropertyOperations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/DOMLazyTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/DOMNamespaces.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/DOMProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/DOMPropertyOperations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/EventPluginHub.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/EventPluginRegistry.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactBrowserEventEmitter.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactDOMButton.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactDOMComponentFlags.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactDOMInput.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactDOMOption.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactDOMSelect.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactDOMTextarea.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactMultiChild.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/ReactServerRenderingTransaction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/escapeTextContentForBrowser.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/isEventSupported.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/fbjs/lib/shallowEqual.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/react/lib/validateDOMNesting.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMComponent.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/AutoFocusUtils.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/AutoFocusUtils.js",
+    "target": "node_modules/fbjs/lib/focusNode.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/react/lib/CSSProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/fbjs/lib/camelizeStyleName.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/react/lib/dangerousStyleValue.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/fbjs/lib/hyphenateStyleName.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/fbjs/lib/memoizeStringOnly.js"
+  },
+  {
+    "source": "node_modules/react/lib/CSSPropertyOperations.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/camelizeStyleName.js",
+    "target": "node_modules/fbjs/lib/camelize.js"
+  },
+  {
+    "source": "node_modules/react/lib/dangerousStyleValue.js",
+    "target": "node_modules/react/lib/CSSProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/dangerousStyleValue.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/hyphenateStyleName.js",
+    "target": "node_modules/fbjs/lib/hyphenate.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMPropertyOperations.js",
+    "target": "node_modules/react/lib/DOMProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMPropertyOperations.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMPropertyOperations.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMPropertyOperations.js",
+    "target": "node_modules/react/lib/quoteAttributeValueForBrowser.js"
+  },
+  {
+    "source": "node_modules/react/lib/DOMPropertyOperations.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/quoteAttributeValueForBrowser.js",
+    "target": "node_modules/react/lib/escapeTextContentForBrowser.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactBrowserEventEmitter.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactBrowserEventEmitter.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactBrowserEventEmitter.js",
+    "target": "node_modules/react/lib/EventPluginRegistry.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactBrowserEventEmitter.js",
+    "target": "node_modules/react/lib/ReactEventEmitterMixin.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactBrowserEventEmitter.js",
+    "target": "node_modules/react/lib/ViewportMetrics.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactBrowserEventEmitter.js",
+    "target": "node_modules/react/lib/getVendorPrefixedEventName.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactBrowserEventEmitter.js",
+    "target": "node_modules/react/lib/isEventSupported.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventEmitterMixin.js",
+    "target": "node_modules/react/lib/EventPluginHub.js"
+  },
+  {
+    "source": "node_modules/react/lib/getVendorPrefixedEventName.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMButton.js",
+    "target": "node_modules/react/lib/DisabledInputUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/react/lib/DisabledInputUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/react/lib/DOMPropertyOperations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/react/lib/LinkedValueUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMInput.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/LinkedValueUtils.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/LinkedValueUtils.js",
+    "target": "node_modules/react/lib/ReactPropTypes.js"
+  },
+  {
+    "source": "node_modules/react/lib/LinkedValueUtils.js",
+    "target": "node_modules/react/lib/ReactPropTypeLocations.js"
+  },
+  {
+    "source": "node_modules/react/lib/LinkedValueUtils.js",
+    "target": "node_modules/react/lib/ReactPropTypesSecret.js"
+  },
+  {
+    "source": "node_modules/react/lib/LinkedValueUtils.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/LinkedValueUtils.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMOption.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMOption.js",
+    "target": "node_modules/react/lib/ReactChildren.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMOption.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMOption.js",
+    "target": "node_modules/react/lib/ReactDOMSelect.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMOption.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelect.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelect.js",
+    "target": "node_modules/react/lib/DisabledInputUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelect.js",
+    "target": "node_modules/react/lib/LinkedValueUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelect.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelect.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelect.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/react/lib/DisabledInputUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/react/lib/LinkedValueUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextarea.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/ReactComponentEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/ReactInstanceMap.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/ReactMultiChildUpdateTypes.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/ReactReconciler.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/ReactChildReconciler.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/react/lib/flattenChildren.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMultiChild.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentEnvironment.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentEnvironment.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "../../../parcel/node_modules/process/browser.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "node_modules/react/lib/ReactReconciler.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "node_modules/react/lib/instantiateReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "node_modules/react/lib/KeyEscapeUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "node_modules/react/lib/shouldUpdateReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "node_modules/react/lib/traverseAllChildren.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactChildReconciler.js",
+    "target": "node_modules/react/lib/ReactComponentTreeHook.js"
+  },
+  {
+    "source": "node_modules/react/lib/instantiateReactComponent.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/instantiateReactComponent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/instantiateReactComponent.js",
+    "target": "node_modules/react/lib/ReactCompositeComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/instantiateReactComponent.js",
+    "target": "node_modules/react/lib/ReactEmptyComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/instantiateReactComponent.js",
+    "target": "node_modules/react/lib/ReactHostComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/instantiateReactComponent.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/instantiateReactComponent.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactComponentEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactErrorUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactInstanceMap.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactNodeTypes.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactPropTypeLocations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/ReactReconciler.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/checkReactTypeSpec.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/fbjs/lib/emptyObject.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/fbjs/lib/shallowEqual.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/react/lib/shouldUpdateReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactCompositeComponent.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactNodeTypes.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactNodeTypes.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactNodeTypes.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/checkReactTypeSpec.js",
+    "target": "../../../parcel/node_modules/process/browser.js"
+  },
+  {
+    "source": "node_modules/react/lib/checkReactTypeSpec.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/checkReactTypeSpec.js",
+    "target": "node_modules/react/lib/ReactPropTypeLocationNames.js"
+  },
+  {
+    "source": "node_modules/react/lib/checkReactTypeSpec.js",
+    "target": "node_modules/react/lib/ReactPropTypesSecret.js"
+  },
+  {
+    "source": "node_modules/react/lib/checkReactTypeSpec.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/checkReactTypeSpec.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/checkReactTypeSpec.js",
+    "target": "node_modules/react/lib/ReactComponentTreeHook.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentTreeHook.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentTreeHook.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentTreeHook.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactComponentTreeHook.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactHostComponent.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactHostComponent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactHostComponent.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/flattenChildren.js",
+    "target": "../../../parcel/node_modules/process/browser.js"
+  },
+  {
+    "source": "node_modules/react/lib/flattenChildren.js",
+    "target": "node_modules/react/lib/KeyEscapeUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/flattenChildren.js",
+    "target": "node_modules/react/lib/traverseAllChildren.js"
+  },
+  {
+    "source": "node_modules/react/lib/flattenChildren.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/flattenChildren.js",
+    "target": "node_modules/react/lib/ReactComponentTreeHook.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerRenderingTransaction.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerRenderingTransaction.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerRenderingTransaction.js",
+    "target": "node_modules/react/lib/Transaction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerRenderingTransaction.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerRenderingTransaction.js",
+    "target": "node_modules/react/lib/ReactServerUpdateQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerUpdateQueue.js",
+    "target": "node_modules/react/lib/ReactUpdateQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerUpdateQueue.js",
+    "target": "node_modules/react/lib/Transaction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactServerUpdateQueue.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdateQueue.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdateQueue.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdateQueue.js",
+    "target": "node_modules/react/lib/ReactInstanceMap.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdateQueue.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdateQueue.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdateQueue.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactUpdateQueue.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/validateDOMNesting.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/validateDOMNesting.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/validateDOMNesting.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMEmptyComponent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMEmptyComponent.js",
+    "target": "node_modules/react/lib/DOMLazyTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMEmptyComponent.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTreeTraversal.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTreeTraversal.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/react/lib/DOMChildrenOperations.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/react/lib/DOMLazyTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/react/lib/escapeTextContentForBrowser.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMTextComponent.js",
+    "target": "node_modules/react/lib/validateDOMNesting.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultBatchingStrategy.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultBatchingStrategy.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultBatchingStrategy.js",
+    "target": "node_modules/react/lib/Transaction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDefaultBatchingStrategy.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/fbjs/lib/EventListener.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/react/lib/getEventTarget.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactEventListener.js",
+    "target": "node_modules/fbjs/lib/getUnboundedScrollPosition.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/EventListener.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/DOMProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/EventPluginHub.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/EventPluginUtils.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/ReactComponentEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/ReactClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/ReactEmptyComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/ReactBrowserEventEmitter.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/ReactHostComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInjection.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/object-assign/index.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/react/lib/CallbackQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/react/lib/PooledClass.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/react/lib/ReactBrowserEventEmitter.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/react/lib/ReactInputSelection.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/react/lib/Transaction.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactReconcileTransaction.js",
+    "target": "node_modules/react/lib/ReactUpdateQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInputSelection.js",
+    "target": "node_modules/react/lib/ReactDOMSelection.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInputSelection.js",
+    "target": "node_modules/fbjs/lib/containsNode.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInputSelection.js",
+    "target": "node_modules/fbjs/lib/focusNode.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactInputSelection.js",
+    "target": "node_modules/fbjs/lib/getActiveElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelection.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelection.js",
+    "target": "node_modules/react/lib/getNodeForCharacterOffset.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMSelection.js",
+    "target": "node_modules/react/lib/getTextContentAccessor.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/containsNode.js",
+    "target": "node_modules/fbjs/lib/isTextNode.js"
+  },
+  {
+    "source": "node_modules/fbjs/lib/isTextNode.js",
+    "target": "node_modules/fbjs/lib/isNode.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/react/lib/EventPropagators.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/fbjs/lib/ExecutionEnvironment.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/react/lib/ReactInputSelection.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/fbjs/lib/getActiveElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/react/lib/isTextInputElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/SelectEventPlugin.js",
+    "target": "node_modules/fbjs/lib/shallowEqual.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/EventConstants.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/fbjs/lib/EventListener.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/EventPropagators.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticAnimationEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticClipboardEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticFocusEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticKeyboardEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticMouseEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticDragEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticTouchEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticTransitionEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticUIEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/SyntheticWheelEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/fbjs/lib/emptyFunction.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/react/lib/getEventCharCode.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/SimpleEventPlugin.js",
+    "target": "node_modules/fbjs/lib/keyOf.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticAnimationEvent.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticClipboardEvent.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticFocusEvent.js",
+    "target": "node_modules/react/lib/SyntheticUIEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticKeyboardEvent.js",
+    "target": "node_modules/react/lib/SyntheticUIEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticKeyboardEvent.js",
+    "target": "node_modules/react/lib/getEventCharCode.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticKeyboardEvent.js",
+    "target": "node_modules/react/lib/getEventKey.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticKeyboardEvent.js",
+    "target": "node_modules/react/lib/getEventModifierState.js"
+  },
+  {
+    "source": "node_modules/react/lib/getEventKey.js",
+    "target": "node_modules/react/lib/getEventCharCode.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticDragEvent.js",
+    "target": "node_modules/react/lib/SyntheticMouseEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticTouchEvent.js",
+    "target": "node_modules/react/lib/SyntheticUIEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticTouchEvent.js",
+    "target": "node_modules/react/lib/getEventModifierState.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticTransitionEvent.js",
+    "target": "node_modules/react/lib/SyntheticEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/SyntheticWheelEvent.js",
+    "target": "node_modules/react/lib/SyntheticMouseEvent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/DOMLazyTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/DOMProperty.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactBrowserEventEmitter.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactDOMContainerInfo.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactDOMFeatureFlags.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactElement.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactFeatureFlags.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactInstanceMap.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactInstrumentation.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactMarkupChecksum.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactReconciler.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactUpdateQueue.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/ReactUpdates.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/fbjs/lib/emptyObject.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/instantiateReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/setInnerHTML.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/react/lib/shouldUpdateReactComponent.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMount.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactDOMContainerInfo.js",
+    "target": "node_modules/react/lib/validateDOMNesting.js"
+  },
+  {
+    "source": "node_modules/react/lib/ReactMarkupChecksum.js",
+    "target": "node_modules/react/lib/adler32.js"
+  },
+  {
+    "source": "node_modules/react/lib/findDOMNode.js",
+    "target": "node_modules/react/lib/reactProdInvariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/findDOMNode.js",
+    "target": "node_modules/react/lib/ReactCurrentOwner.js"
+  },
+  {
+    "source": "node_modules/react/lib/findDOMNode.js",
+    "target": "node_modules/react/lib/ReactDOMComponentTree.js"
+  },
+  {
+    "source": "node_modules/react/lib/findDOMNode.js",
+    "target": "node_modules/react/lib/ReactInstanceMap.js"
+  },
+  {
+    "source": "node_modules/react/lib/findDOMNode.js",
+    "target": "node_modules/react/lib/getHostComponentFromComposite.js"
+  },
+  {
+    "source": "node_modules/react/lib/findDOMNode.js",
+    "target": "node_modules/fbjs/lib/invariant.js"
+  },
+  {
+    "source": "node_modules/react/lib/findDOMNode.js",
+    "target": "node_modules/fbjs/lib/warning.js"
+  },
+  {
+    "source": "node_modules/react/lib/getHostComponentFromComposite.js",
+    "target": "node_modules/react/lib/ReactNodeTypes.js"
+  },
+  {
+    "source": "node_modules/react/lib/renderSubtreeIntoContainer.js",
+    "target": "node_modules/react/lib/ReactMount.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "lib/createHashHistory.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "lib/useQueries.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/react-router/lib/createTransitionManager.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/react-router/lib/InternalPropTypes.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/react-router/lib/RouterContext.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/react-router/lib/RouteUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/react-router/lib/RouterUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Router.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "lib/createHashHistory.js",
+    "target": "node_modules/warning/browser.js"
+  },
+  {
+    "source": "lib/createHashHistory.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  { "source": "lib/createHashHistory.js", "target": "lib/Actions.js" },
+  { "source": "lib/createHashHistory.js", "target": "lib/PathUtils.js" },
+  {
+    "source": "lib/createHashHistory.js",
+    "target": "lib/ExecutionEnvironment.js"
+  },
+  { "source": "lib/createHashHistory.js", "target": "lib/DOMUtils.js" },
+  { "source": "lib/createHashHistory.js", "target": "lib/DOMStateStorage.js" },
+  { "source": "lib/createHashHistory.js", "target": "lib/createDOMHistory.js" },
+  { "source": "lib/PathUtils.js", "target": "node_modules/warning/browser.js" },
+  {
+    "source": "lib/DOMStateStorage.js",
+    "target": "node_modules/warning/browser.js"
+  },
+  {
+    "source": "lib/createDOMHistory.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "lib/createDOMHistory.js",
+    "target": "lib/ExecutionEnvironment.js"
+  },
+  { "source": "lib/createDOMHistory.js", "target": "lib/DOMUtils.js" },
+  { "source": "lib/createDOMHistory.js", "target": "lib/createHistory.js" },
+  {
+    "source": "lib/createHistory.js",
+    "target": "node_modules/warning/browser.js"
+  },
+  {
+    "source": "lib/createHistory.js",
+    "target": "node_modules/deep-equal/index.js"
+  },
+  { "source": "lib/createHistory.js", "target": "lib/PathUtils.js" },
+  { "source": "lib/createHistory.js", "target": "lib/AsyncUtils.js" },
+  { "source": "lib/createHistory.js", "target": "lib/Actions.js" },
+  { "source": "lib/createHistory.js", "target": "lib/createLocation.js" },
+  { "source": "lib/createHistory.js", "target": "lib/runTransitionHook.js" },
+  { "source": "lib/createHistory.js", "target": "lib/deprecate.js" },
+  {
+    "source": "node_modules/deep-equal/index.js",
+    "target": "node_modules/object-keys/index.js"
+  },
+  {
+    "source": "node_modules/deep-equal/index.js",
+    "target": "node_modules/is-arguments/index.js"
+  },
+  {
+    "source": "node_modules/deep-equal/index.js",
+    "target": "node_modules/object-is/index.js"
+  },
+  {
+    "source": "node_modules/deep-equal/index.js",
+    "target": "node_modules/is-regex/index.js"
+  },
+  {
+    "source": "node_modules/deep-equal/index.js",
+    "target": "node_modules/regexp.prototype.flags/index.js"
+  },
+  {
+    "source": "node_modules/deep-equal/index.js",
+    "target": "node_modules/is-date-object/index.js"
+  },
+  {
+    "source": "node_modules/object-keys/index.js",
+    "target": "node_modules/object-keys/isArguments.js"
+  },
+  {
+    "source": "node_modules/object-keys/index.js",
+    "target": "node_modules/object-keys/implementation.js"
+  },
+  {
+    "source": "node_modules/object-keys/implementation.js",
+    "target": "node_modules/object-keys/isArguments.js"
+  },
+  {
+    "source": "node_modules/object-is/index.js",
+    "target": "node_modules/define-properties/index.js"
+  },
+  {
+    "source": "node_modules/object-is/index.js",
+    "target": "node_modules/es-abstract/helpers/callBind.js"
+  },
+  {
+    "source": "node_modules/object-is/index.js",
+    "target": "node_modules/object-is/implementation.js"
+  },
+  {
+    "source": "node_modules/object-is/index.js",
+    "target": "node_modules/object-is/polyfill.js"
+  },
+  {
+    "source": "node_modules/object-is/index.js",
+    "target": "node_modules/object-is/shim.js"
+  },
+  {
+    "source": "node_modules/define-properties/index.js",
+    "target": "node_modules/object-keys/index.js"
+  },
+  {
+    "source": "node_modules/es-abstract/helpers/callBind.js",
+    "target": "node_modules/function-bind/index.js"
+  },
+  {
+    "source": "node_modules/es-abstract/helpers/callBind.js",
+    "target": "node_modules/es-abstract/GetIntrinsic.js"
+  },
+  {
+    "source": "node_modules/function-bind/index.js",
+    "target": "node_modules/function-bind/implementation.js"
+  },
+  {
+    "source": "node_modules/es-abstract/GetIntrinsic.js",
+    "target": "node_modules/has-symbols/index.js"
+  },
+  {
+    "source": "node_modules/es-abstract/GetIntrinsic.js",
+    "target": "node_modules/function-bind/index.js"
+  },
+  {
+    "source": "node_modules/has-symbols/index.js",
+    "target": "node_modules/has-symbols/shams.js"
+  },
+  {
+    "source": "node_modules/object-is/polyfill.js",
+    "target": "node_modules/object-is/implementation.js"
+  },
+  {
+    "source": "node_modules/object-is/shim.js",
+    "target": "node_modules/object-is/polyfill.js"
+  },
+  {
+    "source": "node_modules/object-is/shim.js",
+    "target": "node_modules/define-properties/index.js"
+  },
+  { "source": "node_modules/is-regex/index.js", "target": "src/index.js" },
+  { "source": "src/index.js", "target": "node_modules/function-bind/index.js" },
+  {
+    "source": "node_modules/regexp.prototype.flags/index.js",
+    "target": "node_modules/define-properties/index.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/index.js",
+    "target": "node_modules/es-abstract/helpers/callBind.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/index.js",
+    "target": "node_modules/regexp.prototype.flags/implementation.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/index.js",
+    "target": "node_modules/regexp.prototype.flags/polyfill.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/index.js",
+    "target": "node_modules/regexp.prototype.flags/shim.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/polyfill.js",
+    "target": "node_modules/regexp.prototype.flags/implementation.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/polyfill.js",
+    "target": "node_modules/define-properties/index.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/shim.js",
+    "target": "node_modules/define-properties/index.js"
+  },
+  {
+    "source": "node_modules/regexp.prototype.flags/shim.js",
+    "target": "node_modules/regexp.prototype.flags/polyfill.js"
+  },
+  {
+    "source": "lib/createLocation.js",
+    "target": "node_modules/warning/browser.js"
+  },
+  { "source": "lib/createLocation.js", "target": "lib/Actions.js" },
+  { "source": "lib/createLocation.js", "target": "lib/PathUtils.js" },
+  {
+    "source": "lib/runTransitionHook.js",
+    "target": "node_modules/warning/browser.js"
+  },
+  { "source": "lib/deprecate.js", "target": "node_modules/warning/browser.js" },
+  {
+    "source": "lib/useQueries.js",
+    "target": "node_modules/warning/browser.js"
+  },
+  {
+    "source": "lib/useQueries.js",
+    "target": "node_modules/query-string/index.js"
+  },
+  { "source": "lib/useQueries.js", "target": "lib/runTransitionHook.js" },
+  { "source": "lib/useQueries.js", "target": "lib/PathUtils.js" },
+  { "source": "lib/useQueries.js", "target": "lib/deprecate.js" },
+  {
+    "source": "node_modules/query-string/index.js",
+    "target": "node_modules/strict-uri-encode/index.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/createTransitionManager.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/createTransitionManager.js",
+    "target": "node_modules/react-router/lib/computeChangedRoutes.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/createTransitionManager.js",
+    "target": "node_modules/react-router/lib/TransitionUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/createTransitionManager.js",
+    "target": "node_modules/react-router/lib/isActive.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/createTransitionManager.js",
+    "target": "node_modules/react-router/lib/getComponents.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/createTransitionManager.js",
+    "target": "node_modules/react-router/lib/matchRoutes.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/routerWarning.js",
+    "target": "node_modules/warning/browser.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/computeChangedRoutes.js",
+    "target": "node_modules/react-router/lib/PatternUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/PatternUtils.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/TransitionUtils.js",
+    "target": "node_modules/react-router/lib/AsyncUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/TransitionUtils.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/isActive.js",
+    "target": "node_modules/react-router/lib/PatternUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/getComponents.js",
+    "target": "node_modules/react-router/lib/AsyncUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/getComponents.js",
+    "target": "node_modules/react-router/lib/makeStateWithLocation.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/makeStateWithLocation.js",
+    "target": "node_modules/react-router/lib/deprecateObjectProperties.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/makeStateWithLocation.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/deprecateObjectProperties.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/matchRoutes.js",
+    "target": "node_modules/react-router/lib/AsyncUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/matchRoutes.js",
+    "target": "node_modules/react-router/lib/makeStateWithLocation.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/matchRoutes.js",
+    "target": "node_modules/react-router/lib/PatternUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/matchRoutes.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/matchRoutes.js",
+    "target": "node_modules/react-router/lib/RouteUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouteUtils.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/InternalPropTypes.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouterContext.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouterContext.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouterContext.js",
+    "target": "node_modules/react-router/lib/deprecateObjectProperties.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouterContext.js",
+    "target": "node_modules/react-router/lib/getRouteParams.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouterContext.js",
+    "target": "node_modules/react-router/lib/RouteUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouterContext.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/getRouteParams.js",
+    "target": "node_modules/react-router/lib/PatternUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/RouterUtils.js",
+    "target": "node_modules/react-router/lib/deprecateObjectProperties.js"
+  },
+  {
+    "source": "node_modules/react-router-scroll/lib/useScroll.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router-scroll/lib/useScroll.js",
+    "target": "node_modules/react-router-scroll/lib/ScrollBehaviorContext.js"
+  },
+  {
+    "source": "node_modules/react-router-scroll/lib/ScrollBehaviorContext.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router-scroll/lib/ScrollBehaviorContext.js",
+    "target": "node_modules/scroll-behavior/lib/ScrollBehavior.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "node_modules/dom-helpers/events/off.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "node_modules/dom-helpers/events/on.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "node_modules/dom-helpers/query/scrollLeft.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "node_modules/dom-helpers/query/scrollTop.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "node_modules/dom-helpers/util/requestAnimationFrame.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "lib/Actions.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "lib/DOMStateStorage.js"
+  },
+  {
+    "source": "node_modules/scroll-behavior/lib/ScrollBehavior.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "node_modules/dom-helpers/events/off.js",
+    "target": "node_modules/dom-helpers/util/inDOM.js"
+  },
+  {
+    "source": "node_modules/dom-helpers/events/on.js",
+    "target": "node_modules/dom-helpers/util/inDOM.js"
+  },
+  {
+    "source": "node_modules/dom-helpers/query/scrollLeft.js",
+    "target": "node_modules/dom-helpers/query/isWindow.js"
+  },
+  {
+    "source": "node_modules/dom-helpers/query/scrollTop.js",
+    "target": "node_modules/dom-helpers/query/isWindow.js"
+  },
+  {
+    "source": "node_modules/dom-helpers/util/requestAnimationFrame.js",
+    "target": "node_modules/dom-helpers/util/inDOM.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/applyRouterMiddleware.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/applyRouterMiddleware.js",
+    "target": "node_modules/react-router/lib/RouterContext.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/applyRouterMiddleware.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "src/routes.js",
+    "target": "node_modules/react-router/lib/IndexRoute.js"
+  },
+  { "source": "src/routes.js", "target": "node_modules/react/react.js" },
+  {
+    "source": "src/routes.js",
+    "target": "node_modules/react-router/lib/Route.js"
+  },
+  { "source": "src/routes.js", "target": "src/Item.js" },
+  { "source": "src/routes.js", "target": "src/App.js" },
+  { "source": "src/routes.js", "target": "src/Stories.js" },
+  { "source": "src/routes.js", "target": "src/Updates.js" },
+  {
+    "source": "node_modules/react-router/lib/IndexRoute.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/IndexRoute.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/IndexRoute.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/IndexRoute.js",
+    "target": "node_modules/react-router/lib/RouteUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/IndexRoute.js",
+    "target": "node_modules/react-router/lib/InternalPropTypes.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Route.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Route.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Route.js",
+    "target": "node_modules/react-router/lib/RouteUtils.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Route.js",
+    "target": "node_modules/react-router/lib/InternalPropTypes.js"
+  },
+  { "source": "src/Item.js", "target": "node_modules/react/react.js" },
+  {
+    "source": "src/Item.js",
+    "target": "node_modules/reactfire/dist/reactfire.js"
+  },
+  {
+    "source": "src/Item.js",
+    "target": "node_modules/react-timeago/lib/index.js"
+  },
+  { "source": "src/Item.js", "target": "src/services/HNService.js" },
+  { "source": "src/Item.js", "target": "src/services/HNServiceRest.js" },
+  {
+    "source": "src/Item.js",
+    "target": "src/stores/StoryCommentThreadStore.js"
+  },
+  { "source": "src/Item.js", "target": "src/stores/ItemStore.js" },
+  { "source": "src/Item.js", "target": "src/Comment.js" },
+  { "source": "src/Item.js", "target": "src/PollOption.js" },
+  { "source": "src/Item.js", "target": "src/Spinner.js" },
+  { "source": "src/Item.js", "target": "src/mixins/ItemMixin.js" },
+  { "source": "src/Item.js", "target": "src/utils/buildClassName.js" },
+  { "source": "src/Item.js", "target": "src/utils/setTitle.js" },
+  { "source": "src/Item.js", "target": "src/stores/SettingsStore.js" },
+  {
+    "source": "node_modules/react-timeago/lib/index.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "src/services/HNService.js",
+    "target": "node_modules/firebase/app.js"
+  },
+  {
+    "source": "src/services/HNService.js",
+    "target": "node_modules/firebase/database.js"
+  },
+  {
+    "source": "node_modules/firebase/database.js",
+    "target": "node_modules/firebase/app.js"
+  },
+  {
+    "source": "src/services/HNServiceRest.js",
+    "target": "node_modules/isomorphic-fetch/fetch-npm-browserify.js"
+  },
+  {
+    "source": "node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+    "target": "node_modules/whatwg-fetch/dist/fetch.umd.js"
+  },
+  {
+    "source": "src/stores/StoryCommentThreadStore.js",
+    "target": "src/stores/CommentThreadStore.js"
+  },
+  {
+    "source": "src/stores/StoryCommentThreadStore.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  {
+    "source": "src/stores/StoryCommentThreadStore.js",
+    "target": "src/utils/cancellableDebounce.js"
+  },
+  {
+    "source": "src/stores/StoryCommentThreadStore.js",
+    "target": "src/utils/extend.js"
+  },
+  {
+    "source": "src/stores/StoryCommentThreadStore.js",
+    "target": "src/utils/pluralise.js"
+  },
+  {
+    "source": "src/stores/StoryCommentThreadStore.js",
+    "target": "src/utils/storage.js"
+  },
+  {
+    "source": "src/stores/CommentThreadStore.js",
+    "target": "src/utils/extend.js"
+  },
+  { "source": "src/stores/SettingsStore.js", "target": "src/utils/extend.js" },
+  { "source": "src/stores/SettingsStore.js", "target": "src/utils/storage.js" },
+  {
+    "source": "src/stores/ItemStore.js",
+    "target": "src/services/HNService.js"
+  },
+  {
+    "source": "src/stores/ItemStore.js",
+    "target": "src/services/HNServiceRest.js"
+  },
+  { "source": "src/stores/ItemStore.js", "target": "src/stores/StoryStore.js" },
+  {
+    "source": "src/stores/ItemStore.js",
+    "target": "src/stores/UpdatesStore.js"
+  },
+  {
+    "source": "src/stores/ItemStore.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  {
+    "source": "src/stores/StoryStore.js",
+    "target": "../../../parcel/node_modules/events/events.js"
+  },
+  {
+    "source": "src/stores/StoryStore.js",
+    "target": "src/services/HNService.js"
+  },
+  {
+    "source": "src/stores/StoryStore.js",
+    "target": "src/services/HNServiceRest.js"
+  },
+  {
+    "source": "src/stores/StoryStore.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  { "source": "src/stores/StoryStore.js", "target": "src/utils/extend.js" },
+  {
+    "source": "src/stores/UpdatesStore.js",
+    "target": "../../../parcel/node_modules/events/events.js"
+  },
+  {
+    "source": "src/stores/UpdatesStore.js",
+    "target": "src/services/HNService.js"
+  },
+  {
+    "source": "src/stores/UpdatesStore.js",
+    "target": "src/services/HNServiceRest.js"
+  },
+  {
+    "source": "src/stores/UpdatesStore.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  {
+    "source": "src/stores/UpdatesStore.js",
+    "target": "src/utils/constants.js"
+  },
+  { "source": "src/stores/UpdatesStore.js", "target": "src/utils/extend.js" },
+  { "source": "src/Comment.js", "target": "node_modules/react/react.js" },
+  {
+    "source": "src/Comment.js",
+    "target": "node_modules/reactfire/dist/reactfire.js"
+  },
+  { "source": "src/Comment.js", "target": "src/stores/CommentThreadStore.js" },
+  { "source": "src/Comment.js", "target": "src/services/HNService.js" },
+  { "source": "src/Comment.js", "target": "src/services/HNServiceRest.js" },
+  { "source": "src/Comment.js", "target": "src/stores/SettingsStore.js" },
+  { "source": "src/Comment.js", "target": "src/mixins/CommentMixin.js" },
+  { "source": "src/Comment.js", "target": "src/utils/buildClassName.js" },
+  {
+    "source": "src/mixins/CommentMixin.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "src/mixins/CommentMixin.js",
+    "target": "node_modules/react-router/lib/Link.js"
+  },
+  {
+    "source": "src/mixins/CommentMixin.js",
+    "target": "node_modules/react-timeago/lib/index.js"
+  },
+  {
+    "source": "src/mixins/CommentMixin.js",
+    "target": "src/stores/ItemStore.js"
+  },
+  {
+    "source": "src/mixins/CommentMixin.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  { "source": "src/mixins/CommentMixin.js", "target": "src/Spinner.js" },
+  {
+    "source": "src/mixins/CommentMixin.js",
+    "target": "src/utils/pluralise.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Link.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Link.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Link.js",
+    "target": "node_modules/invariant/browser.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/Link.js",
+    "target": "node_modules/react-router/lib/PropTypes.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/PropTypes.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/PropTypes.js",
+    "target": "node_modules/react-router/lib/deprecateObjectProperties.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/PropTypes.js",
+    "target": "node_modules/react-router/lib/InternalPropTypes.js"
+  },
+  {
+    "source": "node_modules/react-router/lib/PropTypes.js",
+    "target": "node_modules/react-router/lib/routerWarning.js"
+  },
+  { "source": "src/Spinner.js", "target": "node_modules/react/react.js" },
+  { "source": "src/PollOption.js", "target": "node_modules/react/react.js" },
+  {
+    "source": "src/PollOption.js",
+    "target": "node_modules/reactfire/dist/reactfire.js"
+  },
+  { "source": "src/PollOption.js", "target": "src/services/HNService.js" },
+  { "source": "src/PollOption.js", "target": "src/Spinner.js" },
+  { "source": "src/PollOption.js", "target": "src/utils/pluralise.js" },
+  {
+    "source": "src/mixins/ItemMixin.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "src/mixins/ItemMixin.js",
+    "target": "node_modules/react-router/lib/Link.js"
+  },
+  {
+    "source": "src/mixins/ItemMixin.js",
+    "target": "node_modules/react-timeago/lib/index.js"
+  },
+  {
+    "source": "src/mixins/ItemMixin.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  { "source": "src/mixins/ItemMixin.js", "target": "src/utils/pluralise.js" },
+  {
+    "source": "src/mixins/ItemMixin.js",
+    "target": "node_modules/url-parse/index.js"
+  },
+  {
+    "source": "node_modules/url-parse/index.js",
+    "target": "node_modules/requires-port/index.js"
+  },
+  {
+    "source": "node_modules/url-parse/index.js",
+    "target": "node_modules/url-parse/lolcation.js"
+  },
+  {
+    "source": "node_modules/url-parse/index.js",
+    "target": "node_modules/querystringify/index.js"
+  },
+  {
+    "source": "node_modules/url-parse/lolcation.js",
+    "target": "node_modules/url-parse/index.js"
+  },
+  { "source": "src/utils/setTitle.js", "target": "src/utils/constants.js" },
+  { "source": "src/App.js", "target": "node_modules/react/react.js" },
+  { "source": "src/App.js", "target": "node_modules/react-router/lib/Link.js" },
+  { "source": "src/App.js", "target": "src/Settings.js" },
+  { "source": "src/App.js", "target": "src/stores/StoryStore.js" },
+  { "source": "src/App.js", "target": "src/stores/UpdatesStore.js" },
+  { "source": "src/App.js", "target": "src/stores/SettingsStore.js" },
+  { "source": "src/Settings.js", "target": "node_modules/react/react.js" },
+  { "source": "src/Settings.js", "target": "src/stores/SettingsStore.js" },
+  { "source": "src/Stories.js", "target": "node_modules/react/react.js" },
+  { "source": "src/Stories.js", "target": "src/stores/StoryStore.js" },
+  { "source": "src/Stories.js", "target": "src/mixins/PageNumberMixin.js" },
+  { "source": "src/Stories.js", "target": "src/Paginator.js" },
+  { "source": "src/Stories.js", "target": "src/Spinner.js" },
+  { "source": "src/Stories.js", "target": "src/StoryListItem.js" },
+  { "source": "src/Stories.js", "target": "src/stores/SettingsStore.js" },
+  { "source": "src/Stories.js", "target": "src/utils/constants.js" },
+  { "source": "src/Stories.js", "target": "src/utils/pageCalc.js" },
+  { "source": "src/Stories.js", "target": "src/utils/setTitle.js" },
+  { "source": "src/Paginator.js", "target": "node_modules/react/react.js" },
+  {
+    "source": "src/Paginator.js",
+    "target": "node_modules/react-router/lib/Link.js"
+  },
+  { "source": "src/StoryListItem.js", "target": "node_modules/react/react.js" },
+  {
+    "source": "src/StoryListItem.js",
+    "target": "node_modules/reactfire/dist/reactfire.js"
+  },
+  {
+    "source": "src/StoryListItem.js",
+    "target": "src/stores/StoryCommentThreadStore.js"
+  },
+  { "source": "src/StoryListItem.js", "target": "src/services/HNService.js" },
+  {
+    "source": "src/StoryListItem.js",
+    "target": "src/services/HNServiceRest.js"
+  },
+  { "source": "src/StoryListItem.js", "target": "src/stores/SettingsStore.js" },
+  { "source": "src/StoryListItem.js", "target": "src/stores/StoryStore.js" },
+  { "source": "src/StoryListItem.js", "target": "src/mixins/ItemMixin.js" },
+  { "source": "src/StoryListItem.js", "target": "src/mixins/ListItemMixin.js" },
+  { "source": "src/StoryListItem.js", "target": "src/Spinner.js" },
+  {
+    "source": "src/mixins/ListItemMixin.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "src/mixins/ListItemMixin.js",
+    "target": "node_modules/react-router/lib/Link.js"
+  },
+  {
+    "source": "src/mixins/ListItemMixin.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  {
+    "source": "src/mixins/ListItemMixin.js",
+    "target": "src/utils/buildClassName.js"
+  },
+  { "source": "src/Updates.js", "target": "node_modules/react/react.js" },
+  { "source": "src/Updates.js", "target": "src/stores/SettingsStore.js" },
+  { "source": "src/Updates.js", "target": "src/stores/UpdatesStore.js" },
+  { "source": "src/Updates.js", "target": "src/DisplayListItem.js" },
+  { "source": "src/Updates.js", "target": "src/DisplayComment.js" },
+  { "source": "src/Updates.js", "target": "src/Paginator.js" },
+  { "source": "src/Updates.js", "target": "src/Spinner.js" },
+  { "source": "src/Updates.js", "target": "src/mixins/PageNumberMixin.js" },
+  { "source": "src/Updates.js", "target": "src/utils/constants.js" },
+  { "source": "src/Updates.js", "target": "src/utils/pageCalc.js" },
+  { "source": "src/Updates.js", "target": "src/utils/setTitle.js" },
+  {
+    "source": "src/DisplayListItem.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "src/DisplayListItem.js",
+    "target": "src/stores/StoryCommentThreadStore.js"
+  },
+  { "source": "src/DisplayListItem.js", "target": "src/mixins/ItemMixin.js" },
+  {
+    "source": "src/DisplayListItem.js",
+    "target": "src/mixins/ListItemMixin.js"
+  },
+  {
+    "source": "src/DisplayComment.js",
+    "target": "node_modules/react/react.js"
+  },
+  {
+    "source": "src/DisplayComment.js",
+    "target": "src/stores/SettingsStore.js"
+  },
+  { "source": "src/DisplayComment.js", "target": "src/mixins/CommentMixin.js" },
+  { "source": "src/DisplayComment.js", "target": "src/utils/buildClassName.js" }
+]
