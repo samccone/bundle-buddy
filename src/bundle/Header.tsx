@@ -82,11 +82,12 @@ const directoryProps = {
 };
 
 type Props = {
+  download: JSX.Element;
   rollups?: ProcessedImportState["rollups"];
 };
 
 export default function ByTypeBarChart(props: Props) {
-  const { rollups = {} as ProcessedImportState["rollups"] } = props;
+  const { rollups = {} as ProcessedImportState["rollups"], download } = props;
   const totalSize = rollups.value;
   const types = rollups.fileTypes || [];
   const folders = rollups.directories || [];
@@ -134,6 +135,7 @@ export default function ByTypeBarChart(props: Props) {
             <p>{getFileSize(totalSize)}</p>
           </div>
         )}
+        {download}
       </div>
       <div className="scroll-y" style={{ width: "37vw" }}>
         <div className="sticky-wrapper">

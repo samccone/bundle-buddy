@@ -70,11 +70,14 @@ export default function Bundle(props: Props) {
     d.color = directoryColors[d.name];
   });
 
+  const downloadButton = (
+    <button onClick={() => download(props)}>download analysis</button>
+  );
+
   return (
     <div>
-      <button onClick={() => download(props)}>download analysis</button>
       <div>
-        <Header rollups={rollups} />
+        <Header rollups={rollups} download={downloadButton} />
       </div>
       <div>
         <Report duplicateNodeModules={duplicateNodeModules} />

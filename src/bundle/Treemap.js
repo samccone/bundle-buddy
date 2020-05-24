@@ -110,7 +110,7 @@ export default class Treemap extends React.Component {
                       }}
                       style={{
                         lineHeight: `${padding[0] - 2}px`,
-                        fontWeight: node.children ? "bold" : "100",
+                        fontWeight: node.children ? "bold" : "300",
                         color: "black", //textColorsMap.get(node.data.key),
                       }}
                     >
