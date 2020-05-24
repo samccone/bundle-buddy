@@ -50,6 +50,16 @@ export default function Header() {
           ></path>
         </svg>
       </a>
+      <div className="alpha-warning">
+        <span aria-label="warning" role="img">
+          ⚠
+        </span>{" "}
+        ️Project is in an experimental phase{" "}
+        <span aria-label="warning" role="img">
+          ⚠
+        </span>{" "}
+        ️
+      </div>
     </header>
   );
 }

@@ -535,3 +535,8 @@ td {
     animation: octocat-wave 560ms ease-in-out;
   }
 }
+
+.alpha-warning {
+  margin-left: 20px;
+  background: papayawhip;
+}
