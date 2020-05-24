@@ -6,7 +6,7 @@ import {
   ImportProps,
   ImportResolveState,
   ImportState,
-  ImportTypes
+  ImportTypes,
 } from "../types";
 
 // noopener noreferrer
@@ -134,11 +134,11 @@ plugins: [{
       this.graphInput.current.files.length
     ) {
       this.setState({
-        graphFile: this.graphInput.current.files[0]
+        graphFile: this.graphInput.current.files[0],
       });
     } else {
       this.setState({
-        graphFile: undefined
+        graphFile: undefined,
       });
     }
   }
@@ -150,11 +150,11 @@ plugins: [{
       this.sourceMapInput.current.files.length
     ) {
       this.setState({
-        sourceMapFiles: Array.from(this.sourceMapInput.current.files)
+        sourceMapFiles: Array.from(this.sourceMapInput.current.files),
       });
     } else {
       this.setState({
-        sourceMapFiles: undefined
+        sourceMapFiles: undefined,
       });
     }
   }
@@ -181,23 +181,23 @@ plugins: [{
 
     const processed = await processImports({
       sourceMapContents,
-      graphNodes: graphContents
+      graphEdges: graphContents,
     });
 
     const { importError, importErrorUri } = buildImportErrorReport(processed, {
       graphFile: this.state.graphFile,
-      sourceMapFiles: this.state.sourceMapFiles
+      sourceMapFiles: this.state.sourceMapFiles,
     });
 
     this.setState({
       importError,
-      importErrorUri
+      importErrorUri,
     });
 
     if (this.props.history != null && this.state.importError == null) {
       const state: ImportResolveState = {
         graphEdges: processed.processedGraph!,
-        processedSourceMap: processed.proccessedSourcemap!
+        processedSourceMap: processed.proccessedSourcemap!,
       };
 
       this.props.history.push("/_/resolve", state);

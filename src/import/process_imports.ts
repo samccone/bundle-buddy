@@ -39,7 +39,7 @@ function mergeProcessedSourceMaps(processed: {
 
 export async function processImports(opts: {
   sourceMapContents: { [filename: string]: string };
-  graphNodes: GraphEdges | string;
+  graphEdges: GraphEdges | string;
   graphPreProcessFn?: (contents: any) => GraphEdges;
 }): Promise<ImportProcess> {
   const ret: ImportProcess = { proccessedSourcemap: {} };
@@ -63,8 +63,8 @@ export async function processImports(opts: {
   ret.proccessedSourcemap = mergeProcessedSourceMaps(processed);
 
   try {
-    if (typeof opts.graphNodes === "string") {
-      let parsedNodes = JSON.parse(opts.graphNodes);
+    if (typeof opts.graphEdges === "string") {
+      let parsedNodes = JSON.parse(opts.graphEdges);
 
       if (opts.graphPreProcessFn != null) {
         parsedNodes = opts.graphPreProcessFn(parsedNodes);
@@ -72,7 +72,7 @@ export async function processImports(opts: {
 
       ret.processedGraph = parsedNodes as GraphEdges;
     } else {
-      ret.processedGraph = opts.graphNodes;
+      ret.processedGraph = opts.graphEdges;
     }
   } catch (e) {
     ret.graphProcessError = new Error(humanizeGraphProcessError(e));
@@ -99,16 +99,16 @@ export function buildImportErrorReport(
     }
 
     reportUri.addError(
-      Object.keys(files.sourceMapFiles.map(f => f.name)).join(","),
+      Object.keys(files.sourceMapFiles.map((f) => f.name)).join(","),
       processed.sourceMapProcessError
     );
-    importError += `${Object.keys(files.sourceMapFiles.map(f => f.name)).join(
+    importError += `${Object.keys(files.sourceMapFiles.map((f) => f.name)).join(
       ","
     )}: ${processed.sourceMapProcessError}`;
   }
 
   return {
     importError,
-    importErrorUri: reportUri.toUri()
+    importErrorUri: reportUri.toUri(),
   };
 }

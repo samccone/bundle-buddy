@@ -11,7 +11,7 @@ import { cleanGraph } from "../graph_process";
 
 const IGNORE_FILES = [
   // https://twitter.com/samccone/status/1137776153148583936
-  "webpack/bootstrap"
+  "webpack/bootstrap",
 ];
 
 function removeWebpackMagicFiles(v: ProcessedSourceMap) {
@@ -65,8 +65,8 @@ class WebpackImport extends Component<ImportProps, ImportState> {
 
     const processed = await processImports({
       sourceMapContents,
-      graphNodes: statsFileContents,
-      graphPreProcessFn: g => cleanGraph(statsToGraph(g))
+      graphEdges: statsFileContents,
+      graphPreProcessFn: (g) => cleanGraph(statsToGraph(g)),
     });
 
     if (processed.proccessedSourcemap != null) {
@@ -77,19 +77,19 @@ class WebpackImport extends Component<ImportProps, ImportState> {
 
     const { importError, importErrorUri } = buildImportErrorReport(processed, {
       graphFile: this.state.graphFile,
-      sourceMapFiles: this.state.sourceMapFiles
+      sourceMapFiles: this.state.sourceMapFiles,
     });
 
     this.setState({
       importError,
-      importErrorUri
+      importErrorUri,
     });
 
     // We only want to go to the resolve screen if there are no errors.
     if (this.props.history != null && this.state.importError == null) {
       const state: ImportResolveState = {
         graphEdges: processed.processedGraph!,
-        processedSourceMap: processed.proccessedSourcemap!
+        processedSourceMap: processed.proccessedSourcemap!,
       };
 
       this.props.history.push("/webpack/resolve", state);
@@ -103,11 +103,11 @@ class WebpackImport extends Component<ImportProps, ImportState> {
       this.statsInput.current.files.length
     ) {
       this.setState({
-        graphFile: this.statsInput.current.files[0]
+        graphFile: this.statsInput.current.files[0],
       });
     } else {
       this.setState({
-        graphFile: undefined
+        graphFile: undefined,
       });
     }
   }
@@ -119,11 +119,11 @@ class WebpackImport extends Component<ImportProps, ImportState> {
       this.sourceMapInput.current.files.length
     ) {
       this.setState({
-        sourceMapFiles: Array.from(this.sourceMapInput.current.files)
+        sourceMapFiles: Array.from(this.sourceMapInput.current.files),
       });
     } else {
       this.setState({
-        sourceMapFiles: undefined
+        sourceMapFiles: undefined,
       });
     }
   }

@@ -86,7 +86,7 @@ export interface BundleProps {
 
 export interface ResolveProps {
   history: ImportHistory;
-  graphNodes: GraphEdges;
+  graphEdges: GraphEdges;
   processedSourceMap: ProcessedSourceMap;
   graphFileTransform?: string;
   sourceMapFileTransform?: string;

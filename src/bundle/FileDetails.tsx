@@ -10,6 +10,15 @@ type Column = {
   original: TrimmedDataNode;
 };
 
+type Maxes = {
+  totalBytes: number;
+  requires: number;
+  requiredBy: number;
+  transitiveRequiresSize: number;
+  transitiveRequiredBy: number;
+  transitiveRequires: number;
+};
+
 function getColumns(
   directoryColors: Props["directoryColors"],
   data: TrimmedDataNode[],
@@ -21,31 +30,31 @@ function getColumns(
     requiredBy: 0,
     transitiveRequiresSize: 0,
     transitiveRequiredBy: 0,
-    transitiveRequires: 0
+    transitiveRequires: 0,
   };
 
-  data.forEach(d => {
+  data.forEach((d) => {
     maxes.totalBytes = Math.max(maxes.totalBytes, d.totalBytes);
     maxes.transitiveRequiresSize = Math.max(
       maxes.transitiveRequiresSize,
-      d.count.transitiveRequiresSize
+      d.transitiveRequiresSize
     );
-    maxes.requires = Math.max(maxes.requires, d.count.requires.length);
+    maxes.requires = Math.max(maxes.requires, d.requires.length);
     maxes.transitiveRequires = Math.max(
       maxes.transitiveRequires,
-      d.count.transitiveRequires.length
+      d.transitiveRequires.length
     );
-    maxes.requiredBy = Math.max(maxes.requiredBy, d.count.requiredBy.length);
+    maxes.requiredBy = Math.max(maxes.requiredBy, d.requiredBy.length);
     maxes.transitiveRequiredBy = Math.max(
       maxes.transitiveRequiredBy,
-      d.count.transitiveRequiredBy.length
+      d.transitiveRequiredBy.length
     );
   });
 
   function getBar(
     d: Column,
     accessor: (d: TrimmedDataNode) => number,
-    id: keyof TrimmedDataNode["count"] | "totalBytes"
+    id: keyof Maxes
   ) {
     return (
       <div
@@ -56,7 +65,7 @@ function getColumns(
           width: d.value ? getPercent(d.value, maxes[id]) : "0px",
           position: "relative",
           top: 15,
-          left: getPercent(maxes[id] - accessor(d.original), maxes[id])
+          left: getPercent(maxes[id] - accessor(d.original), maxes[id]),
         }}
       />
     );
@@ -68,7 +77,7 @@ function getColumns(
       Header: "Name",
       Cell: (d: Column) => {
         return <span style={{ fontSize: 12 }}>{d.value}</span>;
-      }
+      },
     },
     {
       id: "totalBytes",
@@ -76,57 +85,53 @@ function getColumns(
       Header: "Size",
       minWidth: 50,
       label: (d: Column) =>
-        `${getFileSize(d.value)}, ${getPercent(d.value, total)}`
+        `${getFileSize(d.value)}, ${getPercent(d.value, total)}`,
     },
     {
       id: "requires",
-      accessor: (d: TrimmedDataNode) => d.count.requires.length,
+      accessor: (d: TrimmedDataNode) => d.requires.length,
       Header: "Direct Requires",
       headerClassName: "rotated",
-      minWidth: 25
+      minWidth: 25,
     },
     {
       id: "transitiveRequires",
-      accessor: (d: TrimmedDataNode) => d.count.transitiveRequires.length,
+      accessor: (d: TrimmedDataNode) => d.transitiveRequires.length,
       Header: "All Requires",
       headerClassName: "rotated",
-      minWidth: 25
+      minWidth: 25,
     },
     {
       id: "transitiveRequiresSize",
-      accessor: (d: TrimmedDataNode) => d.count.transitiveRequiresSize,
+      accessor: (d: TrimmedDataNode) => d.transitiveRequiresSize,
       Header: "All Requires Size",
       headerClassName: "rotated",
       minWidth: 50,
-      label: (d: Column) => getFileSize(d.value)
+      label: (d: Column) => getFileSize(d.value),
     },
     {
       id: "requiredBy",
-      accessor: (d: TrimmedDataNode) => d.count.requiredBy.length,
+      accessor: (d: TrimmedDataNode) => d.requiredBy.length,
       Header: "Direct Required By",
       headerClassName: "rotated",
-      minWidth: 25
+      minWidth: 25,
     },
 
     {
       id: "transitiveRequiredBy",
-      accessor: (d: TrimmedDataNode) => d.count.transitiveRequiredBy.length,
+      accessor: (d: TrimmedDataNode) => d.transitiveRequiredBy.length,
       Header: "All Required By",
       headerClassName: "rotated",
-      minWidth: 25
-    }
-  ].map(d => {
+      minWidth: 25,
+    },
+  ].map((d) => {
     return {
       ...d,
       Cell:
         d.Cell ||
         ((c: Column) => (
           <div className="relative">
-            {getBar(
-              c,
-              d.accessor,
-              d.id as keyof TrimmedDataNode["count"] | "totalBytes"
-            )}
+            {getBar(c, d.accessor, d.id as keyof Maxes)}
 
             <span
               style={{ fontSize: 12, position: "absolute", top: 0, right: 0 }}
@@ -136,7 +141,7 @@ function getColumns(
               </span>
             </span>
           </div>
-        ))
+        )),
     };
   });
 }
@@ -147,25 +152,23 @@ function getTrProps(changeSelected: Props["changeSelected"]) {
       onClick: () => {
         changeSelected(row.original.id);
       },
-      className: "pointer"
+      className: "pointer",
     };
   };
 }
 
 function filterMethod(filter: any, row: any, column: any) {
   return (
-    column
-      .accessor(row)
-      .toLowerCase()
-      .indexOf(filter.value.toLowerCase()) !== -1
+    column.accessor(row).toLowerCase().indexOf(filter.value.toLowerCase()) !==
+    -1
   );
 }
 
 const defaultSorted = [
   {
     id: "totalBytes",
-    desc: true
-  }
+    desc: true,
+  },
 ];
 
 type Props = {
@@ -180,14 +183,14 @@ export default function FileDetails(props: Props) {
     network = {} as ProcessedImportState["trimmedNetwork"],
     changeSelected,
     directoryColors,
-    total
+    total,
   } = props;
   const { nodes = [] } = network;
 
   let withNodeModules = 0;
   let withoutNodeModules = 0;
 
-  nodes.forEach(n => {
+  nodes.forEach((n) => {
     if (n.id.indexOf("node_modules") !== -1) withNodeModules++;
     else withoutNodeModules++;
   });
@@ -195,7 +198,7 @@ export default function FileDetails(props: Props) {
   const columns = useMemo(() => getColumns(directoryColors, nodes, total), [
     directoryColors,
     nodes,
-    total
+    total,
   ]);
 
   const trProps = useMemo(() => getTrProps(changeSelected), [changeSelected]);

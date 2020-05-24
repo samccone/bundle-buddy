@@ -35,7 +35,7 @@ function transformGraphNames(
   graphTransform: (v: string) => string,
   trims: string[]
 ): GraphEdges {
-  return nodes.map(n => {
+  return nodes.map((n) => {
     n.source = graphTransform(trimClean(trims, n.source));
     if (n.target != null) {
       n.target = graphTransform(trimClean(trims, n.target));
@@ -58,13 +58,13 @@ function transformSourceMapNames(
   return ret;
 }
 
-function getGraphFiles(graphNodes: GraphEdges) {
+function getGraphFiles(graphEdges: GraphEdges) {
   const ret = new Set<string>();
 
-  for (const node of graphNodes) {
-    ret.add(node.source);
-    if (node.target) {
-      ret.add(node.target);
+  for (const edge of graphEdges) {
+    ret.add(edge.source);
+    if (edge.target) {
+      ret.add(edge.target);
     }
   }
 
@@ -82,16 +82,16 @@ function trimClean(trims: string[], word: string) {
 
 function autoclean(opts: {
   processedSourceMap: ProcessedSourceMap;
-  graphNodes: GraphEdges;
+  graphEdges: GraphEdges;
 }): { sourceMapFiles: string[]; graphFiles: string[]; trims: string[] } {
   const sourceMapFiles = Object.keys(opts.processedSourceMap);
-  const graphFiles = getGraphFiles(opts.graphNodes);
+  const graphFiles = getGraphFiles(opts.graphEdges);
   const trims = Object.keys(findTrims(sourceMapFiles, graphFiles));
 
   return {
-    sourceMapFiles: sourceMapFiles.map(v => trimClean(trims, v)),
-    graphFiles: graphFiles.map(v => trimClean(trims, v)),
-    trims
+    sourceMapFiles: sourceMapFiles.map((v) => trimClean(trims, v)),
+    graphFiles: graphFiles.map((v) => trimClean(trims, v)),
+    trims,
   };
 }
 
@@ -109,7 +109,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     this.sourceGraphTransformRef = React.createRef();
     const { sourceMapFiles, graphFiles, trims } = autoclean({
       processedSourceMap: this.props.processedSourceMap,
-      graphNodes: this.props.graphNodes
+      graphEdges: this.props.graphEdges,
     });
     this.trims = trims;
     this.state = {
@@ -119,12 +119,12 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         sourceMapFileTransform:
           (props.sourceMapFileTransform &&
             toFunctionRef(props.sourceMapFileTransform)) ||
-          (fileName => fileName),
+          ((fileName) => fileName),
         graphFileTransform:
           (props.graphFileTransform &&
             toFunctionRef(props.graphFileTransform)) ||
-          (fileName => fileName)
-      }
+          ((fileName) => fileName),
+      },
     };
 
     const sourcemapTransformed = this.transformFiles(
@@ -153,7 +153,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
   ): { files: T[]; lastError: undefined | Error } {
     let lastError: Error | undefined = undefined;
     const setA = new Set(
-      a.map(v => {
+      a.map((v) => {
         try {
           return aTransform(v);
         } catch (e) {
@@ -163,7 +163,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       })
     );
     const setB = new Set(
-      b.map(v => {
+      b.map((v) => {
         try {
           return bTransform(v);
         } catch (e) {
@@ -182,7 +182,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
 
     return {
       files: ret,
-      lastError
+      lastError,
     };
   }
 
@@ -199,17 +199,17 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       }
 
       this.props.history.replace(window.location.pathname, {
-        graphEdges: this.props.graphNodes,
+        graphEdges: this.props.graphEdges,
         processedSourceMap: this.props.processedSourceMap,
         graphFileTransform: this.state.transforms.graphFileTransform.toString(),
-        sourceMapFileTransform: transformRef.toString()
+        sourceMapFileTransform: transformRef.toString(),
       });
 
       this.setState({
         transforms: {
           graphFileTransform: this.state.transforms.graphFileTransform,
-          sourceMapFileTransform: transformRef
-        }
+          sourceMapFileTransform: transformRef,
+        },
       });
     }
   }
@@ -227,32 +227,32 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       }
 
       this.props.history.replace(window.location.pathname, {
-        graphEdges: this.props.graphNodes,
+        graphEdges: this.props.graphEdges,
         processedSourceMap: this.props.processedSourceMap,
         graphFileTransform: transformRef.toString(),
-        sourceMapFileTransform: this.state.transforms.sourceMapFileTransform.toString()
+        sourceMapFileTransform: this.state.transforms.sourceMapFileTransform.toString(),
       });
 
       this.setState({
         transforms: {
           graphFileTransform: transformRef,
-          sourceMapFileTransform: this.state.transforms.sourceMapFileTransform
-        }
+          sourceMapFileTransform: this.state.transforms.sourceMapFileTransform,
+        },
       });
     }
   }
 
   import() {
     if (
-      this.props.graphNodes == null ||
+      this.props.graphEdges == null ||
       this.props.processedSourceMap == null
     ) {
-      throw new Error("Unable to find graphnodes or sourcemap data");
+      throw new Error("Unable to find graph edges or sourcemap data");
     }
 
     const processed = transform(
       transformGraphNames(
-        this.props.graphNodes,
+        this.props.graphEdges,
         this.state.transforms.graphFileTransform,
         this.trims
       ),
@@ -315,7 +315,7 @@ ${e.stack}`;
               update source map transform
             </button>
             <ul>
-              {Resolve.sorted(sourceMapTransformed.files).map(v => (
+              {Resolve.sorted(sourceMapTransformed.files).map((v) => (
                 <li key={v}>{v}</li>
               ))}
             </ul>
@@ -341,7 +341,7 @@ ${e.stack}`;
               update graph source transform
             </button>
             <ul>
-              {Resolve.sorted(graphTransformed.files).map(v => (
+              {Resolve.sorted(graphTransformed.files).map((v) => (
                 <li key={v}>{v}</li>
               ))}
             </ul>
