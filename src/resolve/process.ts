@@ -5,14 +5,14 @@ import {
   ProcessedImportState,
   TreemapNode,
   GraphEdges,
-  FlattendGraph,
+  FlattendGraph
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";
 import {
   requiredBy,
   calculateTransitiveRequires,
-  edgesToGraph,
+  edgesToGraph
 } from "../graph";
 
 const EMPTY_NAME = "No Directory";
@@ -30,20 +30,20 @@ function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
   const rel = [
     {
       parent: "",
-      name: "rootNode",
-    },
+      name: "rootNode"
+    }
   ];
 
   const unique: { [hash: string]: Boolean } = {};
 
-  Object.keys(data).forEach((d) => {
-    const parents = d.split(/\/(?!\/)/).filter((d) => d);
+  Object.keys(data).forEach(d => {
+    const parents = d.split(/\/(?!\/)/).filter(d => d);
 
     parents.forEach((p, i, array) => {
       const value = {
         name: array.slice(0, i + 1).join("/"),
         parent: array.slice(0, i).join("/") || "rootNode",
-        totalBytes: 0,
+        totalBytes: 0
       };
 
       if (i === array.length - 1) {
@@ -86,8 +86,8 @@ function initializeNode(id: string) {
       requires: [],
       transitiveRequiredBy: [],
       transitiveRequires: [],
-      transitiveRequiresSize: 0,
-    },
+      transitiveRequiresSize: 0
+    }
   };
 }
 
@@ -111,10 +111,10 @@ function getRollups(fileSizes: ProcessedSourceMap) {
   } = {
     value: 0,
     fileTypes: {},
-    directories: {},
+    directories: {}
   };
 
-  Object.keys(fileSizes).forEach((key) => {
+  Object.keys(fileSizes).forEach(key => {
     summary.value += fileSizes[key].totalBytes;
     const index = key.lastIndexOf("/");
     const fileName = key.slice(index + 1).split(/\./g);
@@ -134,7 +134,7 @@ function getRollups(fileSizes: ProcessedSourceMap) {
       } else {
         summary.fileTypes[extension] = {
           name: extension,
-          totalBytes: fileSizes[key].totalBytes,
+          totalBytes: fileSizes[key].totalBytes
         };
       }
 
@@ -143,7 +143,7 @@ function getRollups(fileSizes: ProcessedSourceMap) {
       } else {
         summary.directories[parent] = {
           name: parent,
-          totalBytes: fileSizes[key].totalBytes,
+          totalBytes: fileSizes[key].totalBytes
         };
       }
     }
@@ -151,56 +151,87 @@ function getRollups(fileSizes: ProcessedSourceMap) {
 
   return {
     value: summary.value,
-    fileTypes: values(summary.fileTypes).map((d) => ({
+    fileTypes: values(summary.fileTypes).map(d => ({
       ...d,
-      pct: d.totalBytes / summary.value,
+      pct: d.totalBytes / summary.value
     })),
-    directories: values(summary.directories).map((d) => ({
+    directories: values(summary.directories).map(d => ({
       ...d,
-      pct: d.totalBytes / summary.value,
-    })),
+      pct: d.totalBytes / summary.value
+    }))
   };
 }
 
-export function findDuplicateModules(sourceMapFiles: string[]) {
-  const nmLength = "node_modules".length + 1;
-  const dps = sourceMapFiles.reduce<{
-    [key: string]: string[];
-  }>((p, d) => {
-    var regex = /node_modules/gi,
-      result,
-      indices = [];
-    while ((result = regex.exec(d))) {
-      indices.push(result.index);
-    }
-
-    //has multiple node modules in string
-    if (indices.length > 1) {
-      const parent = d.slice(indices[0] + nmLength, indices[1] - 1);
-
-      const child = d.slice(indices[1] + nmLength);
-      const childDirIndex = child.indexOf("/");
-      const childDir = child.slice(0, childDirIndex);
-
-      if (!p[childDir]) p[childDir] = [];
-
-      if (p[childDir].indexOf(parent) === -1) p[childDir].push(parent);
-    }
-    return p;
-  }, {});
-
-  return Object.keys(dps).reduce(
-    (p, c) => {
-      const v = dps[c];
-
-      if (v.length > 1) p.push({ key: c, value: v });
-      return p;
-    },
-    [] as Array<{
-      key: string;
-      value: string[];
-    }>
+/**
+ * Given a list of files find duplicate node modules and the dependencies that
+ * brought them into the project.
+ * @param sourceMapFiles a list of files in the project
+ */
+export function findDuplicateModules(
+  sourceMapFiles: string[]
+): Array<{
+  key: string;
+  value: string[];
+}> {
+  const ret: Array<{
+    key: string;
+    value: string[];
+  }> = [];
+  const containsNodeModules = sourceMapFiles.filter(
+    v => v.indexOf("node_modules") > -1
   );
+  const explodedPaths = containsNodeModules
+    .map(v => v.split("/"))
+    .map(splitPath => {
+      return {
+        nodeModulePreamables: splitPath
+          .map((v, i) => {
+            if (v === "node_modules") {
+              return [splitPath[i + 1], splitPath[i - 1]];
+            }
+
+            return undefined;
+          })
+          .filter(v => v != null)
+      };
+    })
+    .sort(
+      (a, b) => a.nodeModulePreamables.length - b.nodeModulePreamables.length
+    );
+
+  const dupes: { [module: string]: { imports: Set<string> } } = {};
+
+  const seen = new Set<string>();
+  for (const d of explodedPaths as any) {
+    const module = d.nodeModulePreamables[d.nodeModulePreamables.length - 1][0];
+    const from = d.nodeModulePreamables[d.nodeModulePreamables.length - 1][1];
+
+    if (d.nodeModulePreamables.length === 1) {
+      dupes[module] = { imports: new Set<string>(["<PROJECT ROOT>"]) };
+      seen.add(module);
+    } else {
+      if (seen.has(module)) {
+        if (dupes[module] == null) {
+          dupes[module] = { imports: new Set<string>([]) };
+        }
+
+        dupes[module].imports.add(from);
+      } else {
+        seen.add(module);
+      }
+    }
+  }
+
+  for (const key of Object.keys(dupes)) {
+    if (dupes[key].imports?.size > 1) {
+      ret.push({
+        key,
+        value: Array.from(dupes[key].imports)
+      });
+    }
+  }
+
+  return ret;
 }
 
 export function transform(
@@ -213,7 +244,7 @@ export function transform(
   const trimmedEdges: Edge[] = [];
   const unique: { [k: string]: boolean } = {};
 
-  graphEdges.forEach((e) => {
+  graphEdges.forEach(e => {
     //trimmed network functions
     addedNodes[e.source] = true;
 
@@ -223,13 +254,16 @@ export function transform(
 
     const sourceKey =
       e.source.indexOf("node_modules") !== -1
-        ? e.source.split("/").slice(0, 2).join("/")
+        ? e.source
+            .split("/")
+            .slice(0, 2)
+            .join("/")
         : e.source;
 
     if (e.target != null) {
       trimmedEdges.push({
         source: sourceKey,
-        target: e.target,
+        target: e.target
       });
 
       if (!trimmedNodes[sourceKey]) {
@@ -268,7 +302,7 @@ export function transform(
     }
   });
 
-  Object.keys(fileSizes).forEach((d) => {
+  Object.keys(fileSizes).forEach(d => {
     if (!addedNodes[d]) {
       if (d.indexOf("node_modules") === -1) {
         trimmedNodes[d] = initializeNode(d);
@@ -308,10 +342,10 @@ export function transform(
 
   const trimmedNetwork = {
     nodes: values(trimmedNodes),
-    edges: trimmedEdges,
+    edges: trimmedEdges
   };
 
-  trimmedNetwork.nodes.forEach((d) => {
+  trimmedNetwork.nodes.forEach(d => {
     const index = d.id.indexOf("/");
     if (index !== -1) d.directory = d.id.slice(0, index);
     else d.directory = EMPTY_NAME;
@@ -327,6 +361,6 @@ export function transform(
     rollups: getRollups(fileSizes),
     trimmedNetwork,
     duplicateNodeModules: findDuplicateModules(sourceMapFiles),
-    hierarchy: nodesToTreeMap(fileSizes),
+    hierarchy: nodesToTreeMap(fileSizes)
   };
 }
