@@ -14,6 +14,7 @@
     "d3-scale": "2.1.2",
     "d3-voronoi-treemap": "^1.1.0",
     "dagre": "0.8.2",
+    "prettier": "^2.0.5",
     "react": "^16.6.1",
     "react-annotation": "2.1.6",
     "react-dom": "^16.6.1",
