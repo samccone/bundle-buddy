@@ -12,8 +12,8 @@ it("converts simple modules", () => {
 
   expect(statsToGraph(input)).toEqual([
     {
-      source: "foo",
-      target: "zap"
+      target: "foo",
+      source: "zap"
     }
   ]);
 });
@@ -30,8 +30,8 @@ it("handles webpack magic", () => {
 
   expect(statsToGraph(input)).toEqual([
     {
-      source: "node_modules/webpack/buildin/foo",
-      target: "zap"
+      target: "node_modules/webpack/buildin/foo",
+      source: "zap"
     }
   ]);
 });
@@ -52,10 +52,10 @@ it("converts simple many modules", () => {
 
   expect(statsToGraph(input)).toEqual([
     {
-      source: "foo",
-      target: "zap"
+      target: "foo",
+      source: "zap"
     },
-    { source: "tap", target: "foo" }
+    { target: "tap", source: "foo" }
   ]);
 });
 
@@ -442,10 +442,10 @@ it("handles complex", () => {
   };
 
   expect(statsToGraph(input)).toEqual([
-    { source: "./src/index.js", target: "multi ./src/index.js" },
-    { source: "./src/App.tsx", target: "./src/index.js" },
-    { source: "./src/serviceWorker.ts", target: "./src/index.js" },
-    { source: "./src/Header.js", target: "./src/App.tsx" },
-    { source: "./src/ErrorBoundry.tsx", target: "./src/App.tsx" }
+    { target: "./src/index.js", source: "multi ./src/index.js" },
+    { target: "./src/App.tsx", source: "./src/index.js" },
+    { target: "./src/serviceWorker.ts", source: "./src/index.js" },
+    { target: "./src/Header.js", source: "./src/App.tsx" },
+    { target: "./src/ErrorBoundry.tsx", source: "./src/App.tsx" }
   ]);
 });
