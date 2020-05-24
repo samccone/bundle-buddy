@@ -1,4 +1,17 @@
-import { findDuplicateModules } from "./duplicateModules";
+import {
+  findDuplicateModules,
+  splitBySemanticModulePath
+} from "./duplicateModules";
+
+it("handles non-scoped packages", () => {
+  const ret = splitBySemanticModulePath("foo/node_modules/zap/tap");
+  expect(ret).toEqual(["foo", "node_modules", "zap", "tap"]);
+});
+
+it("handles @scoped packages", () => {
+  const ret = splitBySemanticModulePath("foo/node_modules/@zap/tap");
+  expect(ret).toEqual(["foo", "node_modules", "@zap/tap"]);
+});
 
 it("handles one module", () => {
   const ret = findDuplicateModules(["foo/zap/node_modules/tap"]);
@@ -13,6 +26,26 @@ it("handles multiple modules", () => {
   ]);
 
   expect(ret.length).toBe(0);
+});
+
+it("correctly splits @ scoped modules", () => {
+  const ret = findDuplicateModules([
+    "foo/zap/node_modules/@tap/wow",
+    "foo/zap/node_modules/no/node_modules/@tap/zap"
+  ]);
+
+  expect(ret.length).toBe(0);
+});
+
+it("correctly find duplicated @ scoped modules", () => {
+  const ret = findDuplicateModules([
+    "foo/zap/node_modules/@tap/wow",
+    "foo/zap/node_modules/no/node_modules/@tap/wow"
+  ]);
+
+  expect(ret.length).toBe(1);
+  expect(ret[0].key).toBe("@tap/wow");
+  expect(ret[0].value.sort()).toEqual(["<PROJECT ROOT>", "no"]);
 });
 
 it("handles duplicate modules", () => {

@@ -1,4 +1,49 @@
 /**
+ * Splits the folder path by semantically scoped package path.
+ *
+ * For example
+ * node_modules/@foo/zap becomes ["node_modules", "@foo/zap"]
+ *
+ * vs:
+ * node_modules/foo/zap becomes ["node_modules", "foo", "zap"]
+ *
+ * @param path file path to split
+ */
+export function splitBySemanticModulePath(path: string): string[] {
+  let folderSplit = path.split("/");
+
+  const ret: string[] = [];
+  let scopedPackage = "";
+  let lastNodeModules = false;
+
+  for (const p of folderSplit) {
+    if (p === "node_modules") {
+      lastNodeModules = true;
+      ret.push(p);
+      continue;
+    }
+
+    if (lastNodeModules && p[0] === "@") {
+      scopedPackage = p;
+      lastNodeModules = false;
+      continue;
+    }
+
+    lastNodeModules = false;
+
+    if (scopedPackage.length) {
+      ret.push(`${scopedPackage}/${p}`);
+      scopedPackage = "";
+      continue;
+    }
+
+    ret.push(p);
+  }
+
+  return ret;
+}
+
+/**
  * Given a list of files find duplicate node modules and the dependencies that
  * brought them into the project.
  * @param sourceMapFiles a list of files in the project
@@ -17,7 +62,7 @@ export function findDuplicateModules(
     v => v.indexOf("node_modules") > -1
   );
   const explodedPaths = containsNodeModules
-    .map(v => v.split("/"))
+    .map(v => splitBySemanticModulePath(v))
     .map(splitPath => {
       return {
         nodeModulePreamables: splitPath
