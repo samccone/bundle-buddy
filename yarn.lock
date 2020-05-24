@@ -1376,6 +1376,11 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@scarf/scarf@^1.0.4":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.0.5.tgz#accee0bce88a9047672f7c8faf3cada59c996b81"
+  integrity sha512-9WKaGVpQH905Aqkk+BczFEeLQxS07rl04afFRPUG9IcSlOwmo5EVVuuNu0d4M9LMYucObvK0LoAe+5HfMW2QhQ==
+
 "@sentry/browser@^4.4.2":
   version "4.6.6"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-4.6.6.tgz#58ac3de9956c8a7033f3830c3ee9e011c2bd133a"
@@ -2156,10 +2161,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-table@^6.8.5":
-  version "6.8.7"
-  resolved "https://registry.npmjs.org/@types/react-table/-/react-table-6.8.7.tgz#210ffa2862dd3711350676c0bdbbfbff45f14b84"
-  integrity sha512-1U0xl47jk0BzE+HNHgxZYSLvtybSvnlLhOpW9Mfqf9iuRm/fGqgRab3TKivPCY6Tl7WPFM2hWEJ1GnsuSFc9AQ==
+"@types/react-table@^7.0.18":
+  version "7.0.18"
+  resolved "https://registry.yarnpkg.com/@types/react-table/-/react-table-7.0.18.tgz#df61f8272fd3add86b442a90baa6dbaef9b1f32a"
+  integrity sha512-O4iKmVYVQz+6Nl9LsLtWQz9Unsmq0UySJrh5hpV5d+wrf15skhB0dqI9ocCNovJpcYxGjHrn3VbeSyAcaxHZtA==
   dependencies:
     "@types/react" "*"
 
@@ -12268,14 +12273,12 @@ react-syntax-highlighter@^11.0.2:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react-table@6.11.5:
-  version "6.11.5"
-  resolved "https://registry.npmjs.org/react-table/-/react-table-6.11.5.tgz#84e52885db426a07a6c4ce2c7e942f2cd4e2aa58"
-  integrity sha512-LM+AS9v//7Y7lAlgTWW/cW6Sn5VOb3EsSkKQfQTzOW8FngB1FUskLLNEVkAYsTX9LjOWR3QlGjykJqCE6eXT/g==
+react-table@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.1.0.tgz#c975cd67e917c54190b6c9df29f085285b0c3f4e"
+  integrity sha512-AZpgW0Xpo6Z7jxXZIBovzCGoYVkuBwATsJh7X4+JXwq9JtDaorOmxWC9gKx5Hui4d+n+I99enyyJS+LRtKydxA==
   dependencies:
-    "@types/react-table" "^6.8.5"
-    classnames "^2.2.5"
-    react-is "^16.8.1"
+    "@scarf/scarf" "^1.0.4"
 
 react-textarea-autosize@^7.1.0:
   version "7.1.2"

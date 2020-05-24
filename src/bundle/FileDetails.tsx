@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import ReactTable from "react-table";
+import { useTable, useSortBy } from "react-table";
 
 // import { colors } from "../theme";
 import { getCSSPercent, getFileSize } from "./stringFormats";
@@ -73,7 +73,7 @@ function getColumns(
 
   return [
     {
-      accessor: "text",
+      accessor: "text" as any,
       Header: "Name",
       Cell: (d: Column) => {
         return <span style={{ fontSize: 12 }}>{d.value}</span>;
@@ -127,7 +127,7 @@ function getColumns(
   ].map((d) => {
     return {
       ...d,
-      Cell:
+      /*       Cell:
         d.Cell ||
         ((c: Column) => (
           <div className="relative">
@@ -142,19 +142,9 @@ function getColumns(
             </span>
           </div>
         )),
+  */
     };
   });
-}
-
-function getTrProps(changeSelected: Props["changeSelected"]) {
-  return (state: any, row: any) => {
-    return {
-      onClick: () => {
-        changeSelected(row.original.id);
-      },
-      className: "pointer",
-    };
-  };
 }
 
 function filterMethod(filter: any, row: any, column: any) {
@@ -193,25 +183,52 @@ export default function FileDetails(props: Props) {
     total,
   ]);
 
-  const trProps = useMemo(() => getTrProps(changeSelected), [changeSelected]);
+  const data = useMemo(() => nodes, [nodes]);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns: columns, data }, useSortBy);
 
   return (
-    <div>
-      <ReactTable
-        // getProps={getProps}
-        data={nodes}
-        key="SeasonsList"
-        getTrProps={trProps}
-        // getTdProps={tdProps}
-        defaultFilterMethod={filterMethod as any}
-        defaultSortDesc={true}
-        defaultSorted={defaultSorted}
-        pageSize={nodes.length || 25}
-        defaultPageSize={nodes.length || 25}
-        showPagination={false}
-        columns={columns}
-        className=" -highlight"
-      />
-    </div>
+    <table {...getTableProps()}>
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th
+                {...column.getHeaderProps(
+                  (column as any).getSortByToggleProps()
+                )}
+              >
+                {column.render("Header")}
+                <span>
+                  {(column as any).isSorted
+                    ? (column as any).isSortedDesc
+                      ? " 🔽"
+                      : " 🔼"
+                    : ""}
+                </span>
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => {
+                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
