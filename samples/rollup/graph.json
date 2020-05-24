@@ -1,2202 +1,2326 @@
 [
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/browser-entry.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/browser-entry.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/browser-entry.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/package.json"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/browser-entry.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/package.json"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/package.json"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/package.json"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/addons.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/addons.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/assignChunkIds.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/assignChunkIds.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/commondir.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/commondir.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/fs.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/fs.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/getExportMode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/getExportMode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/parseOptions.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/parseOptions.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/sourceMappingURL.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/sourceMappingURL.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/rollup/rollup.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-export-ns-from/index.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-class-fields/index.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-import-meta/index.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-import-meta/index.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-static-class-features/index.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/buildPhase.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/chunkAssignment.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/buildPhase.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/chunkAssignment.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/addons.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/assignChunkIds.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/assignChunkIds.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Graph.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/traverseStaticDependencies.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/commondir.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/addons.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/locate-character/dist/locate-character.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/assignChunkIds.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/getCodeFrame.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/assignChunkIds.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/commondir.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/getExportMode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/locate-character/dist/locate-character.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/parseOptions.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/getCodeFrame.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/getExportMode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/browser/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/parseOptions.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/browser/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/SyntheticNamedExportVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/base64.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/crypto.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/crypto.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/getIndentString.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/exportNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/getIndentString.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderChunk.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/reservedNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/sanitizeFileName.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderChunk.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/sanitizeFileName.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/locate-character/dist/locate-character.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Chunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/rollup-pluginutils/src/extractAssignedNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportAllDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/locate-character/dist/locate-character.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/rollup-pluginutils/src/extractAssignedNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportAllDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/SyntheticNamedExportVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/getCodeFrame.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/getOriginalLocation.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/SyntheticNamedExportVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pureComments.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/sourceMappingURL.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/getCodeFrame.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/getOriginalLocation.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/traverseStaticDependencies.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pureComments.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/sourceMappingURL.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/fs.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/traverseStaticDependencies.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/resolveId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/chunkAssignment.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/fs.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/chunkAssignment.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/resolveId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/timers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ModuleLoader.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/chunkAssignment.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/chunkAssignment.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/sanitizeFileName.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/executionOrder.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/buildPhase.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/crypto.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginDriver.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/sanitizeFileName.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/traverseStaticDependencies.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/UndefinedVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/buildPhase.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/crypto.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-export-ns-from/index.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-export-ns-from/index.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-import-meta/index.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-import-meta/index.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/FileEmitter.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/UndefinedVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/GlobalScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-class-fields/index.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/CallOptions.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-class-fields/index.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-class-fields/index.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-class-fields/index.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-import-meta/index.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-import-meta/index.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/crypto.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-static-class-features/index.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-static-class-features/index.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-static-class-features/index.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-static-class-features/index.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderChunk.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/decodedSourcemap.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/CallOptions.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pureComments.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-walk/dist/walk.mjs"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/traverseStaticDependencies.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/crypto.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/deconflictChunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/exportNames.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/base64.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/exportNames.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/reservedNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/resolveId.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/fs.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderChunk.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/decodedSourcemap.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/resolveId.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderNamePattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/decodedSourcemap.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pureComments.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-walk/dist/walk.mjs"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/package.json"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ExternalModule.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/Module.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/buildPhase.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/resolveId.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/fs.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/resolveId.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/collapseSourcemaps.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/decodedSourcemap.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/transform.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/package.json"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/buildPhase.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportAllDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginContext.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportAllDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BreakStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ContinueStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BreakStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/DoWhileStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/EmptyStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportAllDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportNamedDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ContinueStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/DoWhileStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/EmptyStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportAllDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportDefaultDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportNamedDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportSpecifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FieldDefinition.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LabeledStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MethodDefinition.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NewExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportDefaultSpecifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportNamespaceSpecifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportSpecifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LabeledStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchCase.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MethodDefinition.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateElement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NewExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThisExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThrowStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/PrivateName.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TryStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnknownNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclarator.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/WhileStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Super.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/YieldExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchCase.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateElement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThisExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThrowStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/systemJsRendering.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TryStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnknownNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclarator.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/WhileStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/YieldExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/traverseStaticDependencies.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Program.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateLiteral.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/reservedNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/systemJsRendering.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/SyntheticNamedExportVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionDeclaration.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/es.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/system.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportDefaultVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/UndefinedVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/knownGlobals.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExportShimVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/traverseStaticDependencies.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/UndefinedVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/sourcemap-codec/dist/sourcemap-codec.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
   },
   {
-    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy",
-    "source": "\u0000commonjsHelpers.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/reservedNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/base64.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/reservedNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/NamespaceVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/decodedSourcemap.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/sourcemap-codec/dist/sourcemap-codec.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/SyntheticNamedExportVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/es.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/system.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/index.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/knownGlobals.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/UndefinedVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/magic-string/dist/magic-string.es.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/sourcemap-codec/dist/sourcemap-codec.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/base64.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/reservedNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/decodedSourcemap.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/sourcemap-codec/dist/sourcemap-codec.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/safeName.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/Scope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/PluginCache.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/pluginUtils.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/systemJsRendering.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrayPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/systemJsRendering.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BreakStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BreakStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AssignmentPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ArrowFunctionExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/AwaitExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BinaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/CatchScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BlockStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BreakStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/BreakStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/MultiExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ContinueStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ContinueStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/DoWhileStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CallExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/EmptyStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/CatchScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportNamedDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/CatchClause.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ClassBodyScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MethodDefinition.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassBody.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ClassExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/MultiExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ConditionalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ContinueStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/is-reference/dist/is-reference.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ContinueStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/DoWhileStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/EmptyStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportNamedDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExportSpecifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ExpressionStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FieldDefinition.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForInStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportDeclaration.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForOfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LabeledStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LabeledStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ForStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/FunctionExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/is-reference/dist/is-reference.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/MultiExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/GlobalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/IfStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportDeclaration.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportDefaultSpecifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MethodDefinition.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportNamespaceSpecifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MethodDefinition.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ImportSpecifier.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NewExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LabeledStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NewExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LabeledStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/MultiExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/LogicalExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/relativeId.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/CallOptions.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ExternalVariable.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Literal.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/path.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MemberExpression.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MetaProperty.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MethodDefinition.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/MethodDefinition.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NewExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NewExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchCase.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchCase.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/CallOptions.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ObjectPattern.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/PrivateName.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/CallOptions.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateElement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThisExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Property.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThisExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThrowStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThrowStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TryStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ReturnStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/blank.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnknownNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/treeshakeNode.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SequenceExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SpreadElement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclarator.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Super.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclarator.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchCase.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/WhileStatement.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchCase.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/YieldExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/renderHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/YieldExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/SwitchStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/esModuleExport.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/CallOptions.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropBlock.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/NodeType.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropNamespace.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TaggedTemplateExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/warnOnBuiltins.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TemplateElement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThisExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ModuleScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/esModuleExport.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThisExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThrowStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropNamespace.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/ThrowStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/TryStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropBlock.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/sanitize.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnaryExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/setupNamespace.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UnknownNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/trimEmptyImports.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/warnOnBuiltins.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/system.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/UpdateExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclarator.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/esModuleExport.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/VariableDeclarator.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/WhileStatement.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropBlock.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/YieldExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/sanitize.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/YieldExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/setupNamespace.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/Variable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/trimEmptyImports.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/warnOnBuiltins.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/esModuleExport.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/locate-character/dist/locate-character.es.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropBlock.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/keys.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropNamespace.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/amd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/warnOnBuiltins.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/esModuleExport.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/cjs.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropNamespace.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/identifierHelpers.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropBlock.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/sanitize.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/setupNamespace.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/trimEmptyImports.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/iife.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/warnOnBuiltins.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/system.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/error.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/esModuleExport.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getExportBlock.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropBlock.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/sanitize.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/setupNamespace.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/trimEmptyImports.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/umd.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/warnOnBuiltins.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/locate-character/dist/locate-character.es.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/CatchScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/MultiExpression.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/keys.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ArgumentsVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ThisVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/ExecutionContext.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropNamespace.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/setupNamespace.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/sanitize.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/Identifier.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/RestElement.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/FunctionNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy"
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy"
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy",
+    "target": "\u0000commonjsHelpers.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
   },
   {
-    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js?commonjs-proxy",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js",
-    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js?commonjs-proxy"
   },
   {
-    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js?commonjs-proxy",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/256.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/ClassNode.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/Node.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/utils/PathTracker.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ThisVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ThisVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ArgumentsVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ArgumentsVariable.ts",
-    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/BlockScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
   },
   {
-    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/CatchScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts"
   },
   {
-    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js",
-    "source": "\u0000commonjsHelpers.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ClassBodyScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
   },
   {
-    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js?commonjs-proxy",
-    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js"
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/nodes/shared/MultiExpression.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ArgumentsVariable.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ThisVariable.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/FunctionScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ReturnValueScope.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/getInteropNamespace.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/utils/variableNames.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/setupNamespace.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/finalisers/shared/sanitize.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn/dist/acorn.mjs?commonjs-proxy"
+  },
+  {
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js?commonjs-proxy",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/acorn-private-class-elements/index.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js?commonjs-proxy"
+  },
+  {
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy"
+  },
+  {
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js?commonjs-proxy",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/common.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js",
+    "target": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/utils.js?commonjs-proxy"
+  },
+  {
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js?commonjs-proxy",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/hash.js/lib/hash/sha/common.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ParameterScope.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/scopes/ChildScope.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ArgumentsVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ArgumentsVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ThisVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/values.ts"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/ThisVariable.ts",
+    "target": "/Users/samccone/Desktop/repos/rollup/src/ast/variables/LocalVariable.ts"
+  },
+  {
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js?commonjs-proxy",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/minimalistic-assert/index.js"
+  },
+  {
+    "source": "/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js",
+    "target": "\u0000commonjsHelpers.js"
+  },
+  {
+    "source": "\u0000/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js?commonjs-proxy",
+    "target": "/Users/samccone/Desktop/repos/rollup/node_modules/inherits/inherits_browser.js"
   }
 ]
