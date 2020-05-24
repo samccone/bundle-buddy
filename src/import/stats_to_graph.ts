@@ -79,8 +79,8 @@ export function gatherEdges(
         const reasonModuleName = cleanWebpackMagicFiles(reason.moduleName);
         if (!lookupMap.has(`${moduleName}|${reasonModuleName}`)) {
           edges.push({
-            target: reasonModuleName,
-            source: moduleName
+            source: reasonModuleName,
+            target: moduleName
           });
           lookupMap.add(`${moduleName}|${reasonModuleName}`);
         }
