@@ -20,11 +20,12 @@ export default function Report(props: Props) {
 
         <div>
           <p>
-            Run <code>{`npm ls <package_name>`}</code> with the duplicated
-            module name to see the associations between duplicated modules.
+            Run <code>{`(npm or yarn) list <package_name>`}</code> with the
+            duplicated module name to see the associations between duplicated
+            modules.
           </p>
           <p>
-            To learn more, check out{" "}
+            To prevent this automatically see{" "}
             <a
               target="_blank"
               rel="noopener noreferrer"
