@@ -9,7 +9,9 @@ export default function Report(props: Props) {
   const { duplicateNodeModules } = props;
   return (
     <div className="flex padding top-panel">
-      <div style={{ width: "25vw" }} />
+      <div style={{ width: "25vw" }}>
+        <h1>Health Checks</h1>
+      </div>
       <div style={{ width: "37vw" }}>
         <p>
           <img className="icon" alt="directories" src="/img/folder.png" />
@@ -53,7 +55,7 @@ export default function Report(props: Props) {
                 </tr>
               </thead>
               <tbody>
-                {duplicateNodeModules.map(k => {
+                {duplicateNodeModules.map((k) => {
                   return (
                     <tr key={k.key}>
                       <td>

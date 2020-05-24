@@ -10,7 +10,7 @@ type Props = {
   directories: string[];
   directoryColors: { [key: string]: string };
   max?: number;
-  changeSelected: React.Dispatch<string | undefined>;
+  changeSelected: React.Dispatch<string | null>;
   nodes: TrimmedDataNode[];
   edges: Imported[];
 };
@@ -302,7 +302,7 @@ export default function RippleChart(props: Props) {
           <button
             className="alert"
             onClick={() => {
-              changeSelected(undefined);
+              changeSelected(null);
             }}
           >
             x Zoom out to treemap

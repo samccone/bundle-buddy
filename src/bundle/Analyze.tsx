@@ -6,12 +6,12 @@ import { ProcessedImportState } from "../types";
 
 type Props = {
   total?: number;
-  changeSelected: React.Dispatch<string | undefined>;
+  changeSelected: React.Dispatch<string | null>;
   directoryColors: { [dir: string]: string };
   svgDirectoryColors: { [dir: string]: string };
   network: ProcessedImportState["trimmedNetwork"];
   hierarchy: ProcessedImportState["hierarchy"];
-  selected?: string;
+  selected: string | null;
   directories: string[];
 };
 
@@ -50,7 +50,7 @@ export default function Analyze(props: Props) {
   return (
     <div>
       <div className="flex">
-        <div>
+        <div style={{ width: "25vw" }}>
           <h1>Analyze</h1>
 
           <p>
@@ -74,6 +74,7 @@ export default function Analyze(props: Props) {
           changeSelected={changeSelected}
         />
       </div>
+      <br />
       <FileDetails
         total={total}
         network={network}

@@ -32,7 +32,7 @@ function download(props: Props) {
 }
 
 interface Props extends ProcessedImportState {
-  selected?: string | null;
+  selected: string | null;
 }
 export default function Bundle(props: Props) {
   const { trimmedNetwork, rollups, hierarchy, duplicateNodeModules } = props;
@@ -88,6 +88,7 @@ export default function Bundle(props: Props) {
           directoryColors={directoryColors}
           svgDirectoryColors={svgDirectoryColors}
           directories={directories}
+          selected={selected}
         />
       </div>
     </div>

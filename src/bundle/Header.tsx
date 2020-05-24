@@ -10,7 +10,7 @@ export const typeColors = {
   js: mainFileColor,
   ts: mainFileColor,
   jsx: mainFileColor,
-  tsx: mainFileColor
+  tsx: mainFileColor,
 };
 
 const frameProps = {
@@ -28,7 +28,7 @@ const frameProps = {
             d.color ||
             secondaryFileColor,
           height: "100%",
-          width
+          width,
         }}
       />
     );
@@ -44,7 +44,7 @@ const frameProps = {
         </span>
       </div>
     );
-  }
+  },
 };
 
 const directoryProps = {
@@ -77,8 +77,8 @@ const directoryProps = {
         stroke={"#ddd"}
         strokeLinecap="square"
       />
-    </pattern>
-  ]
+    </pattern>,
+  ],
 };
 
 type Props = {
@@ -122,6 +122,8 @@ export default function ByTypeBarChart(props: Props) {
   return (
     <div className="flex padding top-panel">
       <div style={{ width: "25vw" }}>
+        <h1>Overview</h1>
+
         {totalSize && (
           <div>
             <p>
