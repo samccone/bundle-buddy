@@ -4,11 +4,16 @@ import {
   Edge,
   ProcessedImportState,
   TreemapNode,
-  GraphEdges
+  GraphEdges,
+  FlattendGraph
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";
-import { requiredBy, calculateTransitiveRequires } from "../graph";
+import {
+  requiredBy,
+  calculateTransitiveRequires,
+  edgesToGraph
+} from "../graph";
 
 const EMPTY_NAME = "No Directory";
 
@@ -278,43 +283,9 @@ export function transform(
   };
 
   const hierarchy = nodesToTreeMap(trimmedNodes);
+  const counts: FlattendGraph = edgesToGraph(trimmedEdges);
 
-  const counts: {
-    [target: string]: {
-      requiredBy: Set<string>;
-      requires: Set<string>;
-    };
-  } = {};
-
-  for (const n of trimmedEdges) {
-    if (counts[n.target] == null) {
-      counts[n.target] = {
-        requiredBy: new Set(),
-        requires: new Set()
-      };
-    }
-
-    (counts[n.target].requires as Set<string>).add(n.source);
-
-    if (counts[n.source] == null) {
-      counts[n.source] = {
-        requiredBy: new Set(),
-        requires: new Set()
-      };
-    }
-  }
-
-  const keys = Object.keys(counts);
-
-  for (const k of keys) {
-    for (const k2 of keys) {
-      if (k !== k2 && (counts[k2].requires as Set<string>).has(k)) {
-        (counts[k].requiredBy as Set<string>).add(k2);
-      }
-    }
-  }
-
-  for (const k of keys) {
+  for (const k of Object.keys(counts)) {
     trimmedNodes[k].count.requiredBy = Array.from(counts[k].requiredBy);
     trimmedNodes[k].count.requires = Array.from(counts[k].requires);
   }

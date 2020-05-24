@@ -1,7 +1,44 @@
+import { GraphEdges, FlattendGraph } from "../types";
+
 export interface RequireGraph {
   [target: string]: {
     requires: Set<string>;
   };
+}
+
+export function edgesToGraph(edges: GraphEdges): FlattendGraph {
+  const ret: FlattendGraph = {};
+
+  // materialze the graph with all nodes.
+  for (const edge of edges) {
+    if (ret[edge.source] == null) {
+      ret[edge.source] = {
+        requires: new Set<string>(),
+        requiredBy: new Set<string>()
+      };
+    }
+
+    if (ret[edge.target] == null) {
+      ret[edge.target] = {
+        requires: new Set<string>(),
+        requiredBy: new Set<string>()
+      };
+    }
+  }
+
+  for (const key of Object.keys(ret)) {
+    for (const edge of Object.values(edges)) {
+      if (edge.source === key) {
+        ret[key].requires.add(edge.target);
+      }
+
+      if (edge.target === key) {
+        ret[key].requiredBy.add(edge.source);
+      }
+    }
+  }
+
+  return ret;
 }
 
 function getModules(

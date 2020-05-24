@@ -1,6 +1,13 @@
 import { History } from "history";
 import { ProcessedSourceMap } from "./import/process_sourcemaps";
 
+export interface FlattendGraph {
+  [target: string]: {
+    requiredBy: Set<string>;
+    requires: Set<string>;
+  };
+}
+
 export interface Edge {
   // current file
   source: string;
