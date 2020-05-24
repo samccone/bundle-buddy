@@ -43,13 +43,13 @@ class RollupImport extends Component<ImportProps, ImportState> {
 plugins: [{
     buildEnd() {
         const deps = [];
-        for(const id of this.moduleIds) {
-            let m = this.getModuleInfo(id);
-            if (m != null && !m.isExternal) {
-                for (const source of m.importedIds) {
-                    deps.push({ target: m.id, source})
-                }
+        for (const id of this.getModuleIds()) {
+          const m = this.getModuleInfo(id);
+          if (m != null && !m.isExternal) {
+            for (const target of m.importedIds) {
+              deps.push({ source: m.id, target })
             }
+          }
         }
         
         fs.writeFileSync(
