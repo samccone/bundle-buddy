@@ -598,3 +598,11 @@ td {
   margin-left: 20px;
   background: papayawhip;
 }
+
+.button-wrap {
+  display: inline-block;
+}
+
+.button-wrap button {
+  display: inline-block;
+}

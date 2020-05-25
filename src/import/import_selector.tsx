@@ -32,13 +32,18 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
   render() {
     return (
       <div>
-        <h1>Analyze</h1>
-        <h5>What bundler are you using?</h5>
+        <h1>Start</h1>
+        <p>
+          In order to understand what is in your bundle, we need to understand
+          your project better. Please select the bundler you are using so that
+          we can help you to get the information we need.
+        </p>
+        <h2>What bundler are you using?</h2>
         <div>
           <Link
             to="/webpack"
             aria-label="webpack project import"
-            className="no-link-underline"
+            className="no-link-underline button-wrap"
           >
             <button className={`type-button project-import`}>
               <img
@@ -51,10 +56,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
               Webpack / Create React App
             </button>
           </Link>
+          <br />
           <Link
             to="/rollup"
             aria-label="rollup project import"
-            className="no-link-underline"
+            className="no-link-underline button-wrap"
           >
             <button className={`type-button project-import`}>
               <img
@@ -67,10 +73,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
               Rollup
             </button>
           </Link>
+          <br />
           <Link
             to="/rome"
             aria-label="rome project import"
-            className="no-link-underline"
+            className="no-link-underline button-wrap"
           >
             <button className={`type-button project-import rome-import`}>
               <img
@@ -83,10 +90,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
               Rome
             </button>
           </Link>
+          <br />
           <Link
             to="/parcel"
             aria-label="parcel project import"
-            className="no-link-underline"
+            className="no-link-underline button-wrap"
           >
             <button className={`type-button project-import parcel-import`}>
               <img
@@ -100,6 +108,7 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
             </button>
           </Link>
         </div>
+        <h2>Have an existing analysis?</h2>
         <div className="flex">
           <button className="project-import" tabIndex={-1}>
             Import existing project
