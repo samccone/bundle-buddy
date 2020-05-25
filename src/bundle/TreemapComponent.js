@@ -1,7 +1,7 @@
 //Code by @stil From https://github.com/stil/treemap-multilevel
 
 /* eslint-disable no-param-reassign */
-import React, { Fragment } from "react";
+import React, { Fragment, useMemo } from "react";
 import PropTypes from "prop-types"; // eslint-disable-line import/no-extraneous-dependencies
 import { treemap, treemapBinary } from "d3-hierarchy";
 import {} from "d3-hierarchy";
@@ -24,20 +24,8 @@ function calculatePos(node) {
   };
 }
 
-export default function TreemapComponent({
-  root,
-  tile = treemapBinary,
-  zoomed,
-  width,
-  height,
-  padding,
-  nodeComponent,
-}) {
-  root
-    .sum((d) => d.totalBytes)
-    .sort((a, b) => b.height - a.height || b.value - a.value);
-
-  treemap().tile(tile).size([width, height])(root);
+function reposition(root, width, height, zoomed, padding) {
+  treemap().tile(treemapBinary).size([width, height])(root);
 
   const zoomedEl = zoomed
     ? root.descendants().find((node) => node.data.name === zoomed)
@@ -98,8 +86,22 @@ export default function TreemapComponent({
       });
   });
 
-  // return root
-  //   .descendants()
+  return zoomedEl;
+}
+
+export default function TreemapComponent({
+  root,
+  zoomed,
+  width,
+  height,
+  padding,
+  nodeComponent,
+}) {
+  const zoomedEl = useMemo(
+    () => reposition(root, width, height, zoomed, padding),
+    [root, width, height, zoomed, padding]
+  );
+
   return zoomedEl
     .descendants()
     .filter((node) => canDisplay(node))

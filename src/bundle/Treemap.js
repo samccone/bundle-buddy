@@ -20,11 +20,63 @@ function getHandleClick(changeSelected, setZoom) {
     }
   };
 }
+const padding = [20, 2, 2, 2];
+
+function getNodeComponent(name, bgColorsMap, zoomed, handleClick) {
+  return (node, i, posStyle) => {
+    const name = node.data.name;
+    const index = name.lastIndexOf("/");
+    let fileName = name.slice(index !== -1 ? index + 1 : 0);
+
+    if (fileName === "rootNode") fileName = name;
+    const dirIndex = name.indexOf("/");
+    let directory = name;
+    if (dirIndex !== -1) directory = name.slice(0, dirIndex);
+
+    return (
+      <div
+        className="treemap__node"
+        style={{
+          ...posStyle,
+          background: bgColorsMap[directory] || "white",
+        }}
+      >
+        <div
+          className={`treemap__label${
+            node.children ? " treemap__label--children" : ""
+          }`}
+          onClick={() => {
+            handleClick(zoomed, node);
+          }}
+          style={{
+            lineHeight: `${padding[0] - 2}px`,
+            fontWeight: node.children ? "bold" : "300",
+            color: "black", //textColorsMap.get(node.data.key),
+          }}
+        >
+          {posStyle.height > 5 && (
+            <div>
+              <span>{fileName}</span>
+              {posStyle.height > 2 * padding[0] &&
+              (!node.children || node.children.length === 0) ? (
+                <span>
+                  <br />
+                  {getFileSize(node.value)}
+                </span>
+              ) : (
+                <span> ({getFileSize(node.value)})</span>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+}
 
 export default function Treemap(props) {
   const [zoomed, setZoom] = useState();
-  const padding = [20, 2, 2, 2];
-  const { hierarchy, bgColorsMap, changeSelected } = props;
+  const { hierarchy, bgColorsMap, changeSelected, name } = props;
 
   const { innerWidth, innerHeight } = useWindowSize();
   const width = innerWidth - 80,
@@ -43,8 +95,15 @@ export default function Treemap(props) {
         })
         .parentId(function (d) {
           return d.parent;
-        })(hierarchy),
+        })(hierarchy)
+        .sum((d) => d.totalBytes)
+        .sort((a, b) => b.height - a.height || b.value - a.value),
     [hierarchy]
+  );
+
+  const nodeComponent = useMemo(
+    () => getNodeComponent(name, bgColorsMap, zoomed, handleClick),
+    [name, bgColorsMap, zoomed, handleClick]
   );
 
   return (
@@ -90,55 +149,7 @@ export default function Treemap(props) {
             height={height}
             padding={padding}
             transition="all 300ms ease"
-            nodeComponent={(node, i, posStyle) => {
-              const name = node.data.name;
-              const index = name.lastIndexOf("/");
-              let fileName = name.slice(index !== -1 ? index + 1 : 0);
-
-              if (fileName === "rootNode") fileName = props.name;
-              const dirIndex = name.indexOf("/");
-              let directory = name;
-              if (dirIndex !== -1) directory = name.slice(0, dirIndex);
-
-              return (
-                <div
-                  className="treemap__node"
-                  style={{
-                    ...posStyle,
-                    background: bgColorsMap[directory] || "white",
-                  }}
-                >
-                  <div
-                    className={`treemap__label${
-                      node.children ? " treemap__label--children" : ""
-                    }`}
-                    onClick={() => {
-                      handleClick(zoomed, node);
-                    }}
-                    style={{
-                      lineHeight: `${padding[0] - 2}px`,
-                      fontWeight: node.children ? "bold" : "300",
-                      color: "black", //textColorsMap.get(node.data.key),
-                    }}
-                  >
-                    {posStyle.height > 5 && (
-                      <div>
-                        <span>{fileName}</span>
-                        {posStyle.height > 2 * padding[0] &&
-                        (!node.children || node.children.length === 0) ? (
-                          <span>
-                            <br />
-                            {getFileSize(node.value)}
-                          </span>
-                        ) : (
-                          <span> ({getFileSize(node.value)})</span>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            }}
+            nodeComponent={nodeComponent}
           />
         </div>
       </div>

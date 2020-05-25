@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Header from "./Header";
 import Report from "./Report";
 import Analyze from "./Analyze";
@@ -34,14 +34,8 @@ function download(props: Props) {
 interface Props extends ProcessedImportState {
   selected: string | null;
 }
-export default function Bundle(props: Props) {
-  const { trimmedNetwork, rollups, hierarchy, duplicateNodeModules } = props;
 
-  const [selected, changeSelected] = useState(props.selected);
-  useEffect(() => storeSelected(selected), [selected]);
-
-  const network = trimmedNetwork;
-
+function getDirectories(rollups: Props["rollups"]) {
   const directories = rollups.directories
     .sort((a, b) => b.totalBytes - a.totalBytes)
     .map((d) => d.name);
@@ -52,12 +46,12 @@ export default function Bundle(props: Props) {
   directories.forEach((d) => {
     if (d.indexOf("node_modules") !== -1) {
       directoryColors[d] = `repeating-linear-gradient(
-        45deg,
-        #dfe1e5,
-        #dfe1e5 2px,
-        #fff 2px,
-        #fff 4px
-      )`;
+      45deg,
+      #dfe1e5,
+      #dfe1e5 2px,
+      #fff 2px,
+      #fff 4px
+    )`;
       svgDirectoryColors[d] = "url(#dags)";
     } else {
       directoryColors[d] = colors[i] || "black";
@@ -65,6 +59,26 @@ export default function Bundle(props: Props) {
       i++;
     }
   });
+
+  return {
+    directories,
+    directoryColors,
+    svgDirectoryColors,
+  };
+}
+
+export default function Bundle(props: Props) {
+  const { trimmedNetwork, rollups, hierarchy, duplicateNodeModules } = props;
+
+  const [selected, changeSelected] = useState(props.selected);
+  useEffect(() => storeSelected(selected), [selected]);
+
+  const network = trimmedNetwork;
+
+  const { directories, directoryColors, svgDirectoryColors } = useMemo(
+    () => getDirectories(rollups),
+    [rollups]
+  );
 
   rollups.directories.forEach((d) => {
     d.color = directoryColors[d.name];

@@ -3,6 +3,7 @@ import { useTable, useSortBy } from "react-table";
 
 import { getCSSPercent, getFileSize } from "./stringFormats";
 import { ProcessedImportState, TrimmedDataNode } from "../types";
+import Treemap from "./Treemap";
 
 type Column = {
   value: number;
@@ -184,7 +185,7 @@ type Props = {
   changeSelected: React.Dispatch<string | null>;
   directoryColors: { [dir: string]: string };
   network: ProcessedImportState["trimmedNetwork"];
-  header?: JSX.Element;
+  hierarchy: ProcessedImportState["hierarchy"];
   selected: string | null;
 };
 
@@ -194,7 +195,7 @@ export default function FileDetails(props: Props) {
     changeSelected,
     directoryColors,
     total,
-    header,
+    hierarchy,
     selected,
   } = props;
   const { nodes = [] } = network;
@@ -224,12 +225,19 @@ export default function FileDetails(props: Props) {
     useSortBy
   );
 
+  const selectedNode = nodes.find((d) => d.id === selected);
+
   return (
     <table {...getTableProps()} className="Table">
       <thead>
         <tr>
           <th className="top" scope="colgroup" colSpan={columns.length}>
-            {header}
+            <Treemap
+              hierarchy={hierarchy}
+              bgColorsMap={directoryColors}
+              changeSelected={changeSelected}
+              selectedNode={selectedNode}
+            />
           </th>
         </tr>
         {headerGroups.map((headerGroup) => (

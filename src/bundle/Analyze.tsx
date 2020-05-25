@@ -1,7 +1,6 @@
 import React from "react";
 import FileDetails from "./FileDetails";
 import RippleChart from "./RippleChart";
-import Treemap from "./Treemap";
 import { ProcessedImportState } from "../types";
 
 type Props = {
@@ -80,14 +79,7 @@ export default function Analyze(props: Props) {
         selected={selected}
         changeSelected={changeSelected}
         directoryColors={directoryColors}
-        header={
-          <Treemap
-            hierarchy={hierarchy}
-            bgColorsMap={directoryColors}
-            changeSelected={changeSelected}
-            selectedNode={selectedNode}
-          />
-        }
+        hierarchy={hierarchy}
       />
       {selected && (
         <div className="bottom-panel paper">
