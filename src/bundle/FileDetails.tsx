@@ -62,7 +62,6 @@ function getColumns(
         style={{
           // background: directoryColors[d.row.original.directory] || "black",
           background: `var(--grey500)`,
-          border: "1px solid white",
           height: 8,
           width: d.value ? getCSSPercent(d.value / maxes[id]) : "0px",
           position: "relative",
