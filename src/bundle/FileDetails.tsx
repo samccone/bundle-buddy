@@ -188,6 +188,7 @@ type Props = {
   network: ProcessedImportState["trimmedNetwork"];
   hierarchy: ProcessedImportState["hierarchy"];
   selected: string | null;
+  directories: string[];
 };
 
 export default function FileDetails(props: Props) {
@@ -198,6 +199,7 @@ export default function FileDetails(props: Props) {
     total,
     hierarchy,
     selected,
+    directories,
   } = props;
   const { nodes = [] } = network;
 
@@ -238,6 +240,7 @@ export default function FileDetails(props: Props) {
               bgColorsMap={directoryColors}
               changeSelected={changeSelected}
               selectedNode={selectedNode}
+              directories={directories}
             />
           </th>
         </tr>

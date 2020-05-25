@@ -6,7 +6,6 @@ import { TrimmedDataNode, Imported } from "../types";
 
 type Props = {
   selected: string;
-  directories: string[];
   directoryColors: { [key: string]: string };
   max?: number;
   changeSelected: React.Dispatch<string | null>;
@@ -143,7 +142,6 @@ export default function RippleChart(props: Props) {
     nodes,
     max,
     selected,
-    directories,
     directoryColors,
     changeSelected,
   } = props;
@@ -297,30 +295,14 @@ export default function RippleChart(props: Props) {
     <div>
       <div className="flex baseline">
         <div className="right-spacing">
-          <img className="icon" alt="details" src="/img/ripple.png" />
-          <b>{selected}</b>
-        </div>
-        <div>
           <p>
-            {directories.map((d, i) => (
-              <span key={i} className="padding-right inline-block">
-                <svg
-                  className="overflow-visible"
-                  width="30"
-                  height="1em"
-                  viewBox="0 -1.5 10 10"
-                >
-                  <circle r="5" cx="5" cy="5" fill={directoryColors[d]} />
-                </svg>
-                {d}{" "}
-              </span>
-            ))}
+            <img className="icon" alt="details" src="/img/ripple.png" />
+            <b>{selected}</b>
           </p>
         </div>
       </div>
       <div style={{ overflowY: "auto", overflowX: "auto", maxHeight: "80vh" }}>
         <svg
-          // width={selectedXPos + maxXPos + 200}
           width={"100%"}
           height={selectedYPos * 2 + 60}
           className="overflow-visible"
@@ -413,21 +395,8 @@ export default function RippleChart(props: Props) {
               showEdges.map((d, i) => {
                 const imported = usedNodes[d.imported];
                 const fileName = usedNodes[d.fileName];
-                const middle = {
-                  x: imported.x + ((fileName.x - imported.x) * 2) / 3,
-                  y: imported.y + ((fileName.y - imported.y) * 2) / 3,
-                };
-
-                // const a = arrow({
-                //   start: [imported.x, imported.y],
-                //   end: [middle.x, middle.y],
-                //   scale: 1.5,
-                // });
 
                 const color = "black";
-                // d.imported === hover
-                //   ? "rgba(62, 156, 254,.5)"
-                //   : "rgba(232, 212, 26, .5)";
 
                 return (
                   <g pointerEvents="none" key={i}>
@@ -445,11 +414,6 @@ export default function RippleChart(props: Props) {
                       stroke={color}
                       fill={"none"}
                     />
-                    {/* <path
-                      d={a.components[0].attrs.d}
-                      fill={color}
-                      stroke={color}
-                    /> */}
                     <circle
                       r={fileName.r}
                       cx={fileName.x}

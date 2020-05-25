@@ -46,8 +46,6 @@ export default function Analyze(props: Props) {
     else withoutNodeModules++;
   });
 
-  const selectedNode = nodes.find((d) => d.id === selected);
-
   return (
     <div>
       <div className="flex">
@@ -80,6 +78,7 @@ export default function Analyze(props: Props) {
         changeSelected={changeSelected}
         directoryColors={directoryColors}
         hierarchy={hierarchy}
+        directories={directories}
       />
       {selected && (
         <div className="bottom-panel paper">
@@ -89,7 +88,6 @@ export default function Analyze(props: Props) {
             edges={edges.map((d) => Object.assign({}, d))}
             max={max}
             selected={selected}
-            directories={directories}
             directoryColors={svgDirectoryColors}
           />
         </div>

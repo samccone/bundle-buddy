@@ -15,7 +15,7 @@ function getHandleClick(changeSelected, setZoom) {
       zoomed === node.data.name
         ? setZoom(node.parent.data.name)
         : setZoom(node.data.name);
-    } else {
+    } else if (node) {
       changeSelected(node.data.name);
     }
   };
@@ -76,7 +76,7 @@ function getNodeComponent(name, bgColorsMap, zoomed, handleClick) {
 
 export default function Treemap(props) {
   const [zoomed, setZoom] = useState();
-  const { hierarchy, bgColorsMap, changeSelected, name } = props;
+  const { hierarchy, bgColorsMap, changeSelected, name, directories } = props;
 
   const { innerWidth, innerHeight } = useWindowSize();
   const width = innerWidth - 80,
@@ -109,28 +109,51 @@ export default function Treemap(props) {
   return (
     <div>
       <div>
-        <div style={{ margin: "12px 8px" }}>
-          {zoomed === undefined
-            ? "Fully zoomed out, click to zoom directories (bolded) "
-            : tree
-                .descendants()
-                .find((node) => node.data.name === zoomed)
-                .ancestors()
-                .reverse()
-                .map((node, i) => (
-                  <Fragment key={node.data.name}>
-                    {i > 0 ? " - " : ""}
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleClick(zoomed, node);
-                      }}
-                    >
-                      {node.data.name}
-                    </a>
-                  </Fragment>
-                ))}
+        <div
+          className="flex space-between baseline"
+          style={{ margin: "12px 8px" }}
+        >
+          <div className="right-spacing">
+            {zoomed === undefined
+              ? "Fully zoomed out, click to zoom directories (bolded) "
+              : tree
+                  .descendants()
+                  .find((node) => node.data.name === zoomed)
+                  .ancestors()
+                  .reverse()
+                  .map((node, i) => (
+                    <Fragment key={node.data.name}>
+                      {i > 0 ? " - " : ""}
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleClick(zoomed, node);
+                        }}
+                      >
+                        {node.data.name}
+                      </a>
+                    </Fragment>
+                  ))}
+          </div>
+          <div>
+            {directories.map((d, i) => (
+              <span key={i} className="padding-right inline-block">
+                <span
+                  style={{
+                    width: 14,
+                    height: 14,
+                    borderRadius: "50%",
+                    display: "inline-block",
+                    marginRight: 8,
+                    background: bgColorsMap[d],
+                    border: `1px solid var(--grey700)`,
+                  }}
+                ></span>
+                {d}{" "}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div
