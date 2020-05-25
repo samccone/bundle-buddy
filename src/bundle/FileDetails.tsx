@@ -84,7 +84,7 @@ function getColumns(
     {
       id: "totalBytes",
       accessor: (d: TrimmedDataNode) => d.totalBytes,
-      Header: "Size",
+      Header: "File Size",
       minWidth: 150,
       label: (d: Column) => (
         <div className="flex">
