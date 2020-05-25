@@ -45,7 +45,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
             aria-label="webpack project import"
             className="no-link-underline button-wrap"
           >
-            <button className={`type-button project-import`}>
+            <button
+              aria-hidden
+              tabIndex={-1}
+              className={`type-button project-import`}
+            >
               <img
                 width="35px"
                 height="36px"
@@ -62,7 +66,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
             aria-label="rollup project import"
             className="no-link-underline button-wrap"
           >
-            <button className={`type-button project-import`}>
+            <button
+              aria-hidden
+              tabIndex={-1}
+              className={`type-button project-import`}
+            >
               <img
                 width="34px"
                 height="36px"
@@ -79,7 +87,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
             aria-label="rome project import"
             className="no-link-underline button-wrap"
           >
-            <button className={`type-button project-import rome-import`}>
+            <button
+              aria-hidden
+              tabIndex={-1}
+              className={`type-button project-import rome-import`}
+            >
               <img
                 width="31px"
                 height="36px"
@@ -96,7 +108,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
             aria-label="parcel project import"
             className="no-link-underline button-wrap"
           >
-            <button className={`type-button project-import parcel-import`}>
+            <button
+              aria-hidden
+              tabIndex={-1}
+              className={`type-button project-import parcel-import`}
+            >
               <img
                 width="35px"
                 height="26px"
