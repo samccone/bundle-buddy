@@ -44,6 +44,7 @@ export default function App() {
                   }}
                 />
 
+                {/* TODO remove this test route */}
                 <Route
                   path="/testProcess"
                   component={({
