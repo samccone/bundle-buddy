@@ -256,11 +256,39 @@ export default function FileDetails(props: Props) {
               >
                 {column.render("Header")}
                 <span>
-                  {(column as any).isSorted
-                    ? (column as any).isSortedDesc
-                      ? " 🔽"
-                      : " 🔼"
-                    : ""}
+                  {(column as any).isSorted ? (
+                    (column as any).isSortedDesc ? (
+                      <svg
+                        height="12"
+                        width="12"
+                        viewBox="-4 -4 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g fill="#4e5a6a">
+                          <polygon
+                            fill="#4e5a6a"
+                            points="6 5.882 2.148 2.03 0.074 4.104 6 10.03 11.926 4.104 9.852 2.03 6 5.882"
+                          />
+                        </g>
+                      </svg>
+                    ) : (
+                      <svg
+                        height="12"
+                        width="12"
+                        viewBox="-4 -4 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g fill="#4e5a6a">
+                          <polygon
+                            fill="#4e5a6a"
+                            points="0 7.92 2.1 10.02 6 6.12 9.9 10.02 12 7.92 6 1.92 0 7.92"
+                          />
+                        </g>
+                      </svg>
+                    )
+                  ) : (
+                    ""
+                  )}
                 </span>
               </th>
             ))}
