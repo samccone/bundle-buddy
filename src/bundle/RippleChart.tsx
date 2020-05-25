@@ -298,7 +298,7 @@ export default function RippleChart(props: Props) {
       <div className="flex baseline">
         <div className="right-spacing">
           <img className="icon" alt="details" src="/img/ripple.png" />
-          <b>Ripple Chart</b>: {selected}
+          <b>{selected}</b>
         </div>
         <div>
           <p>

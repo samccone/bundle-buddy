@@ -44,10 +44,6 @@ a {
   cursor: pointer;
 }
 
-.paper {
-  box-shadow: 0 5px 15px 0 hsla(0, 0%, 0%, 0.15);
-}
-
 .uppercase {
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -127,13 +123,15 @@ svg {
 }
 
 .bottom-panel {
-  position: fixed;
   bottom: 0px;
   left: 0px;
-  padding-left: 40px;
+  padding-left: 24px;
   width: 100%;
   background: white;
   max-height: 30vh;
+  padding-bottom: 30px;
+  position: fixed;
+  border-top: solid 1px var(--grey800);
 }
 
 .App-header h1 {
@@ -533,9 +531,14 @@ td {
   position: relative;
 }
 
+.Table tr:hover {
+  background: #f1f1f1;
+}
+
 .Table tr td {
-  padding: 12px;
-  font-size: 14px;
+  padding: 4px;
+  font-size: 13px;
+  padding-bottom: 10px;
 }
 
 .Table thead {
@@ -558,7 +561,7 @@ td {
   position: sticky;
   top: calc(30vh + 40px);
   z-index: 100;
-  padding: 15px;
+  padding: 5px 10px;
 }
 
 .Table th,

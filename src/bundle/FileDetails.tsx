@@ -77,6 +77,7 @@ function getColumns(
     {
       accessor: "text" as any,
       Header: "Name",
+      className: "name",
       Cell: (d: Column) => {
         return <span className="name">{d.value}</span>;
       },
