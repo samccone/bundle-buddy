@@ -391,6 +391,11 @@ button.clear {
   margin-bottom: 13px;
 }
 
+.button-import-container button:focus-within,
+.project-import:focus-within {
+  box-shadow: 0 0 0px 1px #556dd6;
+}
+
 .upload-files-container {
   flex-direction: column;
 }
