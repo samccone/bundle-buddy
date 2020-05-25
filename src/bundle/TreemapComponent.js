@@ -9,7 +9,7 @@ import {} from "d3-hierarchy";
 function canDisplay(node) {
   const width = node.x1 - node.x0;
   const height = node.y1 - node.y0;
-  if (width <= 3 || height <= 3) {
+  if (width <= 5 || height <= 3) {
     return false;
   }
 

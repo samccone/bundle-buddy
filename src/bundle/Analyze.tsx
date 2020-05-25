@@ -80,19 +80,6 @@ export default function Analyze(props: Props) {
         selected={selected}
         changeSelected={changeSelected}
         directoryColors={directoryColors}
-        selectedPanel={
-          selected && (
-            <RippleChart
-              changeSelected={changeSelected}
-              nodes={nodes.map((d) => Object.assign({}, d))}
-              edges={edges.map((d) => Object.assign({}, d))}
-              max={max}
-              selected={selected}
-              directories={directories}
-              directoryColors={svgDirectoryColors}
-            />
-          )
-        }
         header={
           <Treemap
             hierarchy={hierarchy}
@@ -102,6 +89,19 @@ export default function Analyze(props: Props) {
           />
         }
       />
+      {selected && (
+        <div className="bottom-panel paper">
+          <RippleChart
+            changeSelected={changeSelected}
+            nodes={nodes.map((d) => Object.assign({}, d))}
+            edges={edges.map((d) => Object.assign({}, d))}
+            max={max}
+            selected={selected}
+            directories={directories}
+            directoryColors={svgDirectoryColors}
+          />
+        </div>
+      )}
     </div>
   );
 }

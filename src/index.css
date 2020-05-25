@@ -126,6 +126,16 @@ svg {
   border-bottom: 1px solid #ddd;
 }
 
+.bottom-panel {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 40px;
+  width: 100%;
+  background: white;
+  max-height: 30vh;
+}
+
 .App-header h1 {
   margin: 0;
 }

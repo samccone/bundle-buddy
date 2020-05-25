@@ -1,4 +1,4 @@
-import React, { useMemo, Fragment } from "react";
+import React, { useMemo } from "react";
 import { useTable, useSortBy } from "react-table";
 
 import { getCSSPercent, getFileSize } from "./stringFormats";
@@ -181,12 +181,11 @@ function filterMethod(filter: any, row: any, column: any) {
 
 type Props = {
   total?: number;
-  changeSelected: React.Dispatch<string>;
+  changeSelected: React.Dispatch<string | null>;
   directoryColors: { [dir: string]: string };
   network: ProcessedImportState["trimmedNetwork"];
   header?: JSX.Element;
   selected: string | null;
-  selectedPanel: any;
 };
 
 export default function FileDetails(props: Props) {
@@ -197,7 +196,6 @@ export default function FileDetails(props: Props) {
     total,
     header,
     selected,
-    selectedPanel,
   } = props;
   const { nodes = [] } = network;
 
@@ -262,37 +260,31 @@ export default function FileDetails(props: Props) {
           prepareRow(row);
           const id = row.original.id;
           return (
-            <Fragment>
-              <tr
-                {...row.getRowProps()}
-                className={`pointer ${
-                  id === selected ? "paper selected" : ""
-                } `}
-                onClick={() => changeSelected(id)}
-              >
-                {row.cells.map((cell: any) => {
-                  return (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{
-                        minWidth: cell.column.minWidth,
-                        background:
-                          cell.column.Header === "Name"
-                            ? directoryColors[cell.row.original.directory]
-                            : undefined,
-                      }}
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
-              </tr>
-              {id === selected && (
-                <tr>
-                  <td colSpan={columns.length}>{selectedPanel}</td>
-                </tr>
-              )}
-            </Fragment>
+            <tr
+              {...row.getRowProps()}
+              className={`pointer ${id === selected ? "paper selected" : ""} `}
+              onClick={() => {
+                if (id === selected) changeSelected(null);
+                else changeSelected(id);
+              }}
+            >
+              {row.cells.map((cell: any) => {
+                return (
+                  <td
+                    {...cell.getCellProps()}
+                    style={{
+                      minWidth: cell.column.minWidth,
+                      background:
+                        cell.column.Header === "Name"
+                          ? directoryColors[cell.row.original.directory]
+                          : undefined,
+                    }}
+                  >
+                    {cell.render("Cell")}
+                  </td>
+                );
+              })}
+            </tr>
           );
         })}
       </tbody>
