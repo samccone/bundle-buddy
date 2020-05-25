@@ -28,7 +28,7 @@ class RollupImport extends Component<ImportProps, ImportState> {
   importInstructions(type: ImportTypes) {
     if (type === ImportTypes.ROLLUP) {
       return (
-        <div className="col-container">
+        <div className="rollup-import-instructions">
           <div>
             <h5>{this.props.graphFileName}</h5>
             <p>via rollup.config.js</p>
@@ -290,25 +290,22 @@ plugins: [{
                 className="status-icon"
               />
             </div>
-            <div className="button-import-container">
-              <button
-                disabled={
-                  !this.canProcess(
-                    this.state.sourceMapFiles,
-                    this.state.graphFile
-                  )
-                }
-                onClick={() => this.processFiles()}
-              >
-                Import project
-              </button>
-            </div>
           </div>
-          <div className="col-container">
-            <div className="col-narrow" />
-            <div className="import-instruction">
-              {this.importInstructions(this.props.importType)}
-            </div>
+          <div className="import-project">
+            <button
+              disabled={
+                !this.canProcess(
+                  this.state.sourceMapFiles,
+                  this.state.graphFile
+                )
+              }
+              onClick={() => this.processFiles()}
+            >
+              Import project
+            </button>
+          </div>
+          <div className="import-instruction">
+            {this.importInstructions(this.props.importType)}
           </div>
         </div>
       </div>

@@ -213,19 +213,16 @@ class WebpackImport extends Component<ImportProps, ImportState> {
               className="status-icon"
             />
           </div>
-          <div className="button-import-container">
-            <button
-              disabled={
-                !this.canProcess(
-                  this.state.sourceMapFiles,
-                  this.state.graphFile
-                )
-              }
-              onClick={() => this.processFiles()}
-            >
-              Import
-            </button>
-          </div>
+        </div>
+        <div className="import-project">
+          <button
+            disabled={
+              !this.canProcess(this.state.sourceMapFiles, this.state.graphFile)
+            }
+            onClick={() => this.processFiles()}
+          >
+            Import
+          </button>
         </div>
         <div className="col-container">
           <div className="import-instruction">
