@@ -2,7 +2,6 @@ import React, { useState, useMemo } from "react";
 import { scaleSqrt, scaleLinear, ScaleLinear } from "d3-scale";
 import { primary } from "../theme";
 
-import arrow from "viz-annotation/lib/Connector/end-arrow";
 import { TrimmedDataNode, Imported } from "../types";
 
 type Props = {
@@ -17,7 +16,7 @@ type Props = {
 
 type InOut = "in" | "out";
 
-const OFFSET = 100;
+const OFFSET = 150;
 
 interface NodeWithPosition extends TrimmedDataNode {
   x: number;
@@ -33,7 +32,7 @@ function mapLocation(
   rOffset = OFFSET
 ) {
   let translateX = 0,
-    translateY = 150,
+    translateY = 50,
     maxX = 0,
     minR = OFFSET;
 
@@ -295,50 +294,37 @@ export default function RippleChart(props: Props) {
   }
 
   return (
-    <div className="padding">
+    <div>
       <div className="flex baseline">
-        <h2>{selected} </h2>
-        <div className="margin-left">
-          <button
-            className="alert"
-            onClick={() => {
-              changeSelected(null);
-            }}
-          >
-            x Zoom out to treemap
-          </button>
+        <div className="right-spacing">
+          <img className="icon" alt="details" src="/img/ripple.png" />
+          <b>Ripple Chart</b>: {selected}
+        </div>
+        <div>
+          <p>
+            {directories.map((d, i) => (
+              <span key={i} className="padding-right inline-block">
+                <svg
+                  className="overflow-visible"
+                  width="30"
+                  height="1em"
+                  viewBox="0 -1.5 10 10"
+                >
+                  <circle r="5" cx="5" cy="5" fill={directoryColors[d]} />
+                </svg>
+                {d}{" "}
+              </span>
+            ))}
+          </p>
         </div>
       </div>
-      <img className="icon" alt="details" src="/img/ripple.png" />
-      <b>Ripple Chart </b>
-      <br />
-      <p>
-        A detailed look at how a <span className="primary">reimported</span> is
-        linked to an entry point of your application.{" "}
-        <span className="primary">Reimporteds</span> with many required bys are
-        harder to remove as a dependency.
-      </p>
-      <p>
-        {directories.map((d, i) => (
-          <span key={i} className="padding-right inline-block">
-            <svg
-              className="overflow-visible"
-              width="30"
-              height="1.2em"
-              viewBox="0 -1.5 10 10"
-            >
-              <circle r="5" cx="5" cy="5" fill={directoryColors[d]} />
-            </svg>
-            {d}{" "}
-          </span>
-        ))}
-      </p>
       <div style={{ overflowY: "auto", overflowX: "auto", maxHeight: "80vh" }}>
         <svg
-          width={selectedXPos + maxXPos + 200}
+          // width={selectedXPos + maxXPos + 200}
+          width={"100%"}
           height={selectedYPos * 2 + 60}
           className="overflow-visible"
-          style={{ border: `1px solid black` }}
+          style={{ border: `1px solid var(--grey200)` }}
         >
           <defs>
             <pattern
@@ -355,6 +341,17 @@ export default function RippleChart(props: Props) {
                 strokeLinecap="square"
               />
             </pattern>
+            <filter id="dropshadow" y={"-500%"} height="3000%" width="500%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="3" /> ]
+              <feOffset dx="2" dy="2" result="offsetblur" />
+              <feComponentTransfer>
+                <feFuncA type="linear" slope="0.5" />
+              </feComponentTransfer>
+              <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
           <g transform={`translate(${selectedXPos},${selectedYPos + 30})`}>
             <circle
@@ -366,57 +363,42 @@ export default function RippleChart(props: Props) {
             {placeCircles("in", requires.nodesWithPosition)}
             {placeCircles("out", requiredBy.nodesWithPosition)}
             {placeCircles("out", nextLevelNodes)}
-            {requiredBy.nodesWithPosition.length !== 0 && (
-              <g transform={`translate(${primaryRadius} , 0)`}>
-                <line stroke={primary} x2={100} />
-                <text fontSize="11" fontWeight="bold" x={5} y={-3}>
-                  Required by
-                </text>
-                <text fontSize="11" fontWeight="bold" x={5} y={14}>
-                  {selectedNode.transitiveRequiredBy.length} files
-                </text>
-              </g>
-            )}
             {requires.nodesWithPosition.length !== 0 && (
               <g transform={`translate(${-primaryRadius} , 0)`}>
                 <line stroke={primary} x2={-100} />{" "}
                 <text
+                  className="uppercase"
                   textAnchor="end"
                   fontSize="11"
-                  fontWeight="bold"
                   x={-8}
-                  y={-3}
+                  y={-6}
                 >
-                  Requires
+                  Import{selectedNode.requires.length > 1 && "s"}
                 </text>
-                <text
-                  fontSize="11"
-                  textAnchor="end"
-                  fontWeight="bold"
-                  x={-8}
-                  y={14}
-                >
-                  {selectedNode.requires.length} files/modules
+                <text fontSize="14" textAnchor="end" x={-8} y={18}>
+                  <tspan fontWeight="bold">
+                    {selectedNode.requires.length}
+                  </tspan>{" "}
+                  items
                 </text>
               </g>
             )}
 
-            <g
-              transform={`translate(0, ${
-                -primaryRadius - 14 - 14 * selected.split("/").length
-              })`}
-            >
-              <text x={-200} fill={primary} textAnchor="middle">
-                {selected.split("/").map((d, i, array) => {
-                  return (
-                    <tspan key={i} x={0} dy={"1em"}>
-                      {d}
-                      {i !== array.length - 1 && "/"}
-                    </tspan>
-                  );
-                })}
-              </text>
-            </g>
+            {requiredBy.nodesWithPosition.length !== 0 && (
+              <g transform={`translate(${primaryRadius} , 0)`}>
+                <line stroke={primary} x2={100} />
+                <text className="uppercase" fontSize="11" x={5} y={-6}>
+                  Imported
+                </text>
+                <text fontSize="14" x={5} y={18}>
+                  <tspan fontWeight="bold">
+                    {selectedNode.requiredBy.length}
+                  </tspan>{" "}
+                  times
+                </text>
+              </g>
+            )}
+
             <rect
               x={-selectedXPos}
               y={-selectedYPos - 30}
@@ -436,16 +418,16 @@ export default function RippleChart(props: Props) {
                   y: imported.y + ((fileName.y - imported.y) * 2) / 3,
                 };
 
-                const a = arrow({
-                  start: [imported.x, imported.y],
-                  end: [middle.x, middle.y],
-                  scale: 1.5,
-                });
+                // const a = arrow({
+                //   start: [imported.x, imported.y],
+                //   end: [middle.x, middle.y],
+                //   scale: 1.5,
+                // });
 
-                const color =
-                  d.imported === hover
-                    ? "rgba(62, 156, 254,.5)"
-                    : "rgba(232, 212, 26, .5)";
+                const color = "black";
+                // d.imported === hover
+                //   ? "rgba(62, 156, 254,.5)"
+                //   : "rgba(232, 212, 26, .5)";
 
                 return (
                   <g pointerEvents="none" key={i}>
@@ -463,11 +445,11 @@ export default function RippleChart(props: Props) {
                       stroke={color}
                       fill={"none"}
                     />
-                    <path
+                    {/* <path
                       d={a.components[0].attrs.d}
                       fill={color}
                       stroke={color}
-                    />
+                    /> */}
                     <circle
                       r={fileName.r}
                       cx={fileName.x}
@@ -478,21 +460,40 @@ export default function RippleChart(props: Props) {
                   </g>
                 );
               })}
-            {hover &&
-              showNodes.map((d, i) => {
-                const n = usedNodes[d.id];
-                return (
-                  <g
-                    transform={`translate(${n.x},${n.y})`}
-                    pointerEvents="none"
-                    key={i}
-                  >
-                    <text y=".4em" fontSize="12" textAnchor={d.anchor}>
-                      {n.fileName}
-                    </text>
-                  </g>
-                );
-              })}
+            {hover && (
+              <g style={{ filter: "url(#dropshadow" }}>
+                {showNodes.map((d, i) => {
+                  const n = usedNodes[d.id];
+                  return (
+                    <g
+                      transform={`translate(${n.x},${n.y})`}
+                      pointerEvents="none"
+                      key={i}
+                    >
+                      <circle r={n.r} fill={"white"} stroke="white" />
+                      <circle r={n.r} fill={getFill(n)} stroke="white" />
+                      {d.id !== selected ? (
+                        <g>
+                          <text
+                            fill="white"
+                            stroke="white"
+                            strokeWidth="2"
+                            y=".4em"
+                            fontSize="12"
+                            textAnchor={d.anchor}
+                          >
+                            {n.fileName}
+                          </text>
+                          <text y=".4em" fontSize="12" textAnchor={d.anchor}>
+                            {n.fileName}
+                          </text>
+                        </g>
+                      ) : null}
+                    </g>
+                  );
+                })}
+              </g>
+            )}
           </g>
         </svg>
       </div>

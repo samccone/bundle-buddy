@@ -44,6 +44,15 @@ a {
   cursor: pointer;
 }
 
+.paper {
+  box-shadow: 0 5px 15px 0 hsla(0, 0%, 0%, 0.15);
+}
+
+.uppercase {
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 .margin-bottom {
   margin-bottom: 40px;
 }
@@ -549,6 +558,10 @@ td {
 
 .Table tbody td {
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+}
+
+.Table tr.selected .name {
+  font-weight: 700;
 }
 
 .Table th {

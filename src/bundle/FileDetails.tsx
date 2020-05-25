@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, Fragment } from "react";
 import { useTable, useSortBy } from "react-table";
 
 import { getCSSPercent, getFileSize } from "./stringFormats";
@@ -41,12 +41,12 @@ function getColumns(
     maxes.requires = Math.max(maxes.requires, d.requires.length);
     maxes.transitiveRequires = Math.max(
       maxes.transitiveRequires,
-      d.transitiveRequires.length
+      d.transitiveRequires.length - d.requires.length
     );
     maxes.requiredBy = Math.max(maxes.requiredBy, d.requiredBy.length);
     maxes.transitiveRequiredBy = Math.max(
       maxes.transitiveRequiredBy,
-      d.transitiveRequiredBy.length
+      d.transitiveRequiredBy.length - d.requiredBy.length
     );
   });
 
@@ -59,7 +59,8 @@ function getColumns(
     return (
       <div
         style={{
-          background: directoryColors[d.row.original.directory] || "black",
+          // background: directoryColors[d.row.original.directory] || "black",
+          background: `var(--grey500)`,
           border: "1px solid white",
           height: 8,
           width: d.value ? getCSSPercent(d.value / maxes[id]) : "0px",
@@ -76,47 +77,65 @@ function getColumns(
       accessor: "text" as any,
       Header: "Name",
       Cell: (d: Column) => {
-        return d.value;
+        return <span className="name">{d.value}</span>;
       },
     },
     {
       id: "totalBytes",
       accessor: (d: TrimmedDataNode) => d.totalBytes,
       Header: "Size",
-      minWidth: 100,
-      label: (d: Column) =>
-        `${getFileSize(d.value)}, ${getCSSPercent(d.value, total)}`,
+      minWidth: 150,
+      label: (d: Column) => (
+        <div className="flex">
+          <div style={{ minWidth: "30%" }} className="relative">
+            <span
+              style={{ fontSize: 12, position: "absolute", top: -10, right: 0 }}
+            >
+              <b>{getCSSPercent(d.value, total)}</b>
+            </span>
+          </div>
+          <div className="relative" style={{ minWidth: "70%" }}>
+            <span
+              style={{ fontSize: 12, position: "absolute", top: -10, right: 0 }}
+            >
+              {getFileSize(d.value)}
+            </span>
+          </div>
+        </div>
+      ),
     },
     {
       id: "requires",
       accessor: (d: TrimmedDataNode) => d.requires.length,
-      Header: "Directly Requires",
+      Header: "Direct Imports",
       minWidth: 25,
     },
     {
       id: "transitiveRequires",
-      accessor: (d: TrimmedDataNode) => d.transitiveRequires.length,
-      Header: "All Requires",
+      accessor: (d: TrimmedDataNode) =>
+        d.transitiveRequires.length - d.requires.length,
+      Header: "Indirect Imports",
       minWidth: 25,
     },
     {
       id: "transitiveRequiresSize",
       accessor: (d: TrimmedDataNode) => d.transitiveRequiresSize,
-      Header: "All Requires Size",
+      Header: "All Imported Size",
       minWidth: 50,
-      label: (d: Column) => getFileSize(d.value),
+      format: (d: Column) => getFileSize(d.value),
     },
     {
       id: "requiredBy",
       accessor: (d: TrimmedDataNode) => d.requiredBy.length,
-      Header: "Directly Required By",
+      Header: "Directly Imported By",
       minWidth: 25,
     },
 
     {
       id: "transitiveRequiredBy",
-      accessor: (d: TrimmedDataNode) => d.transitiveRequiredBy.length,
-      Header: "All Required By",
+      accessor: (d: TrimmedDataNode) =>
+        d.transitiveRequiredBy.length - d.requiredBy.length,
+      Header: "Indirectly Imported By",
       minWidth: 25,
     },
   ].map((d, i) => {
@@ -130,13 +149,22 @@ function getColumns(
             <div className="relative">
               {getBar(c, d.accessor, d.id as keyof Maxes)}
 
-              <span
-                style={{ fontSize: 12, position: "absolute", top: 0, right: 0 }}
-              >
-                <span className="right">
-                  {d.label ? d.label(c) : !c.value ? "--" : c.value}
+              {d.label ? (
+                d.label(c)
+              ) : (
+                <span
+                  style={{
+                    fontSize: 12,
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                  }}
+                >
+                  <span className="right">
+                    {d.format ? d.format(c) : !c.value ? "--" : c.value}
+                  </span>
                 </span>
-              </span>
+              )}
             </div>
           );
         }),
@@ -157,6 +185,8 @@ type Props = {
   directoryColors: { [dir: string]: string };
   network: ProcessedImportState["trimmedNetwork"];
   header?: JSX.Element;
+  selected: string | null;
+  selectedPanel: any;
 };
 
 export default function FileDetails(props: Props) {
@@ -166,6 +196,8 @@ export default function FileDetails(props: Props) {
     directoryColors,
     total,
     header,
+    selected,
+    selectedPanel,
   } = props;
   const { nodes = [] } = network;
 
@@ -226,27 +258,41 @@ export default function FileDetails(props: Props) {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {rows.map((row: any) => {
           prepareRow(row);
+          const id = row.original.id;
           return (
-            <tr {...row.getRowProps()} className="pointer">
-              {row.cells.map((cell: any) => {
-                return (
-                  <td
-                    {...cell.getCellProps()}
-                    style={{
-                      minWidth: cell.column.minWidth,
-                      background:
-                        cell.column.Header === "Name"
-                          ? directoryColors[cell.row.original.directory]
-                          : undefined,
-                    }}
-                  >
-                    {cell.render("Cell")}
-                  </td>
-                );
-              })}
-            </tr>
+            <Fragment>
+              <tr
+                {...row.getRowProps()}
+                className={`pointer ${
+                  id === selected ? "paper selected" : ""
+                } `}
+                onClick={() => changeSelected(id)}
+              >
+                {row.cells.map((cell: any) => {
+                  return (
+                    <td
+                      {...cell.getCellProps()}
+                      style={{
+                        minWidth: cell.column.minWidth,
+                        background:
+                          cell.column.Header === "Name"
+                            ? directoryColors[cell.row.original.directory]
+                            : undefined,
+                      }}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
+              </tr>
+              {id === selected && (
+                <tr>
+                  <td colSpan={columns.length}>{selectedPanel}</td>
+                </tr>
+              )}
+            </Fragment>
           );
         })}
       </tbody>

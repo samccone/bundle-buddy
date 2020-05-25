@@ -47,6 +47,8 @@ export default function Analyze(props: Props) {
     else withoutNodeModules++;
   });
 
+  const selectedNode = nodes.find((d) => d.id === selected);
+
   return (
     <div>
       <div className="flex">
@@ -75,27 +77,31 @@ export default function Analyze(props: Props) {
       <FileDetails
         total={total}
         network={network}
+        selected={selected}
         changeSelected={changeSelected}
         directoryColors={directoryColors}
+        selectedPanel={
+          selected && (
+            <RippleChart
+              changeSelected={changeSelected}
+              nodes={nodes.map((d) => Object.assign({}, d))}
+              edges={edges.map((d) => Object.assign({}, d))}
+              max={max}
+              selected={selected}
+              directories={directories}
+              directoryColors={svgDirectoryColors}
+            />
+          )
+        }
         header={
           <Treemap
             hierarchy={hierarchy}
             bgColorsMap={directoryColors}
             changeSelected={changeSelected}
+            selectedNode={selectedNode}
           />
         }
       />
-      {selected && (
-        <RippleChart
-          changeSelected={changeSelected}
-          nodes={nodes.map((d) => Object.assign({}, d))}
-          edges={edges.map((d) => Object.assign({}, d))}
-          max={max}
-          selected={selected}
-          directories={directories}
-          directoryColors={svgDirectoryColors}
-        />
-      )}
     </div>
   );
 }

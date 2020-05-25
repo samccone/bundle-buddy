@@ -11,11 +11,11 @@ export const colors = [
   "#f1d3ed",
   "#d09ac9",
   "#b36aa9",
-  "#77386e"
+  "#77386e",
 ];
 
 export const neutral = "#DEDDD8";
 
-export const primary = "#b42dd6";
+export const primary = "black";
 export const mainFileColor = "#BEC7C7";
 export const secondaryFileColor = "#E0E9E9";
