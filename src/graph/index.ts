@@ -49,16 +49,19 @@ function getModules(
 ): string[] {
   seen.add(node);
 
-  // Filter out duplicate nodes that we have already handled
-  const names = Array.from(graph[node].requiredBy).filter((v) => !seen.has(v));
+  const newNodes: string[] = [];
 
   // Add all new nodes to the seen list
-  for (const n of names) {
+  for (const n of graph[node].requiredBy) {
+    const prevL = seen.size;
     seen.add(n);
+    if (seen.size > prevL) {
+      newNodes.push(n);
+    }
   }
 
   // Walk graph gathering all new nodes
-  const allNames = names.map((v) => {
+  const allNames = newNodes.map((v) => {
     return getModules(graph, v, { isRoot: false }, seen);
   });
 
