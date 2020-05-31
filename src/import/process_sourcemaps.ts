@@ -1,7 +1,7 @@
 import * as sourceMap from "source-map";
 
 (sourceMap.SourceMapConsumer as any).initialize({
-  "lib/mappings.wasm": "/mappings.wasm"
+  "lib/mappings.wasm": "/mappings.wasm",
 });
 
 export interface ProcessedSourceMap {
@@ -11,10 +11,6 @@ export interface ProcessedSourceMap {
 export function processSourcemap(
   contents: string
 ): Promise<ProcessedSourceMap> {
-  let missedLines = 0;
-  let missedColumns = 0;
-  let totalBytes = 0;
-
   // TODO(samccone) fix typing when https://github.com/mozilla/source-map/pull/374 lands.
   function onMapping(
     cursor: { line: number; column: number },
@@ -27,7 +23,7 @@ export function processSourcemap(
 
     if (files[m.source] == null) {
       files[m.source] = {
-        totalBytes: 0
+        totalBytes: 0,
       };
     }
 
@@ -35,20 +31,8 @@ export function processSourcemap(
       return;
     }
 
-    if (
-      cursor.line === m.generatedLine &&
-      m.generatedColumn != null &&
-      m.generatedColumn != cursor.column + 1
-    ) {
-      missedColumns += m.generatedColumn - cursor.column;
-    }
-
-    if (cursor.line != m.generatedLine && cursor.line + 1 != m.generatedLine) {
-      missedLines += m.generatedLine - cursor.line;
-    }
-
     // On newline reset cursor info
-    if (cursor.line != m.generatedLine && m.generatedLine != null) {
+    if (cursor.line !== m.generatedLine && m.generatedLine != null) {
       cursor.line = m.generatedLine;
       cursor.column = m.lastGeneratedColumn || 1;
     } else {
@@ -56,20 +40,17 @@ export function processSourcemap(
       cursor.column = m.lastGeneratedColumn || 1;
     }
 
-    if (m.lastGeneratedColumn != null && m.lastGeneratedColumn != -1) {
-      // These values are inclusive so when we generate the difference add 1
-      totalBytes += m.lastGeneratedColumn - m.generatedColumn + 1;
+    if (m.lastGeneratedColumn != null && m.lastGeneratedColumn !== -1) {
       files[m.source].totalBytes +=
         m.lastGeneratedColumn - m.generatedColumn + 1;
     } else {
       // this seems to only happen when we encounter the last char on the line so add 1 char.
       files[m.source].totalBytes += 1;
-      totalBytes += 1;
     }
   }
 
   return new Promise((res, rej) => {
-    sourceMap.SourceMapConsumer.with(contents, null, consumer => {
+    sourceMap.SourceMapConsumer.with(contents, null, (consumer) => {
       const files: ProcessedSourceMap = {};
       const cursor = { line: 1, column: 1 };
       try {
@@ -79,8 +60,8 @@ export function processSourcemap(
         return;
       }
 
-      consumer.eachMapping(m => onMapping(cursor, files, m));
+      consumer.eachMapping((m) => onMapping(cursor, files, m));
       res(files);
-    }).catch(e => rej(e));
+    }).catch((e) => rej(e));
   });
 }
