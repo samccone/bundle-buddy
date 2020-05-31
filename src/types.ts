@@ -128,6 +128,7 @@ export interface ProcessedSourceMap {
 }
 
 export interface ImportProcess {
+  bundleSizes: { [bundleName: string]: SourceMapFile };
   processedSourcemap?: ProcessedSourceMap;
   processedGraph?: GraphEdges;
   sourceMapProcessError?: Error;

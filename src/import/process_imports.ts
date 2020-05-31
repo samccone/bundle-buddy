@@ -20,6 +20,7 @@ export async function processImports(opts: {
   graphPreProcessFn?: (contents: any) => GraphEdges;
 }): Promise<ImportProcess> {
   const ret: ImportProcess = {
+    bundleSizes: {},
     processedSourcemap: {
       files: {},
       totalBytes: 0,
@@ -42,6 +43,12 @@ export async function processImports(opts: {
     } catch (e) {
       ret.sourceMapProcessError = new Error(humanizeSourceMapImportError(e));
     }
+  }
+
+  for (const bundle of Object.keys(processed)) {
+    ret.bundleSizes[bundle] = {
+      totalBytes: processed[bundle].totalBytes,
+    };
   }
 
   ret.processedSourcemap = mergeProcessedSourceMaps(processed);
