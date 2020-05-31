@@ -6,7 +6,6 @@ import {
   GraphEdges,
   ProcessedSourceMap,
 } from "../types";
-import { findCommonPrefix } from "../import/prefix_cleaner";
 import { History } from "history";
 import { findTrims } from "./trim";
 
