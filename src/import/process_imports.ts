@@ -20,9 +20,9 @@ export async function processImports(opts: {
   graphPreProcessFn?: (contents: any) => GraphEdges;
 }): Promise<ImportProcess> {
   const ret: ImportProcess = {
-    proccessedSourcemap: {
+    processedSourcemap: {
       files: {},
-      totalSize: 0,
+      totalBytes: 0,
     },
   };
 
@@ -44,7 +44,7 @@ export async function processImports(opts: {
     }
   }
 
-  ret.proccessedSourcemap = mergeProcessedSourceMaps(processed);
+  ret.processedSourcemap = mergeProcessedSourceMaps(processed);
 
   try {
     if (typeof opts.graphEdges === "string") {

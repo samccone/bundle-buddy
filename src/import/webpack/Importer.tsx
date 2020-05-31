@@ -20,7 +20,7 @@ const IGNORE_FILES = [
 
 function removeWebpackMagicFiles(v: ProcessedSourceMap) {
   const ret: ProcessedSourceMap = {
-    totalSize: v.totalSize,
+    totalBytes: v.totalBytes,
     files: {},
   };
   for (const k of Object.keys(v.files)) {
@@ -76,9 +76,9 @@ class WebpackImport extends Component<ImportProps, ImportState> {
       graphPreProcessFn: (g) => cleanGraph(statsToGraph(g)),
     });
 
-    if (processed.proccessedSourcemap != null) {
-      processed.proccessedSourcemap = removeWebpackMagicFiles(
-        processed.proccessedSourcemap
+    if (processed.processedSourcemap != null) {
+      processed.processedSourcemap = removeWebpackMagicFiles(
+        processed.processedSourcemap
       );
     }
 
@@ -96,7 +96,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
     if (this.props.history != null && this.state.importError == null) {
       const state: ImportResolveState = {
         graphEdges: processed.processedGraph!,
-        processedSourceMap: processed.proccessedSourcemap!,
+        processedSourceMap: processed.processedSourcemap!,
       };
 
       this.props.history.push("/webpack/resolve", state);

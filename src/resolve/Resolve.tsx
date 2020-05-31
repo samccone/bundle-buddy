@@ -52,7 +52,10 @@ function transformSourceMapNames(
   sourcemapTransform: (v: string) => string,
   trims: string[]
 ): ProcessedSourceMap {
-  const ret: ProcessedSourceMap = { files: {}, totalSize: sourcemap.totalSize };
+  const ret: ProcessedSourceMap = {
+    files: {},
+    totalBytes: sourcemap.totalBytes,
+  };
 
   for (const fileName of Object.keys(sourcemap.files)) {
     ret.files[sourcemapTransform(trimClean(trims, fileName))] =

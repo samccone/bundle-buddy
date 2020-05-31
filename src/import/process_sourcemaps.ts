@@ -1,4 +1,4 @@
-import { ProcessedSourceMap } from "../types";
+import { ProcessedSourceMap, ProcessedSourceMapFiles } from "../types";
 
 import * as sourceMap from "source-map";
 
@@ -10,7 +10,9 @@ import * as sourceMap from "source-map";
  * Calculates the total size of the processed sourcemap's contents.
  * @param processedSourceMap
  */
-export function getTotalSize(processedSourceMap: ProcessedSourceMap): number {
+export function getTotalSize(
+  processedSourceMap: ProcessedSourceMapFiles
+): number {
   return Object.values(processedSourceMap).reduce(
     (a, b) => {
       return { totalBytes: a.totalBytes + b.totalBytes };
@@ -67,7 +69,7 @@ export function calculateSourcemapFileContents(
   return new Promise((res, rej) => {
     sourceMap.SourceMapConsumer.with(contents, null, (consumer) => {
       const processed: ProcessedSourceMap = {
-        totalSize: 0,
+        totalBytes: 0,
         files: {},
       };
       const cursor = { line: 1, column: 1 };
@@ -79,6 +81,8 @@ export function calculateSourcemapFileContents(
       }
 
       consumer.eachMapping((m) => onMapping(cursor, processed, m));
+      // Now sum up the total sizes for the graph.
+      processed.totalBytes = getTotalSize(processed.files);
       res(processed);
     }).catch((e) => rej(e));
   });
@@ -89,7 +93,12 @@ export function mergeProcessedSourceMaps(processed: {
 }): ProcessedSourceMap {
   const ret: ProcessedSourceMap = {
     files: {},
-    totalSize: 0,
+    totalBytes: Object.values(processed).reduce(
+      (a, b) => {
+        return { totalBytes: a.totalBytes + b.totalBytes };
+      },
+      { totalBytes: 0 }
+    ).totalBytes,
   };
 
   for (const bundleName of Object.keys(processed)) {

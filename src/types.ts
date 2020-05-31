@@ -120,13 +120,15 @@ export interface SourceMapFile {
   totalBytes: number;
 }
 
+export type ProcessedSourceMapFiles = { [fileName: string]: SourceMapFile };
+
 export interface ProcessedSourceMap {
-  files: { [fileName: string]: SourceMapFile };
-  totalSize: number;
+  files: ProcessedSourceMapFiles;
+  totalBytes: number;
 }
 
 export interface ImportProcess {
-  proccessedSourcemap?: ProcessedSourceMap;
+  processedSourcemap?: ProcessedSourceMap;
   processedGraph?: GraphEdges;
   sourceMapProcessError?: Error;
   graphProcessError?: Error;

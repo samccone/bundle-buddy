@@ -19,7 +19,7 @@ it("creates nodes from ", () => {
           "node_modules/react/react.js": { totalBytes: 145 },
           "node_modules/react/test.js": { totalBytes: 20 },
         },
-        totalSize: 0,
+        totalBytes: 0,
       }
     )
   ).toEqual({
