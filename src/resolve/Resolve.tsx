@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import { transform } from "./process";
-import { ResolveProps, ProcessedImportState, GraphEdges } from "../types";
+import {
+  ResolveProps,
+  ProcessedImportState,
+  GraphEdges,
+  ProcessedSourceMap,
+} from "../types";
 import { findCommonPrefix } from "../import/prefix_cleaner";
 import { History } from "history";
 import { findTrims } from "./trim";

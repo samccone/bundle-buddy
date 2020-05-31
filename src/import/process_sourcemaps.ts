@@ -1,13 +1,15 @@
+import { ProcessedSourceMap } from "../types";
+
 import * as sourceMap from "source-map";
 
 (sourceMap.SourceMapConsumer as any).initialize({
   "lib/mappings.wasm": "/mappings.wasm",
 });
 
-export interface ProcessedSourceMap {
-  [file: string]: { totalBytes: number };
-}
-
+/**
+ * Calculate the size of the sourcemap file contents.
+ * @param contents The string sourcemap contents.
+ */
 export function processSourcemap(
   contents: string
 ): Promise<ProcessedSourceMap> {

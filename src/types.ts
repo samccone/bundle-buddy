@@ -1,5 +1,4 @@
 import { History } from "history";
-import { ProcessedSourceMap } from "./import/process_sourcemaps";
 
 export interface FlattendGraph {
   [target: string]: {
@@ -115,4 +114,8 @@ export interface ImportState {
   graphFile?: File;
   importError?: string | null;
   importErrorUri?: string | null;
+}
+
+export interface ProcessedSourceMap {
+  [file: string]: { totalBytes: number };
 }

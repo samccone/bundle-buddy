@@ -2,10 +2,14 @@ import { statsToGraph } from "../stats_to_graph";
 import { readFileAsText, readFilesAsText } from "../file_reader";
 import { toClipboard } from "../clipboard";
 import { processImports, buildImportErrorReport } from "../process_imports";
-import { ImportProps, ImportResolveState, ImportState } from "../../types";
+import {
+  ImportProps,
+  ImportResolveState,
+  ImportState,
+  ProcessedSourceMap,
+} from "../../types";
 
 import React, { Component } from "react";
-import { ProcessedSourceMap } from "../process_sourcemaps";
 import { cleanGraph } from "../graph_process";
 // noopener noreferrer
 

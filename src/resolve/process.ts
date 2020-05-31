@@ -1,4 +1,3 @@
-import { ProcessedSourceMap } from "../import/process_sourcemaps";
 import {
   TrimmedDataNode,
   Imported,
@@ -6,6 +5,7 @@ import {
   TreemapNode,
   GraphEdges,
   FlattendGraph,
+  ProcessedSourceMap,
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";

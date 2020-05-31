@@ -1,5 +1,5 @@
-import { processSourcemap, ProcessedSourceMap } from "./process_sourcemaps";
-import { GraphEdges } from "../types";
+import { processSourcemap } from "./process_sourcemaps";
+import { GraphEdges, ProcessedSourceMap } from "../types";
 import { ReportErrorUri } from "../report_error";
 
 export interface ImportProcess {
