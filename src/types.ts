@@ -116,6 +116,18 @@ export interface ImportState {
   importErrorUri?: string | null;
 }
 
+export interface SourceMapFile {
+  totalBytes: number;
+}
+
 export interface ProcessedSourceMap {
-  [file: string]: { totalBytes: number };
+  files: { [fileName: string]: SourceMapFile };
+  totalSize: number;
+}
+
+export interface ImportProcess {
+  proccessedSourcemap?: ProcessedSourceMap;
+  processedGraph?: GraphEdges;
+  sourceMapProcessError?: Error;
+  graphProcessError?: Error;
 }

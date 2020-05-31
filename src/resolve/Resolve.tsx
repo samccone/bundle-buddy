@@ -52,10 +52,11 @@ function transformSourceMapNames(
   sourcemapTransform: (v: string) => string,
   trims: string[]
 ): ProcessedSourceMap {
-  const ret: ProcessedSourceMap = {};
+  const ret: ProcessedSourceMap = { files: {}, totalSize: sourcemap.totalSize };
 
-  for (const fileName of Object.keys(sourcemap)) {
-    ret[sourcemapTransform(trimClean(trims, fileName))] = sourcemap[fileName];
+  for (const fileName of Object.keys(sourcemap.files)) {
+    ret.files[sourcemapTransform(trimClean(trims, fileName))] =
+      sourcemap.files[fileName];
   }
 
   return ret;
@@ -87,7 +88,7 @@ function autoclean(opts: {
   processedSourceMap: ProcessedSourceMap;
   graphEdges: GraphEdges;
 }): { sourceMapFiles: string[]; graphFiles: string[]; trims: string[] } {
-  const sourceMapFiles = Object.keys(opts.processedSourceMap);
+  const sourceMapFiles = Object.keys(opts.processedSourceMap.files);
   const graphFiles = getGraphFiles(opts.graphEdges);
   const trims = Object.keys(findTrims(sourceMapFiles, graphFiles));
 

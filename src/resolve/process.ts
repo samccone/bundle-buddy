@@ -6,6 +6,7 @@ import {
   GraphEdges,
   FlattendGraph,
   ProcessedSourceMap,
+  SourceMapFile,
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";
@@ -37,7 +38,7 @@ function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
 
   const unique: { [hash: string]: Boolean } = {};
 
-  Object.keys(data).forEach((d) => {
+  Object.keys(data.files).forEach((d) => {
     const parents = d.split(/\/(?!\/)/).filter((d) => d);
 
     parents.forEach((p, i, array) => {
@@ -48,7 +49,7 @@ function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
       };
 
       if (i === array.length - 1) {
-        value.totalBytes = data[d].totalBytes || 0;
+        value.totalBytes = data.files[d].totalBytes || 0;
       }
 
       const key = JSON.stringify(value);
@@ -65,7 +66,7 @@ function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
 
 // noopener noreferrer
 
-function getRollups(fileSizes: ProcessedSourceMap) {
+function getRollups(files: { [fileName: string]: SourceMapFile }) {
   const summary: {
     value: number;
     fileTypes: {
@@ -88,8 +89,8 @@ function getRollups(fileSizes: ProcessedSourceMap) {
     directories: {},
   };
 
-  Object.keys(fileSizes).forEach((key) => {
-    summary.value += fileSizes[key].totalBytes;
+  Object.keys(files).forEach((key) => {
+    summary.value += files[key].totalBytes;
     const index = key.lastIndexOf("/");
     const fileName = key.slice(index + 1).split(/\./g);
 
@@ -104,20 +105,20 @@ function getRollups(fileSizes: ProcessedSourceMap) {
       }
 
       if (summary.fileTypes[extension]) {
-        summary.fileTypes[extension].totalBytes += fileSizes[key].totalBytes;
+        summary.fileTypes[extension].totalBytes += files[key].totalBytes;
       } else {
         summary.fileTypes[extension] = {
           name: extension,
-          totalBytes: fileSizes[key].totalBytes,
+          totalBytes: files[key].totalBytes,
         };
       }
 
       if (summary.directories[parent]) {
-        summary.directories[parent].totalBytes += fileSizes[key].totalBytes;
+        summary.directories[parent].totalBytes += files[key].totalBytes;
       } else {
         summary.directories[parent] = {
           name: parent,
-          totalBytes: fileSizes[key].totalBytes,
+          totalBytes: files[key].totalBytes,
         };
       }
     }
@@ -192,7 +193,7 @@ export function getTrimmedNetwork(
         if (!trimmedNodes[fileName]) {
           trimmedNodes[fileName] = initializeNode(
             fileName,
-            fileSizes[fileName] && fileSizes[fileName].totalBytes
+            fileSizes.files[fileName] && fileSizes.files[fileName].totalBytes
           );
         }
 
@@ -216,8 +217,7 @@ export function getTrimmedNetwork(
 
             trimmedNodes[importedShortedName] = initializeNode(
               importedShortedName,
-              fileSizes[importedFileName] &&
-                fileSizes[importedFileName].totalBytes
+              fileSizes.files[importedFileName]?.totalBytes ?? 0
             );
           }
         }
@@ -232,21 +232,21 @@ export function getTrimmedNetwork(
       ) {
         addedNodes[importedFileName] = true;
 
-        if (fileSizes[importedFileName]) {
+        if (fileSizes.files[importedFileName]) {
           trimmedNodes[importedShortedName].totalBytes +=
-            fileSizes[importedFileName].totalBytes || 0;
+            fileSizes.files[importedFileName].totalBytes || 0;
         }
       }
     }
   });
 
   //Add any additional nodes from file sizes that were not in edges
-  Object.keys(fileSizes).forEach((fileName) => {
+  Object.keys(fileSizes.files).forEach((fileName) => {
     if (!addedNodes[fileName]) {
       if (!fileName.includes("node_modules")) {
         trimmedNodes[fileName] = initializeNode(
           fileName,
-          fileSizes[fileName].totalBytes
+          fileSizes.files[fileName].totalBytes
         );
       }
     }
@@ -299,13 +299,13 @@ export function getTrimmedNetwork(
 
 export function transform(
   graphEdges: GraphEdges,
-  fileSizes: ProcessedSourceMap,
+  processedSourceMap: ProcessedSourceMap,
   sourceMapFiles: string[]
 ): ProcessedImportState {
   return {
-    rollups: getRollups(fileSizes),
-    trimmedNetwork: getTrimmedNetwork(graphEdges, fileSizes),
+    rollups: getRollups(processedSourceMap.files),
+    trimmedNetwork: getTrimmedNetwork(graphEdges, processedSourceMap),
     duplicateNodeModules: findDuplicateModules(sourceMapFiles),
-    hierarchy: nodesToTreeMap(fileSizes),
+    hierarchy: nodesToTreeMap(processedSourceMap),
   };
 }

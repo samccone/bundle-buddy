@@ -19,8 +19,11 @@ const IGNORE_FILES = [
 ];
 
 function removeWebpackMagicFiles(v: ProcessedSourceMap) {
-  const ret: ProcessedSourceMap = {};
-  for (const k of Object.keys(v)) {
+  const ret: ProcessedSourceMap = {
+    totalSize: v.totalSize,
+    files: {},
+  };
+  for (const k of Object.keys(v.files)) {
     let skip = false;
     for (const i of IGNORE_FILES) {
       if (k.endsWith(i)) {
@@ -28,7 +31,7 @@ function removeWebpackMagicFiles(v: ProcessedSourceMap) {
       }
     }
     if (!skip) {
-      ret[k] = v[k];
+      ret.files[k] = v.files[k];
     }
   }
 

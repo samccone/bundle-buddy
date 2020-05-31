@@ -1,16 +1,9 @@
 import {
-  processSourcemap,
+  calculateSourcemapFileContents,
   mergeProcessedSourceMaps,
 } from "./process_sourcemaps";
-import { GraphEdges, ProcessedSourceMap } from "../types";
+import { GraphEdges, ProcessedSourceMap, ImportProcess } from "../types";
 import { ReportErrorUri } from "../report_error";
-
-export interface ImportProcess {
-  proccessedSourcemap?: ProcessedSourceMap;
-  processedGraph?: GraphEdges;
-  sourceMapProcessError?: Error;
-  graphProcessError?: Error;
-}
 
 // TODO(samccone) we will want to handle more error types.
 function humanizeSourceMapImportError(e: Error) {
@@ -26,9 +19,16 @@ export async function processImports(opts: {
   graphEdges: GraphEdges | string;
   graphPreProcessFn?: (contents: any) => GraphEdges;
 }): Promise<ImportProcess> {
-  const ret: ImportProcess = { proccessedSourcemap: {} };
+  const ret: ImportProcess = {
+    proccessedSourcemap: {
+      files: {},
+      totalSize: 0,
+    },
+  };
 
-  const processed: { [filename: string]: ProcessedSourceMap } = {};
+  const processed: {
+    [bundleName: string]: ProcessedSourceMap;
+  } = {};
 
   for (const bundleName of Object.keys(opts.sourceMapContents)) {
     if (ret.sourceMapProcessError != null) {
@@ -36,7 +36,7 @@ export async function processImports(opts: {
     }
 
     try {
-      processed[bundleName] = await processSourcemap(
+      processed[bundleName] = await calculateSourcemapFileContents(
         opts.sourceMapContents[bundleName]
       );
     } catch (e) {

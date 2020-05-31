@@ -14,9 +14,12 @@ it("creates nodes from ", () => {
         },
       ],
       {
-        "src/DisplayComment.js": { totalBytes: 833 },
-        "node_modules/react/react.js": { totalBytes: 145 },
-        "node_modules/react/test.js": { totalBytes: 20 },
+        files: {
+          "src/DisplayComment.js": { totalBytes: 833 },
+          "node_modules/react/react.js": { totalBytes: 145 },
+          "node_modules/react/test.js": { totalBytes: 20 },
+        },
+        totalSize: 0,
       }
     )
   ).toEqual({
