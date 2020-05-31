@@ -67,3 +67,22 @@ export function processSourcemap(
     }).catch((e) => rej(e));
   });
 }
+
+export function mergeProcessedSourceMaps(processed: {
+  [bundlename: string]: ProcessedSourceMap;
+}): ProcessedSourceMap {
+  const ret: ProcessedSourceMap = {};
+
+  for (const bundleName of Object.keys(processed)) {
+    for (const filename of Object.keys(processed[bundleName])) {
+      if (
+        ret[filename] == null ||
+        ret[filename].totalBytes < processed[bundleName][filename].totalBytes
+      ) {
+        ret[filename] = processed[bundleName][filename];
+      }
+    }
+  }
+
+  return ret;
+}

@@ -1,4 +1,7 @@
-import { processSourcemap } from "./process_sourcemaps";
+import {
+  processSourcemap,
+  mergeProcessedSourceMaps,
+} from "./process_sourcemaps";
 import { GraphEdges, ProcessedSourceMap } from "../types";
 import { ReportErrorUri } from "../report_error";
 
@@ -16,25 +19,6 @@ function humanizeSourceMapImportError(e: Error) {
 
 function humanizeGraphProcessError(e: Error) {
   return `importing graph contents: \n${e.toString()}`;
-}
-
-function mergeProcessedSourceMaps(processed: {
-  [filename: string]: ProcessedSourceMap;
-}): ProcessedSourceMap {
-  const ret: ProcessedSourceMap = {};
-
-  for (const bundleName of Object.keys(processed)) {
-    for (const filename of Object.keys(processed[bundleName])) {
-      if (
-        ret[filename] == null ||
-        ret[filename].totalBytes < processed[bundleName][filename].totalBytes
-      ) {
-        ret[filename] = processed[bundleName][filename];
-      }
-    }
-  }
-
-  return ret;
 }
 
 export async function processImports(opts: {
