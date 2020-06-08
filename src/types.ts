@@ -66,8 +66,8 @@ export interface TreemapNode {
   totalBytes?: number;
 }
 
-export type ProcessedHistory = History<ProcessedImportState>;
-export type ImportHistory = History<ImportResolveState>;
+export type ProcessedHistory = History<{ key: string }>;
+export type ImportHistory = History<{ key: string }>;
 
 export interface ImportProps {
   history: ImportHistory;
@@ -84,7 +84,7 @@ export interface BundleProps {
 }
 
 export interface ResolveProps {
-  history: ImportHistory;
+  history: ProcessedHistory;
   graphEdges: GraphEdges;
   processedSourceMap: ProcessedSourceMap;
   graphFileTransform?: string;

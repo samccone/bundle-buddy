@@ -9,6 +9,7 @@ import {
   ProcessedImportState,
   ImportHistory,
 } from "./types";
+import { stateFromProcessedKey, stateFromResolveKey } from "./routes";
 
 const Bundle = lazy(() => import("./bundle/Bundle"));
 const Home = lazy(() => import("./home/Home"));
@@ -29,16 +30,21 @@ export default function App() {
                   }: {
                     location: Location<ProcessedImportState>;
                   }) => {
+                    const state = stateFromProcessedKey(
+                      (location.state as any).key
+                    );
+                    if (state == null) {
+                      throw new Error("invalid state");
+                    }
+
                     let params = new URLSearchParams(location.search);
                     return (
                       <Bundle
-                        trimmedNetwork={location.state.trimmedNetwork}
-                        rollups={location.state.rollups}
-                        duplicateNodeModules={
-                          location.state.duplicateNodeModules
-                        }
+                        trimmedNetwork={state.trimmedNetwork}
+                        rollups={state.rollups}
+                        duplicateNodeModules={state.duplicateNodeModules}
                         selected={params.get("selected")}
-                        hierarchy={location.state.hierarchy}
+                        hierarchy={state.hierarchy}
                       />
                     );
                   }}
@@ -62,19 +68,16 @@ export default function App() {
                     location: Location<ImportResolveState>;
                     history: ImportHistory;
                   }) => {
+                    const state = stateFromResolveKey(
+                      ((h.location.state as any) || { key: "" }).key
+                    );
                     return (
                       <Home
                         history={h.history}
-                        graphEdges={h.location.state?.graphEdges}
-                        processedSourceMap={
-                          h.location.state?.processedSourceMap
-                        }
-                        sourceMapFileTransform={
-                          h.location.state?.sourceMapFileTransform
-                        }
-                        graphFileTransform={
-                          h.location.state?.graphFileTransform
-                        }
+                        graphEdges={state?.graphEdges!}
+                        processedSourceMap={state?.processedSourceMap!}
+                        sourceMapFileTransform={state?.sourceMapFileTransform}
+                        graphFileTransform={state?.graphFileTransform}
                       />
                     );
                   }}

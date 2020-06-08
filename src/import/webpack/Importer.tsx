@@ -11,6 +11,7 @@ import {
 
 import React, { Component } from "react";
 import { cleanGraph } from "../graph_process";
+import { storeResolveState } from "../../routes";
 // noopener noreferrer
 
 const IGNORE_FILES = [
@@ -99,7 +100,7 @@ class WebpackImport extends Component<ImportProps, ImportState> {
         processedSourceMap: processed.processedSourcemap!,
       };
 
-      this.props.history.push("/webpack/resolve", state);
+      this.props.history.push("/webpack/resolve", storeResolveState(state));
     }
   }
 

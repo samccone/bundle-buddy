@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { readFileAsText } from "./file_reader";
 import { Link } from "react-router-dom";
 import { ImportHistory, ProcessedHistory } from "../types";
+import { storeProcessedState } from "../routes";
 // noopener noreferrer
 
 class ImportSelector extends Component<{ history: ImportHistory }> {
@@ -21,10 +22,7 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
     const contents = await readFileAsText(file);
     const previousState = JSON.parse(contents);
 
-    ((this.props.history as unknown) as ProcessedHistory).push(
-      "/bundle",
-      previousState
-    );
+    this.props.history.push("/bundle", storeProcessedState(previousState));
   }
 
   state: never;

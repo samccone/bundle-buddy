@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { transform } from "./process";
 import {
   ResolveProps,
-  ProcessedImportState,
+  ProcessedHistory,
   GraphEdges,
   ProcessedSourceMap,
 } from "../types";
 import { History } from "history";
 import { findTrims } from "./trim";
+import { storeProcessedState, storeResolveState } from "../routes";
 
 // noopener noreferrer
 
@@ -205,12 +206,14 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         return;
       }
 
-      this.props.history.replace(window.location.pathname, {
+      const k = storeResolveState({
         graphEdges: this.props.graphEdges,
         processedSourceMap: this.props.processedSourceMap,
         graphFileTransform: this.state.transforms.graphFileTransform.toString(),
         sourceMapFileTransform: transformRef.toString(),
       });
+
+      this.props.history.replace(window.location.pathname, k);
 
       this.setState({
         transforms: {
@@ -233,12 +236,14 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         return;
       }
 
-      this.props.history.replace(window.location.pathname, {
+      const k = storeResolveState({
         graphEdges: this.props.graphEdges,
         processedSourceMap: this.props.processedSourceMap,
         graphFileTransform: transformRef.toString(),
         sourceMapFileTransform: this.state.transforms.sourceMapFileTransform.toString(),
       });
+
+      this.props.history.replace(window.location.pathname, k);
 
       this.setState({
         transforms: {
@@ -271,10 +276,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       this.state.sourceMapFiles
     );
 
-    ((this.props.history as unknown) as History<ProcessedImportState>).push(
-      "/bundle",
-      processed
-    );
+    this.props.history.push("/bundle", storeProcessedState(processed));
   }
 
   formatError(e: Error) {

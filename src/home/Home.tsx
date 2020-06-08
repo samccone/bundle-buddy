@@ -5,6 +5,7 @@ import { ImportResolveState, ImportHistory, ImportTypes } from "../types";
 import Importer from "../import/Importer";
 import ImportSelector from "../import/import_selector";
 import WebpackImport from "../import/webpack/Importer";
+import { stateFromResolveKey } from "../routes";
 class Home extends Component<ImportResolveState & { history: ImportHistory }> {
   render() {
     const {
@@ -81,13 +82,21 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
               <Route
                 path="/:importer/resolve"
                 component={(h: { history: History }) => {
+                  const state = stateFromResolveKey(
+                    (h as any).location.state.key
+                  );
+
+                  if (state == null) {
+                    throw new Error("missing state");
+                  }
+
                   return (
                     <Resolve
                       history={h.history as any}
                       graphEdges={graphEdges}
-                      processedSourceMap={processedSourceMap}
-                      sourceMapFileTransform={sourceMapFileTransform}
-                      graphFileTransform={graphFileTransform}
+                      processedSourceMap={state.processedSourceMap}
+                      sourceMapFileTransform={state.sourceMapFileTransform}
+                      graphFileTransform={state.graphFileTransform}
                     />
                   );
                 }}

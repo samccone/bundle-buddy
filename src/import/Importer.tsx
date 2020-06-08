@@ -8,6 +8,7 @@ import {
   ImportState,
   ImportTypes,
 } from "../types";
+import { storeResolveState } from "../routes";
 
 // noopener noreferrer
 class RollupImport extends Component<ImportProps, ImportState> {
@@ -200,7 +201,7 @@ plugins: [{
         processedSourceMap: processed.processedSourcemap!,
       };
 
-      this.props.history.push("/_/resolve", state);
+      this.props.history.push("/_/resolve", storeResolveState(state));
     }
   }
 
