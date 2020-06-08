@@ -30,102 +30,95 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
   render() {
     return (
       <div>
-        <h1>Start</h1>
-        <p>
-          In order to understand what is in your bundle, we need to understand
-          your project better. Please select the bundler you are using so that
-          we can help you to get the information we need.
-        </p>
-        <h2>What bundler are you using?</h2>
-        <div>
-          <Link
-            to="/webpack"
-            aria-label="webpack project import"
-            className="no-link-underline button-wrap"
-          >
-            <button
-              aria-hidden
-              tabIndex={-1}
-              className={`type-button project-import`}
-            >
-              <img
-                width="35px"
-                height="36px"
-                className="rollup-logo"
-                alt="webpack logo"
-                src="/img/webpack_logo.png"
-              />
-              Webpack / Create React App
-            </button>
-          </Link>
-          <br />
-          <Link
-            to="/rollup"
-            aria-label="rollup project import"
-            className="no-link-underline button-wrap"
-          >
-            <button
-              aria-hidden
-              tabIndex={-1}
-              className={`type-button project-import`}
-            >
-              <img
-                width="34px"
-                height="36px"
-                alt="rollup logo"
-                src="/img/rollup_logo.png"
-                className="rollup-logo"
-              />{" "}
-              Rollup
-            </button>
-          </Link>
-          <br />
-          <Link
-            to="/rome"
-            aria-label="rome project import"
-            className="no-link-underline button-wrap"
-          >
-            <button
-              aria-hidden
-              tabIndex={-1}
-              className={`type-button project-import rome-import`}
-            >
-              <img
-                width="31px"
-                height="36px"
-                alt="rome logo"
-                src="/img/rome_logo.png"
-                className="rome-logo"
-              />{" "}
-              Rome
-            </button>
-          </Link>
-          <br />
-          <Link
-            to="/parcel"
-            aria-label="parcel project import"
-            className="no-link-underline button-wrap"
-          >
-            <button
-              aria-hidden
-              tabIndex={-1}
-              className={`type-button project-import parcel-import`}
-            >
-              <img
-                width="35px"
-                height="26px"
-                alt="parcel logo"
-                src="/img/parcel_logo.png"
-                className="parcel-logo"
-              />{" "}
-              Parcel
-            </button>
-          </Link>
-        </div>
-        <h2>Have an existing analysis?</h2>
         <div className="flex">
-          <button className="project-import" tabIndex={-1}>
-            Import existing project
+          <div style={{ flexGrow: 1, display: "flex", flexWrap: "wrap" }}>
+            <Link
+              to="/webpack"
+              aria-label="webpack project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import`}
+              >
+                <img
+                  width="35px"
+                  height="36px"
+                  className="rollup-logo"
+                  alt="webpack logo"
+                  src="/img/webpack_logo.png"
+                />
+                <span>Webpack / Create React App</span>
+              </button>
+            </Link>
+            <Link
+              to="/rollup"
+              aria-label="rollup project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import`}
+              >
+                <img
+                  width="34px"
+                  height="36px"
+                  alt="rollup logo"
+                  src="/img/rollup_logo.png"
+                  className="rollup-logo"
+                />{" "}
+                <span>Rollup</span>
+              </button>
+            </Link>
+            <Link
+              to="/rome"
+              aria-label="rome project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import rome-import`}
+              >
+                <img
+                  width="31px"
+                  height="36px"
+                  alt="rome logo"
+                  src="/img/rome_logo.png"
+                  className="rome-logo"
+                />{" "}
+                <span>Rome</span>
+              </button>
+            </Link>
+            <Link
+              to="/parcel"
+              aria-label="parcel project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import parcel-import`}
+              >
+                <img
+                  width="35px"
+                  height="26px"
+                  alt="parcel logo"
+                  src="/img/parcel_logo.png"
+                  className="parcel-logo"
+                />{" "}
+                <span>Parcel</span>
+              </button>
+            </Link>
+          </div>
+
+          <button tabIndex={-1}>
+            <span className="ft-24">Or</span>
+            <br />
+            <br />
+            Import an existing project
             <input
               type="file"
               ref={this.existingImportInput}

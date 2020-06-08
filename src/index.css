@@ -3,13 +3,13 @@
 }
 
 :root {
-  --primary-color: #b42dd6;
+  --primary-color: #33bd5e;
   --link-color: darkblue;
   --margin-left: 90px;
   --side-panel-width: 100px;
   --total-width: 580px;
   --default-text: #111;
-  --grey100: #f1f2f4;
+  /* --grey100: #f1f2f4;
   --grey200: #dfe1e5;
   --grey300: #ccd1d7;
   --grey400: #a8b1bc;
@@ -17,14 +17,77 @@
   --grey600: #6a7585;
   --grey700: #4e5a6a;
   --grey800: #36404e;
-  --grey900: #212833;
+  --grey900: #212833; */
+
+  --grey100: #e8f8ed;
+  --grey200: #d6ebdd;
+  --grey300: #b6d6c3;
+  --grey400: #9ec0ab;
+  --grey500: #87ab95;
+  --grey600: #6e9079;
+  --grey700: #506c5b;
+  --grey800: #395243;
+  --grey900: #293930;
+}
+
+.ft-10 {
+  font-size: 10px;
+}
+
+.ft-11 {
+  font-size: 11px;
+}
+
+.ft-12 {
+  font-size: 12px;
+}
+
+.ft-14 {
+  font-size: 14px;
+}
+
+.ft-16 {
+  font-size: 16px;
+}
+
+.ft-18 {
+  font-size: 18px;
+}
+
+.ft-20 {
+  font-size: 20px;
+}
+
+.ft-24 {
+  font-size: 24px;
+}
+
+.ft-30 {
+  font-size: 30px;
+}
+
+.ft-36 {
+  font-size: 36px;
+}
+
+.ft-48 {
+  font-size: 48px;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+body,
+button {
+  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   height: 100vh;
   overflow-x: hidden;
   color: var(--default-text);
@@ -249,12 +312,17 @@ a {
 
 button {
   background: #ffffff;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 2px;
-  border: none;
-  padding: 10px;
+  border-radius: 0px;
+  border: 2px solid black;
+  padding: 20px 18px;
   cursor: pointer;
-  font-weight: bold;
+
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.3em;
+
+  /* font-weight: bold; */
   position: relative;
 }
 
@@ -325,7 +393,7 @@ button.alert {
 .type-button {
   min-width: 140px;
   display: block;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   overflow: hidden;
 }
 
@@ -349,14 +417,15 @@ img.parcel-logo {
   margin: -10px 0 -10px -2px;
 }
 
-button.rome-import {
-  display: flex;
-  align-items: center;
-}
-
 button.project-import {
   text-align: left;
-  font-size: 17px;
+  width: 200px;
+  height: 70px;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  /* font-size: 17px; */
+  display: flex;
+  align-items: center;
 }
 
 .no-link-underline,
@@ -416,7 +485,7 @@ button.clear {
 
 .button-import-container button:focus-within,
 .project-import:focus-within {
-  box-shadow: 0 0 0px 1px #556dd6;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
 }
 
 .upload-files-container button {

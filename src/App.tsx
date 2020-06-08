@@ -19,7 +19,6 @@ export default function App() {
     <Router>
       <ErrorBoundry>
         <div className="App">
-          <Header />
           <div className="Page">
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
@@ -39,13 +38,16 @@ export default function App() {
 
                     let params = new URLSearchParams(location.search);
                     return (
-                      <Bundle
-                        trimmedNetwork={state.trimmedNetwork}
-                        rollups={state.rollups}
-                        duplicateNodeModules={state.duplicateNodeModules}
-                        selected={params.get("selected")}
-                        hierarchy={state.hierarchy}
-                      />
+                      <div>
+                        <Header />
+                        <Bundle
+                          trimmedNetwork={state.trimmedNetwork}
+                          rollups={state.rollups}
+                          duplicateNodeModules={state.duplicateNodeModules}
+                          selected={params.get("selected")}
+                          hierarchy={state.hierarchy}
+                        />
+                      </div>
                     );
                   }}
                 />

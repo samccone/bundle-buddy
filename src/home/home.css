@@ -1,0 +1,38 @@
+#home header h1 {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+#home section {
+  display: flex;
+  align-items: baseline;
+  padding-bottom: 12px;
+}
+
+#home .left-panel {
+  width: 30vw;
+  height: inherit;
+}
+#home .right-panel {
+  width: 70vw;
+  padding-right: 48px;
+}
+
+#home .inner-border {
+  /* min-height: 200px; */
+  height: 100%;
+  margin: 36px;
+  justify-content: flex-end;
+  padding-right: 36px;
+  padding-left: 36px;
+  text-align: right;
+}
+
+#home h2 {
+  font-size: 36px;
+}
+
+#home button span {
+  flex-grow: 1;
+  text-align: center;
+}
