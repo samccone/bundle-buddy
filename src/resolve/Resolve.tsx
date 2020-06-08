@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { transform } from "./process";
-import {
-  ResolveProps,
-  ProcessedHistory,
-  GraphEdges,
-  ProcessedSourceMap,
-} from "../types";
-import { History } from "history";
+import { ResolveProps, GraphEdges, ProcessedSourceMap } from "../types";
 import { findTrims } from "./trim";
 import { storeProcessedState, storeResolveState } from "../routes";
 
