@@ -134,3 +134,27 @@ export interface ImportProcess {
   sourceMapProcessError?: Error;
   graphProcessError?: Error;
 }
+
+/**
+ * Stats exported from esbuild when passed the --metafile flag
+ */
+export interface EsBuildMetadata {
+  inputs: {
+    [path: string]: {
+      bytes: number;
+      imports: {
+        path: string;
+      }[];
+    };
+  };
+  outputs: {
+    [path: string]: {
+      bytes: number;
+      inputs: {
+        [path: string]: {
+          bytesInOutput: number;
+        };
+      };
+    };
+  };
+}
