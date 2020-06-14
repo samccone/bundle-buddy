@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { transform } from "./process";
-import { ResolveProps, GraphEdges, ProcessedSourceMap } from "../types";
+import { ResolveProps, GraphEdges, ProcessedBundle } from "../types";
 import { findTrims } from "./trim";
 import { storeProcessedState, storeResolveState } from "../routes";
 
@@ -43,11 +43,11 @@ function transformGraphNames(
 }
 
 function transformSourceMapNames(
-  sourcemap: ProcessedSourceMap,
+  sourcemap: ProcessedBundle,
   sourcemapTransform: (v: string) => string,
   trims: string[]
-): ProcessedSourceMap {
-  const ret: ProcessedSourceMap = {
+): ProcessedBundle {
+  const ret: ProcessedBundle = {
     files: {},
     totalBytes: sourcemap.totalBytes,
   };
@@ -83,7 +83,7 @@ function trimClean(trims: string[], word: string) {
 }
 
 function autoclean(opts: {
-  processedSourceMap: ProcessedSourceMap;
+  processedSourceMap: ProcessedBundle;
   graphEdges: GraphEdges;
 }): { sourceMapFiles: string[]; graphFiles: string[]; trims: string[] } {
   const sourceMapFiles = Object.keys(opts.processedSourceMap.files);
@@ -110,7 +110,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     this.sourceMapTransformRef = React.createRef();
     this.sourceGraphTransformRef = React.createRef();
     const { sourceMapFiles, graphFiles, trims } = autoclean({
-      processedSourceMap: this.props.processedSourceMap,
+      processedSourceMap: this.props.processedBundle,
       graphEdges: this.props.graphEdges,
     });
     this.trims = trims;
@@ -202,9 +202,9 @@ class Resolve extends Component<ResolveProps, ResolveState> {
 
       const k = storeResolveState({
         graphEdges: this.props.graphEdges,
-        processedSourceMap: this.props.processedSourceMap,
+        processedSourceMap: this.props.processedBundle,
         graphFileTransform: this.state.transforms.graphFileTransform.toString(),
-        sourceMapFileTransform: transformRef.toString(),
+        bundledFilesTransform: transformRef.toString(),
       });
 
       this.props.history.replace(window.location.pathname, k);
@@ -232,9 +232,9 @@ class Resolve extends Component<ResolveProps, ResolveState> {
 
       const k = storeResolveState({
         graphEdges: this.props.graphEdges,
-        processedSourceMap: this.props.processedSourceMap,
+        processedSourceMap: this.props.processedBundle,
         graphFileTransform: transformRef.toString(),
-        sourceMapFileTransform: this.state.transforms.sourceMapFileTransform.toString(),
+        bundledFilesTransform: this.state.transforms.sourceMapFileTransform.toString(),
       });
 
       this.props.history.replace(window.location.pathname, k);
@@ -249,10 +249,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
   }
 
   import() {
-    if (
-      this.props.graphEdges == null ||
-      this.props.processedSourceMap == null
-    ) {
+    if (this.props.graphEdges == null || this.props.processedBundle == null) {
       throw new Error("Unable to find graph edges or sourcemap data");
     }
 
@@ -263,7 +260,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         this.trims
       ),
       transformSourceMapNames(
-        this.props.processedSourceMap,
+        this.props.processedBundle,
         this.state.transforms.sourceMapFileTransform,
         this.trims
       ),

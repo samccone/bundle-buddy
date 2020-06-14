@@ -2,7 +2,7 @@ import {
   calculateSourcemapFileContents,
   mergeProcessedSourceMaps,
 } from "./process_sourcemaps";
-import { GraphEdges, ProcessedSourceMap, ImportProcess } from "../types";
+import { GraphEdges, ProcessedBundle, ImportProcess } from "../types";
 import { ReportErrorUri } from "../report_error";
 
 // TODO(samccone) we will want to handle more error types.
@@ -28,7 +28,7 @@ export async function processImports(opts: {
   };
 
   const processed: {
-    [bundleName: string]: ProcessedSourceMap;
+    [bundleName: string]: ProcessedBundle;
   } = {};
 
   for (const bundleName of Object.keys(opts.sourceMapContents)) {

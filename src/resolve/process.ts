@@ -5,8 +5,8 @@ import {
   TreemapNode,
   GraphEdges,
   FlattendGraph,
-  ProcessedSourceMap,
-  SourceMapFile,
+  ProcessedBundle,
+  BundledFile,
   // TrimmedNetwork,
   // BundleNetworkCount,
 } from "../types";
@@ -28,7 +28,7 @@ function values<V>(entity: { [k: string]: V }): V[] {
   return ret;
 }
 
-function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
+function nodesToTreeMap(data: ProcessedBundle): TreemapNode[] {
   const rel = [
     {
       parent: "",
@@ -66,7 +66,7 @@ function nodesToTreeMap(data: ProcessedSourceMap): TreemapNode[] {
 
 // noopener noreferrer
 
-function getRollups(files: { [fileName: string]: SourceMapFile }) {
+function getRollups(files: { [fileName: string]: BundledFile }) {
   const summary: {
     value: number;
     fileTypes: {
@@ -164,7 +164,7 @@ function initializeNode(id: string, size: number = 0) {
 
 export function getTrimmedNetwork(
   graphEdges: GraphEdges,
-  fileSizes: ProcessedSourceMap
+  fileSizes: ProcessedBundle
 ) {
   const addedNodes: { [name: string]: boolean } = {};
   const addedEdges: { [name: string]: boolean } = {};
@@ -299,7 +299,7 @@ export function getTrimmedNetwork(
 
 export function transform(
   graphEdges: GraphEdges,
-  processedSourceMap: ProcessedSourceMap,
+  processedSourceMap: ProcessedBundle,
   sourceMapFiles: string[]
 ): ProcessedImportState {
   return {

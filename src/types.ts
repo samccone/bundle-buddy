@@ -33,9 +33,9 @@ export enum ImportTypes {
 
 export interface ImportResolveState {
   graphEdges: GraphEdges;
-  processedSourceMap: ProcessedSourceMap;
+  processedSourceMap: ProcessedBundle;
   graphFileTransform?: string;
-  sourceMapFileTransform?: string;
+  bundledFilesTransform?: string;
 }
 
 export type SizeData = {
@@ -86,7 +86,7 @@ export interface BundleProps {
 export interface ResolveProps {
   history: ProcessedHistory;
   graphEdges: GraphEdges;
-  processedSourceMap: ProcessedSourceMap;
+  processedBundle: ProcessedBundle;
   graphFileTransform?: string;
   sourceMapFileTransform?: string;
 }
@@ -116,20 +116,20 @@ export interface ImportState {
   importErrorUri?: string | null;
 }
 
-export interface SourceMapFile {
+export interface BundledFile {
   totalBytes: number;
 }
 
-export type ProcessedSourceMapFiles = { [fileName: string]: SourceMapFile };
+export type BundledFiles = { [fileName: string]: BundledFile };
 
-export interface ProcessedSourceMap {
-  files: ProcessedSourceMapFiles;
+export interface ProcessedBundle {
+  files: BundledFiles;
   totalBytes: number;
 }
 
 export interface ImportProcess {
-  bundleSizes: { [bundleName: string]: SourceMapFile };
-  processedSourcemap?: ProcessedSourceMap;
+  bundleSizes: { [bundleName: string]: BundledFile };
+  processedSourcemap?: ProcessedBundle;
   processedGraph?: GraphEdges;
   sourceMapProcessError?: Error;
   graphProcessError?: Error;

@@ -6,7 +6,7 @@ import {
   ImportProps,
   ImportResolveState,
   ImportState,
-  ProcessedSourceMap,
+  ProcessedBundle,
 } from "../../types";
 
 import React, { Component } from "react";
@@ -19,8 +19,8 @@ const IGNORE_FILES = [
   "webpack/bootstrap",
 ];
 
-function removeWebpackMagicFiles(v: ProcessedSourceMap) {
-  const ret: ProcessedSourceMap = {
+function removeWebpackMagicFiles(v: ProcessedBundle) {
+  const ret: ProcessedBundle = {
     totalBytes: v.totalBytes,
     files: {},
   };

@@ -13,7 +13,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
     const {
       graphEdges,
       processedSourceMap,
-      sourceMapFileTransform,
+      bundledFilesTransform: sourceMapFileTransform,
       graphFileTransform,
       history,
     } = this.props;
@@ -144,7 +144,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                         <Resolve
                           history={h.history as any}
                           graphEdges={graphEdges}
-                          processedSourceMap={processedSourceMap}
+                          processedBundle={processedSourceMap}
                           sourceMapFileTransform={sourceMapFileTransform}
                           graphFileTransform={graphFileTransform}
                         />
@@ -172,8 +172,8 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
               <Resolve
                 history={History as any}
                 graphEdges={graphEdges}
-                processedSourceMap={state.processedSourceMap}
-                sourceMapFileTransform={state.sourceMapFileTransform}
+                processedBundle={state.processedSourceMap}
+                sourceMapFileTransform={state.bundledFilesTransform}
                 graphFileTransform={state.graphFileTransform}
               />
             </div>

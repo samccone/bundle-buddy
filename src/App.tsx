@@ -78,7 +78,7 @@ export default function App() {
                         history={h.history}
                         graphEdges={state?.graphEdges!}
                         processedSourceMap={state?.processedSourceMap!}
-                        sourceMapFileTransform={state?.sourceMapFileTransform}
+                        bundledFilesTransform={state?.bundledFilesTransform}
                         graphFileTransform={state?.graphFileTransform}
                       />
                     );

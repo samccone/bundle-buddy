@@ -1,4 +1,4 @@
-import { ProcessedSourceMap, ProcessedSourceMapFiles } from "../types";
+import { ProcessedBundle, BundledFiles } from "../types";
 
 import * as sourceMap from "source-map";
 
@@ -10,9 +10,7 @@ import * as sourceMap from "source-map";
  * Calculates the total size of the processed sourcemap's contents.
  * @param processedSourceMap
  */
-export function getTotalSize(
-  processedSourceMap: ProcessedSourceMapFiles
-): number {
+export function getTotalSize(processedSourceMap: BundledFiles): number {
   return Object.values(processedSourceMap).reduce(
     (a, b) => {
       return { totalBytes: a.totalBytes + b.totalBytes };
@@ -27,11 +25,11 @@ export function getTotalSize(
  */
 export function calculateSourcemapFileContents(
   contents: string
-): Promise<ProcessedSourceMap> {
+): Promise<ProcessedBundle> {
   // TODO(samccone) fix typing when https://github.com/mozilla/source-map/pull/374 lands.
   function onMapping(
     cursor: { line: number; column: number },
-    processed: ProcessedSourceMap,
+    processed: ProcessedBundle,
     m: sourceMap.MappingItem & { lastGeneratedColumn?: number }
   ) {
     if (m.source == null) {
@@ -68,7 +66,7 @@ export function calculateSourcemapFileContents(
 
   return new Promise((res, rej) => {
     sourceMap.SourceMapConsumer.with(contents, null, (consumer) => {
-      const processed: ProcessedSourceMap = {
+      const processed: ProcessedBundle = {
         totalBytes: 0,
         files: {},
       };
@@ -89,9 +87,9 @@ export function calculateSourcemapFileContents(
 }
 
 export function mergeProcessedSourceMaps(processed: {
-  [bundlename: string]: ProcessedSourceMap;
-}): ProcessedSourceMap {
-  const ret: ProcessedSourceMap = {
+  [bundlename: string]: ProcessedBundle;
+}): ProcessedBundle {
+  const ret: ProcessedBundle = {
     files: {},
     totalBytes: Object.values(processed).reduce(
       (a, b) => {
