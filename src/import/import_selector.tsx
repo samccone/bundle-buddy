@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { readFileAsText } from "./file_reader";
 import { Link } from "react-router-dom";
-import { ImportHistory, ProcessedHistory } from "../types";
+import { ImportHistory } from "../types";
 import { storeProcessedState } from "../routes";
 // noopener noreferrer
 
