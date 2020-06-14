@@ -7,11 +7,14 @@ import {
   ImportResolveState,
   ImportState,
   ImportTypes,
+  EsBuildMetadata,
 } from "../types";
 import { storeResolveState } from "../routes";
+import { toEdges, toProcessedBundles } from "./esbuild";
+import { mergeProcessedBundles } from "./process_sourcemaps";
 
 // noopener noreferrer
-class RollupImport extends Component<ImportProps, ImportState> {
+class Import extends Component<ImportProps, ImportState> {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   graphInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   generateGraphContents: React.RefObject<HTMLSpanElement>;
@@ -97,6 +100,21 @@ plugins: [{
       );
     }
 
+    if (type === ImportTypes.ESBUILD) {
+      return (
+        <div>
+          <p>
+            Run the <code>--bundle</code> command of <code>esbuild</code> with{" "}
+            <code>--metafile=esbuild</code> to generate the metadata file to
+            understand your project.
+          </p>
+          <code>
+            <pre>esbuild --bundle --metafile</pre>
+          </code>
+        </div>
+      );
+    }
+
     if (type === ImportTypes.ROME) {
       return (
         <div>
@@ -168,11 +186,36 @@ plugins: [{
     return files != null && files.length;
   }
 
-  canProcess(sourceMapFiles: File[] | undefined, graphFile: File | undefined) {
+  canProcess(
+    sourceMapFiles: File[] | undefined,
+    graphFile: File | undefined,
+    importType: ImportTypes
+  ) {
+    // ESBuild does not need sourcemap files.
+    if (importType === ImportTypes.ESBUILD) {
+      return graphFile != null;
+    }
+
     return sourceMapFiles != null && sourceMapFiles.length && graphFile != null;
   }
 
-  async processFiles() {
+  async processFiles(importType: ImportTypes) {
+    if (importType === ImportTypes.ESBUILD && this.state.graphFile != null) {
+      const graphContents = JSON.parse(
+        await readFileAsText(this.state.graphFile)
+      ) as EsBuildMetadata;
+
+      const state: ImportResolveState = {
+        graphEdges: toEdges(graphContents),
+        processedSourceMap: mergeProcessedBundles(
+          toProcessedBundles(graphContents)
+        ),
+      };
+
+      this.props.history.push("/_/resolve", storeResolveState(state));
+      return;
+    }
+
     if (this.state.graphFile == null || this.state.sourceMapFiles == null) {
       return;
     }
@@ -203,6 +246,14 @@ plugins: [{
 
       this.props.history.push("/_/resolve", storeResolveState(state));
     }
+  }
+
+  disableSourceMapInput(importType: ImportTypes) {
+    if (importType === ImportTypes.ESBUILD) {
+      return true;
+    }
+
+    return false;
   }
 
   render() {
@@ -256,51 +307,54 @@ plugins: [{
                 className="status-icon"
               />
             </div>
-            <div className="button-import-container">
-              <button tabIndex={-1} className="import-asset">
+            {this.disableSourceMapInput(this.props.importType) ? null : (
+              <div className="button-import-container">
+                <button tabIndex={-1} className="import-asset">
+                  <img
+                    height="20px"
+                    width="20px"
+                    className="attach-icon"
+                    alt="attach file"
+                    src="/img/attach_icon.svg"
+                  />
+                  sourcemaps
+                  <input
+                    id="sourcemap"
+                    multiple
+                    type="file"
+                    accept=".map,.sourcemap"
+                    ref={this.sourceMapInput}
+                    onInput={() => this.onSourceMapInput()}
+                  />
+                </button>
                 <img
-                  height="20px"
-                  width="20px"
-                  className="attach-icon"
-                  alt="attach file"
-                  src="/img/attach_icon.svg"
+                  src={
+                    this.hasSourceMapFile(this.state.sourceMapFiles)
+                      ? "/img/ok_icon.svg"
+                      : "/img/warn_icon.svg"
+                  }
+                  height="24px"
+                  width="24px"
+                  alt={
+                    this.hasSourceMapFile(this.state.sourceMapFiles)
+                      ? "OK import"
+                      : "missing import"
+                  }
+                  className="status-icon"
                 />
-                sourcemaps
-                <input
-                  id="sourcemap"
-                  multiple
-                  type="file"
-                  accept=".map,.sourcemap"
-                  ref={this.sourceMapInput}
-                  onInput={() => this.onSourceMapInput()}
-                />
-              </button>
-              <img
-                src={
-                  this.hasSourceMapFile(this.state.sourceMapFiles)
-                    ? "/img/ok_icon.svg"
-                    : "/img/warn_icon.svg"
-                }
-                height="24px"
-                width="24px"
-                alt={
-                  this.hasSourceMapFile(this.state.sourceMapFiles)
-                    ? "OK import"
-                    : "missing import"
-                }
-                className="status-icon"
-              />
-            </div>
+              </div>
+            )}
           </div>
           <div className="import-project">
             <button
               disabled={
                 !this.canProcess(
                   this.state.sourceMapFiles,
-                  this.state.graphFile
+                  this.state.graphFile,
+                  this.props.importType
                 )
               }
-              onClick={() => this.processFiles()}
+              onClick={() => this.processFiles(this.props.importType)}
             >
               Import project
             </button>
@@ -314,4 +368,4 @@ plugins: [{
   }
 }
 
-export default RollupImport;
+export default Import;

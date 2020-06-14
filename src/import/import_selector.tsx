@@ -112,6 +112,19 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                 <span>Parcel</span>
               </button>
             </Link>
+            <Link
+              to="/esbuild"
+              aria-label="esbuild project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import esbuild-import`}
+              >
+                <span>ESBuild</span>
+              </button>
+            </Link>
           </div>
 
           <button tabIndex={-1}>

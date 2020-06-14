@@ -1,8 +1,18 @@
 import { ImportResolveState, ProcessedImportState } from "../types";
 
+function setItem(key: string, val: any) {
+  (window as any)["_app"] = (window as any)["_app"] || {};
+  (window as any)["_app"][key] = val;
+}
+
+function getItem(key: string) {
+  (window as any)["_app"] = (window as any)["_app"] || {};
+  return (window as any)["_app"][key];
+}
+
 export function storeResolveState(state: ImportResolveState): { key: string } {
   const key = toResolveKey();
-  window.localStorage.setItem(key, JSON.stringify(state));
+  setItem(key, state);
   return { key };
 }
 
@@ -18,27 +28,27 @@ export function storeProcessedState(
   state: ProcessedImportState
 ): { key: string } {
   const key = toProcessedKey();
-  window.localStorage.setItem(key, JSON.stringify(state));
+  setItem(key, state);
   return { key };
 }
 
 export function stateFromResolveKey(
   key: string
 ): ImportResolveState | undefined {
-  const state = window.localStorage.getItem(key);
+  const state = getItem(key);
   if (state == null) {
     return undefined;
   }
 
-  return JSON.parse(state);
+  return state;
 }
 export function stateFromProcessedKey(
   key: string
 ): ProcessedImportState | undefined {
-  const state = window.localStorage.getItem(key);
+  const state = getItem(key);
   if (state == null) {
     return undefined;
   }
 
-  return JSON.parse(state);
+  return state;
 }

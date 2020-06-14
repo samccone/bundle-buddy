@@ -126,6 +126,19 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                   />
                   <Route
                     exact
+                    path="/esbuild"
+                    component={(h: { history: History }) => {
+                      return (
+                        <Importer
+                          importType={ImportTypes.ESBUILD}
+                          graphFileName="esbuild.json"
+                          history={h.history as any}
+                        />
+                      );
+                    }}
+                  />
+                  <Route
+                    exact
                     path="/"
                     component={(h: { history: History }) => {
                       return (
@@ -170,7 +183,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
               <p className="ft-18">Reconcile file paths:</p>
 
               <Resolve
-                history={History as any}
+                history={history}
                 graphEdges={graphEdges}
                 processedBundle={state.processedSourceMap}
                 sourceMapFileTransform={state.bundledFilesTransform}

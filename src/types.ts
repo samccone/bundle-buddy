@@ -29,6 +29,7 @@ export enum ImportTypes {
   PARCEL,
   ROME,
   WEBPACK,
+  ESBUILD,
 }
 
 export interface ImportResolveState {
