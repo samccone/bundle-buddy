@@ -18,11 +18,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
       history,
     } = this.props;
 
-    const state = stateFromResolveKey(history.location.state.key);
-
-    if (state == null) {
-      throw new Error("missing state");
-    }
+    const state = stateFromResolveKey(history.location.state?.key);
 
     return (
       <div id="home">
@@ -129,6 +125,19 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     }}
                   />
                   <Route
+                    exact
+                    path="/"
+                    component={(h: { history: History }) => {
+                      return (
+                        <WebpackImport
+                          graphFileName="stats.json"
+                          history={h.history as any}
+                          importType={ImportTypes.WEBPACK}
+                        />
+                      );
+                    }}
+                  />
+                  <Route
                     path="/:importer/resolve"
                     component={(h: { history: History }) => {
                       return (
@@ -147,18 +156,19 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
             </div>
           </div>
         </section>
-        <section style={{ color: "var(--grey900)" }}>
-          <div className="left-panel">
-            <div
-              className="inner-border vertical-center"
-              style={{ borderRight: `3px solid var(--grey300)` }}
-            >
-              <h2>Step 3</h2>
+        {state && graphEdges && (
+          <section style={{ color: "var(--grey900)" }}>
+            <div className="left-panel">
+              <div
+                className="inner-border vertical-center"
+                style={{ borderRight: `3px solid var(--grey300)` }}
+              >
+                <h2>Step 3</h2>
+              </div>
             </div>
-          </div>
-          <div className="right-panel">
-            <p className="ft-18">Reconcile file paths:</p>
-            {graphEdges && (
+            <div className="right-panel">
+              <p className="ft-18">Reconcile file paths:</p>
+
               <Resolve
                 history={History as any}
                 graphEdges={graphEdges}
@@ -166,9 +176,9 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                 sourceMapFileTransform={state.sourceMapFileTransform}
                 graphFileTransform={state.graphFileTransform}
               />
-            )}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
       </div>
     );
   }
