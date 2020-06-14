@@ -1,6 +1,6 @@
 import {
   calculateSourcemapFileContents,
-  mergeProcessedSourceMaps,
+  mergeProcessedBundles,
 } from "./process_sourcemaps";
 import { GraphEdges, ProcessedBundle, ImportProcess } from "../types";
 import { ReportErrorUri } from "../report_error";
@@ -51,7 +51,7 @@ export async function processImports(opts: {
     };
   }
 
-  ret.processedSourcemap = mergeProcessedSourceMaps(processed);
+  ret.processedSourcemap = mergeProcessedBundles(processed);
 
   try {
     if (typeof opts.graphEdges === "string") {

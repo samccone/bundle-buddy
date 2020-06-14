@@ -86,7 +86,7 @@ export function calculateSourcemapFileContents(
   });
 }
 
-export function mergeProcessedSourceMaps(processed: {
+export function mergeProcessedBundles(processed: {
   [bundlename: string]: ProcessedBundle;
 }): ProcessedBundle {
   const ret: ProcessedBundle = {
