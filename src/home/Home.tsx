@@ -131,7 +131,6 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     }}
                   />
                   <Route
-                    exact
                     path="/esbuild"
                     component={(h: { history: History }) => {
                       return (

@@ -124,7 +124,10 @@ class Import extends Component<ImportProps, ImportState> {
         ),
       };
 
-      this.props.history.push("/_/resolve", storeResolveState(state));
+      this.props.history.push(
+        `/${this.props.importType}/resolve`,
+        storeResolveState(state)
+      );
       return;
     }
 
