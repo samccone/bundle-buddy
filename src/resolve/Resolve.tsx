@@ -128,17 +128,6 @@ class Resolve extends Component<ResolveProps, ResolveState> {
           ((fileName) => fileName),
       },
     };
-
-    const sourcemapTransformed = this.transformFiles(
-      this.state.sourceMapFiles,
-      this.state.graphFiles,
-      this.state.transforms.sourceMapFileTransform,
-      this.state.transforms.graphFileTransform
-    );
-
-    if (sourcemapTransformed.files.length === 0) {
-      this.import();
-    }
   }
 
   static sorted<T>(arr: Array<T>) {
@@ -295,16 +284,23 @@ ${e.stack}`;
       <div className="resolve-conflicts">
         <div className="col-container">
           <div>
-            <h3>Resolve source map files</h3>
+            <p className="ft-18">Resolve source map files:</p>
             {sourceMapTransformed.lastError != null ? (
               <div className="error">
                 {this.formatError(sourceMapTransformed.lastError)}
               </div>
             ) : null}
-            <p>
-              {sourceMapTransformed.files.length} unmatched source map files of{" "}
-              {this.state.sourceMapFiles.length} total
-            </p>
+            <small>
+              <span
+                className={`${
+                  sourceMapTransformed.files.length === 0 ? "primary" : ""
+                }`}
+              >
+                {sourceMapTransformed.files.length}
+              </span>{" "}
+              source map files of {this.state.sourceMapFiles.length} total need
+              resolving
+            </small>
             <textarea
               ref={this.sourceMapTransformRef}
               className="code-editor"
@@ -312,7 +308,7 @@ ${e.stack}`;
             />
             <br />
             <button onClick={() => this.updateSourceMapTransform()}>
-              update source map transform
+              retry transform
             </button>
             <ul>
               {Resolve.sorted(sourceMapTransformed.files).map((v) => (
@@ -321,16 +317,22 @@ ${e.stack}`;
             </ul>
           </div>
           <div>
-            <h3>Resolve graph source files</h3>
+            <p className="ft-18">Resolve graph source files:</p>
             {graphTransformed.lastError != null ? (
               <div className="error">
                 {this.formatError(graphTransformed.lastError)}
               </div>
             ) : null}
-            <p>
-              {graphTransformed.files.length} unmatched graph files of{" "}
-              {this.state.graphFiles.length} total
-            </p>
+            <small>
+              <span
+                className={`${
+                  graphTransformed.files.length === 0 ? "primary" : ""
+                }`}
+              >
+                {graphTransformed.files.length}
+              </span>{" "}
+              graph files of {this.state.graphFiles.length} total need resolving
+            </small>
             <textarea
               ref={this.sourceGraphTransformRef}
               className="code-editor"
@@ -338,7 +340,7 @@ ${e.stack}`;
             />
             <br />
             <button onClick={() => this.updateGraphSourceTransform()}>
-              update graph source transform
+              Retry transform
             </button>
             <ul>
               {Resolve.sorted(graphTransformed.files).map((v) => (
@@ -349,7 +351,6 @@ ${e.stack}`;
         </div>
         <div className="resolved">
           <div className="resolved-message">
-            When sourcemaps and stats are resovled:{" "}
             <button className="good" onClick={() => this.import()}>
               Go to analysis
             </button>

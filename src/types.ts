@@ -25,11 +25,12 @@ export interface Imported {
 export type GraphEdges = Edge[];
 
 export enum ImportTypes {
-  ROLLUP,
-  PARCEL,
-  ROME,
-  WEBPACK,
-  ESBUILD,
+  ROLLUP = "rollup",
+  PARCEL = "parcel",
+  ROME = "rome",
+  WEBPACK = "webpack",
+  CRA = "create-react-app",
+  ESBUILD = "esbuild",
 }
 
 export interface ImportResolveState {

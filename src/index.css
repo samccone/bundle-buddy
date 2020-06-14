@@ -314,7 +314,6 @@ button {
   background: #ffffff;
   border-radius: 0px;
   border: 2px solid black;
-  padding: 20px 18px;
   cursor: pointer;
 
   letter-spacing: 0.5px;
@@ -324,6 +323,15 @@ button {
 
   /* font-weight: bold; */
   position: relative;
+}
+
+button.import {
+  padding: 20px 18px;
+}
+
+button:disabled {
+  border: 2px solid var(--grey300);
+  color: var(--grey300);
 }
 
 button.copy-button {
@@ -348,22 +356,13 @@ button.clear {
 }
 
 button.good {
-  background: #1db1a4;
+  background: var(--primary-color);
+  padding: 10px;
   color: white;
 }
 
 button.alert {
   color: #ff3733;
-}
-
-.resolved {
-  position: fixed;
-  bottom: 0;
-  background: white;
-  border-top: 1px solid #ccc;
-  width: 100%;
-  margin-left: -20px;
-  padding-left: 20px;
 }
 
 .resolved-message {
@@ -478,14 +477,17 @@ button.clear {
   margin-right: 30px;
 }
 
-.import-project button {
+/* .import-project button {
   margin-top: 10px;
   width: 140px;
-}
+} */
 
 .button-import-container button:focus-within,
-.project-import:focus-within {
+.project-import:focus-within,
+a.active button,
+button:focus {
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+  outline: none;
 }
 
 .upload-files-container button {
@@ -517,7 +519,7 @@ button.clear {
 }
 
 .resolve-conflicts ul {
-  height: 600px;
+  /* height: 600px; */
   overflow: auto;
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { readFileAsText } from "./file_reader";
-import { Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 import { ImportHistory } from "../types";
 import { storeProcessedState } from "../routes";
 // noopener noreferrer
@@ -49,7 +49,27 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                   alt="webpack logo"
                   src="/img/webpack_logo.png"
                 />
-                <span>Webpack / Create React App</span>
+                <span>Webpack</span>
+              </button>
+            </Link>
+            <Link
+              to="/create-react-app"
+              aria-label="create-react-app project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import`}
+              >
+                <img
+                  width="35px"
+                  height="36px"
+                  className="rollup-logo"
+                  alt="create react app logo"
+                  src="/img/webpack_logo.png"
+                />
+                <span>Create React App</span>
               </button>
             </Link>
             <Link

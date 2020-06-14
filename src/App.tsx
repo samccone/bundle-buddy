@@ -73,6 +73,7 @@ export default function App() {
                     const state = stateFromResolveKey(
                       ((h.location.state as any) || { key: "" }).key
                     );
+
                     return (
                       <Home
                         history={h.history}

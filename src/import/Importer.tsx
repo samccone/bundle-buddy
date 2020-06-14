@@ -29,132 +29,28 @@ class Import extends Component<ImportProps, ImportState> {
 
   state: ImportState = {};
 
-  importInstructions(type: ImportTypes) {
-    if (type === ImportTypes.ROLLUP) {
-      return (
-        <div className="rollup-import-instructions">
-          <div>
-            <h5>{this.props.graphFileName}</h5>
-            <p>via rollup.config.js</p>
-            <code>
-              <pre>
-                <span
-                  id="rollup-generate-graph"
-                  ref={this.generateGraphContents}
-                  className="add-diff"
-                >
-                  {`
-plugins: [{
-    buildEnd() {
-        const deps = [];
-        for (const id of this.getModuleIds()) {
-          const m = this.getModuleInfo(id);
-          if (m != null && !m.isExternal) {
-            for (const target of m.importedIds) {
-              deps.push({ source: m.id, target })
-            }
-          }
-        }
-        
-        fs.writeFileSync(
-            path.join(__dirname, 'graph.json'), 
-            JSON.stringify(deps, null, 2));
-    },
-}]`}
-                </span>
-              </pre>
-              <button
-                onClick={() =>
-                  toClipboard(
-                    this.generateGraphContents.current!.textContent || ""
-                  )
-                }
-                className="copy-button"
-                aria-label="Copy stats.json programatic snippit to clipboard"
-              />
-            </code>
-          </div>
-          <div>
-            <h5>sourcemap</h5>
-            <p>via rollup.config.js</p>
-            <code>
-              <pre>
-                {`output: { 
-    file: '\`\${outFolder}/dist.js',
-    format: 'iife',
-    name: 'PROJECT_NAME',\n`}
-                <span className="add-diff">
-                  &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
-                </span>
-                {`
-}`}
-              </pre>
-              <button
-                onClick={() => toClipboard("sourcemap: true,")}
-                className="copy-button"
-                aria-label="Copy sourcemap snippet to clipboard"
-              />
-            </code>
-          </div>
-        </div>
-      );
-    }
-
-    if (type === ImportTypes.ESBUILD) {
-      return (
-        <div>
-          <p>
-            Run the <code>--bundle</code> command of <code>esbuild</code> with{" "}
-            <code>--metafile=esbuild</code> to generate the metadata file to
-            understand your project.
-          </p>
-          <code>
-            <pre>esbuild --bundle --metafile</pre>
-          </code>
-        </div>
-      );
-    }
-
-    if (type === ImportTypes.ROME) {
-      return (
-        <div>
-          <p>
-            Run the <code>bundle</code> command of rome to generate the
-            sourcemap files and bundlebuddy.json for your project
-          </p>
-          <code>
-            <pre>rome bundle .</pre>
-          </code>
-        </div>
-      );
-    }
-
-    if (type === ImportTypes.PARCEL) {
-      return (
-        <div>
-          <p>
-            run <code>BUNDLE_BUDDY=true parcel build</code>&nbsp; to generate
-            the sourcemap files and bundle-buddy.json file for your project
-          </p>
-          <code>
-            <pre>BUNDLE_BUDDY=true parcel build</pre>
-          </code>
-        </div>
-      );
-    }
-
-    return <div />;
-  }
-
   onGraphInput() {
     if (
       this.graphInput != null &&
       this.graphInput.current != null &&
       this.graphInput.current.files.length
     ) {
-      this.setState({
-        graphFile: this.graphInput.current.files[0],
-      });
+      this.setState(
+        {
+          graphFile: this.graphInput.current.files[0],
+        },
+        () => {
+          if (
+            this.canProcess(
+              this.state.sourceMapFiles,
+              this.state.graphFile,
+              this.props.importType
+            )
+          ) {
+            this.processFiles(this.props.importType);
+          }
+        }
+      );
     } else {
       this.setState({
         graphFile: undefined,
@@ -168,9 +64,22 @@ plugins: [{
       this.sourceMapInput.current != null &&
       this.sourceMapInput.current.files.length
     ) {
-      this.setState({
-        sourceMapFiles: Array.from(this.sourceMapInput.current.files),
-      });
+      this.setState(
+        {
+          sourceMapFiles: Array.from(this.sourceMapInput.current.files),
+        },
+        () => {
+          if (
+            this.canProcess(
+              this.state.sourceMapFiles,
+              this.state.graphFile,
+              this.props.importType
+            )
+          ) {
+            this.processFiles(this.props.importType);
+          }
+        }
+      );
     } else {
       this.setState({
         sourceMapFiles: undefined,
@@ -179,11 +88,14 @@ plugins: [{
   }
 
   hasGraphFile(file?: File) {
-    return file != null;
+    return file != null || window.location.pathname.includes("resolve");
   }
 
   hasSourceMapFile(files?: File[]) {
-    return files != null && files.length;
+    return (
+      (files != null && files.length) ||
+      window.location.pathname.includes("resolve")
+    );
   }
 
   canProcess(
@@ -244,7 +156,10 @@ plugins: [{
         processedSourceMap: processed.processedSourcemap!,
       };
 
-      this.props.history.push("/_/resolve", storeResolveState(state));
+      this.props.history.push(
+        `/${this.props.importType}/resolve`,
+        storeResolveState(state)
+      );
     }
   }
 
@@ -257,6 +172,114 @@ plugins: [{
   }
 
   render() {
+    const type = this.props.importType;
+    let graph, sourcemaps, instructions;
+
+    if (type === ImportTypes.ROLLUP) {
+      graph = (
+        <div>
+          <p>rollup.config.js</p>
+          <code>
+            <pre>
+              <span
+                id="rollup-generate-graph"
+                ref={this.generateGraphContents}
+                className="add-diff"
+              >
+                {`
+plugins: [{
+buildEnd() {
+  const deps = [];
+  for (const id of this.getModuleIds()) {
+    const m = this.getModuleInfo(id);
+    if (m != null && !m.isExternal) {
+      for (const target of m.importedIds) {
+        deps.push({ source: m.id, target })
+      }
+    }
+  }
+  
+  fs.writeFileSync(
+      path.join(__dirname, 'graph.json'), 
+      JSON.stringify(deps, null, 2));
+},
+}]`}
+              </span>
+            </pre>
+            <button
+              onClick={() =>
+                toClipboard(
+                  this.generateGraphContents.current!.textContent || ""
+                )
+              }
+              className="copy-button"
+              aria-label="Copy stats.json programatic snippit to clipboard"
+            />
+          </code>
+        </div>
+      );
+      sourcemaps = (
+        <div>
+          <p>rollup.config.js</p>
+          <code>
+            <pre>
+              {`output: { 
+    file: '\`\${outFolder}/dist.js',
+    format: 'iife',
+    name: 'PROJECT_NAME',\n`}
+              <span className="add-diff">
+                &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
+              </span>
+              {`
+}`}
+            </pre>
+            <button
+              onClick={() => toClipboard("sourcemap: true,")}
+              className="copy-button"
+              aria-label="Copy sourcemap snippet to clipboard"
+            />
+          </code>
+        </div>
+      );
+    } else if (type === ImportTypes.ROME) {
+      instructions = (
+        <div>
+          <p>
+            Run the <code>bundle</code> command of rome to generate the
+            sourcemap files and bundlebuddy.json for your project
+          </p>
+          <code>
+            <pre>rome bundle .</pre>
+          </code>
+        </div>
+      );
+    } else if (type === ImportTypes.PARCEL) {
+      instructions = (
+        <div>
+          <p>
+            run <code>BUNDLE_BUDDY=true parcel build</code>&nbsp; to generate
+            the sourcemap files and bundle-buddy.json file for your project
+          </p>
+          <code>
+            <pre>BUNDLE_BUDDY=true parcel build</pre>
+          </code>
+        </div>
+      );
+    } else if (type === ImportTypes.ESBUILD) {
+      instructions = (
+        <div>
+          <p>
+            Run the <code>--bundle</code> command of <code>esbuild</code> with{" "}
+            <code>--metafile=esbuild</code> to generate the metadata file to
+            understand your project.
+          </p>
+          <code>
+            <pre>esbuild --bundle --metafile</pre>
+          </code>
+        </div>
+      );
+    }
+
     return (
       <div>
         <div>
@@ -271,43 +294,9 @@ plugins: [{
               </a>
             </div>
           ) : null}
-          <h3>Upload assets</h3>
+          <h3>Upload assets:</h3>
           <div className="upload-files-container flex">
-            <div className="button-import-container">
-              <button tabIndex={-1} className="import-asset">
-                <img
-                  height="20px"
-                  width="20px"
-                  className="attach-icon"
-                  alt="attach file"
-                  src="/img/attach_icon.svg"
-                />
-                {this.props.graphFileName}
-                <input
-                  id="stats"
-                  type="file"
-                  accept=".json"
-                  ref={this.graphInput}
-                  onInput={() => this.onGraphInput()}
-                />
-              </button>
-              <img
-                src={
-                  this.hasGraphFile(this.state.graphFile)
-                    ? "/img/ok_icon.svg"
-                    : "/img/warn_icon.svg"
-                }
-                height="24px"
-                width="24px"
-                alt={
-                  this.hasGraphFile(this.state.graphFile)
-                    ? "OK import"
-                    : "missing import"
-                }
-                className="status-icon"
-              />
-            </div>
-            {this.disableSourceMapInput(this.props.importType) ? null : (
+            <div className="right-spacing">
               <div className="button-import-container">
                 <button tabIndex={-1} className="import-asset">
                   <img
@@ -317,51 +306,76 @@ plugins: [{
                     alt="attach file"
                     src="/img/attach_icon.svg"
                   />
-                  sourcemaps
+                  {this.props.graphFileName}
                   <input
-                    id="sourcemap"
-                    multiple
+                    id="stats"
                     type="file"
-                    accept=".map,.sourcemap"
-                    ref={this.sourceMapInput}
-                    onInput={() => this.onSourceMapInput()}
+                    accept=".json"
+                    ref={this.graphInput}
+                    onInput={() => this.onGraphInput()}
                   />
                 </button>
                 <img
                   src={
-                    this.hasSourceMapFile(this.state.sourceMapFiles)
+                    this.hasGraphFile(this.state.graphFile)
                       ? "/img/ok_icon.svg"
                       : "/img/warn_icon.svg"
                   }
                   height="24px"
                   width="24px"
                   alt={
-                    this.hasSourceMapFile(this.state.sourceMapFiles)
+                    this.hasGraphFile(this.state.graphFile)
                       ? "OK import"
                       : "missing import"
                   }
                   className="status-icon"
                 />
               </div>
+              {graph}
+            </div>
+            {this.disableSourceMapInput(this.props.importType) ? null : (
+              <div className="right-spacing">
+                <div className="button-import-container">
+                  <button tabIndex={-1} className="import-asset">
+                    <img
+                      height="20px"
+                      width="20px"
+                      className="attach-icon"
+                      alt="attach file"
+                      src="/img/attach_icon.svg"
+                    />
+                    sourcemaps
+                    <input
+                      id="sourcemap"
+                      multiple
+                      type="file"
+                      accept=".map,.sourcemap"
+                      ref={this.sourceMapInput}
+                      onInput={() => this.onSourceMapInput()}
+                    />
+                  </button>
+                  <img
+                    src={
+                      this.hasSourceMapFile(this.state.sourceMapFiles)
+                        ? "/img/ok_icon.svg"
+                        : "/img/warn_icon.svg"
+                    }
+                    height="24px"
+                    width="24px"
+                    alt={
+                      this.hasSourceMapFile(this.state.sourceMapFiles)
+                        ? "OK import"
+                        : "missing import"
+                    }
+                    className="status-icon"
+                  />
+                </div>
+                {sourcemaps}
+              </div>
             )}
           </div>
-          <div className="import-project">
-            <button
-              disabled={
-                !this.canProcess(
-                  this.state.sourceMapFiles,
-                  this.state.graphFile,
-                  this.props.importType
-                )
-              }
-              onClick={() => this.processFiles(this.props.importType)}
-            >
-              Import project
-            </button>
-          </div>
-          <div className="import-instruction">
-            {this.importInstructions(this.props.importType)}
-          </div>
+
+          <div className="import-instruction">{instructions}</div>
         </div>
       </div>
     );

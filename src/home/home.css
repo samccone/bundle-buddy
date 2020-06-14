@@ -11,6 +11,7 @@
 
 #home .left-panel {
   width: 30vw;
+  min-width: 30vw;
   height: inherit;
 }
 #home .right-panel {
@@ -35,4 +36,12 @@
 #home button span {
   flex-grow: 1;
   text-align: center;
+}
+
+#home pre {
+  background: white;
+}
+
+#home .upload {
+  /* min-height: 500px; */
 }

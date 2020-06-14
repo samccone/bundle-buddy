@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import Resolve from "../resolve/Resolve";
 import { ImportResolveState, ImportHistory, ImportTypes } from "../types";
 import Importer from "../import/Importer";
-import ImportSelector from "../import/import_selector";
+import ImportSelector from "../import/ImportSelector";
 import WebpackImport from "../import/webpack/Importer";
-import { stateFromResolveKey } from "../routes";
+import CRAImport from "../import/webpack/CRAImporter";
 import "./home.css";
 
 class Home extends Component<ImportResolveState & { history: ImportHistory }> {
@@ -17,8 +17,6 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
       graphFileTransform,
       history,
     } = this.props;
-
-    const state = stateFromResolveKey(history.location.state?.key);
 
     return (
       <div id="home">
@@ -69,11 +67,10 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
           </div>
 
           <div className="col-container">
-            <div className="right-col">
+            <div className="right-col upload">
               <div className="padding">
                 <Switch>
                   <Route
-                    exact
                     path="/webpack"
                     component={(h: { history: History }) => {
                       return (
@@ -86,7 +83,18 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     }}
                   />
                   <Route
-                    exact
+                    path="/create-react-app"
+                    component={(h: { history: History }) => {
+                      return (
+                        <CRAImport
+                          graphFileName="stats.json"
+                          history={h.history as any}
+                          importType={ImportTypes.CRA}
+                        />
+                      );
+                    }}
+                  />
+                  <Route
                     path="/rollup"
                     component={(h: { history: History }) => {
                       return (
@@ -99,7 +107,6 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     }}
                   />
                   <Route
-                    exact
                     path="/rome"
                     component={(h: { history: History }) => {
                       return (
@@ -112,7 +119,6 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     }}
                   />
                   <Route
-                    exact
                     path="/parcel"
                     component={(h: { history: History }) => {
                       return (
@@ -150,26 +156,12 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                       );
                     }}
                   />
-                  <Route
-                    path="/:importer/resolve"
-                    component={(h: { history: History }) => {
-                      return (
-                        <Resolve
-                          history={h.history as any}
-                          graphEdges={graphEdges}
-                          processedBundle={processedSourceMap}
-                          sourceMapFileTransform={sourceMapFileTransform}
-                          graphFileTransform={graphFileTransform}
-                        />
-                      );
-                    }}
-                  />
                 </Switch>
               </div>
             </div>
           </div>
         </section>
-        {state && graphEdges && (
+        {graphEdges && (
           <section style={{ color: "var(--grey900)" }}>
             <div className="left-panel">
               <div
@@ -180,14 +172,12 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
               </div>
             </div>
             <div className="right-panel">
-              <p className="ft-18">Reconcile file paths:</p>
-
               <Resolve
-                history={history}
+                history={history as any}
                 graphEdges={graphEdges}
-                processedBundle={state.processedSourceMap}
-                sourceMapFileTransform={state.bundledFilesTransform}
-                graphFileTransform={state.graphFileTransform}
+                processedBundle={processedSourceMap}
+                sourceMapFileTransform={sourceMapFileTransform}
+                graphFileTransform={graphFileTransform}
               />
             </div>
           </section>

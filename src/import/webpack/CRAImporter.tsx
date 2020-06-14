@@ -6,7 +6,7 @@ import {
   ImportProps,
   ImportResolveState,
   ImportState,
-  ProcessedBundle,
+  ProcessedSourceMap,
 } from "../../types";
 
 import React, { Component } from "react";
@@ -19,8 +19,8 @@ const IGNORE_FILES = [
   "webpack/bootstrap",
 ];
 
-function removeWebpackMagicFiles(v: ProcessedBundle) {
-  const ret: ProcessedBundle = {
+function removeWebpackMagicFiles(v: ProcessedSourceMap) {
+  const ret: ProcessedSourceMap = {
     totalBytes: v.totalBytes,
     files: {},
   };
@@ -39,7 +39,7 @@ function removeWebpackMagicFiles(v: ProcessedBundle) {
   return ret;
 }
 
-class WebpackImport extends Component<ImportProps, ImportState> {
+class CRAImport extends Component<ImportProps, ImportState> {
   sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
   statsInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
 
@@ -50,7 +50,6 @@ class WebpackImport extends Component<ImportProps, ImportState> {
   }
 
   state: ImportState = {};
-
   hasStatsFile(f: File | undefined) {
     return f != null || window.location.pathname.includes("resolve");
   }
@@ -102,7 +101,10 @@ class WebpackImport extends Component<ImportProps, ImportState> {
         processedSourceMap: processed.processedSourcemap!,
       };
 
-      this.props.history.push("/webpack/resolve", storeResolveState(state));
+      this.props.history.push(
+        "/create-react-app/resolve",
+        storeResolveState(state)
+      );
     }
   }
 
@@ -173,136 +175,110 @@ class WebpackImport extends Component<ImportProps, ImportState> {
         <div>
           <h3>Upload assets:</h3>
           <div className="upload-files-container flex">
-            <div className="right-spacing">
-              <div className="button-import-container">
-                <button tabIndex={-1} className="import-asset">
-                  <img
-                    height="20px"
-                    width="20px"
-                    className="attach-icon"
-                    alt="attach file"
-                    src="/img/attach_icon.svg"
-                  />
-                  sourcemaps
-                  <input
-                    id="sourcemap"
-                    type="file"
-                    multiple
-                    accept=".map,.sourcemap"
-                    ref={this.sourceMapInput}
-                    onInput={() => this.onSourceMapInput()}
-                  />
-                </button>
+            <div className="button-import-container">
+              <button className="import-asset" tabIndex={-1}>
                 <img
-                  src={
-                    this.hasSourceMapFile(this.state.sourceMapFiles)
-                      ? "/img/ok_icon.svg"
-                      : "/img/warn_icon.svg"
-                  }
-                  alt={
-                    this.hasSourceMapFile(this.state.sourceMapFiles)
-                      ? "OK import"
-                      : "missing import"
-                  }
-                  height="24px"
-                  width="24px"
-                  className="status-icon"
+                  height="20px"
+                  width="20px"
+                  className="attach-icon"
+                  alt="attach file"
+                  src="/img/attach_icon.svg"
                 />
-              </div>
-              <p>webpack.conf.js</p>
-              <code>
-                <pre>
-                  <span className="add-diff">devtool: "source-map"</span>
-                </pre>
-                <button
-                  onClick={() => toClipboard("devtool: 'source-map'")}
-                  className="copy-button"
-                  aria-label="Copy sourcemap snippet to clipboard"
+                stats.json
+                <input
+                  id="stats"
+                  type="file"
+                  ref={this.statsInput}
+                  accept=".json"
+                  onInput={() => this.onStatsInput()}
                 />
-              </code>
+              </button>
+              <img
+                src={
+                  this.hasStatsFile(this.state.graphFile)
+                    ? "/img/ok_icon.svg"
+                    : "/img/warn_icon.svg"
+                }
+                alt={
+                  this.hasStatsFile(this.state.graphFile)
+                    ? "OK import"
+                    : "missing import"
+                }
+                height="24px"
+                width="24px"
+                className="status-icon"
+              />
             </div>
-            <div className="right-spacing">
-              <div className="button-import-container">
-                <button className="import-asset" tabIndex={-1}>
-                  <img
-                    height="20px"
-                    width="20px"
-                    className="attach-icon"
-                    alt="attach file"
-                    src="/img/attach_icon.svg"
-                  />
-                  stats.json
-                  <input
-                    id="stats"
-                    type="file"
-                    ref={this.statsInput}
-                    accept=".json"
-                    onInput={() => this.onStatsInput()}
-                  />
-                </button>
+
+            <div className="button-import-container">
+              <button tabIndex={-1} className="import-asset">
                 <img
-                  src={
-                    this.hasStatsFile(this.state.graphFile)
-                      ? "/img/ok_icon.svg"
-                      : "/img/warn_icon.svg"
-                  }
-                  alt={
-                    this.hasStatsFile(this.state.graphFile)
-                      ? "OK import"
-                      : "missing import"
-                  }
-                  height="24px"
-                  width="24px"
-                  className="status-icon"
+                  height="20px"
+                  width="20px"
+                  className="attach-icon"
+                  alt="attach file"
+                  src="/img/attach_icon.svg"
                 />
-              </div>{" "}
-              <p>via command line</p>
-              <code>
-                <pre>
-                  <span className="add-diff">
-                    webpack --profile --json > stats.json
-                  </span>
-                </pre>
-                <button
-                  onClick={() =>
-                    toClipboard("webpack --profile --json > stats.json")
-                  }
-                  className="copy-button"
-                  aria-label="Copy stats.json CLI command to clipboard"
+                sourcemaps
+                <input
+                  id="sourcemap"
+                  type="file"
+                  multiple
+                  accept=".map,.sourcemap"
+                  ref={this.sourceMapInput}
+                  onInput={() => this.onSourceMapInput()}
                 />
-              </code>
-              <p>via programatic compilation </p>
-              <code>
-                <pre>
-                  {`const webpack = require("webpack");
-webpack({
-// Configuration Object
-}, (err, stats) => {
-if (err) {
-    console.error(err);
-    return;
-}`}
-                  <span className="add-diff">
-                    {`
-fs.writeFileSync(
-  path.join(__dirname, "stats.json"), 
-  JSON.stringify(stats.toJson()), 
-  'utf-8');
-});
-`}
-                  </span>
-                </pre>
-                <button
-                  onClick={() =>
-                    toClipboard(
-                      `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
-                    )
-                  }
-                  className="copy-button"
-                  aria-label="Copy stats.json programatic snippit to clipboard"
-                />
-              </code>
+              </button>
+              <img
+                src={
+                  this.hasSourceMapFile(this.state.sourceMapFiles)
+                    ? "/img/ok_icon.svg"
+                    : "/img/warn_icon.svg"
+                }
+                alt={
+                  this.hasSourceMapFile(this.state.sourceMapFiles)
+                    ? "OK import"
+                    : "missing import"
+                }
+                height="24px"
+                width="24px"
+                className="status-icon"
+              />
             </div>
+          </div>
+        </div>
+        <div className="col-container">
+          <div className="right-spacing">
+            <p>Using yarn, in your project directory run: </p>
+            <code>
+              <pre>
+                <span className="add-diff">
+                  GENERATE_SOURCEMAP=true yarn run build -- --stats
+                </span>
+                <br />
+              </pre>
+              <button
+                onClick={() => toClipboard("devtool: 'source-map'")}
+                className="copy-button"
+                aria-label="Copy sourcemap snippet to clipboard"
+              />
+            </code>
+          </div>
+          <div>
+            {" "}
+            <p>Or, using npm, in your project directory run: </p>
+            <code>
+              <pre>
+                <span className="add-diff">
+                  GENERATE_SOURCEMAP=true npm run build -- --stats
+                </span>
+              </pre>
+              <button
+                onClick={() => toClipboard("devtool: 'source-map'")}
+                className="copy-button"
+                aria-label="Copy sourcemap snippet to clipboard"
+              />
+            </code>
           </div>
         </div>
       </div>
@@ -310,4 +286,4 @@ fs.writeFileSync(
   }
 }
 
-export default WebpackImport;
+export default CRAImport;
