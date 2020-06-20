@@ -334,17 +334,16 @@ button:disabled {
   color: var(--grey300);
 }
 
-button.copy-button {
+.upload-files-container button.copy-button {
   background-image: url(/img/copy_icon.svg);
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: none;
-  display: inline-block;
   opacity: 0.2;
-  position: absolute;
-  left: calc(100% - 40px);
-  top: 100%;
-  margin-top: -30px;
+  width: 20px;
+  float: right;
+  height: 20px;
+  min-width: 20px;
 }
 
 button.copy-button:hover {
