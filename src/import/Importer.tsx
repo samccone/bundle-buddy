@@ -8,10 +8,38 @@ import {
   ImportState,
   ImportTypes,
   EsBuildMetadata,
+  ProcessedBundle,
 } from "../types";
 import { storeResolveState } from "../routes";
 import { toEdges, toProcessedBundles } from "./esbuild";
 import { mergeProcessedBundles } from "./process_sourcemaps";
+import { cleanGraph } from "./graph_process";
+import { statsToGraph } from "./stats_to_graph";
+
+const IGNORE_FILES = [
+  // https://twitter.com/samccone/status/1137776153148583936
+  "webpack/bootstrap",
+];
+
+function removeWebpackMagicFiles(v: ProcessedBundle) {
+  const ret: ProcessedBundle = {
+    totalBytes: v.totalBytes,
+    files: {},
+  };
+  for (const k of Object.keys(v.files)) {
+    let skip = false;
+    for (const i of IGNORE_FILES) {
+      if (k.endsWith(i)) {
+        skip = true;
+      }
+    }
+    if (!skip) {
+      ret.files[k] = v.files[k];
+    }
+  }
+
+  return ret;
+}
 
 // noopener noreferrer
 class Import extends Component<ImportProps, ImportState> {
@@ -112,6 +140,7 @@ class Import extends Component<ImportProps, ImportState> {
   }
 
   async processFiles(importType: ImportTypes) {
+    console.log("IN PROCESS");
     if (importType === ImportTypes.ESBUILD && this.state.graphFile != null) {
       const graphContents = JSON.parse(
         await readFileAsText(this.state.graphFile)
@@ -138,10 +167,25 @@ class Import extends Component<ImportProps, ImportState> {
     const graphContents = await readFileAsText(this.state.graphFile);
     const sourceMapContents = await readFilesAsText(this.state.sourceMapFiles);
 
-    const processed = await processImports({
-      sourceMapContents,
-      graphEdges: graphContents,
-    });
+    let processed;
+    if (importType === ImportTypes.WEBPACK || importType === ImportTypes.CRA) {
+      processed = await processImports({
+        sourceMapContents,
+        graphEdges: graphContents,
+        graphPreProcessFn: (g) => cleanGraph(statsToGraph(g)),
+      });
+
+      if (processed.processedSourcemap != null) {
+        processed.processedSourcemap = removeWebpackMagicFiles(
+          processed.processedSourcemap
+        );
+      }
+    } else {
+      processed = await processImports({
+        sourceMapContents,
+        graphEdges: graphContents,
+      });
+    }
 
     const { importError, importErrorUri } = buildImportErrorReport(processed, {
       graphFile: this.state.graphFile,
@@ -177,8 +221,111 @@ class Import extends Component<ImportProps, ImportState> {
   render() {
     const type = this.props.importType;
     let graph, sourcemaps, instructions;
+    if (type === ImportTypes.WEBPACK) {
+      sourcemaps = (
+        <div className="right-spacing">
+          <p>webpack.conf.js</p>
+          <code>
+            <pre>
+              <span className="add-diff">devtool: "source-map"</span>
+            </pre>
+            <button
+              onClick={() => toClipboard("devtool: 'source-map'")}
+              className="copy-button"
+              aria-label="Copy sourcemap snippet to clipboard"
+            />
+          </code>
+        </div>
+      );
 
-    if (type === ImportTypes.ROLLUP) {
+      graph = (
+        <div className="right-spacing">
+          <p>via command line</p>
+          <code>
+            <pre>
+              <span className="add-diff">
+                webpack --profile --json {">"} stats.json
+              </span>
+            </pre>
+            <button
+              onClick={() =>
+                toClipboard("webpack --profile --json > stats.json")
+              }
+              className="copy-button"
+              aria-label="Copy stats.json CLI command to clipboard"
+            />
+          </code>
+          <p>via programatic compilation </p>
+          <code>
+            <pre>
+              {`const webpack = require("webpack");
+webpack({
+// Configuration Object
+}, (err, stats) => {
+if (err) {
+console.error(err);
+return;
+}`}
+              <span className="add-diff">
+                {`
+fs.writeFileSync(
+path.join(__dirname, "stats.json"), 
+JSON.stringify(stats.toJson()), 
+'utf-8');
+});
+`}
+              </span>
+            </pre>
+            <button
+              onClick={() =>
+                toClipboard(
+                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
+                )
+              }
+              className="copy-button"
+              aria-label="Copy stats.json programatic snippit to clipboard"
+            />
+          </code>
+        </div>
+      );
+    } else if (type === ImportTypes.CRA) {
+      instructions = (
+        <div className="col-container">
+          <div className="right-spacing">
+            <p>Using yarn, in your project directory run: </p>
+            <code>
+              <pre>
+                <span className="add-diff">
+                  GENERATE_SOURCEMAP=true yarn run build -- --stats
+                </span>
+                <br />
+              </pre>
+              <button
+                onClick={() => toClipboard("devtool: 'source-map'")}
+                className="copy-button"
+                aria-label="Copy sourcemap snippet to clipboard"
+              />
+            </code>
+          </div>
+          <div>
+            {" "}
+            <p>Or, using npm, in your project directory run: </p>
+            <code>
+              <pre>
+                <span className="add-diff">
+                  GENERATE_SOURCEMAP=true npm run build -- --stats
+                </span>
+              </pre>
+              <button
+                onClick={() => toClipboard("devtool: 'source-map'")}
+                className="copy-button"
+                aria-label="Copy sourcemap snippet to clipboard"
+              />
+            </code>
+          </div>
+        </div>
+      );
+    } else if (type === ImportTypes.ROLLUP) {
       graph = (
         <div>
           <p>rollup.config.js</p>

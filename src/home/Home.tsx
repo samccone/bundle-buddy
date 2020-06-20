@@ -4,8 +4,7 @@ import Resolve from "../resolve/Resolve";
 import { ImportResolveState, ImportHistory, ImportTypes } from "../types";
 import Importer from "../import/Importer";
 import ImportSelector from "../import/ImportSelector";
-import WebpackImport from "../import/webpack/Importer";
-import CRAImport from "../import/webpack/CRAImporter";
+
 import "./home.css";
 
 class Home extends Component<ImportResolveState & { history: ImportHistory }> {
@@ -74,7 +73,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     path="/webpack"
                     component={(h: { history: History }) => {
                       return (
-                        <WebpackImport
+                        <Importer
                           graphFileName="stats.json"
                           history={h.history as any}
                           importType={ImportTypes.WEBPACK}
@@ -86,7 +85,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     path="/create-react-app"
                     component={(h: { history: History }) => {
                       return (
-                        <CRAImport
+                        <Importer
                           graphFileName="stats.json"
                           history={h.history as any}
                           importType={ImportTypes.CRA}
@@ -147,7 +146,7 @@ class Home extends Component<ImportResolveState & { history: ImportHistory }> {
                     path="/"
                     component={(h: { history: History }) => {
                       return (
-                        <WebpackImport
+                        <Importer
                           graphFileName="stats.json"
                           history={h.history as any}
                           importType={ImportTypes.WEBPACK}
