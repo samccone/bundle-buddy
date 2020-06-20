@@ -2008,6 +2008,11 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
+"@types/d3-hierarchy@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@types/d3-hierarchy/-/d3-hierarchy-1.1.6.tgz#4c017521900813ea524c9ecb8d7985ec26a9ad9a"
+  integrity sha512-vvSaIDf/Ov0o3KwMT+1M8+WbnnlRiGjlGD5uvk83a1mPCTd/E5x12bUJ/oP55+wUY/4Kb5kc67rVpVGJ2KUHxg==
+
 "@types/d3-scale@^2.2.0":
   version "2.2.0"
   resolved "https://registry.npmjs.org/@types/d3-scale/-/d3-scale-2.2.0.tgz#e5987a2857365823eb26ed5eb21bc566c4dcf1c0"
@@ -14966,6 +14971,13 @@ websocket-extensions@>=0.1.1:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
   integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
+
+webtreemap-cdt@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/webtreemap-cdt/-/webtreemap-cdt-3.0.0.tgz#bbb7719450d84c643a36c06f0ff35442ae29eeb1"
+  integrity sha512-4IRK4r21tvOXFEiQ7LrFxNFrJjkAQQvh/JmdwEB4XbMwh1+920y+ag7in+pnsEBqgvBI/1pN6gFtlVjGyBZ+Cw==
+  dependencies:
+    commander "^2.11.0"
 
 webtreemap@2.0.1:
   version "2.0.1"

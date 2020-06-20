@@ -718,3 +718,22 @@ td {
 .import-instruction {
   flex-direction: column;
 }
+
+.webtreemap-node {
+  cursor: pointer;
+  position: absolute;
+  border: solid 1px #666;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+  transition: left 0.15s, top 0.15s, width 0.15s, height 0.15s;
+}
+
+.webtreemap-node:hover {
+  background: #ddd;
+}
+
+.webtreemap-caption {
+  font-size: 10px;
+  text-align: center;
+}
