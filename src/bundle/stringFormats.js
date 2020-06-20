@@ -1,12 +1,18 @@
 const mb = 1024 * 1024;
 const kb = 1024;
-export const getFileSize = (size) => {
-  if (!size || size === 0) return "0 KB";
+
+export function getFileSizeSplit(size) {
+  if (!size || size === 0) return { size: 0, type: "KB" };
   let value = size && size >= mb ? size / mb : size / kb;
   if (value < 1 || size >= mb) value = value.toFixed(2);
   else value = value.toFixed(0);
-  return value + " " + (size >= mb ? "MB" : "KB");
-};
+  return { value, type: size >= mb ? "MB" : "KB" };
+}
+
+export function getFileSize(size) {
+  const { value, type } = getFileSizeSplit(size);
+  return `${value} ${type}`;
+}
 
 export const getPercent = (size, total) => {
   if (size === 1) return "100%";

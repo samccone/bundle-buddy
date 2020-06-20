@@ -47,18 +47,18 @@ export default function Analyze(props: Props) {
   });
 
   return (
-    <div>
-      <div className="flex">
-        <div style={{ width: "25vw" }}>
-          <h1>Analyze</h1>
+    <div className="Analyze">
+      <div className="flex header">
+        <div className="right-padding left-panel" style={{ width: "25vw" }}>
+          <h1 className="uppercase-header">Analyze</h1>
         </div>
         <div>
-          <p>
+          <p className="subheader">
             <img className="icon" alt="details" src="/img/details.png" />
             <b>Details</b>
           </p>
           <p>
-            Bundled{" "}
+            This project bundled{" "}
             {withNodeModules && (
               <span>
                 <b>{withNodeModules}</b> node_modules
@@ -68,9 +68,9 @@ export default function Analyze(props: Props) {
             <b>{withoutNodeModules}</b> files
           </p>
         </div>
+        <br />
       </div>
 
-      <br />
       <FileDetails
         total={total}
         network={network}

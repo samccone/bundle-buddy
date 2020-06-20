@@ -1,0 +1,77 @@
+#bundle .download {
+  width: 100%;
+  border: none;
+  /* height: 20px; */
+  background: var(--primary-color);
+  color: white;
+  padding: 10px;
+}
+
+#bundle .left-panel {
+  padding: 30px 60px 0px 30px;
+}
+
+#bundle-header,
+#bundle-header .sticky {
+  background: var(--grey200);
+}
+
+#bundle-header .total-size {
+  background: white;
+  padding: 12px 24px;
+}
+
+#bundle-header .total-size p {
+  text-align: center;
+}
+
+#bundle-header .total-size .value {
+  font-size: 64px;
+  font-weight: 100;
+}
+
+#bundle .Report {
+  background: var(--primary-color);
+}
+
+#bundle .Analyze .header {
+  background: var(--grey900);
+  color: white;
+}
+
+#bundle .Report h1,
+.Analyze h1 {
+  color: white;
+}
+
+#bundle .Report .report-panel {
+  background: white;
+  padding: 12px 24px;
+  margin-right: 24px;
+}
+
+#bundle .Report table th {
+  text-align: left;
+
+  /* background: blue; */
+}
+
+#bundle .Report table th {
+  border-bottom: 1px solid var(--grey200);
+}
+#bundle .Report table td:first-of-type {
+  border-right: 1px solid var(--grey200);
+}
+
+#bundle .Report table td {
+  font-size: 14px;
+  padding: 4px;
+  border-bottom: 1px solid var(--grey200);
+}
+
+#bundle .subheader {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+}

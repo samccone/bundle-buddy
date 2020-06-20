@@ -2,7 +2,7 @@ import React from "react";
 
 import { primary, mainFileColor, secondaryFileColor } from "../theme";
 
-import { getFileSize, getPercent } from "./stringFormats";
+import { getFileSize, getFileSizeSplit, getPercent } from "./stringFormats";
 import BarChart from "./BarChart";
 import { ProcessedImportState, SizeData } from "../types";
 
@@ -120,52 +120,66 @@ export default function ByTypeBarChart(props: Props) {
     }
   }
 
+  const size = getFileSizeSplit(totalSize);
   return (
-    <div className="flex padding top-panel">
-      <div style={{ width: "25vw" }}>
-        <h1>Overview</h1>
+    <div className="flex padding top-panel" id="bundle-header">
+      <div className="right-padding left-panel" style={{ width: "25vw" }}>
+        <h1 className="uppercase-header">Overview</h1>
 
         {totalSize && (
-          <div>
+          <div className="total-size">
             <p>
-              <b>
-                <small>Total Size</small>
-              </b>
+              <span className="value">{size.value}</span>{" "}
+              <span className="type">{size.type}</span>
             </p>
-            <p>{getFileSize(totalSize)}</p>
           </div>
         )}
         {download}
       </div>
-      <div className="scroll-y" style={{ width: "37vw" }}>
-        <div className="sticky-wrapper">
-          <div className="sticky">
-            <p>
-              <img className="icon" alt="file types" src="/img/file.png" />
-              <b>
-                <small>File Types</small>
-              </b>
-            </p>
-            <p>{fileTypeMessage}</p>
+      <div className="scroll-y" style={{ width: "75vw" }}>
+        <p className="subheader">
+          <img className="icon" alt="file types" src="/img/file.png" />
+          <b>
+            <small>By Bundle</small>
+          </b>
+        </p>
+
+        <div className="flex">
+          <div className="scroll-y" style={{ width: "37vw" }}>
+            <div className="sticky-wrapper">
+              <div className="sticky">
+                <p className="subheader">
+                  <img className="icon" alt="file types" src="/img/file.png" />
+                  <b>
+                    <small>By File Type</small>
+                  </b>
+                </p>
+                <p>{fileTypeMessage}</p>
+              </div>
+              <BarChart {...frameProps} data={fileTypes} />
+            </div>
           </div>
-          <BarChart {...frameProps} data={fileTypes} />
-        </div>
-      </div>
-      <div className="scroll-y" style={{ width: "37vw" }}>
-        <div className="sticky-wrapper">
-          <div className="sticky">
-            <p>
-              <img className="icon" alt="directories" src="/img/folder.png" />
-              <b>
-                <small>Directories</small>
-              </b>
-            </p>
-            <p>
-              Your project is made up <b>{directories.length}</b> top-level
-              directories
-            </p>
+          <div className="scroll-y" style={{ width: "37vw" }}>
+            <div className="sticky-wrapper">
+              <div className="sticky">
+                <p className="subheader">
+                  <img
+                    className="icon"
+                    alt="directories"
+                    src="/img/folder.png"
+                  />
+                  <b>
+                    <small>By Directory</small>
+                  </b>
+                </p>
+                <p>
+                  Your project is made up <b>{directories.length}</b> top-level
+                  directories
+                </p>
+              </div>
+              <BarChart {...directoryProps} data={directories} />
+            </div>
           </div>
-          <BarChart {...directoryProps} data={directories} />
         </div>
       </div>
     </div>

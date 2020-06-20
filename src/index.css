@@ -30,6 +30,34 @@
   --grey900: #293930;
 }
 
+.grey100 {
+  color: var(--grey100);
+}
+.grey200 {
+  color: var(--grey200);
+}
+.grey300 {
+  color: var(--grey300);
+}
+.grey400 {
+  color: var(--grey400);
+}
+.grey500 {
+  color: var(--grey500);
+}
+.grey600 {
+  color: var(--grey600);
+}
+.grey700 {
+  color: var(--grey700);
+}
+.grey800 {
+  color: var(--grey800);
+}
+.grey900 {
+  color: var(--grey900);
+}
+
 .ft-10 {
   font-size: 10px;
 }
@@ -183,6 +211,8 @@ svg {
   height: 50px;
   width: 100%;
   border-bottom: 1px solid #ddd;
+  background: var(--grey600);
+  text-transform: uppercase;
 }
 
 .bottom-panel {
@@ -199,6 +229,11 @@ svg {
 
 .App-header h1 {
   margin: 0;
+  font-size: 16px;
+
+  color: white;
+  font-weight: 500;
+  letter-spacing: 3px;
 }
 
 .App-header .nav {
@@ -279,6 +314,10 @@ img.icon {
   border: none;
 }
 
+.no-margin {
+  margin: 0px;
+}
+
 .top-border {
   border-top: 1px solid #ddd;
 }
@@ -334,7 +373,8 @@ button:disabled {
   color: var(--grey300);
 }
 
-.upload-files-container button.copy-button {
+.upload-files-container button.copy-button,
+button.copy-button {
   background-image: url(/img/copy_icon.svg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -703,7 +743,9 @@ td {
 
 .alpha-warning {
   margin-left: 20px;
-  background: papayawhip;
+  background: var(--grey400);
+  padding: 4px;
+  color: var(--grey800);
 }
 
 .button-wrap {
@@ -716,4 +758,15 @@ td {
 
 .import-instruction {
   flex-direction: column;
+}
+
+.uppercase-header {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.paper {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }

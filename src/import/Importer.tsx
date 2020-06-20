@@ -401,6 +401,11 @@ buildEnd() {
           <code>
             <pre>rome bundle .</pre>
           </code>
+          <button
+            onClick={() => toClipboard("devtool: 'source-map'")}
+            className="copy-button"
+            aria-label="Copy sourcemap snippet to clipboard"
+          />
         </div>
       );
     } else if (type === ImportTypes.PARCEL) {
@@ -413,6 +418,11 @@ buildEnd() {
           <code>
             <pre>BUNDLE_BUDDY=true parcel build</pre>
           </code>
+          <button
+            onClick={() => toClipboard("BUNDLE_BUDDY=true parcel build")}
+            className="copy-button"
+            aria-label="Copy sourcemap snippet to clipboard"
+          />
         </div>
       );
     } else if (type === ImportTypes.ESBUILD) {
@@ -426,6 +436,11 @@ buildEnd() {
           <code>
             <pre>esbuild --bundle --metafile</pre>
           </code>
+          <button
+            onClick={() => toClipboard("esbuild --bundle --metafile")}
+            className="copy-button"
+            aria-label="Copy sourcemap snippet to clipboard"
+          />
         </div>
       );
     }

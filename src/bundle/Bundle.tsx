@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import Header from "./Header";
 import Report from "./Report";
 import Analyze from "./Analyze";
+import "./bundle.css";
 
 import { colors } from "../theme";
 import { ProcessedImportState } from "../types";
@@ -85,18 +86,20 @@ export default function Bundle(props: Props) {
   });
 
   const downloadButton = (
-    <button onClick={() => download(props)}>download analysis</button>
+    <button className="download paper" onClick={() => download(props)}>
+      download analysis
+    </button>
   );
 
   return (
-    <div>
+    <div id="bundle">
       <div>
         <Header rollups={rollups} download={downloadButton} />
       </div>
       <div>
         <Report duplicateNodeModules={duplicateNodeModules} />
       </div>
-      <div className="left-padding right-padding">
+      <div>
         <Analyze
           total={rollups.value}
           network={network}
