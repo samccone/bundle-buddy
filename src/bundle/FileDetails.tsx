@@ -173,13 +173,6 @@ function getColumns(
   });
 }
 
-function filterMethod(filter: any, row: any, column: any) {
-  return (
-    column.accessor(row).toLowerCase().indexOf(filter.value.toLowerCase()) !==
-    -1
-  );
-}
-
 type Props = {
   total?: number;
   changeSelected: React.Dispatch<string | null>;

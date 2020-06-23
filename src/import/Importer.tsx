@@ -454,7 +454,11 @@ buildEnd() {
               <code>
                 <pre>{`${this.state.importError}`}</pre>
               </code>
-              <a href={this.state.importErrorUri || ""} target="_blank">
+              <a
+                href={this.state.importErrorUri || ""}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 File a bug
               </a>
             </div>

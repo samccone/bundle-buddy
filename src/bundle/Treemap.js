@@ -147,15 +147,14 @@ export default function Treemap(props) {
                   .map((node, i) => (
                     <Fragment key={node.data.name}>
                       {i > 0 ? " - " : ""}
-                      <a
-                        href="#"
+                      <button
                         onClick={(e) => {
                           e.preventDefault();
                           handleClick(zoomed, node);
                         }}
                       >
                         {node.data.name}
-                      </a>
+                      </button>
                     </Fragment>
                   ))}
           </div>
