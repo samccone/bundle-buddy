@@ -1,3 +1,4 @@
+import * as pako from "pako";
 import React, { useState, useEffect, useMemo } from "react";
 import Header from "./Header";
 import Report from "./Report";
@@ -22,7 +23,10 @@ function storeSelected(selected?: string | null) {
 }
 
 function download(props: Props) {
-  const blob = new Blob([JSON.stringify(props)], {
+  const deflate = new pako.Deflate({ level: 3 });
+  deflate.push(new TextEncoder().encode(JSON.stringify(props)).buffer, true);
+
+  const blob = new Blob([deflate.result as Uint8Array], {
     type: "application/json",
   });
   const objectURL = URL.createObjectURL(blob);

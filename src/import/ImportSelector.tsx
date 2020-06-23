@@ -1,5 +1,6 @@
+import * as pako from "pako";
 import React, { Component } from "react";
-import { readFileAsText } from "./file_reader";
+import { readFileAsText, readFileAsBinary } from "./file_reader";
 import { NavLink as Link } from "react-router-dom";
 import { ImportHistory } from "../types";
 import { storeProcessedState } from "../routes";
@@ -19,9 +20,9 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
       return;
     }
 
-    const contents = await readFileAsText(file);
-    const previousState = JSON.parse(contents);
-
+    const contents = await readFileAsBinary(file);
+    const inflated = pako.inflate(contents);
+    const previousState = JSON.parse(new TextDecoder().decode(inflated));
     this.props.history.push("/bundle", storeProcessedState(previousState));
   }
 
