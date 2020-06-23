@@ -52,7 +52,7 @@ export default function Home(props: Props) {
         </div>
         <div className="right-panel">
           <p className="ft-18">Select the bundler you are using:</p>
-          <ImportSelector history={History as any} />
+          <ImportSelector history={history} />
         </div>
       </section>
       <section
