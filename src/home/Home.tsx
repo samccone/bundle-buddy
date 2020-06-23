@@ -58,14 +58,18 @@ export default function Home(props: Props) {
       <section
         style={{ background: "var(--grey200)", color: "var(--grey900)" }}
       >
-        <div className="left-panel">
-          <div
-            className="inner-border vertical-center"
-            style={{ borderRight: `3px solid var(--grey300)` }}
-          >
-            <h2>Step 2</h2>
-          </div>
-        </div>
+        <Switch>
+          <Route path="/:importer">
+            <div className="left-panel">
+              <div
+                className="inner-border vertical-center"
+                style={{ borderRight: `3px solid var(--grey300)` }}
+              >
+                <h2>Step 2</h2>
+              </div>
+            </div>
+          </Route>
+        </Switch>
 
         <div className="col-container">
           <div className="right-col upload">
@@ -139,19 +143,6 @@ export default function Home(props: Props) {
                         importType={ImportTypes.ESBUILD}
                         graphFileName="esbuild.json"
                         history={h.history as any}
-                      />
-                    );
-                  }}
-                />
-                <Route
-                  exact
-                  path="/"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        graphFileName="stats.json"
-                        history={h.history as any}
-                        importType={ImportTypes.WEBPACK}
                       />
                     );
                   }}
