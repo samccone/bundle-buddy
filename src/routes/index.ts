@@ -1,6 +1,6 @@
 import { ImportResolveState, ProcessedImportState } from "../types";
 
-function setItem(key: string, val: any) {
+function setItem(key: string, val: {}) {
   (window as any)["_app"] = (window as any)["_app"] || {};
   (window as any)["_app"][key] = val;
 }
