@@ -72,8 +72,7 @@ export default function Report(props: Props) {
                   Run <code>{`(npm or yarn) list <package_name>`}</code> with
                   the duplicated module name to see the associations between
                   duplicated modules.
-                </p>
-                <p>
+
                   To prevent this automatically see{" "}
                   <a
                     target="_blank"
