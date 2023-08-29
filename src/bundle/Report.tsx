@@ -1,27 +1,23 @@
-import React from "react";
-import { ProcessedImportState } from "../types";
+import React from 'react';
+import {ProcessedImportState} from '../types';
 
 type Props = {
-  duplicateNodeModules: ProcessedImportState["duplicateNodeModules"];
+  duplicateNodeModules: ProcessedImportState['duplicateNodeModules'];
 };
 
 export default function Report(props: Props) {
-  const { duplicateNodeModules } = props;
+  const {duplicateNodeModules} = props;
   return (
     <div className="flex padding top-panel Report">
-      <div className="left-panel" style={{ width: "25vw" }}>
+      <div className="left-panel" style={{width: '25vw'}}>
         <h1 className="uppercase-header">Health Checks</h1>
       </div>
-      <div style={{ width: "74vw" }}>
+      <div style={{width: '74vw'}}>
         <div className="report-panel">
           <div className="flex">
-            <div className="vertical-center" style={{ width: "17vw" }}>
+            <div className="vertical-center" style={{width: '17vw'}}>
               <div className="flex align-baseline">
-                <img
-                  className="icon right-spacing"
-                  alt="directories"
-                  src="/img/folder.png"
-                />
+                <img className="icon right-spacing" alt="directories" src="/img/folder.png" />
 
                 <p className="subheader no-margin">
                   <b>
@@ -30,7 +26,7 @@ export default function Report(props: Props) {
                 </p>
               </div>
             </div>
-            <div className="scroll-y" style={{ width: "57vw" }}>
+            <div className="scroll-y" style={{width: '57vw'}}>
               {duplicateNodeModules && duplicateNodeModules.length > 0 ? (
                 <div>
                   <br />
@@ -46,13 +42,13 @@ export default function Report(props: Props) {
                       </tr>
                     </thead>
                     <tbody>
-                      {duplicateNodeModules.map((k) => {
+                      {duplicateNodeModules.map(k => {
                         return (
                           <tr key={k.key}>
                             <td>
                               <b>{k.key}</b>
                             </td>
-                            <td>{k.value.join(", ")}</td>
+                            <td>{k.value.join(', ')}</td>
                           </tr>
                         );
                       })}
@@ -61,7 +57,7 @@ export default function Report(props: Props) {
                 </div>
               ) : (
                 <p>
-                  No duplicated node modules found{" "}
+                  No duplicated node modules found{' '}
                   <span role="img" aria-label="raised-hands">
                     🙌
                   </span>
@@ -69,11 +65,9 @@ export default function Report(props: Props) {
               )}
               <div className="grey600">
                 <p>
-                  Run <code>{`(npm or yarn) list <package_name>`}</code> with
-                  the duplicated module name to see the associations between
-                  duplicated modules.
-
-                  To prevent this automatically see{" "}
+                  Run <code>{`(npm or yarn) list <package_name>`}</code> with the duplicated module
+                  name to see the associations between duplicated modules. To prevent this
+                  automatically see{' '}
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
