@@ -221,10 +221,13 @@ svg {
   padding-left: 24px;
   width: 100%;
   background: white;
-  max-height: 30vh;
-  padding-bottom: 30px;
-  position: fixed;
+  height: 30vh;
+  padding-bottom: 10px;
+  position: sticky;
   border-top: solid 1px var(--grey800);
+}
+.bottom-panel.paper {
+  box-shadow: none;
 }
 
 .App-header h1 {
@@ -635,7 +638,7 @@ td {
 } */
 
 .Table {
-  width: 100%;
+  width: calc(100% - 16px);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-collapse: collapse;
   position: relative;
