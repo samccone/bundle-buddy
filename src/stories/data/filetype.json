@@ -1,8 +1,8 @@
 {
   "value": 2473520,
   "fileTypes": [
-    { "name": "js", "totalBytes": 2469241, "pct": 0.9982700766518969 },
-    { "name": "js$", "totalBytes": 2848, "pct": 0.0011513955820045927 }
+    {"name": "js", "totalBytes": 2469241, "pct": 0.9982700766518969},
+    {"name": "js$", "totalBytes": 2848, "pct": 0.0011513955820045927}
   ],
   "directories": [
     {

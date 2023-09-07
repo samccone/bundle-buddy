@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { transform } from "./process";
-import { ResolveProps, GraphEdges, ProcessedBundle } from "../types";
-import { findTrims } from "./trim";
-import { storeProcessedState, storeResolveState } from "../routes";
+import React, {Component} from 'react';
+import {transform} from './process';
+import {ResolveProps, GraphEdges, ProcessedBundle} from '../types';
+import {findTrims} from './trim';
+import {storeProcessedState, storeResolveState} from '../routes';
 
 // noopener noreferrer
 
@@ -33,7 +33,7 @@ function transformGraphNames(
   graphTransform: (v: string) => string,
   trims: string[]
 ): GraphEdges {
-  return nodes.map((n) => {
+  return nodes.map(n => {
     n.source = graphTransform(trimClean(trims, n.source));
     if (n.target != null) {
       n.target = graphTransform(trimClean(trims, n.target));
@@ -53,8 +53,7 @@ function transformSourceMapNames(
   };
 
   for (const fileName of Object.keys(sourcemap.files)) {
-    ret.files[sourcemapTransform(trimClean(trims, fileName))] =
-      sourcemap.files[fileName];
+    ret.files[sourcemapTransform(trimClean(trims, fileName))] = sourcemap.files[fileName];
   }
 
   return ret;
@@ -85,14 +84,14 @@ function trimClean(trims: string[], word: string) {
 function autoclean(opts: {
   processedSourceMap: ProcessedBundle;
   graphEdges: GraphEdges;
-}): { sourceMapFiles: string[]; graphFiles: string[]; trims: string[] } {
+}): {sourceMapFiles: string[]; graphFiles: string[]; trims: string[]} {
   const sourceMapFiles = Object.keys(opts.processedSourceMap.files);
   const graphFiles = getGraphFiles(opts.graphEdges);
   const trims = Object.keys(findTrims(sourceMapFiles, graphFiles));
 
   return {
-    sourceMapFiles: sourceMapFiles.map((v) => trimClean(trims, v)),
-    graphFiles: graphFiles.map((v) => trimClean(trims, v)),
+    sourceMapFiles: sourceMapFiles.map(v => trimClean(trims, v)),
+    graphFiles: graphFiles.map(v => trimClean(trims, v)),
     trims,
   };
 }
@@ -109,7 +108,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
 
     this.sourceMapTransformRef = React.createRef();
     this.sourceGraphTransformRef = React.createRef();
-    const { sourceMapFiles, graphFiles, trims } = autoclean({
+    const {sourceMapFiles, graphFiles, trims} = autoclean({
       processedSourceMap: this.props.processedBundle,
       graphEdges: this.props.graphEdges,
     });
@@ -119,13 +118,11 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       graphFiles,
       transforms: {
         sourceMapFileTransform:
-          (props.sourceMapFileTransform &&
-            toFunctionRef(props.sourceMapFileTransform)) ||
-          ((fileName) => fileName),
+          (props.sourceMapFileTransform && toFunctionRef(props.sourceMapFileTransform)) ||
+          (fileName => fileName),
         graphFileTransform:
-          (props.graphFileTransform &&
-            toFunctionRef(props.graphFileTransform)) ||
-          ((fileName) => fileName),
+          (props.graphFileTransform && toFunctionRef(props.graphFileTransform)) ||
+          (fileName => fileName),
       },
     };
   }
@@ -141,10 +138,10 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     b: Array<T>,
     aTransform: (v: T) => T,
     bTransform: (v: T) => T
-  ): { files: T[]; lastError: undefined | Error } {
+  ): {files: T[]; lastError: undefined | Error} {
     let lastError: Error | undefined = undefined;
     const setA = new Set(
-      a.map((v) => {
+      a.map(v => {
         try {
           return aTransform(v);
         } catch (e) {
@@ -154,7 +151,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       })
     );
     const setB = new Set(
-      b.map((v) => {
+      b.map(v => {
         try {
           return bTransform(v);
         } catch (e) {
@@ -178,13 +175,8 @@ class Resolve extends Component<ResolveProps, ResolveState> {
   }
 
   updateSourceMapTransform() {
-    if (
-      this.sourceMapTransformRef != null &&
-      this.sourceMapTransformRef.current != null
-    ) {
-      const transformRef = toFunctionRef(
-        this.sourceMapTransformRef.current.value
-      );
+    if (this.sourceMapTransformRef != null && this.sourceMapTransformRef.current != null) {
+      const transformRef = toFunctionRef(this.sourceMapTransformRef.current.value);
       if (transformRef == null) {
         return;
       }
@@ -208,13 +200,8 @@ class Resolve extends Component<ResolveProps, ResolveState> {
   }
 
   updateGraphSourceTransform() {
-    if (
-      this.sourceGraphTransformRef != null &&
-      this.sourceGraphTransformRef.current != null
-    ) {
-      const transformRef = toFunctionRef(
-        this.sourceGraphTransformRef.current.value
-      );
+    if (this.sourceGraphTransformRef != null && this.sourceGraphTransformRef.current != null) {
+      const transformRef = toFunctionRef(this.sourceGraphTransformRef.current.value);
       if (transformRef == null) {
         return;
       }
@@ -239,7 +226,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
 
   import() {
     if (this.props.graphEdges == null || this.props.processedBundle == null) {
-      throw new Error("Unable to find graph edges or sourcemap data");
+      throw new Error('Unable to find graph edges or sourcemap data');
     }
 
     const processed = transform(
@@ -256,7 +243,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       this.state.sourceMapFiles
     );
 
-    this.props.history.push("/bundle", storeProcessedState(processed));
+    this.props.history.push('/bundle', storeProcessedState(processed));
   }
 
   formatError(e: Error) {
@@ -286,20 +273,13 @@ ${e.stack}`;
           <div>
             <p className="ft-18">Resolve source map files:</p>
             {sourceMapTransformed.lastError != null ? (
-              <div className="error">
-                {this.formatError(sourceMapTransformed.lastError)}
-              </div>
+              <div className="error">{this.formatError(sourceMapTransformed.lastError)}</div>
             ) : null}
             <small>
-              <span
-                className={`${
-                  sourceMapTransformed.files.length === 0 ? "primary" : ""
-                }`}
-              >
+              <span className={`${sourceMapTransformed.files.length === 0 ? 'primary' : ''}`}>
                 {sourceMapTransformed.files.length}
-              </span>{" "}
-              source map files of {this.state.sourceMapFiles.length} total need
-              resolving
+              </span>{' '}
+              source map files of {this.state.sourceMapFiles.length} total need resolving
             </small>
             <textarea
               ref={this.sourceMapTransformRef}
@@ -307,11 +287,9 @@ ${e.stack}`;
               defaultValue={this.state.transforms.sourceMapFileTransform.toString()}
             />
             <br />
-            <button onClick={() => this.updateSourceMapTransform()}>
-              retry transform
-            </button>
+            <button onClick={() => this.updateSourceMapTransform()}>retry transform</button>
             <ul>
-              {Resolve.sorted(sourceMapTransformed.files).map((v) => (
+              {Resolve.sorted(sourceMapTransformed.files).map(v => (
                 <li key={v}>{v}</li>
               ))}
             </ul>
@@ -319,18 +297,12 @@ ${e.stack}`;
           <div>
             <p className="ft-18">Resolve graph source files:</p>
             {graphTransformed.lastError != null ? (
-              <div className="error">
-                {this.formatError(graphTransformed.lastError)}
-              </div>
+              <div className="error">{this.formatError(graphTransformed.lastError)}</div>
             ) : null}
             <small>
-              <span
-                className={`${
-                  graphTransformed.files.length === 0 ? "primary" : ""
-                }`}
-              >
+              <span className={`${graphTransformed.files.length === 0 ? 'primary' : ''}`}>
                 {graphTransformed.files.length}
-              </span>{" "}
+              </span>{' '}
               graph files of {this.state.graphFiles.length} total need resolving
             </small>
             <textarea
@@ -339,11 +311,9 @@ ${e.stack}`;
               defaultValue={this.state.transforms.graphFileTransform.toString()}
             />
             <br />
-            <button onClick={() => this.updateGraphSourceTransform()}>
-              Retry transform
-            </button>
+            <button onClick={() => this.updateGraphSourceTransform()}>Retry transform</button>
             <ul>
-              {Resolve.sorted(graphTransformed.files).map((v) => (
+              {Resolve.sorted(graphTransformed.files).map(v => (
                 <li key={v}>{v}</li>
               ))}
             </ul>

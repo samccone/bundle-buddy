@@ -1,15 +1,15 @@
-import * as pako from "pako";
-import React, { Component } from "react";
-import { readFileAsText, readFileAsBinary } from "./file_reader";
-import { NavLink as Link } from "react-router-dom";
-import { ImportHistory } from "../types";
-import { storeProcessedState } from "../routes";
+import * as pako from 'pako';
+import React, {Component} from 'react';
+import {readFileAsText, readFileAsBinary} from './file_reader';
+import {NavLink as Link} from 'react-router-dom';
+import {ImportHistory} from '../types';
+import {storeProcessedState} from '../routes';
 // noopener noreferrer
 
-class ImportSelector extends Component<{ history: ImportHistory }> {
-  existingImportInput: React.RefObject<HTMLInputElement & { files: FileList }>;
+class ImportSelector extends Component<{history: ImportHistory}> {
+  existingImportInput: React.RefObject<HTMLInputElement & {files: FileList}>;
 
-  constructor(props: { history: ImportHistory }) {
+  constructor(props: {history: ImportHistory}) {
     super(props);
     this.existingImportInput = React.createRef();
   }
@@ -23,7 +23,7 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
     const contents = await readFileAsBinary(file);
     const inflated = pako.inflate(contents);
     const previousState = JSON.parse(new TextDecoder().decode(inflated));
-    this.props.history.push("/bundle", storeProcessedState(previousState));
+    this.props.history.push('/bundle', storeProcessedState(previousState));
   }
 
   state: never;
@@ -32,17 +32,9 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
     return (
       <div>
         <div className="flex">
-          <div style={{ flexGrow: 1, display: "flex", flexWrap: "wrap" }}>
-            <Link
-              to="/webpack"
-              aria-label="webpack project import"
-              className="no-link-underline "
-            >
-              <button
-                aria-hidden
-                tabIndex={-1}
-                className={`type-button project-import`}
-              >
+          <div style={{flexGrow: 1, display: 'flex', flexWrap: 'wrap'}}>
+            <Link to="/webpack" aria-label="webpack project import" className="no-link-underline ">
+              <button aria-hidden tabIndex={-1} className={`type-button project-import`}>
                 <img
                   width="35px"
                   height="36px"
@@ -58,11 +50,7 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
               aria-label="create-react-app project import"
               className="no-link-underline "
             >
-              <button
-                aria-hidden
-                tabIndex={-1}
-                className={`type-button project-import`}
-              >
+              <button aria-hidden tabIndex={-1} className={`type-button project-import`}>
                 <img
                   width="35px"
                   height="36px"
@@ -73,31 +61,19 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                 <span>Create React App</span>
               </button>
             </Link>
-            <Link
-              to="/rollup"
-              aria-label="rollup project import"
-              className="no-link-underline "
-            >
-              <button
-                aria-hidden
-                tabIndex={-1}
-                className={`type-button project-import`}
-              >
+            <Link to="/rollup" aria-label="rollup project import" className="no-link-underline ">
+              <button aria-hidden tabIndex={-1} className={`type-button project-import`}>
                 <img
                   width="34px"
                   height="36px"
                   alt="rollup logo"
                   src="/img/rollup_logo.png"
                   className="rollup-logo"
-                />{" "}
+                />{' '}
                 <span>Rollup</span>
               </button>
             </Link>
-            <Link
-              to="/rome"
-              aria-label="rome project import"
-              className="no-link-underline "
-            >
+            <Link to="/rome" aria-label="rome project import" className="no-link-underline ">
               <button
                 aria-hidden
                 tabIndex={-1}
@@ -109,15 +85,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                   alt="rome logo"
                   src="/img/rome_logo.png"
                   className="rome-logo"
-                />{" "}
+                />{' '}
                 <span>Rome</span>
               </button>
             </Link>
-            <Link
-              to="/parcel"
-              aria-label="parcel project import"
-              className="no-link-underline "
-            >
+            <Link to="/parcel" aria-label="parcel project import" className="no-link-underline ">
               <button
                 aria-hidden
                 tabIndex={-1}
@@ -129,15 +101,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                   alt="parcel logo"
                   src="/img/parcel_logo.png"
                   className="parcel-logo"
-                />{" "}
+                />{' '}
                 <span>Parcel</span>
               </button>
             </Link>
-            <Link
-              to="/esbuild"
-              aria-label="esbuild project import"
-              className="no-link-underline "
-            >
+            <Link to="/esbuild" aria-label="esbuild project import" className="no-link-underline ">
               <button
                 aria-hidden
                 tabIndex={-1}

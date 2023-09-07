@@ -109,8 +109,8 @@
 
 body,
 button {
-  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Josefin Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -493,7 +493,7 @@ code {
   background: #bcffcf;
 }
 
-input[type="file"] {
+input[type='file'] {
   position: absolute;
   top: 0;
   left: 0;
@@ -504,7 +504,7 @@ input[type="file"] {
   opacity: 0;
 }
 
-input[type="file"]::-webkit-file-upload-button {
+input[type='file']::-webkit-file-upload-button {
   visibility: hidden;
 }
 

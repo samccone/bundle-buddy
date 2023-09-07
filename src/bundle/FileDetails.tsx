@@ -1,13 +1,13 @@
-import React, { useMemo } from "react";
-import { useTable, useSortBy } from "react-table";
+import React, {useMemo} from 'react';
+import {useTable, useSortBy} from 'react-table';
 
-import { getCSSPercent, getFileSize } from "./stringFormats";
-import { ProcessedImportState, TrimmedDataNode } from "../types";
-import Treemap from "./Treemap";
+import {getCSSPercent, getFileSize} from './stringFormats';
+import {ProcessedImportState, TrimmedDataNode} from '../types';
+import Treemap from './Treemap';
 
 type Column = {
   value: number;
-  row: { original: TrimmedDataNode };
+  row: {original: TrimmedDataNode};
 };
 
 type Maxes = {
@@ -20,7 +20,7 @@ type Maxes = {
 };
 
 function getColumns(
-  directoryColors: Props["directoryColors"],
+  directoryColors: Props['directoryColors'],
   data: TrimmedDataNode[],
   total?: number
 ) {
@@ -33,12 +33,9 @@ function getColumns(
     transitiveRequires: 0,
   };
 
-  data.forEach((d) => {
+  data.forEach(d => {
     maxes.totalBytes = Math.max(maxes.totalBytes, d.totalBytes);
-    maxes.transitiveRequiresSize = Math.max(
-      maxes.transitiveRequiresSize,
-      d.transitiveRequiresSize
-    );
+    maxes.transitiveRequiresSize = Math.max(maxes.transitiveRequiresSize, d.transitiveRequiresSize);
     maxes.requires = Math.max(maxes.requires, d.requires.length);
     maxes.transitiveRequires = Math.max(
       maxes.transitiveRequires,
@@ -63,8 +60,8 @@ function getColumns(
           // background: directoryColors[d.row.original.directory] || "black",
           background: `var(--grey500)`,
           height: 8,
-          width: d.value ? getCSSPercent(d.value / maxes[id]) : "0px",
-          position: "relative",
+          width: d.value ? getCSSPercent(d.value / maxes[id]) : '0px',
+          position: 'relative',
           top: 15,
           left: getCSSPercent(maxes[id] - accessor(d.row.original), maxes[id]),
         }}
@@ -74,31 +71,27 @@ function getColumns(
 
   return [
     {
-      accessor: "text" as any,
-      Header: "Name",
-      className: "name",
+      accessor: 'text' as any,
+      Header: 'Name',
+      className: 'name',
       Cell: (d: Column) => {
         return <span className="name">{d.value}</span>;
       },
     },
     {
-      id: "totalBytes",
+      id: 'totalBytes',
       accessor: (d: TrimmedDataNode) => d.totalBytes,
-      Header: "File Size",
+      Header: 'File Size',
       minWidth: 150,
       label: (d: Column) => (
         <div className="flex">
-          <div style={{ minWidth: "30%" }} className="relative">
-            <span
-              style={{ fontSize: 12, position: "absolute", top: -10, right: 0 }}
-            >
+          <div style={{minWidth: '30%'}} className="relative">
+            <span style={{fontSize: 12, position: 'absolute', top: -10, right: 0}}>
               <b>{getCSSPercent(d.value, total)}</b>
             </span>
           </div>
-          <div className="relative" style={{ minWidth: "70%" }}>
-            <span
-              style={{ fontSize: 12, position: "absolute", top: -10, right: 0 }}
-            >
+          <div className="relative" style={{minWidth: '70%'}}>
+            <span style={{fontSize: 12, position: 'absolute', top: -10, right: 0}}>
               {getFileSize(d.value)}
             </span>
           </div>
@@ -106,37 +99,35 @@ function getColumns(
       ),
     },
     {
-      id: "requires",
+      id: 'requires',
       accessor: (d: TrimmedDataNode) => d.requires.length,
-      Header: "Direct Imports",
+      Header: 'Direct Imports',
       minWidth: 25,
     },
     {
-      id: "transitiveRequires",
-      accessor: (d: TrimmedDataNode) =>
-        d.transitiveRequires.length - d.requires.length,
-      Header: "Indirect Imports",
+      id: 'transitiveRequires',
+      accessor: (d: TrimmedDataNode) => d.transitiveRequires.length - d.requires.length,
+      Header: 'Indirect Imports',
       minWidth: 25,
     },
     {
-      id: "transitiveRequiresSize",
+      id: 'transitiveRequiresSize',
       accessor: (d: TrimmedDataNode) => d.transitiveRequiresSize,
-      Header: "All Imported Size",
+      Header: 'All Imported Size',
       minWidth: 50,
       format: (d: Column) => getFileSize(d.value),
     },
     {
-      id: "requiredBy",
+      id: 'requiredBy',
       accessor: (d: TrimmedDataNode) => d.requiredBy.length,
-      Header: "Directly Imported By",
+      Header: 'Directly Imported By',
       minWidth: 25,
     },
 
     {
-      id: "transitiveRequiredBy",
-      accessor: (d: TrimmedDataNode) =>
-        d.transitiveRequiredBy.length - d.requiredBy.length,
-      Header: "Indirectly Imported By",
+      id: 'transitiveRequiredBy',
+      accessor: (d: TrimmedDataNode) => d.transitiveRequiredBy.length - d.requiredBy.length,
+      Header: 'Indirectly Imported By',
       minWidth: 25,
     },
   ].map((d, i) => {
@@ -156,13 +147,13 @@ function getColumns(
                 <span
                   style={{
                     fontSize: 12,
-                    position: "absolute",
+                    position: 'absolute',
                     top: 0,
                     right: 0,
                   }}
                 >
                   <span className="right">
-                    {d.format ? d.format(c) : !c.value ? "--" : c.value}
+                    {d.format ? d.format(c) : !c.value ? '--' : c.value}
                   </span>
                 </span>
               )}
@@ -176,16 +167,16 @@ function getColumns(
 type Props = {
   total?: number;
   changeSelected: React.Dispatch<string | null>;
-  directoryColors: { [dir: string]: string };
-  network: ProcessedImportState["trimmedNetwork"];
-  hierarchy: ProcessedImportState["hierarchy"];
+  directoryColors: {[dir: string]: string};
+  network: ProcessedImportState['trimmedNetwork'];
+  hierarchy: ProcessedImportState['hierarchy'];
   selected: string | null;
   directories: string[];
 };
 
 export default function FileDetails(props: Props) {
   const {
-    network = {} as ProcessedImportState["trimmedNetwork"],
+    network = {} as ProcessedImportState['trimmedNetwork'],
     changeSelected,
     directoryColors,
     total,
@@ -193,7 +184,7 @@ export default function FileDetails(props: Props) {
     selected,
     directories,
   } = props;
-  const { nodes = [] } = network;
+  const {nodes = []} = network;
 
   const columns = useMemo(() => getColumns(directoryColors, nodes, total), [
     directoryColors,
@@ -203,24 +194,18 @@ export default function FileDetails(props: Props) {
 
   const data = useMemo(() => nodes, [nodes]);
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable(
+  const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable(
     {
       columns: columns,
       data,
       defaultCanSort: true,
       disableSortRemove: true,
-      initialState: { sortBy: [{ id: "totalBytes", desc: true }] } as any,
+      initialState: {sortBy: [{id: 'totalBytes', desc: true}]} as any,
     } as any,
     useSortBy
   );
 
-  const selectedNode = nodes.find((d) => d.id === selected);
+  const selectedNode = nodes.find(d => d.id === selected);
 
   return (
     <table {...getTableProps()} className="Table">
@@ -236,17 +221,15 @@ export default function FileDetails(props: Props) {
             />
           </th>
         </tr>
-        {headerGroups.map((headerGroup) => (
+        {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
+            {headerGroup.headers.map(column => (
               <th
                 className="bottom"
-                {...column.getHeaderProps(
-                  (column as any).getSortByToggleProps()
-                )}
+                {...column.getHeaderProps((column as any).getSortByToggleProps())}
                 scope="col"
               >
-                {column.render("Header")}
+                {column.render('Header')}
                 <span>
                   {(column as any).isSorted ? (
                     (column as any).isSortedDesc ? (
@@ -279,7 +262,7 @@ export default function FileDetails(props: Props) {
                       </svg>
                     )
                   ) : (
-                    ""
+                    ''
                   )}
                 </span>
               </th>
@@ -294,7 +277,7 @@ export default function FileDetails(props: Props) {
           return (
             <tr
               {...row.getRowProps()}
-              className={`pointer ${id === selected ? "paper selected" : ""} `}
+              className={`pointer ${id === selected ? 'paper selected' : ''} `}
               onClick={() => {
                 if (id === selected) changeSelected(null);
                 else changeSelected(id);
@@ -307,12 +290,12 @@ export default function FileDetails(props: Props) {
                     style={{
                       minWidth: cell.column.minWidth,
                       background:
-                        cell.column.Header === "Name"
+                        cell.column.Header === 'Name'
                           ? directoryColors[cell.row.original.directory]
                           : undefined,
                     }}
                   >
-                    {cell.render("Cell")}
+                    {cell.render('Cell')}
                   </td>
                 );
               })}

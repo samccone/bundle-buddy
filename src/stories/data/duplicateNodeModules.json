@@ -1,5 +1,5 @@
 [
-  { "key": "warning", "value": ["react-router", "react-router-dom"] },
-  { "key": "prop-types", "value": ["react-annotation", "semiotic"] },
-  { "key": "d3-scale", "value": ["semiotic", "semiotic-mark"] }
+  {"key": "warning", "value": ["react-router", "react-router-dom"]},
+  {"key": "prop-types", "value": ["react-annotation", "semiotic"]},
+  {"key": "d3-scale", "value": ["semiotic", "semiotic-mark"]}
 ]

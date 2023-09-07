@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import * as Sentry from "@sentry/browser";
-import { ReportErrorUri } from "./report_error";
+import React, {Component} from 'react';
+import * as Sentry from '@sentry/browser';
+import {ReportErrorUri} from './report_error';
 
-class ErrorBoundry extends Component<{}, { error: Error | null }> {
+class ErrorBoundry extends Component<{}, {error: Error | null}> {
   constructor(props: {}) {
     super(props);
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === 'production') {
       Sentry.init({
-        dsn: "https://9e475abe454047779775876c0d1af187@sentry.io/1365297"
+        dsn: 'https://9e475abe454047779775876c0d1af187@sentry.io/1365297',
       });
     }
-    this.state = { error: null };
+    this.state = {error: null};
   }
 
   static getDerivedStateFromError(error: Error) {
-    return { error };
+    return {error};
   }
 
   componentDidCatch(error: Error, errorInfo: any) {
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === 'production') {
       Sentry.withScope(scope => {
         Object.keys(errorInfo).forEach(key => {
           scope.setExtra(key, errorInfo[key]);
@@ -33,20 +33,16 @@ class ErrorBoundry extends Component<{}, { error: Error | null }> {
   render() {
     if (this.state.error) {
       const errorReport = new ReportErrorUri();
-      errorReport.addError("Uncaught application error", this.state.error);
+      errorReport.addError('Uncaught application error', this.state.error);
 
       return (
         <div>
           <p>
             <span role="img" aria-label="shrug emoji">
               🤷
-            </span>{" "}
+            </span>{' '}
             error encountered, please&nbsp;
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={errorReport.toUri()}
-            >
+            <a target="_blank" rel="noopener noreferrer" href={errorReport.toUri()}>
               file a bug!
             </a>
           </p>
