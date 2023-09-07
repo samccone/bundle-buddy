@@ -61,8 +61,8 @@ function getColumns(
           background: `var(--grey500)`,
           height: 8,
           width: d.value ? getCSSPercent(d.value / maxes[id]) : '0px',
-          position: 'relative',
-          top: 15,
+          position: 'absolute',
+          top: 12,
           left: getCSSPercent(maxes[id] - accessor(d.row.original), maxes[id]),
         }}
       />
@@ -86,12 +86,12 @@ function getColumns(
       label: (d: Column) => (
         <div className="flex">
           <div style={{minWidth: '30%'}} className="relative">
-            <span style={{fontSize: 12, position: 'absolute', top: -10, right: 0}}>
+            <span style={{fontSize: 12, position: 'absolute', right: 0}}>
               <b>{getCSSPercent(d.value, total)}</b>
             </span>
           </div>
           <div className="relative" style={{minWidth: '70%'}}>
-            <span style={{fontSize: 12, position: 'absolute', top: -10, right: 0}}>
+            <span style={{fontSize: 12, position: 'absolute', right: 0}}>
               {getFileSize(d.value)}
             </span>
           </div>

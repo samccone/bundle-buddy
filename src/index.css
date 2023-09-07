@@ -656,6 +656,7 @@ td {
   padding: 4px;
   font-size: 13px;
   padding-bottom: 10px;
+  vertical-align: top;
 }
 
 .Table thead {
