@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { toClipboard } from "./clipboard";
-import { readFileAsText, readFilesAsText } from "./file_reader";
-import { processImports, buildImportErrorReport } from "./process_imports";
+import React, {Component} from 'react';
+import {toClipboard} from './clipboard';
+import {readFileAsText, readFilesAsText} from './file_reader';
+import {processImports, buildImportErrorReport} from './process_imports';
 import {
   ImportProps,
   ImportResolveState,
@@ -9,16 +9,16 @@ import {
   ImportTypes,
   EsBuildMetadata,
   ProcessedBundle,
-} from "../types";
-import { storeResolveState } from "../routes";
-import { toEdges, toProcessedBundles } from "./esbuild";
-import { mergeProcessedBundles } from "./process_sourcemaps";
-import { cleanGraph } from "./graph_process";
-import { statsToGraph } from "./stats_to_graph";
+} from '../types';
+import {storeResolveState} from '../routes';
+import {toEdges, toProcessedBundles} from './esbuild';
+import {mergeProcessedBundles} from './process_sourcemaps';
+import {cleanGraph} from './graph_process';
+import {statsToGraph} from './stats_to_graph';
 
 const IGNORE_FILES = [
   // https://twitter.com/samccone/status/1137776153148583936
-  "webpack/bootstrap",
+  'webpack/bootstrap',
 ];
 
 function removeWebpackMagicFiles(v: ProcessedBundle) {
@@ -43,8 +43,8 @@ function removeWebpackMagicFiles(v: ProcessedBundle) {
 
 // noopener noreferrer
 class Import extends Component<ImportProps, ImportState> {
-  sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
-  graphInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
+  sourceMapInput?: React.RefObject<HTMLInputElement & {files: FileList}>;
+  graphInput?: React.RefObject<HTMLInputElement & {files: FileList}>;
   generateGraphContents: React.RefObject<HTMLSpanElement>;
 
   constructor(props: ImportProps) {
@@ -69,11 +69,7 @@ class Import extends Component<ImportProps, ImportState> {
         },
         () => {
           if (
-            this.canProcess(
-              this.state.sourceMapFiles,
-              this.state.graphFile,
-              this.props.importType
-            )
+            this.canProcess(this.state.sourceMapFiles, this.state.graphFile, this.props.importType)
           ) {
             this.processFiles(this.props.importType);
           }
@@ -98,11 +94,7 @@ class Import extends Component<ImportProps, ImportState> {
         },
         () => {
           if (
-            this.canProcess(
-              this.state.sourceMapFiles,
-              this.state.graphFile,
-              this.props.importType
-            )
+            this.canProcess(this.state.sourceMapFiles, this.state.graphFile, this.props.importType)
           ) {
             this.processFiles(this.props.importType);
           }
@@ -116,14 +108,11 @@ class Import extends Component<ImportProps, ImportState> {
   }
 
   hasGraphFile(file?: File) {
-    return file != null || window.location.pathname.includes("resolve");
+    return file != null || window.location.pathname.includes('resolve');
   }
 
   hasSourceMapFile(files?: File[]) {
-    return (
-      (files != null && files.length) ||
-      window.location.pathname.includes("resolve")
-    );
+    return (files != null && files.length) || window.location.pathname.includes('resolve');
   }
 
   canProcess(
@@ -140,7 +129,7 @@ class Import extends Component<ImportProps, ImportState> {
   }
 
   async processFiles(importType: ImportTypes) {
-    console.log("IN PROCESS");
+    console.log('IN PROCESS');
     if (importType === ImportTypes.ESBUILD && this.state.graphFile != null) {
       const graphContents = JSON.parse(
         await readFileAsText(this.state.graphFile)
@@ -148,15 +137,10 @@ class Import extends Component<ImportProps, ImportState> {
 
       const state: ImportResolveState = {
         graphEdges: toEdges(graphContents),
-        processedSourceMap: mergeProcessedBundles(
-          toProcessedBundles(graphContents)
-        ),
+        processedSourceMap: mergeProcessedBundles(toProcessedBundles(graphContents)),
       };
 
-      this.props.history.push(
-        `/${this.props.importType}/resolve`,
-        storeResolveState(state)
-      );
+      this.props.history.push(`/${this.props.importType}/resolve`, storeResolveState(state));
       return;
     }
 
@@ -172,13 +156,11 @@ class Import extends Component<ImportProps, ImportState> {
       processed = await processImports({
         sourceMapContents,
         graphEdges: graphContents,
-        graphPreProcessFn: (g) => cleanGraph(statsToGraph(g)),
+        graphPreProcessFn: g => cleanGraph(statsToGraph(g)),
       });
 
       if (processed.processedSourcemap != null) {
-        processed.processedSourcemap = removeWebpackMagicFiles(
-          processed.processedSourcemap
-        );
+        processed.processedSourcemap = removeWebpackMagicFiles(processed.processedSourcemap);
       }
     } else {
       processed = await processImports({
@@ -187,7 +169,7 @@ class Import extends Component<ImportProps, ImportState> {
       });
     }
 
-    const { importError, importErrorUri } = buildImportErrorReport(processed, {
+    const {importError, importErrorUri} = buildImportErrorReport(processed, {
       graphFile: this.state.graphFile,
       sourceMapFiles: this.state.sourceMapFiles,
     });
@@ -203,10 +185,7 @@ class Import extends Component<ImportProps, ImportState> {
         processedSourceMap: processed.processedSourcemap!,
       };
 
-      this.props.history.push(
-        `/${this.props.importType}/resolve`,
-        storeResolveState(state)
-      );
+      this.props.history.push(`/${this.props.importType}/resolve`, storeResolveState(state));
     }
   }
 
@@ -243,14 +222,10 @@ class Import extends Component<ImportProps, ImportState> {
           <p>via command line</p>
           <code>
             <pre>
-              <span className="add-diff">
-                webpack --profile --json {">"} stats.json
-              </span>
+              <span className="add-diff">webpack --profile --json {'>'} stats.json</span>
             </pre>
             <button
-              onClick={() =>
-                toClipboard("webpack --profile --json > stats.json")
-              }
+              onClick={() => toClipboard('webpack --profile --json > stats.json')}
               className="copy-button"
               aria-label="Copy stats.json CLI command to clipboard"
             />
@@ -295,9 +270,7 @@ JSON.stringify(stats.toJson()),
             <p>Using yarn, in your project directory run: </p>
             <code>
               <pre>
-                <span className="add-diff">
-                  GENERATE_SOURCEMAP=true yarn run build -- --stats
-                </span>
+                <span className="add-diff">GENERATE_SOURCEMAP=true yarn run build -- --stats</span>
                 <br />
               </pre>
               <button
@@ -308,13 +281,11 @@ JSON.stringify(stats.toJson()),
             </code>
           </div>
           <div>
-            {" "}
+            {' '}
             <p>Or, using npm, in your project directory run: </p>
             <code>
               <pre>
-                <span className="add-diff">
-                  GENERATE_SOURCEMAP=true npm run build -- --stats
-                </span>
+                <span className="add-diff">GENERATE_SOURCEMAP=true npm run build -- --stats</span>
               </pre>
               <button
                 onClick={() => toClipboard("devtool: 'source-map'")}
@@ -357,11 +328,7 @@ buildEnd() {
               </span>
             </pre>
             <button
-              onClick={() =>
-                toClipboard(
-                  this.generateGraphContents.current!.textContent || ""
-                )
-              }
+              onClick={() => toClipboard(this.generateGraphContents.current!.textContent || '')}
               className="copy-button"
               aria-label="Copy stats.json programatic snippit to clipboard"
             />
@@ -377,14 +344,12 @@ buildEnd() {
     file: '\`\${outFolder}/dist.js',
     format: 'iife',
     name: 'PROJECT_NAME',\n`}
-              <span className="add-diff">
-                &nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,
-              </span>
+              <span className="add-diff">&nbsp;&nbsp;&nbsp;&nbsp;sourcemap: true,</span>
               {`
 }`}
             </pre>
             <button
-              onClick={() => toClipboard("sourcemap: true,")}
+              onClick={() => toClipboard('sourcemap: true,')}
               className="copy-button"
               aria-label="Copy sourcemap snippet to clipboard"
             />
@@ -395,8 +360,8 @@ buildEnd() {
       instructions = (
         <div>
           <p>
-            Run the <code>bundle</code> command of rome to generate the
-            sourcemap files and bundlebuddy.json for your project
+            Run the <code>bundle</code> command of rome to generate the sourcemap files and
+            bundlebuddy.json for your project
           </p>
           <code>
             <pre>rome bundle .</pre>
@@ -412,14 +377,14 @@ buildEnd() {
       instructions = (
         <div>
           <p>
-            run <code>BUNDLE_BUDDY=true parcel build</code>&nbsp; to generate
-            the sourcemap files and bundle-buddy.json file for your project
+            run <code>BUNDLE_BUDDY=true parcel build</code>&nbsp; to generate the sourcemap files
+            and bundle-buddy.json file for your project
           </p>
           <code>
             <pre>BUNDLE_BUDDY=true parcel build</pre>
           </code>
           <button
-            onClick={() => toClipboard("BUNDLE_BUDDY=true parcel build")}
+            onClick={() => toClipboard('BUNDLE_BUDDY=true parcel build')}
             className="copy-button"
             aria-label="Copy sourcemap snippet to clipboard"
           />
@@ -429,15 +394,15 @@ buildEnd() {
       instructions = (
         <div>
           <p>
-            Run the <code>--bundle</code> command of <code>esbuild</code> with{" "}
-            <code>--metafile=esbuild</code> to generate the metadata file to
-            understand your project.
+            Run the <code>--bundle</code> command of <code>esbuild</code> with{' '}
+            <code>--metafile=esbuild</code> to generate the metadata file to understand your
+            project.
           </p>
           <code>
             <pre>esbuild --bundle --metafile</pre>
           </code>
           <button
-            onClick={() => toClipboard("esbuild --bundle --metafile")}
+            onClick={() => toClipboard('esbuild --bundle --metafile')}
             className="copy-button"
             aria-label="Copy sourcemap snippet to clipboard"
           />
@@ -454,11 +419,7 @@ buildEnd() {
               <code>
                 <pre>{`${this.state.importError}`}</pre>
               </code>
-              <a
-                href={this.state.importErrorUri || ""}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={this.state.importErrorUri || ''} target="_blank" rel="noopener noreferrer">
                 File a bug
               </a>
             </div>
@@ -487,16 +448,12 @@ buildEnd() {
                 <img
                   src={
                     this.hasGraphFile(this.state.graphFile)
-                      ? "/img/ok_icon.svg"
-                      : "/img/warn_icon.svg"
+                      ? '/img/ok_icon.svg'
+                      : '/img/warn_icon.svg'
                   }
                   height="24px"
                   width="24px"
-                  alt={
-                    this.hasGraphFile(this.state.graphFile)
-                      ? "OK import"
-                      : "missing import"
-                  }
+                  alt={this.hasGraphFile(this.state.graphFile) ? 'OK import' : 'missing import'}
                   className="status-icon"
                 />
               </div>
@@ -526,15 +483,15 @@ buildEnd() {
                   <img
                     src={
                       this.hasSourceMapFile(this.state.sourceMapFiles)
-                        ? "/img/ok_icon.svg"
-                        : "/img/warn_icon.svg"
+                        ? '/img/ok_icon.svg'
+                        : '/img/warn_icon.svg'
                     }
                     height="24px"
                     width="24px"
                     alt={
                       this.hasSourceMapFile(this.state.sourceMapFiles)
-                        ? "OK import"
-                        : "missing import"
+                        ? 'OK import'
+                        : 'missing import'
                     }
                     className="status-icon"
                   />

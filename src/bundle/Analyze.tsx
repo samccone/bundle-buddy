@@ -1,15 +1,15 @@
-import React from "react";
-import FileDetails from "./FileDetails";
-import RippleChart from "./RippleChart";
-import { ProcessedImportState } from "../types";
+import React from 'react';
+import FileDetails from './FileDetails';
+import RippleChart from './RippleChart';
+import {ProcessedImportState} from '../types';
 
 type Props = {
   total?: number;
   changeSelected: React.Dispatch<string | null>;
-  directoryColors: { [dir: string]: string };
-  svgDirectoryColors: { [dir: string]: string };
-  network: ProcessedImportState["trimmedNetwork"];
-  hierarchy: ProcessedImportState["hierarchy"];
+  directoryColors: {[dir: string]: string};
+  svgDirectoryColors: {[dir: string]: string};
+  network: ProcessedImportState['trimmedNetwork'];
+  hierarchy: ProcessedImportState['hierarchy'];
   selected: string | null;
   directories: string[];
 };
@@ -26,7 +26,7 @@ export default function Analyze(props: Props) {
     selected,
   } = props;
 
-  const { nodes = [], edges = [] } = network;
+  const {nodes = [], edges = []} = network;
 
   const max =
     network &&
@@ -41,15 +41,15 @@ export default function Analyze(props: Props) {
   let withNodeModules = 0;
   let withoutNodeModules = 0;
 
-  nodes.forEach((n) => {
-    if (n.id.indexOf("node_modules") !== -1) withNodeModules++;
+  nodes.forEach(n => {
+    if (n.id.indexOf('node_modules') !== -1) withNodeModules++;
     else withoutNodeModules++;
   });
 
   return (
     <div className="Analyze">
       <div className="flex header">
-        <div className="right-padding left-panel" style={{ width: "25vw" }}>
+        <div className="right-padding left-panel" style={{width: '25vw'}}>
           <h1 className="uppercase-header">Analyze</h1>
         </div>
         <div>
@@ -58,13 +58,13 @@ export default function Analyze(props: Props) {
             <b>Details</b>
           </p>
           <p>
-            This project bundled{" "}
+            This project bundled{' '}
             {withNodeModules && (
               <span>
                 <b>{withNodeModules}</b> node_modules
               </span>
-            )}{" "}
-            {withNodeModules && "with "}
+            )}{' '}
+            {withNodeModules && 'with '}
             <b>{withoutNodeModules}</b> files
           </p>
         </div>
@@ -84,8 +84,8 @@ export default function Analyze(props: Props) {
         <div className="bottom-panel paper">
           <RippleChart
             changeSelected={changeSelected}
-            nodes={nodes.map((d) => Object.assign({}, d))}
-            edges={edges.map((d) => Object.assign({}, d))}
+            nodes={nodes.map(d => Object.assign({}, d))}
+            edges={edges.map(d => Object.assign({}, d))}
             max={max}
             selected={selected}
             directoryColors={svgDirectoryColors}

@@ -1,10 +1,10 @@
-import React from "react";
-import { scaleLinear } from "d3-scale";
+import React from 'react';
+import {scaleLinear} from 'd3-scale';
 
 //handle pattern
 
 type Props = {
-  margin: { top?: number; bottom?: number; left?: number };
+  margin: {top?: number; bottom?: number; left?: number};
   barHeight?: number;
   rExtent?: [number, number];
   oAccessor: (d: any) => string;
@@ -22,13 +22,13 @@ export default function BarChart(props: Props) {
     data = [],
     rAccessor,
     oAccessor,
-    margin = {} as Props["margin"],
+    margin = {} as Props['margin'],
     oLabel,
     bar,
     oPadding = 3,
     barHeight = 45,
     onBarClick,
-    rExtent
+    rExtent,
   } = props;
 
   const max = data.reduce((p, c) => {
@@ -43,24 +43,22 @@ export default function BarChart(props: Props) {
 
   return (
     <div className="bar-chart relative">
-      <div style={{ paddingTop: margin.top }}>
+      <div style={{paddingTop: margin.top}}>
         {data.map(d => {
           const o = oAccessor(d);
           const r = rAccessor(d);
           return (
             <div
-              className={`flex ${(onBarClick && "pointer") || ""}`}
+              className={`flex ${(onBarClick && 'pointer') || ''}`}
               onClick={onBarClick && (() => onBarClick(d.id))}
               style={{
                 height: barHeight,
-                padding: oPadding
+                padding: oPadding,
               }}
               key={o}
             >
-              <div style={{ width: margin.left }}>
-                {oLabel && oLabel(d, o, r)}
-              </div>
-              <div style={{ flexGrow: 1, height: "100%" }}>
+              <div style={{width: margin.left}}>{oLabel && oLabel(d, o, r)}</div>
+              <div style={{flexGrow: 1, height: '100%'}}>
                 {bar && bar(d, `${Math.round(percentScale(r))}%`)}
               </div>
             </div>

@@ -3,13 +3,13 @@
     "source": "src/index.js",
     "target": "node_modules/setimmediate/setImmediate.js"
   },
-  { "source": "src/index.js", "target": "node_modules/react/react.js" },
-  { "source": "src/index.js", "target": "node_modules/react-dom/index.js" },
+  {"source": "src/index.js", "target": "node_modules/react/react.js"},
+  {"source": "src/index.js", "target": "node_modules/react-dom/index.js"},
   {
     "source": "src/index.js",
     "target": "node_modules/react-router/lib/Router.js"
   },
-  { "source": "src/index.js", "target": "lib/createHashHistory.js" },
+  {"source": "src/index.js", "target": "lib/createHashHistory.js"},
   {
     "source": "src/index.js",
     "target": "node_modules/react-router-scroll/lib/useScroll.js"
@@ -18,7 +18,7 @@
     "source": "src/index.js",
     "target": "node_modules/react-router/lib/applyRouterMiddleware.js"
   },
-  { "source": "src/index.js", "target": "src/routes.js" },
+  {"source": "src/index.js", "target": "src/routes.js"},
   {
     "source": "node_modules/setimmediate/setImmediate.js",
     "target": "../../../parcel/node_modules/process/browser.js"
@@ -2179,16 +2179,16 @@
     "source": "lib/createHashHistory.js",
     "target": "node_modules/invariant/browser.js"
   },
-  { "source": "lib/createHashHistory.js", "target": "lib/Actions.js" },
-  { "source": "lib/createHashHistory.js", "target": "lib/PathUtils.js" },
+  {"source": "lib/createHashHistory.js", "target": "lib/Actions.js"},
+  {"source": "lib/createHashHistory.js", "target": "lib/PathUtils.js"},
   {
     "source": "lib/createHashHistory.js",
     "target": "lib/ExecutionEnvironment.js"
   },
-  { "source": "lib/createHashHistory.js", "target": "lib/DOMUtils.js" },
-  { "source": "lib/createHashHistory.js", "target": "lib/DOMStateStorage.js" },
-  { "source": "lib/createHashHistory.js", "target": "lib/createDOMHistory.js" },
-  { "source": "lib/PathUtils.js", "target": "node_modules/warning/browser.js" },
+  {"source": "lib/createHashHistory.js", "target": "lib/DOMUtils.js"},
+  {"source": "lib/createHashHistory.js", "target": "lib/DOMStateStorage.js"},
+  {"source": "lib/createHashHistory.js", "target": "lib/createDOMHistory.js"},
+  {"source": "lib/PathUtils.js", "target": "node_modules/warning/browser.js"},
   {
     "source": "lib/DOMStateStorage.js",
     "target": "node_modules/warning/browser.js"
@@ -2201,8 +2201,8 @@
     "source": "lib/createDOMHistory.js",
     "target": "lib/ExecutionEnvironment.js"
   },
-  { "source": "lib/createDOMHistory.js", "target": "lib/DOMUtils.js" },
-  { "source": "lib/createDOMHistory.js", "target": "lib/createHistory.js" },
+  {"source": "lib/createDOMHistory.js", "target": "lib/DOMUtils.js"},
+  {"source": "lib/createDOMHistory.js", "target": "lib/createHistory.js"},
   {
     "source": "lib/createHistory.js",
     "target": "node_modules/warning/browser.js"
@@ -2211,12 +2211,12 @@
     "source": "lib/createHistory.js",
     "target": "node_modules/deep-equal/index.js"
   },
-  { "source": "lib/createHistory.js", "target": "lib/PathUtils.js" },
-  { "source": "lib/createHistory.js", "target": "lib/AsyncUtils.js" },
-  { "source": "lib/createHistory.js", "target": "lib/Actions.js" },
-  { "source": "lib/createHistory.js", "target": "lib/createLocation.js" },
-  { "source": "lib/createHistory.js", "target": "lib/runTransitionHook.js" },
-  { "source": "lib/createHistory.js", "target": "lib/deprecate.js" },
+  {"source": "lib/createHistory.js", "target": "lib/PathUtils.js"},
+  {"source": "lib/createHistory.js", "target": "lib/AsyncUtils.js"},
+  {"source": "lib/createHistory.js", "target": "lib/Actions.js"},
+  {"source": "lib/createHistory.js", "target": "lib/createLocation.js"},
+  {"source": "lib/createHistory.js", "target": "lib/runTransitionHook.js"},
+  {"source": "lib/createHistory.js", "target": "lib/deprecate.js"},
   {
     "source": "node_modules/deep-equal/index.js",
     "target": "node_modules/object-keys/index.js"
@@ -2313,8 +2313,8 @@
     "source": "node_modules/object-is/shim.js",
     "target": "node_modules/define-properties/index.js"
   },
-  { "source": "node_modules/is-regex/index.js", "target": "src/index.js" },
-  { "source": "src/index.js", "target": "node_modules/function-bind/index.js" },
+  {"source": "node_modules/is-regex/index.js", "target": "src/index.js"},
+  {"source": "src/index.js", "target": "node_modules/function-bind/index.js"},
   {
     "source": "node_modules/regexp.prototype.flags/index.js",
     "target": "node_modules/define-properties/index.js"
@@ -2355,13 +2355,13 @@
     "source": "lib/createLocation.js",
     "target": "node_modules/warning/browser.js"
   },
-  { "source": "lib/createLocation.js", "target": "lib/Actions.js" },
-  { "source": "lib/createLocation.js", "target": "lib/PathUtils.js" },
+  {"source": "lib/createLocation.js", "target": "lib/Actions.js"},
+  {"source": "lib/createLocation.js", "target": "lib/PathUtils.js"},
   {
     "source": "lib/runTransitionHook.js",
     "target": "node_modules/warning/browser.js"
   },
-  { "source": "lib/deprecate.js", "target": "node_modules/warning/browser.js" },
+  {"source": "lib/deprecate.js", "target": "node_modules/warning/browser.js"},
   {
     "source": "lib/useQueries.js",
     "target": "node_modules/warning/browser.js"
@@ -2370,9 +2370,9 @@
     "source": "lib/useQueries.js",
     "target": "node_modules/query-string/index.js"
   },
-  { "source": "lib/useQueries.js", "target": "lib/runTransitionHook.js" },
-  { "source": "lib/useQueries.js", "target": "lib/PathUtils.js" },
-  { "source": "lib/useQueries.js", "target": "lib/deprecate.js" },
+  {"source": "lib/useQueries.js", "target": "lib/runTransitionHook.js"},
+  {"source": "lib/useQueries.js", "target": "lib/PathUtils.js"},
+  {"source": "lib/useQueries.js", "target": "lib/deprecate.js"},
   {
     "source": "node_modules/query-string/index.js",
     "target": "node_modules/strict-uri-encode/index.js"
@@ -2589,15 +2589,15 @@
     "source": "src/routes.js",
     "target": "node_modules/react-router/lib/IndexRoute.js"
   },
-  { "source": "src/routes.js", "target": "node_modules/react/react.js" },
+  {"source": "src/routes.js", "target": "node_modules/react/react.js"},
   {
     "source": "src/routes.js",
     "target": "node_modules/react-router/lib/Route.js"
   },
-  { "source": "src/routes.js", "target": "src/Item.js" },
-  { "source": "src/routes.js", "target": "src/App.js" },
-  { "source": "src/routes.js", "target": "src/Stories.js" },
-  { "source": "src/routes.js", "target": "src/Updates.js" },
+  {"source": "src/routes.js", "target": "src/Item.js"},
+  {"source": "src/routes.js", "target": "src/App.js"},
+  {"source": "src/routes.js", "target": "src/Stories.js"},
+  {"source": "src/routes.js", "target": "src/Updates.js"},
   {
     "source": "node_modules/react-router/lib/IndexRoute.js",
     "target": "node_modules/react/react.js"
@@ -2634,7 +2634,7 @@
     "source": "node_modules/react-router/lib/Route.js",
     "target": "node_modules/react-router/lib/InternalPropTypes.js"
   },
-  { "source": "src/Item.js", "target": "node_modules/react/react.js" },
+  {"source": "src/Item.js", "target": "node_modules/react/react.js"},
   {
     "source": "src/Item.js",
     "target": "node_modules/reactfire/dist/reactfire.js"
@@ -2643,20 +2643,20 @@
     "source": "src/Item.js",
     "target": "node_modules/react-timeago/lib/index.js"
   },
-  { "source": "src/Item.js", "target": "src/services/HNService.js" },
-  { "source": "src/Item.js", "target": "src/services/HNServiceRest.js" },
+  {"source": "src/Item.js", "target": "src/services/HNService.js"},
+  {"source": "src/Item.js", "target": "src/services/HNServiceRest.js"},
   {
     "source": "src/Item.js",
     "target": "src/stores/StoryCommentThreadStore.js"
   },
-  { "source": "src/Item.js", "target": "src/stores/ItemStore.js" },
-  { "source": "src/Item.js", "target": "src/Comment.js" },
-  { "source": "src/Item.js", "target": "src/PollOption.js" },
-  { "source": "src/Item.js", "target": "src/Spinner.js" },
-  { "source": "src/Item.js", "target": "src/mixins/ItemMixin.js" },
-  { "source": "src/Item.js", "target": "src/utils/buildClassName.js" },
-  { "source": "src/Item.js", "target": "src/utils/setTitle.js" },
-  { "source": "src/Item.js", "target": "src/stores/SettingsStore.js" },
+  {"source": "src/Item.js", "target": "src/stores/ItemStore.js"},
+  {"source": "src/Item.js", "target": "src/Comment.js"},
+  {"source": "src/Item.js", "target": "src/PollOption.js"},
+  {"source": "src/Item.js", "target": "src/Spinner.js"},
+  {"source": "src/Item.js", "target": "src/mixins/ItemMixin.js"},
+  {"source": "src/Item.js", "target": "src/utils/buildClassName.js"},
+  {"source": "src/Item.js", "target": "src/utils/setTitle.js"},
+  {"source": "src/Item.js", "target": "src/stores/SettingsStore.js"},
   {
     "source": "node_modules/react-timeago/lib/index.js",
     "target": "node_modules/react/react.js"
@@ -2709,8 +2709,8 @@
     "source": "src/stores/CommentThreadStore.js",
     "target": "src/utils/extend.js"
   },
-  { "source": "src/stores/SettingsStore.js", "target": "src/utils/extend.js" },
-  { "source": "src/stores/SettingsStore.js", "target": "src/utils/storage.js" },
+  {"source": "src/stores/SettingsStore.js", "target": "src/utils/extend.js"},
+  {"source": "src/stores/SettingsStore.js", "target": "src/utils/storage.js"},
   {
     "source": "src/stores/ItemStore.js",
     "target": "src/services/HNService.js"
@@ -2719,7 +2719,7 @@
     "source": "src/stores/ItemStore.js",
     "target": "src/services/HNServiceRest.js"
   },
-  { "source": "src/stores/ItemStore.js", "target": "src/stores/StoryStore.js" },
+  {"source": "src/stores/ItemStore.js", "target": "src/stores/StoryStore.js"},
   {
     "source": "src/stores/ItemStore.js",
     "target": "src/stores/UpdatesStore.js"
@@ -2744,7 +2744,7 @@
     "source": "src/stores/StoryStore.js",
     "target": "src/stores/SettingsStore.js"
   },
-  { "source": "src/stores/StoryStore.js", "target": "src/utils/extend.js" },
+  {"source": "src/stores/StoryStore.js", "target": "src/utils/extend.js"},
   {
     "source": "src/stores/UpdatesStore.js",
     "target": "../../../parcel/node_modules/events/events.js"
@@ -2765,18 +2765,18 @@
     "source": "src/stores/UpdatesStore.js",
     "target": "src/utils/constants.js"
   },
-  { "source": "src/stores/UpdatesStore.js", "target": "src/utils/extend.js" },
-  { "source": "src/Comment.js", "target": "node_modules/react/react.js" },
+  {"source": "src/stores/UpdatesStore.js", "target": "src/utils/extend.js"},
+  {"source": "src/Comment.js", "target": "node_modules/react/react.js"},
   {
     "source": "src/Comment.js",
     "target": "node_modules/reactfire/dist/reactfire.js"
   },
-  { "source": "src/Comment.js", "target": "src/stores/CommentThreadStore.js" },
-  { "source": "src/Comment.js", "target": "src/services/HNService.js" },
-  { "source": "src/Comment.js", "target": "src/services/HNServiceRest.js" },
-  { "source": "src/Comment.js", "target": "src/stores/SettingsStore.js" },
-  { "source": "src/Comment.js", "target": "src/mixins/CommentMixin.js" },
-  { "source": "src/Comment.js", "target": "src/utils/buildClassName.js" },
+  {"source": "src/Comment.js", "target": "src/stores/CommentThreadStore.js"},
+  {"source": "src/Comment.js", "target": "src/services/HNService.js"},
+  {"source": "src/Comment.js", "target": "src/services/HNServiceRest.js"},
+  {"source": "src/Comment.js", "target": "src/stores/SettingsStore.js"},
+  {"source": "src/Comment.js", "target": "src/mixins/CommentMixin.js"},
+  {"source": "src/Comment.js", "target": "src/utils/buildClassName.js"},
   {
     "source": "src/mixins/CommentMixin.js",
     "target": "node_modules/react/react.js"
@@ -2797,7 +2797,7 @@
     "source": "src/mixins/CommentMixin.js",
     "target": "src/stores/SettingsStore.js"
   },
-  { "source": "src/mixins/CommentMixin.js", "target": "src/Spinner.js" },
+  {"source": "src/mixins/CommentMixin.js", "target": "src/Spinner.js"},
   {
     "source": "src/mixins/CommentMixin.js",
     "target": "src/utils/pluralise.js"
@@ -2834,15 +2834,15 @@
     "source": "node_modules/react-router/lib/PropTypes.js",
     "target": "node_modules/react-router/lib/routerWarning.js"
   },
-  { "source": "src/Spinner.js", "target": "node_modules/react/react.js" },
-  { "source": "src/PollOption.js", "target": "node_modules/react/react.js" },
+  {"source": "src/Spinner.js", "target": "node_modules/react/react.js"},
+  {"source": "src/PollOption.js", "target": "node_modules/react/react.js"},
   {
     "source": "src/PollOption.js",
     "target": "node_modules/reactfire/dist/reactfire.js"
   },
-  { "source": "src/PollOption.js", "target": "src/services/HNService.js" },
-  { "source": "src/PollOption.js", "target": "src/Spinner.js" },
-  { "source": "src/PollOption.js", "target": "src/utils/pluralise.js" },
+  {"source": "src/PollOption.js", "target": "src/services/HNService.js"},
+  {"source": "src/PollOption.js", "target": "src/Spinner.js"},
+  {"source": "src/PollOption.js", "target": "src/utils/pluralise.js"},
   {
     "source": "src/mixins/ItemMixin.js",
     "target": "node_modules/react/react.js"
@@ -2859,7 +2859,7 @@
     "source": "src/mixins/ItemMixin.js",
     "target": "src/stores/SettingsStore.js"
   },
-  { "source": "src/mixins/ItemMixin.js", "target": "src/utils/pluralise.js" },
+  {"source": "src/mixins/ItemMixin.js", "target": "src/utils/pluralise.js"},
   {
     "source": "src/mixins/ItemMixin.js",
     "target": "node_modules/url-parse/index.js"
@@ -2880,31 +2880,31 @@
     "source": "node_modules/url-parse/lolcation.js",
     "target": "node_modules/url-parse/index.js"
   },
-  { "source": "src/utils/setTitle.js", "target": "src/utils/constants.js" },
-  { "source": "src/App.js", "target": "node_modules/react/react.js" },
-  { "source": "src/App.js", "target": "node_modules/react-router/lib/Link.js" },
-  { "source": "src/App.js", "target": "src/Settings.js" },
-  { "source": "src/App.js", "target": "src/stores/StoryStore.js" },
-  { "source": "src/App.js", "target": "src/stores/UpdatesStore.js" },
-  { "source": "src/App.js", "target": "src/stores/SettingsStore.js" },
-  { "source": "src/Settings.js", "target": "node_modules/react/react.js" },
-  { "source": "src/Settings.js", "target": "src/stores/SettingsStore.js" },
-  { "source": "src/Stories.js", "target": "node_modules/react/react.js" },
-  { "source": "src/Stories.js", "target": "src/stores/StoryStore.js" },
-  { "source": "src/Stories.js", "target": "src/mixins/PageNumberMixin.js" },
-  { "source": "src/Stories.js", "target": "src/Paginator.js" },
-  { "source": "src/Stories.js", "target": "src/Spinner.js" },
-  { "source": "src/Stories.js", "target": "src/StoryListItem.js" },
-  { "source": "src/Stories.js", "target": "src/stores/SettingsStore.js" },
-  { "source": "src/Stories.js", "target": "src/utils/constants.js" },
-  { "source": "src/Stories.js", "target": "src/utils/pageCalc.js" },
-  { "source": "src/Stories.js", "target": "src/utils/setTitle.js" },
-  { "source": "src/Paginator.js", "target": "node_modules/react/react.js" },
+  {"source": "src/utils/setTitle.js", "target": "src/utils/constants.js"},
+  {"source": "src/App.js", "target": "node_modules/react/react.js"},
+  {"source": "src/App.js", "target": "node_modules/react-router/lib/Link.js"},
+  {"source": "src/App.js", "target": "src/Settings.js"},
+  {"source": "src/App.js", "target": "src/stores/StoryStore.js"},
+  {"source": "src/App.js", "target": "src/stores/UpdatesStore.js"},
+  {"source": "src/App.js", "target": "src/stores/SettingsStore.js"},
+  {"source": "src/Settings.js", "target": "node_modules/react/react.js"},
+  {"source": "src/Settings.js", "target": "src/stores/SettingsStore.js"},
+  {"source": "src/Stories.js", "target": "node_modules/react/react.js"},
+  {"source": "src/Stories.js", "target": "src/stores/StoryStore.js"},
+  {"source": "src/Stories.js", "target": "src/mixins/PageNumberMixin.js"},
+  {"source": "src/Stories.js", "target": "src/Paginator.js"},
+  {"source": "src/Stories.js", "target": "src/Spinner.js"},
+  {"source": "src/Stories.js", "target": "src/StoryListItem.js"},
+  {"source": "src/Stories.js", "target": "src/stores/SettingsStore.js"},
+  {"source": "src/Stories.js", "target": "src/utils/constants.js"},
+  {"source": "src/Stories.js", "target": "src/utils/pageCalc.js"},
+  {"source": "src/Stories.js", "target": "src/utils/setTitle.js"},
+  {"source": "src/Paginator.js", "target": "node_modules/react/react.js"},
   {
     "source": "src/Paginator.js",
     "target": "node_modules/react-router/lib/Link.js"
   },
-  { "source": "src/StoryListItem.js", "target": "node_modules/react/react.js" },
+  {"source": "src/StoryListItem.js", "target": "node_modules/react/react.js"},
   {
     "source": "src/StoryListItem.js",
     "target": "node_modules/reactfire/dist/reactfire.js"
@@ -2913,16 +2913,16 @@
     "source": "src/StoryListItem.js",
     "target": "src/stores/StoryCommentThreadStore.js"
   },
-  { "source": "src/StoryListItem.js", "target": "src/services/HNService.js" },
+  {"source": "src/StoryListItem.js", "target": "src/services/HNService.js"},
   {
     "source": "src/StoryListItem.js",
     "target": "src/services/HNServiceRest.js"
   },
-  { "source": "src/StoryListItem.js", "target": "src/stores/SettingsStore.js" },
-  { "source": "src/StoryListItem.js", "target": "src/stores/StoryStore.js" },
-  { "source": "src/StoryListItem.js", "target": "src/mixins/ItemMixin.js" },
-  { "source": "src/StoryListItem.js", "target": "src/mixins/ListItemMixin.js" },
-  { "source": "src/StoryListItem.js", "target": "src/Spinner.js" },
+  {"source": "src/StoryListItem.js", "target": "src/stores/SettingsStore.js"},
+  {"source": "src/StoryListItem.js", "target": "src/stores/StoryStore.js"},
+  {"source": "src/StoryListItem.js", "target": "src/mixins/ItemMixin.js"},
+  {"source": "src/StoryListItem.js", "target": "src/mixins/ListItemMixin.js"},
+  {"source": "src/StoryListItem.js", "target": "src/Spinner.js"},
   {
     "source": "src/mixins/ListItemMixin.js",
     "target": "node_modules/react/react.js"
@@ -2939,17 +2939,17 @@
     "source": "src/mixins/ListItemMixin.js",
     "target": "src/utils/buildClassName.js"
   },
-  { "source": "src/Updates.js", "target": "node_modules/react/react.js" },
-  { "source": "src/Updates.js", "target": "src/stores/SettingsStore.js" },
-  { "source": "src/Updates.js", "target": "src/stores/UpdatesStore.js" },
-  { "source": "src/Updates.js", "target": "src/DisplayListItem.js" },
-  { "source": "src/Updates.js", "target": "src/DisplayComment.js" },
-  { "source": "src/Updates.js", "target": "src/Paginator.js" },
-  { "source": "src/Updates.js", "target": "src/Spinner.js" },
-  { "source": "src/Updates.js", "target": "src/mixins/PageNumberMixin.js" },
-  { "source": "src/Updates.js", "target": "src/utils/constants.js" },
-  { "source": "src/Updates.js", "target": "src/utils/pageCalc.js" },
-  { "source": "src/Updates.js", "target": "src/utils/setTitle.js" },
+  {"source": "src/Updates.js", "target": "node_modules/react/react.js"},
+  {"source": "src/Updates.js", "target": "src/stores/SettingsStore.js"},
+  {"source": "src/Updates.js", "target": "src/stores/UpdatesStore.js"},
+  {"source": "src/Updates.js", "target": "src/DisplayListItem.js"},
+  {"source": "src/Updates.js", "target": "src/DisplayComment.js"},
+  {"source": "src/Updates.js", "target": "src/Paginator.js"},
+  {"source": "src/Updates.js", "target": "src/Spinner.js"},
+  {"source": "src/Updates.js", "target": "src/mixins/PageNumberMixin.js"},
+  {"source": "src/Updates.js", "target": "src/utils/constants.js"},
+  {"source": "src/Updates.js", "target": "src/utils/pageCalc.js"},
+  {"source": "src/Updates.js", "target": "src/utils/setTitle.js"},
   {
     "source": "src/DisplayListItem.js",
     "target": "node_modules/react/react.js"
@@ -2958,7 +2958,7 @@
     "source": "src/DisplayListItem.js",
     "target": "src/stores/StoryCommentThreadStore.js"
   },
-  { "source": "src/DisplayListItem.js", "target": "src/mixins/ItemMixin.js" },
+  {"source": "src/DisplayListItem.js", "target": "src/mixins/ItemMixin.js"},
   {
     "source": "src/DisplayListItem.js",
     "target": "src/mixins/ListItemMixin.js"
@@ -2971,6 +2971,6 @@
     "source": "src/DisplayComment.js",
     "target": "src/stores/SettingsStore.js"
   },
-  { "source": "src/DisplayComment.js", "target": "src/mixins/CommentMixin.js" },
-  { "source": "src/DisplayComment.js", "target": "src/utils/buildClassName.js" }
+  {"source": "src/DisplayComment.js", "target": "src/mixins/CommentMixin.js"},
+  {"source": "src/DisplayComment.js", "target": "src/utils/buildClassName.js"}
 ]

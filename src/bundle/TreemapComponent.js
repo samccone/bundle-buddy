@@ -24,10 +24,10 @@ SOFTWARE.
  */
 
 /* eslint-disable no-param-reassign */
-import React, { Fragment, useMemo } from "react";
-import PropTypes from "prop-types"; // eslint-disable-line import/no-extraneous-dependencies
-import { treemap, treemapBinary } from "d3-hierarchy";
-import {} from "d3-hierarchy";
+import React, {Fragment, useMemo} from 'react';
+import PropTypes from 'prop-types'; // eslint-disable-line import/no-extraneous-dependencies
+import {treemap, treemapBinary} from 'd3-hierarchy';
+import {} from 'd3-hierarchy';
 
 function canDisplay(node) {
   const width = node.x1 - node.x0;
@@ -50,16 +50,14 @@ function calculatePos(node) {
 function reposition(root, width, height, zoomed, padding) {
   treemap().tile(treemapBinary).size([width, height])(root);
 
-  const zoomedEl = zoomed
-    ? root.descendants().find((node) => node.data.name === zoomed)
-    : root;
+  const zoomedEl = zoomed ? root.descendants().find(node => node.data.name === zoomed) : root;
 
   if (zoomedEl.depth > 0) {
     const scaleX = (root.x1 - root.x0) / (zoomedEl.x1 - zoomedEl.x0);
     const scaleY = (root.y1 - root.y0) / (zoomedEl.y1 - zoomedEl.y0);
     const refPointY = zoomedEl.y0;
     const refPointX = zoomedEl.x0;
-    root.descendants().forEach((node) => {
+    root.descendants().forEach(node => {
       node.y0 = scaleY * (node.y0 - refPointY);
       node.y1 = scaleY * (node.y1 - refPointY);
       node.x0 = scaleX * (node.x0 - refPointX);
@@ -67,11 +65,11 @@ function reposition(root, width, height, zoomed, padding) {
     });
   }
 
-  zoomedEl.descendants().forEach((relativeRoot) => {
+  zoomedEl.descendants().forEach(relativeRoot => {
     relativeRoot
       .descendants()
       .slice(1)
-      .forEach((node) => {
+      .forEach(node => {
         let refPoint;
         let scale;
 
@@ -112,22 +110,18 @@ function reposition(root, width, height, zoomed, padding) {
   return zoomedEl;
 }
 
-export default function TreemapComponent({
-  root,
-  zoomed,
-  width,
-  height,
-  padding,
-  nodeComponent,
-}) {
-  const zoomedEl = useMemo(
-    () => reposition(root, width, height, zoomed, padding),
-    [root, width, height, zoomed, padding]
-  );
+export default function TreemapComponent({root, zoomed, width, height, padding, nodeComponent}) {
+  const zoomedEl = useMemo(() => reposition(root, width, height, zoomed, padding), [
+    root,
+    width,
+    height,
+    zoomed,
+    padding,
+  ]);
 
   return zoomedEl
     .descendants()
-    .filter((node) => canDisplay(node))
+    .filter(node => canDisplay(node))
     .map((node, i) => (
       <Fragment key={node.data.name + node.depth}>
         {nodeComponent(node, i, calculatePos(node))}
@@ -151,8 +145,8 @@ TreemapComponent.defaultProps = {
     <div
       style={{
         ...posStyle,
-        position: "absolute",
-        background: "rgba(255,0,0,0.1)",
+        position: 'absolute',
+        background: 'rgba(255,0,0,0.1)',
       }}
     >
       {node.data.key}
