@@ -1,7 +1,7 @@
 [
-  { "parent": "", "name": "rootNode" },
-  { "name": "static", "parent": "rootNode" },
-  { "name": "static/js", "parent": "static" },
+  {"parent": "", "name": "rootNode"},
+  {"name": "static", "parent": "rootNode"},
+  {"name": "static/js", "parent": "static"},
   {
     "name": "static/js/main.0a07234d.js",
     "parent": "static/js",
@@ -9,7 +9,7 @@
     "asSource": 0,
     "asTarget": 0
   },
-  { "name": "webpack", "parent": "rootNode" },
+  {"name": "webpack", "parent": "rootNode"},
   {
     "name": "webpack/bootstrap e8a44434f24a2947b4bc",
     "parent": "webpack",
@@ -17,8 +17,8 @@
     "asSource": 0,
     "asTarget": 0
   },
-  { "name": "node_modules", "parent": "rootNode" },
-  { "name": "node_modules/prop-types", "parent": "node_modules" },
+  {"name": "node_modules", "parent": "rootNode"},
+  {"name": "node_modules/prop-types", "parent": "node_modules"},
   {
     "name": "node_modules/prop-types/index.js",
     "parent": "node_modules/prop-types",
@@ -26,7 +26,7 @@
     "asSource": 595,
     "asTarget": 1
   },
-  { "name": "node_modules/react", "parent": "node_modules" },
+  {"name": "node_modules/react", "parent": "node_modules"},
   {
     "name": "node_modules/react/index.js",
     "parent": "node_modules/react",
@@ -34,7 +34,7 @@
     "asSource": 293,
     "asTarget": 1
   },
-  { "name": "components", "parent": "rootNode" },
+  {"name": "components", "parent": "rootNode"},
   {
     "name": "components/index.js",
     "parent": "components",
@@ -42,8 +42,8 @@
     "asSource": 56,
     "asTarget": 27
   },
-  { "name": "docs", "parent": "rootNode" },
-  { "name": "docs/layout", "parent": "docs" },
+  {"name": "docs", "parent": "rootNode"},
+  {"name": "docs/layout", "parent": "docs"},
   {
     "name": "docs/layout/DocumentComponent.js",
     "parent": "docs/layout",
@@ -51,7 +51,7 @@
     "asSource": 51,
     "asTarget": 5
   },
-  { "name": "node_modules/babel-runtime", "parent": "node_modules" },
+  {"name": "node_modules/babel-runtime", "parent": "node_modules"},
   {
     "name": "node_modules/babel-runtime/helpers",
     "parent": "node_modules/babel-runtime"
@@ -70,7 +70,7 @@
     "asSource": 45,
     "asTarget": 0
   },
-  { "name": "node_modules/classnames", "parent": "node_modules" },
+  {"name": "node_modules/classnames", "parent": "node_modules"},
   {
     "name": "node_modules/classnames/index.js",
     "parent": "node_modules/classnames",
@@ -78,7 +78,7 @@
     "asSource": 41,
     "asTarget": 0
   },
-  { "name": "node_modules/material-ui", "parent": "node_modules" },
+  {"name": "node_modules/material-ui", "parent": "node_modules"},
   {
     "name": "node_modules/material-ui/styles",
     "parent": "node_modules/material-ui"
@@ -90,7 +90,7 @@
     "asSource": 34,
     "asTarget": 30
   },
-  { "name": "docs/components", "parent": "docs" },
+  {"name": "docs/components", "parent": "docs"},
   {
     "name": "docs/components/ProcessViz.js",
     "parent": "docs/components",
@@ -105,7 +105,7 @@
     "asSource": 32,
     "asTarget": 1
   },
-  { "name": "node_modules/warning", "parent": "node_modules" },
+  {"name": "node_modules/warning", "parent": "node_modules"},
   {
     "name": "node_modules/warning/browser.js",
     "parent": "node_modules/warning",
@@ -113,8 +113,8 @@
     "asSource": 27,
     "asTarget": 0
   },
-  { "name": "node_modules/dagre", "parent": "node_modules" },
-  { "name": "node_modules/dagre/lib", "parent": "node_modules/dagre" },
+  {"name": "node_modules/dagre", "parent": "node_modules"},
+  {"name": "node_modules/dagre/lib", "parent": "node_modules/dagre"},
   {
     "name": "node_modules/dagre/lib/lodash.js",
     "parent": "node_modules/dagre/lib",
@@ -165,7 +165,7 @@
     "asSource": 22,
     "asTarget": 3
   },
-  { "name": "node_modules/semiotic-mark", "parent": "node_modules" },
+  {"name": "node_modules/semiotic-mark", "parent": "node_modules"},
   {
     "name": "node_modules/semiotic-mark/lib",
     "parent": "node_modules/semiotic-mark"
@@ -177,8 +177,8 @@
     "asSource": 21,
     "asTarget": 3
   },
-  { "name": "node_modules/webpack", "parent": "node_modules" },
-  { "name": "node_modules/webpack/buildin", "parent": "node_modules/webpack" },
+  {"name": "node_modules/webpack", "parent": "node_modules"},
+  {"name": "node_modules/webpack/buildin", "parent": "node_modules/webpack"},
   {
     "name": "node_modules/webpack/buildin/global.js",
     "parent": "node_modules/webpack/buildin",
@@ -209,8 +209,8 @@
     "asSource": 15,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-time", "parent": "node_modules" },
-  { "name": "node_modules/d3-time/src", "parent": "node_modules/d3-time" },
+  {"name": "node_modules/d3-time", "parent": "node_modules"},
+  {"name": "node_modules/d3-time/src", "parent": "node_modules/d3-time"},
   {
     "name": "node_modules/d3-time/src/interval.js",
     "parent": "node_modules/d3-time/src",
@@ -269,7 +269,7 @@
     "asSource": 14,
     "asTarget": 2
   },
-  { "name": "node_modules/react-dom", "parent": "node_modules" },
+  {"name": "node_modules/react-dom", "parent": "node_modules"},
   {
     "name": "node_modules/react-dom/index.js",
     "parent": "node_modules/react-dom",
@@ -302,7 +302,7 @@
     "asSource": 12,
     "asTarget": 3
   },
-  { "name": "node_modules/viz-annotation", "parent": "node_modules" },
+  {"name": "node_modules/viz-annotation", "parent": "node_modules"},
   {
     "name": "node_modules/viz-annotation/lib",
     "parent": "node_modules/viz-annotation"
@@ -314,8 +314,8 @@
     "asSource": 12,
     "asTarget": 1
   },
-  { "name": "node_modules/graphlib", "parent": "node_modules" },
-  { "name": "node_modules/graphlib/lib", "parent": "node_modules/graphlib" },
+  {"name": "node_modules/graphlib", "parent": "node_modules"},
+  {"name": "node_modules/graphlib/lib", "parent": "node_modules/graphlib"},
   {
     "name": "node_modules/graphlib/lib/lodash.js",
     "parent": "node_modules/graphlib/lib",
@@ -323,7 +323,7 @@
     "asSource": 12,
     "asTarget": 1
   },
-  { "name": "node_modules/invariant", "parent": "node_modules" },
+  {"name": "node_modules/invariant", "parent": "node_modules"},
   {
     "name": "node_modules/invariant/browser.js",
     "parent": "node_modules/invariant",
@@ -338,7 +338,7 @@
     "asSource": 11,
     "asTarget": 4
   },
-  { "name": "node_modules/react-annotation", "parent": "node_modules" },
+  {"name": "node_modules/react-annotation", "parent": "node_modules"},
   {
     "name": "node_modules/react-annotation/lib",
     "parent": "node_modules/react-annotation"
@@ -365,7 +365,7 @@
     "asSource": 11,
     "asTarget": 1
   },
-  { "name": "node_modules/d3-selection", "parent": "node_modules" },
+  {"name": "node_modules/d3-selection", "parent": "node_modules"},
   {
     "name": "node_modules/d3-selection/src",
     "parent": "node_modules/d3-selection"
@@ -381,7 +381,7 @@
     "asSource": 11,
     "asTarget": 30
   },
-  { "name": "node_modules/d3-transition", "parent": "node_modules" },
+  {"name": "node_modules/d3-transition", "parent": "node_modules"},
   {
     "name": "node_modules/d3-transition/src",
     "parent": "node_modules/d3-transition"
@@ -443,7 +443,7 @@
     "asSource": 9,
     "asTarget": 0
   },
-  { "name": "node_modules/react-router", "parent": "node_modules" },
+  {"name": "node_modules/react-router", "parent": "node_modules"},
   {
     "name": "node_modules/react-router/node_modules",
     "parent": "node_modules/react-router"
@@ -466,7 +466,7 @@
     "asSource": 8,
     "asTarget": 3
   },
-  { "name": "node_modules/dom-helpers", "parent": "node_modules" },
+  {"name": "node_modules/dom-helpers", "parent": "node_modules"},
   {
     "name": "node_modules/dom-helpers/util",
     "parent": "node_modules/dom-helpers"
@@ -513,8 +513,8 @@
     "asSource": 7,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-shape", "parent": "node_modules" },
-  { "name": "node_modules/d3-shape/src", "parent": "node_modules/d3-shape" },
+  {"name": "node_modules/d3-shape", "parent": "node_modules"},
+  {"name": "node_modules/d3-shape/src", "parent": "node_modules/d3-shape"},
   {
     "name": "node_modules/d3-shape/src/constant.js",
     "parent": "node_modules/d3-shape/src",
@@ -540,8 +540,8 @@
     "asSource": 7,
     "asTarget": 1
   },
-  { "name": "node_modules/d3-scale", "parent": "node_modules" },
-  { "name": "node_modules/d3-scale/src", "parent": "node_modules/d3-scale" },
+  {"name": "node_modules/d3-scale", "parent": "node_modules"},
+  {"name": "node_modules/d3-scale/src", "parent": "node_modules/d3-scale"},
   {
     "name": "node_modules/d3-scale/src/array.js",
     "parent": "node_modules/d3-scale/src",
@@ -549,7 +549,7 @@
     "asSource": 7,
     "asTarget": 0
   },
-  { "name": "node_modules/recompose", "parent": "node_modules" },
+  {"name": "node_modules/recompose", "parent": "node_modules"},
   {
     "name": "node_modules/recompose/pure.js",
     "parent": "node_modules/recompose",
@@ -579,8 +579,8 @@
     "asSource": 7,
     "asTarget": 3
   },
-  { "name": "node_modules/fbjs", "parent": "node_modules" },
-  { "name": "node_modules/fbjs/lib", "parent": "node_modules/fbjs" },
+  {"name": "node_modules/fbjs", "parent": "node_modules"},
+  {"name": "node_modules/fbjs/lib", "parent": "node_modules/fbjs"},
   {
     "name": "node_modules/fbjs/lib/emptyFunction.js",
     "parent": "node_modules/fbjs/lib",
@@ -638,8 +638,8 @@
     "asSource": 6,
     "asTarget": 3
   },
-  { "name": "node_modules/d3-array", "parent": "node_modules" },
-  { "name": "node_modules/d3-array/src", "parent": "node_modules/d3-array" },
+  {"name": "node_modules/d3-array", "parent": "node_modules"},
+  {"name": "node_modules/d3-array/src", "parent": "node_modules/d3-array"},
   {
     "name": "node_modules/d3-array/src/ascending.js",
     "parent": "node_modules/d3-array/src",
@@ -647,7 +647,7 @@
     "asSource": 6,
     "asTarget": 0
   },
-  { "name": "components/annotationRules", "parent": "components" },
+  {"name": "components/annotationRules", "parent": "components"},
   {
     "name": "components/annotationRules/baseRules.js",
     "parent": "components/annotationRules",
@@ -655,8 +655,8 @@
     "asSource": 6,
     "asTarget": 7
   },
-  { "name": "node_modules/d3-force", "parent": "node_modules" },
-  { "name": "node_modules/d3-force/src", "parent": "node_modules/d3-force" },
+  {"name": "node_modules/d3-force", "parent": "node_modules"},
+  {"name": "node_modules/d3-force/src", "parent": "node_modules/d3-force"},
   {
     "name": "node_modules/d3-force/src/constant.js",
     "parent": "node_modules/d3-force/src",
@@ -711,7 +711,7 @@
     "asSource": 5,
     "asTarget": 0
   },
-  { "name": "node_modules/keycode", "parent": "node_modules" },
+  {"name": "node_modules/keycode", "parent": "node_modules"},
   {
     "name": "node_modules/keycode/index.js",
     "parent": "node_modules/keycode",
@@ -755,7 +755,7 @@
     "asSource": 5,
     "asTarget": 0
   },
-  { "name": "components/data", "parent": "components" },
+  {"name": "components/data", "parent": "components"},
   {
     "name": "components/data/multiAccessorUtils.js",
     "parent": "components/data",
@@ -763,7 +763,7 @@
     "asSource": 5,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-interpolate", "parent": "node_modules" },
+  {"name": "node_modules/d3-interpolate", "parent": "node_modules"},
   {
     "name": "node_modules/d3-interpolate/src",
     "parent": "node_modules/d3-interpolate"
@@ -796,7 +796,7 @@
     "asSource": 5,
     "asTarget": 19
   },
-  { "name": "node_modules/d3-voronoi", "parent": "node_modules" },
+  {"name": "node_modules/d3-voronoi", "parent": "node_modules"},
   {
     "name": "node_modules/d3-voronoi/src",
     "parent": "node_modules/d3-voronoi"
@@ -808,7 +808,7 @@
     "asSource": 5,
     "asTarget": 5
   },
-  { "name": "components/svg", "parent": "components" },
+  {"name": "components/svg", "parent": "components"},
   {
     "name": "components/svg/frameFunctions.js",
     "parent": "components/svg",
@@ -823,7 +823,7 @@
     "asSource": 5,
     "asTarget": 5
   },
-  { "name": "node_modules/d3-hierarchy", "parent": "node_modules" },
+  {"name": "node_modules/d3-hierarchy", "parent": "node_modules"},
   {
     "name": "node_modules/d3-hierarchy/src",
     "parent": "node_modules/d3-hierarchy"
@@ -875,7 +875,7 @@
     "asSource": 4,
     "asTarget": 3
   },
-  { "name": "node_modules/react-prism", "parent": "node_modules" },
+  {"name": "node_modules/react-prism", "parent": "node_modules"},
   {
     "name": "node_modules/react-prism/lib",
     "parent": "node_modules/react-prism"
@@ -943,8 +943,8 @@
     "asSource": 4,
     "asTarget": 1
   },
-  { "name": "node_modules/jss", "parent": "node_modules" },
-  { "name": "node_modules/jss/lib", "parent": "node_modules/jss" },
+  {"name": "node_modules/jss", "parent": "node_modules"},
+  {"name": "node_modules/jss/lib", "parent": "node_modules/jss"},
   {
     "name": "node_modules/jss/lib/RuleList.js",
     "parent": "node_modules/jss/lib",
@@ -952,7 +952,7 @@
     "asSource": 4,
     "asTarget": 4
   },
-  { "name": "node_modules/is-in-browser", "parent": "node_modules" },
+  {"name": "node_modules/is-in-browser", "parent": "node_modules"},
   {
     "name": "node_modules/is-in-browser/dist",
     "parent": "node_modules/is-in-browser"
@@ -964,8 +964,8 @@
     "asSource": 4,
     "asTarget": 0
   },
-  { "name": "node_modules/deepmerge", "parent": "node_modules" },
-  { "name": "node_modules/deepmerge/dist", "parent": "node_modules/deepmerge" },
+  {"name": "node_modules/deepmerge", "parent": "node_modules"},
+  {"name": "node_modules/deepmerge/dist", "parent": "node_modules/deepmerge"},
   {
     "name": "node_modules/deepmerge/dist/cjs.js",
     "parent": "node_modules/deepmerge/dist",
@@ -1065,8 +1065,8 @@
     "asSource": 4,
     "asTarget": 5
   },
-  { "name": "node_modules/d3-format", "parent": "node_modules" },
-  { "name": "node_modules/d3-format/src", "parent": "node_modules/d3-format" },
+  {"name": "node_modules/d3-format", "parent": "node_modules"},
+  {"name": "node_modules/d3-format/src", "parent": "node_modules/d3-format"},
   {
     "name": "node_modules/d3-format/src/exponent.js",
     "parent": "node_modules/d3-format/src",
@@ -1095,7 +1095,7 @@
     "asSource": 4,
     "asTarget": 2
   },
-  { "name": "components/visualizationLayerBehavior", "parent": "components" },
+  {"name": "components/visualizationLayerBehavior", "parent": "components"},
   {
     "name": "components/visualizationLayerBehavior/general.js",
     "parent": "components/visualizationLayerBehavior",
@@ -1117,7 +1117,7 @@
     "asSource": 4,
     "asTarget": 5
   },
-  { "name": "components/constants", "parent": "components" },
+  {"name": "components/constants", "parent": "components"},
   {
     "name": "components/constants/frame_props.js",
     "parent": "components/constants",
@@ -1139,7 +1139,7 @@
     "asSource": 4,
     "asTarget": 3
   },
-  { "name": "docs/example_settings", "parent": "docs" },
+  {"name": "docs/example_settings", "parent": "docs"},
   {
     "name": "docs/example_settings/orframe.js",
     "parent": "docs/example_settings",
@@ -1161,7 +1161,7 @@
     "asSource": 4,
     "asTarget": 14
   },
-  { "name": "node_modules/dagre/lib/rank", "parent": "node_modules/dagre/lib" },
+  {"name": "node_modules/dagre/lib/rank", "parent": "node_modules/dagre/lib"},
   {
     "name": "node_modules/dagre/lib/rank/util.js",
     "parent": "node_modules/dagre/lib/rank",
@@ -1169,8 +1169,8 @@
     "asSource": 4,
     "asTarget": 1
   },
-  { "name": "node_modules/@vx", "parent": "node_modules" },
-  { "name": "node_modules/@vx/pattern", "parent": "node_modules/@vx" },
+  {"name": "node_modules/@vx", "parent": "node_modules"},
+  {"name": "node_modules/@vx/pattern", "parent": "node_modules/@vx"},
   {
     "name": "node_modules/@vx/pattern/build",
     "parent": "node_modules/@vx/pattern"
@@ -1186,7 +1186,7 @@
     "asSource": 4,
     "asTarget": 2
   },
-  { "name": "node_modules/object-assign", "parent": "node_modules" },
+  {"name": "node_modules/object-assign", "parent": "node_modules"},
   {
     "name": "node_modules/object-assign/index.js",
     "parent": "node_modules/object-assign",
@@ -1208,7 +1208,7 @@
     "asSource": 3,
     "asTarget": 0
   },
-  { "name": "node_modules/react-router-dom", "parent": "node_modules" },
+  {"name": "node_modules/react-router-dom", "parent": "node_modules"},
   {
     "name": "node_modules/react-router-dom/node_modules",
     "parent": "node_modules/react-router-dom"
@@ -1372,7 +1372,7 @@
     "asSource": 3,
     "asTarget": 2
   },
-  { "name": "node_modules/jss/lib/rules", "parent": "node_modules/jss/lib" },
+  {"name": "node_modules/jss/lib/rules", "parent": "node_modules/jss/lib"},
   {
     "name": "node_modules/jss/lib/rules/StyleRule.js",
     "parent": "node_modules/jss/lib/rules",
@@ -1380,7 +1380,7 @@
     "asSource": 3,
     "asTarget": 2
   },
-  { "name": "node_modules/jss/lib/utils", "parent": "node_modules/jss/lib" },
+  {"name": "node_modules/jss/lib/utils", "parent": "node_modules/jss/lib"},
   {
     "name": "node_modules/jss/lib/utils/toCss.js",
     "parent": "node_modules/jss/lib/utils",
@@ -1402,7 +1402,7 @@
     "asSource": 3,
     "asTarget": 2
   },
-  { "name": "node_modules/css-vendor", "parent": "node_modules" },
+  {"name": "node_modules/css-vendor", "parent": "node_modules"},
   {
     "name": "node_modules/css-vendor/lib",
     "parent": "node_modules/css-vendor"
@@ -1446,7 +1446,7 @@
     "asSource": 3,
     "asTarget": 1
   },
-  { "name": "node_modules/react-transition-group", "parent": "node_modules" },
+  {"name": "node_modules/react-transition-group", "parent": "node_modules"},
   {
     "name": "node_modules/react-transition-group/node_modules",
     "parent": "node_modules/react-transition-group"
@@ -1571,8 +1571,8 @@
     "asSource": 3,
     "asTarget": 1
   },
-  { "name": "node_modules/d3-timer", "parent": "node_modules" },
-  { "name": "node_modules/d3-timer/src", "parent": "node_modules/d3-timer" },
+  {"name": "node_modules/d3-timer", "parent": "node_modules"},
+  {"name": "node_modules/d3-timer/src", "parent": "node_modules/d3-timer"},
   {
     "name": "node_modules/d3-timer/src/timer.js",
     "parent": "node_modules/d3-timer/src",
@@ -1587,8 +1587,8 @@
     "asSource": 3,
     "asTarget": 8
   },
-  { "name": "node_modules/d3-color", "parent": "node_modules" },
-  { "name": "node_modules/d3-color/src", "parent": "node_modules/d3-color" },
+  {"name": "node_modules/d3-color", "parent": "node_modules"},
+  {"name": "node_modules/d3-color/src", "parent": "node_modules/d3-color"},
   {
     "name": "node_modules/d3-color/src/color.js",
     "parent": "node_modules/d3-color/src",
@@ -1610,7 +1610,7 @@
     "asSource": 3,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-collection", "parent": "node_modules" },
+  {"name": "node_modules/d3-collection", "parent": "node_modules"},
   {
     "name": "node_modules/d3-collection/src",
     "parent": "node_modules/d3-collection"
@@ -1636,7 +1636,7 @@
     "asSource": 3,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-time-format", "parent": "node_modules" },
+  {"name": "node_modules/d3-time-format", "parent": "node_modules"},
   {
     "name": "node_modules/d3-time-format/src",
     "parent": "node_modules/d3-time-format"
@@ -1744,7 +1744,7 @@
     "asSource": 3,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-quadtree", "parent": "node_modules" },
+  {"name": "node_modules/d3-quadtree", "parent": "node_modules"},
   {
     "name": "node_modules/d3-quadtree/src",
     "parent": "node_modules/d3-quadtree"
@@ -1770,8 +1770,8 @@
     "asSource": 3,
     "asTarget": 2
   },
-  { "name": "node_modules/d3-dsv", "parent": "node_modules" },
-  { "name": "node_modules/d3-dsv/src", "parent": "node_modules/d3-dsv" },
+  {"name": "node_modules/d3-dsv", "parent": "node_modules"},
+  {"name": "node_modules/d3-dsv/src", "parent": "node_modules/d3-dsv"},
   {
     "name": "node_modules/d3-dsv/src/dsv.js",
     "parent": "node_modules/d3-dsv/src",
@@ -1786,7 +1786,7 @@
     "asSource": 3,
     "asTarget": 8
   },
-  { "name": "docs/sampledata", "parent": "docs" },
+  {"name": "docs/sampledata", "parent": "docs"},
   {
     "name": "docs/sampledata/nyc_temp.js",
     "parent": "docs/sampledata",
@@ -1844,8 +1844,8 @@
     "asSource": 3,
     "asTarget": 4
   },
-  { "name": "node_modules/promise", "parent": "node_modules" },
-  { "name": "node_modules/promise/lib", "parent": "node_modules/promise" },
+  {"name": "node_modules/promise", "parent": "node_modules"},
+  {"name": "node_modules/promise/lib", "parent": "node_modules/promise"},
   {
     "name": "node_modules/promise/lib/core.js",
     "parent": "node_modules/promise/lib",
@@ -1867,7 +1867,7 @@
     "asSource": 2,
     "asTarget": 3
   },
-  { "name": "node_modules/resolve-pathname", "parent": "node_modules" },
+  {"name": "node_modules/resolve-pathname", "parent": "node_modules"},
   {
     "name": "node_modules/resolve-pathname/index.js",
     "parent": "node_modules/resolve-pathname",
@@ -1875,7 +1875,7 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "node_modules/value-equal", "parent": "node_modules" },
+  {"name": "node_modules/value-equal", "parent": "node_modules"},
   {
     "name": "node_modules/value-equal/index.js",
     "parent": "node_modules/value-equal",
@@ -1925,7 +1925,7 @@
     "asSource": 2,
     "asTarget": 5
   },
-  { "name": "node_modules/path-to-regexp", "parent": "node_modules" },
+  {"name": "node_modules/path-to-regexp", "parent": "node_modules"},
   {
     "name": "node_modules/path-to-regexp/index.js",
     "parent": "node_modules/path-to-regexp",
@@ -2080,8 +2080,8 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "node_modules/react-jss", "parent": "node_modules" },
-  { "name": "node_modules/react-jss/lib", "parent": "node_modules/react-jss" },
+  {"name": "node_modules/react-jss", "parent": "node_modules"},
+  {"name": "node_modules/react-jss/lib", "parent": "node_modules/react-jss"},
   {
     "name": "node_modules/react-jss/lib/jss.js",
     "parent": "node_modules/react-jss/lib",
@@ -2662,7 +2662,7 @@
     "asSource": 2,
     "asTarget": 1
   },
-  { "name": "node_modules/roughjs-es5", "parent": "node_modules" },
+  {"name": "node_modules/roughjs-es5", "parent": "node_modules"},
   {
     "name": "node_modules/roughjs-es5/lib",
     "parent": "node_modules/roughjs-es5"
@@ -2713,8 +2713,8 @@
     "asSource": 2,
     "asTarget": 9
   },
-  { "name": "node_modules/d3-drag", "parent": "node_modules" },
-  { "name": "node_modules/d3-drag/src", "parent": "node_modules/d3-drag" },
+  {"name": "node_modules/d3-drag", "parent": "node_modules"},
+  {"name": "node_modules/d3-drag/src", "parent": "node_modules/d3-drag"},
   {
     "name": "node_modules/d3-drag/src/nodrag.js",
     "parent": "node_modules/d3-drag/src",
@@ -2757,7 +2757,7 @@
     "asSource": 2,
     "asTarget": 3
   },
-  { "name": "components/canvas", "parent": "components" },
+  {"name": "components/canvas", "parent": "components"},
   {
     "name": "components/canvas/basicCanvasEffects.js",
     "parent": "components/canvas",
@@ -2772,7 +2772,7 @@
     "asSource": 2,
     "asTarget": 11
   },
-  { "name": "node_modules/d3-contour", "parent": "node_modules" },
+  {"name": "node_modules/d3-contour", "parent": "node_modules"},
   {
     "name": "node_modules/d3-contour/src",
     "parent": "node_modules/d3-contour"
@@ -2798,7 +2798,7 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "node_modules/tinyqueue", "parent": "node_modules" },
+  {"name": "node_modules/tinyqueue", "parent": "node_modules"},
   {
     "name": "node_modules/tinyqueue/index.js",
     "parent": "node_modules/tinyqueue",
@@ -2859,8 +2859,8 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "node_modules/bintrees", "parent": "node_modules" },
-  { "name": "node_modules/bintrees/lib", "parent": "node_modules/bintrees" },
+  {"name": "node_modules/bintrees", "parent": "node_modules"},
+  {"name": "node_modules/bintrees/lib", "parent": "node_modules/bintrees"},
   {
     "name": "node_modules/bintrees/lib/treebase.js",
     "parent": "node_modules/bintrees/lib",
@@ -2910,7 +2910,7 @@
     "asSource": 2,
     "asTarget": 3
   },
-  { "name": "node_modules/svg-path-bounding-box", "parent": "node_modules" },
+  {"name": "node_modules/svg-path-bounding-box", "parent": "node_modules"},
   {
     "name": "node_modules/svg-path-bounding-box/index.js",
     "parent": "node_modules/svg-path-bounding-box",
@@ -2918,8 +2918,8 @@
     "asSource": 2,
     "asTarget": 1
   },
-  { "name": "node_modules/svgpath", "parent": "node_modules" },
-  { "name": "node_modules/svgpath/lib", "parent": "node_modules/svgpath" },
+  {"name": "node_modules/svgpath", "parent": "node_modules"},
+  {"name": "node_modules/svgpath/lib", "parent": "node_modules/svgpath"},
   {
     "name": "node_modules/svgpath/lib/matrix.js",
     "parent": "node_modules/svgpath/lib",
@@ -2927,7 +2927,7 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "components/untyped_utilities", "parent": "components" },
+  {"name": "components/untyped_utilities", "parent": "components"},
   {
     "name": "components/untyped_utilities/functions.js",
     "parent": "components/untyped_utilities",
@@ -2942,7 +2942,7 @@
     "asSource": 2,
     "asTarget": 4
   },
-  { "name": "node_modules/d3-glyphedge", "parent": "node_modules" },
+  {"name": "node_modules/d3-glyphedge", "parent": "node_modules"},
   {
     "name": "node_modules/d3-glyphedge/build",
     "parent": "node_modules/d3-glyphedge"
@@ -2954,7 +2954,7 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-sankey-circular", "parent": "node_modules" },
+  {"name": "node_modules/d3-sankey-circular", "parent": "node_modules"},
   {
     "name": "node_modules/d3-sankey-circular/dist",
     "parent": "node_modules/d3-sankey-circular"
@@ -2966,8 +2966,8 @@
     "asSource": 2,
     "asTarget": 1
   },
-  { "name": "node_modules/d3-chord", "parent": "node_modules" },
-  { "name": "node_modules/d3-chord/src", "parent": "node_modules/d3-chord" },
+  {"name": "node_modules/d3-chord", "parent": "node_modules"},
+  {"name": "node_modules/d3-chord/src", "parent": "node_modules/d3-chord"},
   {
     "name": "node_modules/d3-chord/src/math.js",
     "parent": "node_modules/d3-chord/src",
@@ -3073,8 +3073,8 @@
     "asSource": 2,
     "asTarget": 5
   },
-  { "name": "node_modules/d3-sankey", "parent": "node_modules" },
-  { "name": "node_modules/d3-sankey/src", "parent": "node_modules/d3-sankey" },
+  {"name": "node_modules/d3-sankey", "parent": "node_modules"},
+  {"name": "node_modules/d3-sankey/src", "parent": "node_modules/d3-sankey"},
   {
     "name": "node_modules/d3-sankey/src/align.js",
     "parent": "node_modules/d3-sankey/src",
@@ -3233,8 +3233,8 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-random", "parent": "node_modules" },
-  { "name": "node_modules/d3-random/src", "parent": "node_modules/d3-random" },
+  {"name": "node_modules/d3-random", "parent": "node_modules"},
+  {"name": "node_modules/d3-random/src", "parent": "node_modules/d3-random"},
   {
     "name": "node_modules/d3-random/src/normal.js",
     "parent": "node_modules/d3-random/src",
@@ -3263,7 +3263,7 @@
     "asSource": 2,
     "asTarget": 1
   },
-  { "name": "node_modules/lodash", "parent": "node_modules" },
+  {"name": "node_modules/lodash", "parent": "node_modules"},
   {
     "name": "node_modules/lodash/debounce.js",
     "parent": "node_modules/lodash",
@@ -3292,7 +3292,7 @@
     "asSource": 2,
     "asTarget": 1
   },
-  { "name": "node_modules/react-event-listener", "parent": "node_modules" },
+  {"name": "node_modules/react-event-listener", "parent": "node_modules"},
   {
     "name": "node_modules/react-event-listener/dist",
     "parent": "node_modules/react-event-listener"
@@ -3304,8 +3304,8 @@
     "asSource": 2,
     "asTarget": 11
   },
-  { "name": "node_modules/@babel", "parent": "node_modules" },
-  { "name": "node_modules/@babel/runtime", "parent": "node_modules/@babel" },
+  {"name": "node_modules/@babel", "parent": "node_modules"},
+  {"name": "node_modules/@babel/runtime", "parent": "node_modules/@babel"},
   {
     "name": "node_modules/@babel/runtime/helpers",
     "parent": "node_modules/@babel/runtime"
@@ -3435,7 +3435,7 @@
     "asSource": 2,
     "asTarget": 0
   },
-  { "name": "config", "parent": "rootNode" },
+  {"name": "config", "parent": "rootNode"},
   {
     "name": "config/polyfills.js",
     "parent": "config",
@@ -3450,7 +3450,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/asap", "parent": "node_modules" },
+  {"name": "node_modules/asap", "parent": "node_modules"},
   {
     "name": "node_modules/asap/browser-raw.js",
     "parent": "node_modules/asap",
@@ -3465,7 +3465,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/whatwg-fetch", "parent": "node_modules" },
+  {"name": "node_modules/whatwg-fetch", "parent": "node_modules"},
   {
     "name": "node_modules/whatwg-fetch/fetch.js",
     "parent": "node_modules/whatwg-fetch",
@@ -3480,7 +3480,7 @@
     "asSource": 1,
     "asTarget": 3
   },
-  { "name": "node_modules/react/cjs", "parent": "node_modules/react" },
+  {"name": "node_modules/react/cjs", "parent": "node_modules/react"},
   {
     "name": "node_modules/react/cjs/react.production.min.js",
     "parent": "node_modules/react/cjs",
@@ -3488,7 +3488,7 @@
     "asSource": 1,
     "asTarget": 3
   },
-  { "name": "node_modules/react-dom/cjs", "parent": "node_modules/react-dom" },
+  {"name": "node_modules/react-dom/cjs", "parent": "node_modules/react-dom"},
   {
     "name": "node_modules/react-dom/cjs/react-dom.production.min.js",
     "parent": "node_modules/react-dom/cjs",
@@ -4192,7 +4192,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/hoist-non-react-statics", "parent": "node_modules" },
+  {"name": "node_modules/hoist-non-react-statics", "parent": "node_modules"},
   {
     "name": "node_modules/hoist-non-react-statics/index.js",
     "parent": "node_modules/hoist-non-react-statics",
@@ -4260,7 +4260,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/jss/lib/plugins", "parent": "node_modules/jss/lib" },
+  {"name": "node_modules/jss/lib/plugins", "parent": "node_modules/jss/lib"},
   {
     "name": "node_modules/jss/lib/plugins/rules.js",
     "parent": "node_modules/jss/lib/plugins",
@@ -4293,7 +4293,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/jss-preset-default", "parent": "node_modules" },
+  {"name": "node_modules/jss-preset-default", "parent": "node_modules"},
   {
     "name": "node_modules/jss-preset-default/lib",
     "parent": "node_modules/jss-preset-default"
@@ -4305,7 +4305,7 @@
     "asSource": 1,
     "asTarget": 9
   },
-  { "name": "node_modules/jss-extend", "parent": "node_modules" },
+  {"name": "node_modules/jss-extend", "parent": "node_modules"},
   {
     "name": "node_modules/jss-extend/lib",
     "parent": "node_modules/jss-extend"
@@ -4317,7 +4317,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/jss-nested", "parent": "node_modules" },
+  {"name": "node_modules/jss-nested", "parent": "node_modules"},
   {
     "name": "node_modules/jss-nested/lib",
     "parent": "node_modules/jss-nested"
@@ -4329,7 +4329,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/jss-camel-case", "parent": "node_modules" },
+  {"name": "node_modules/jss-camel-case", "parent": "node_modules"},
   {
     "name": "node_modules/jss-camel-case/lib",
     "parent": "node_modules/jss-camel-case"
@@ -4341,7 +4341,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/jss-default-unit", "parent": "node_modules" },
+  {"name": "node_modules/jss-default-unit", "parent": "node_modules"},
   {
     "name": "node_modules/jss-default-unit/lib",
     "parent": "node_modules/jss-default-unit"
@@ -4360,7 +4360,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/jss-vendor-prefixer", "parent": "node_modules" },
+  {"name": "node_modules/jss-vendor-prefixer", "parent": "node_modules"},
   {
     "name": "node_modules/jss-vendor-prefixer/lib",
     "parent": "node_modules/jss-vendor-prefixer"
@@ -4400,7 +4400,7 @@
     "asSource": 1,
     "asTarget": 2
   },
-  { "name": "node_modules/jss-props-sort", "parent": "node_modules" },
+  {"name": "node_modules/jss-props-sort", "parent": "node_modules"},
   {
     "name": "node_modules/jss-props-sort/lib",
     "parent": "node_modules/jss-props-sort"
@@ -4412,7 +4412,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/jss-compose", "parent": "node_modules" },
+  {"name": "node_modules/jss-compose", "parent": "node_modules"},
   {
     "name": "node_modules/jss-compose/lib",
     "parent": "node_modules/jss-compose"
@@ -4424,7 +4424,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/jss-expand", "parent": "node_modules" },
+  {"name": "node_modules/jss-expand", "parent": "node_modules"},
   {
     "name": "node_modules/jss-expand/lib",
     "parent": "node_modules/jss-expand"
@@ -4443,7 +4443,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/jss-global", "parent": "node_modules" },
+  {"name": "node_modules/jss-global", "parent": "node_modules"},
   {
     "name": "node_modules/jss-global/lib",
     "parent": "node_modules/jss-global"
@@ -4706,7 +4706,7 @@
     "asSource": 1,
     "asTarget": 3
   },
-  { "name": "components/annotationLayerBehavior", "parent": "components" },
+  {"name": "components/annotationLayerBehavior", "parent": "components"},
   {
     "name": "components/annotationLayerBehavior/annotationHandling.js",
     "parent": "components/annotationLayerBehavior",
@@ -4753,8 +4753,8 @@
     "asSource": 1,
     "asTarget": 3
   },
-  { "name": "node_modules/d3-path", "parent": "node_modules" },
-  { "name": "node_modules/d3-path/src", "parent": "node_modules/d3-path" },
+  {"name": "node_modules/d3-path", "parent": "node_modules"},
+  {"name": "node_modules/d3-path/src", "parent": "node_modules/d3-path"},
   {
     "name": "node_modules/d3-path/src/path.js",
     "parent": "node_modules/d3-path/src",
@@ -4990,8 +4990,8 @@
     "asSource": 1,
     "asTarget": 2
   },
-  { "name": "node_modules/labella", "parent": "node_modules" },
-  { "name": "node_modules/labella/dist", "parent": "node_modules/labella" },
+  {"name": "node_modules/labella", "parent": "node_modules"},
+  {"name": "node_modules/labella/dist", "parent": "node_modules/labella"},
   {
     "name": "node_modules/labella/dist/labella.min.js",
     "parent": "node_modules/labella/dist",
@@ -5374,7 +5374,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/d3-dispatch", "parent": "node_modules" },
+  {"name": "node_modules/d3-dispatch", "parent": "node_modules"},
   {
     "name": "node_modules/d3-dispatch/src",
     "parent": "node_modules/d3-dispatch"
@@ -5607,8 +5607,8 @@
     "asSource": 1,
     "asTarget": 2
   },
-  { "name": "node_modules/d3-ease", "parent": "node_modules" },
-  { "name": "node_modules/d3-ease/src", "parent": "node_modules/d3-ease" },
+  {"name": "node_modules/d3-ease", "parent": "node_modules"},
+  {"name": "node_modules/d3-ease/src", "parent": "node_modules/d3-ease"},
   {
     "name": "node_modules/d3-ease/src/cubic.js",
     "parent": "node_modules/d3-ease/src",
@@ -5991,7 +5991,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/regenerator-runtime", "parent": "node_modules" },
+  {"name": "node_modules/regenerator-runtime", "parent": "node_modules"},
   {
     "name": "node_modules/regenerator-runtime/runtime-module.js",
     "parent": "node_modules/regenerator-runtime",
@@ -6045,8 +6045,8 @@
     "asSource": 1,
     "asTarget": 2
   },
-  { "name": "node_modules/json2csv", "parent": "node_modules" },
-  { "name": "node_modules/json2csv/lib", "parent": "node_modules/json2csv" },
+  {"name": "node_modules/json2csv", "parent": "node_modules"},
+  {"name": "node_modules/json2csv/lib", "parent": "node_modules/json2csv"},
   {
     "name": "node_modules/json2csv/lib/json2csv.js",
     "parent": "node_modules/json2csv/lib",
@@ -6054,7 +6054,7 @@
     "asSource": 1,
     "asTarget": 8
   },
-  { "name": "node_modules/node-libs-browser", "parent": "node_modules" },
+  {"name": "node_modules/node-libs-browser", "parent": "node_modules"},
   {
     "name": "node_modules/node-libs-browser/node_modules",
     "parent": "node_modules/node-libs-browser"
@@ -6070,7 +6070,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/os-browserify", "parent": "node_modules" },
+  {"name": "node_modules/os-browserify", "parent": "node_modules"},
   {
     "name": "node_modules/os-browserify/browser.js",
     "parent": "node_modules/os-browserify",
@@ -6078,7 +6078,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/lodash.get", "parent": "node_modules" },
+  {"name": "node_modules/lodash.get", "parent": "node_modules"},
   {
     "name": "node_modules/lodash.get/index.js",
     "parent": "node_modules/lodash.get",
@@ -6086,7 +6086,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/lodash.flatten", "parent": "node_modules" },
+  {"name": "node_modules/lodash.flatten", "parent": "node_modules"},
   {
     "name": "node_modules/lodash.flatten/index.js",
     "parent": "node_modules/lodash.flatten",
@@ -6094,7 +6094,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/lodash.uniq", "parent": "node_modules" },
+  {"name": "node_modules/lodash.uniq", "parent": "node_modules"},
   {
     "name": "node_modules/lodash.uniq/index.js",
     "parent": "node_modules/lodash.uniq",
@@ -6102,7 +6102,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/lodash.set", "parent": "node_modules" },
+  {"name": "node_modules/lodash.set", "parent": "node_modules"},
   {
     "name": "node_modules/lodash.set/index.js",
     "parent": "node_modules/lodash.set",
@@ -6110,7 +6110,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/lodash.clonedeep", "parent": "node_modules" },
+  {"name": "node_modules/lodash.clonedeep", "parent": "node_modules"},
   {
     "name": "node_modules/lodash.clonedeep/index.js",
     "parent": "node_modules/lodash.clonedeep",
@@ -6118,7 +6118,7 @@
     "asSource": 1,
     "asTarget": 2
   },
-  { "name": "node_modules/flat", "parent": "node_modules" },
+  {"name": "node_modules/flat", "parent": "node_modules"},
   {
     "name": "node_modules/flat/index.js",
     "parent": "node_modules/flat",
@@ -6126,7 +6126,7 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/is-buffer", "parent": "node_modules" },
+  {"name": "node_modules/is-buffer", "parent": "node_modules"},
   {
     "name": "node_modules/is-buffer/index.js",
     "parent": "node_modules/is-buffer",
@@ -6134,8 +6134,8 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/d3-brush", "parent": "node_modules" },
-  { "name": "node_modules/d3-brush/src", "parent": "node_modules/d3-brush" },
+  {"name": "node_modules/d3-brush", "parent": "node_modules"},
+  {"name": "node_modules/d3-brush/src", "parent": "node_modules/d3-brush"},
   {
     "name": "node_modules/d3-brush/src/brush.js",
     "parent": "node_modules/d3-brush/src",
@@ -6255,7 +6255,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/@mapbox", "parent": "node_modules" },
+  {"name": "node_modules/@mapbox", "parent": "node_modules"},
   {
     "name": "node_modules/@mapbox/polylabel",
     "parent": "node_modules/@mapbox"
@@ -6267,8 +6267,8 @@
     "asSource": 1,
     "asTarget": 1
   },
-  { "name": "node_modules/d3-hexbin", "parent": "node_modules" },
-  { "name": "node_modules/d3-hexbin/src", "parent": "node_modules/d3-hexbin" },
+  {"name": "node_modules/d3-hexbin", "parent": "node_modules"},
+  {"name": "node_modules/d3-hexbin/src", "parent": "node_modules/d3-hexbin"},
   {
     "name": "node_modules/d3-hexbin/src/hexbin.js",
     "parent": "node_modules/d3-hexbin/src",
@@ -6497,7 +6497,7 @@
     "asSource": 1,
     "asTarget": 4
   },
-  { "name": "node_modules/d3-polygon", "parent": "node_modules" },
+  {"name": "node_modules/d3-polygon", "parent": "node_modules"},
   {
     "name": "node_modules/d3-polygon/src",
     "parent": "node_modules/d3-polygon"
@@ -6544,7 +6544,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/polygon-offset", "parent": "node_modules" },
+  {"name": "node_modules/polygon-offset", "parent": "node_modules"},
   {
     "name": "node_modules/polygon-offset/src",
     "parent": "node_modules/polygon-offset"
@@ -6893,7 +6893,7 @@
     "asSource": 1,
     "asTarget": 4
   },
-  { "name": "node_modules/d3-bboxCollide", "parent": "node_modules" },
+  {"name": "node_modules/d3-bboxCollide", "parent": "node_modules"},
   {
     "name": "node_modules/d3-bboxCollide/build",
     "parent": "node_modules/d3-bboxCollide"
@@ -6975,7 +6975,7 @@
     "asSource": 1,
     "asTarget": 3
   },
-  { "name": "node_modules/memoize-one", "parent": "node_modules" },
+  {"name": "node_modules/memoize-one", "parent": "node_modules"},
   {
     "name": "node_modules/memoize-one/dist",
     "parent": "node_modules/memoize-one"
@@ -6994,7 +6994,7 @@
     "asSource": 1,
     "asTarget": 2
   },
-  { "name": "components/vendor", "parent": "components" },
+  {"name": "components/vendor", "parent": "components"},
   {
     "name": "components/vendor/element-resize-event.js",
     "parent": "components/vendor",
@@ -7129,8 +7129,8 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/dentist", "parent": "node_modules" },
-  { "name": "node_modules/dentist/dist", "parent": "node_modules/dentist" },
+  {"name": "node_modules/dentist", "parent": "node_modules"},
+  {"name": "node_modules/dentist/dist", "parent": "node_modules/dentist"},
   {
     "name": "node_modules/dentist/dist/index.js",
     "parent": "node_modules/dentist/dist",
@@ -7138,7 +7138,7 @@
     "asSource": 1,
     "asTarget": 0
   },
-  { "name": "node_modules/material-ui-icons", "parent": "node_modules" },
+  {"name": "node_modules/material-ui-icons", "parent": "node_modules"},
   {
     "name": "node_modules/material-ui-icons/Code.js",
     "parent": "node_modules/material-ui-icons",
@@ -7677,8 +7677,8 @@
     "asSource": 1,
     "asTarget": 11
   },
-  { "name": "node_modules/brcast", "parent": "node_modules" },
-  { "name": "node_modules/brcast/dist", "parent": "node_modules/brcast" },
+  {"name": "node_modules/brcast", "parent": "node_modules"},
+  {"name": "node_modules/brcast/dist", "parent": "node_modules/brcast"},
   {
     "name": "node_modules/brcast/dist/brcast.es.js",
     "parent": "node_modules/brcast/dist",
@@ -8040,7 +8040,7 @@
     "asSource": 1,
     "asTarget": 3
   },
-  { "name": "node_modules/dagre/lib/data", "parent": "node_modules/dagre/lib" },
+  {"name": "node_modules/dagre/lib/data", "parent": "node_modules/dagre/lib"},
   {
     "name": "node_modules/dagre/lib/data/list.js",
     "parent": "node_modules/dagre/lib/data",
@@ -8453,7 +8453,7 @@
     "asSource": 1,
     "asTarget": 12
   },
-  { "name": "node_modules/react-tap-event-plugin", "parent": "node_modules" },
+  {"name": "node_modules/react-tap-event-plugin", "parent": "node_modules"},
   {
     "name": "node_modules/react-tap-event-plugin/src",
     "parent": "node_modules/react-tap-event-plugin"

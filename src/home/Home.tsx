@@ -1,11 +1,11 @@
-import { Route, Switch } from "react-router-dom";
-import React from "react";
-import Resolve from "../resolve/Resolve";
-import { ImportResolveState, ImportHistory, ImportTypes } from "../types";
-import Importer from "../import/Importer";
-import ImportSelector from "../import/ImportSelector";
+import {Route, Switch} from 'react-router-dom';
+import React from 'react';
+import Resolve from '../resolve/Resolve';
+import {ImportResolveState, ImportHistory, ImportTypes} from '../types';
+import Importer from '../import/Importer';
+import ImportSelector from '../import/ImportSelector';
 
-import "./home.css";
+import './home.css';
 
 interface Props extends ImportResolveState {
   history: ImportHistory;
@@ -22,11 +22,11 @@ export default function Home(props: Props) {
 
   return (
     <div id="home">
-      <section style={{ background: "var(--grey900)", color: "white" }}>
+      <section style={{background: 'var(--grey900)', color: 'white'}}>
         <header className="left-panel">
           <div
             className="inner-border vertical-center"
-            style={{ borderRight: `3px solid var(--grey700)` }}
+            style={{borderRight: `3px solid var(--grey700)`}}
           >
             <h1>Bundle Buddy</h1>
           </div>
@@ -34,18 +34,16 @@ export default function Home(props: Props) {
 
         <div className="right-panel">
           <p className="ft-24">
-            <i>
-              Visualizing what code is in your web bundle, and how it got there.
-            </i>
+            <i>Visualizing what code is in your web bundle, and how it got there.</i>
           </p>
         </div>
       </section>
 
-      <section style={{ background: "var(--primary-color)", color: "white" }}>
+      <section style={{background: 'var(--primary-color)', color: 'white'}}>
         <div className="left-panel">
           <div
             className="inner-border vertical-center"
-            style={{ borderRight: `3px solid var(--grey300)` }}
+            style={{borderRight: `3px solid var(--grey300)`}}
           >
             <h2>Step 1</h2>
           </div>
@@ -55,15 +53,13 @@ export default function Home(props: Props) {
           <ImportSelector history={history} />
         </div>
       </section>
-      <section
-        style={{ background: "var(--grey200)", color: "var(--grey900)" }}
-      >
+      <section style={{background: 'var(--grey200)', color: 'var(--grey900)'}}>
         <Switch>
           <Route path="/:importer">
             <div className="left-panel">
               <div
                 className="inner-border vertical-center"
-                style={{ borderRight: `3px solid var(--grey300)` }}
+                style={{borderRight: `3px solid var(--grey300)`}}
               >
                 <h2>Step 2</h2>
               </div>
@@ -77,7 +73,7 @@ export default function Home(props: Props) {
               <Switch>
                 <Route
                   path="/webpack"
-                  component={(h: { history: History }) => {
+                  component={(h: {history: History}) => {
                     return (
                       <Importer
                         graphFileName="stats.json"
@@ -89,7 +85,7 @@ export default function Home(props: Props) {
                 />
                 <Route
                   path="/create-react-app"
-                  component={(h: { history: History }) => {
+                  component={(h: {history: History}) => {
                     return (
                       <Importer
                         graphFileName="stats.json"
@@ -101,7 +97,7 @@ export default function Home(props: Props) {
                 />
                 <Route
                   path="/rollup"
-                  component={(h: { history: History }) => {
+                  component={(h: {history: History}) => {
                     return (
                       <Importer
                         importType={ImportTypes.ROLLUP}
@@ -113,7 +109,7 @@ export default function Home(props: Props) {
                 />
                 <Route
                   path="/rome"
-                  component={(h: { history: History }) => {
+                  component={(h: {history: History}) => {
                     return (
                       <Importer
                         importType={ImportTypes.ROME}
@@ -125,7 +121,7 @@ export default function Home(props: Props) {
                 />
                 <Route
                   path="/parcel"
-                  component={(h: { history: History }) => {
+                  component={(h: {history: History}) => {
                     return (
                       <Importer
                         importType={ImportTypes.PARCEL}
@@ -137,7 +133,7 @@ export default function Home(props: Props) {
                 />
                 <Route
                   path="/esbuild"
-                  component={(h: { history: History }) => {
+                  component={(h: {history: History}) => {
                     return (
                       <Importer
                         importType={ImportTypes.ESBUILD}
@@ -153,11 +149,11 @@ export default function Home(props: Props) {
         </div>
       </section>
       {graphEdges && (
-        <section style={{ color: "var(--grey900)" }}>
+        <section style={{color: 'var(--grey900)'}}>
           <div className="left-panel">
             <div
               className="inner-border vertical-center"
-              style={{ borderRight: `3px solid var(--grey300)` }}
+              style={{borderRight: `3px solid var(--grey300)`}}
             >
               <h2>Step 3</h2>
             </div>

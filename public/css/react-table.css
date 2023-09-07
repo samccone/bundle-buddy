@@ -134,7 +134,7 @@
   left: 100%;
   top: 50%;
   border: solid transparent;
-  content: " ";
+  content: ' ';
   height: 0;
   width: 0;
   position: absolute;
@@ -232,7 +232,7 @@
   margin: 0 10px;
 }
 .ReactTable .rt-expander:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 0;
   height: 0;

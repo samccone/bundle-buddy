@@ -1,18 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 // noopener noreferrer
 export default function Header() {
   return (
     <header className="App-header flex baseline padding">
       <Link className="header-link flex" to="/">
-        <img
-          className="logo"
-          src="/icon.png"
-          width="30"
-          height="30"
-          alt="Bundle Buddy logo"
-        />
+        <img className="logo" src="/icon.png" width="30" height="30" alt="Bundle Buddy logo" />
         <h1>Bundle Buddy</h1>
       </Link>
       <a
@@ -27,9 +21,9 @@ export default function Header() {
           height="50"
           viewBox="0 0 250 250"
           style={{
-            fill: "#151513",
-            color: "#fff",
-            position: "absolute",
+            fill: '#151513',
+            color: '#fff',
+            position: 'absolute',
             top: 0,
             border: 0,
             right: 0,
@@ -40,7 +34,7 @@ export default function Header() {
           <path
             d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
             fill="currentColor"
-            style={{ transformOrigin: "130px 106px" }}
+            style={{transformOrigin: '130px 106px'}}
             className="octo-arm"
           ></path>
           <path
@@ -53,11 +47,11 @@ export default function Header() {
       <div className="alpha-warning">
         <span aria-label="warning" role="img">
           ⚠
-        </span>{" "}
-        ️Project is in an experimental phase{" "}
+        </span>{' '}
+        ️Project is in an experimental phase{' '}
         <span aria-label="warning" role="img">
           ⚠
-        </span>{" "}
+        </span>{' '}
         ️
       </div>
     </header>

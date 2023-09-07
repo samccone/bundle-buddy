@@ -128,10 +128,7 @@
           "requiredBy": ["index.js"],
           "requires": [],
           "indirectDependedOnCount": 1,
-          "transitiveRequiredBy": [
-            "index.js",
-            "multi ./config/polyfills.js index.js"
-          ]
+          "transitiveRequiredBy": ["index.js", "multi ./config/polyfills.js index.js"]
         }
       },
       {
@@ -143,10 +140,7 @@
         "text": "sampledata/apple_stock.js",
         "fileName": "apple_stock.js",
         "count": {
-          "requiredBy": [
-            "docs/components/AppleStockChartRaw.js",
-            "docs/components/LineBrush.js"
-          ],
+          "requiredBy": ["docs/components/AppleStockChartRaw.js", "docs/components/LineBrush.js"],
           "requires": [],
           "indirectDependedOnCount": 8,
           "transitiveRequiredBy": [
@@ -1673,10 +1667,7 @@
         "text": "svg/summaryLayouts.js",
         "fileName": "summaryLayouts.js",
         "count": {
-          "requiredBy": [
-            "components/svg/frameFunctions.js",
-            "components/OrdinalFrame.js"
-          ],
+          "requiredBy": ["components/svg/frameFunctions.js", "components/OrdinalFrame.js"],
           "requires": [
             "node_modules/react",
             "node_modules/d3-array",
@@ -2270,11 +2261,7 @@
         "fileName": "BarToParallel.js",
         "count": {
           "requiredBy": ["docs/Documentation.js"],
-          "requires": [
-            "node_modules/react",
-            "components/index.js",
-            "node_modules/material-ui"
-          ],
+          "requires": ["node_modules/react", "components/index.js", "node_modules/material-ui"],
           "indirectDependedOnCount": 3,
           "transitiveRequiredBy": [
             "docs/Documentation.js",
@@ -2448,10 +2435,7 @@
         "text": "components/FacetControllerDocs.js",
         "fileName": "FacetControllerDocs.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/Documentation.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/Documentation.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -3196,10 +3180,7 @@
         "text": "components/CometPlotRaw.js",
         "fileName": "CometPlotRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/CometPlot.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/CometPlot.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -3745,10 +3726,7 @@
           "requiredBy": ["./config/polyfills.js"],
           "requires": [],
           "indirectDependedOnCount": 1,
-          "transitiveRequiredBy": [
-            "./config/polyfills.js",
-            "multi ./config/polyfills.js index.js"
-          ]
+          "transitiveRequiredBy": ["./config/polyfills.js", "multi ./config/polyfills.js index.js"]
         }
       },
       {
@@ -3760,10 +3738,7 @@
         "text": "d3-interpolate",
         "fileName": "d3-interpolate",
         "count": {
-          "requiredBy": [
-            "components/svg/SvgHelper.js",
-            "components/svg/networkDrawing.js"
-          ],
+          "requiredBy": ["components/svg/SvgHelper.js", "components/svg/networkDrawing.js"],
           "requires": [],
           "indirectDependedOnCount": 116,
           "transitiveRequiredBy": [
@@ -4488,10 +4463,7 @@
             "components/index.js",
             "components/data/dataFunctions.js"
           ],
-          "requires": [
-            "node_modules/d3-array",
-            "components/data/multiAccessorUtils.js"
-          ],
+          "requires": ["node_modules/d3-array", "components/data/multiAccessorUtils.js"],
           "indirectDependedOnCount": 110,
           "transitiveRequiredBy": [
             "components/DividedLine.js",
@@ -4751,10 +4723,7 @@
         "text": "components/SparklineRaw.js",
         "fileName": "SparklineRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Sparkline.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Sparkline.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -5123,10 +5092,7 @@
         "text": "components/CustomMarkRaw.js",
         "fileName": "CustomMarkRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/CustomMark.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/CustomMark.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -6201,10 +6167,7 @@
         "text": "d3-glyphedge",
         "fileName": "d3-glyphedge",
         "count": {
-          "requiredBy": [
-            "docs/components/CometPlotRaw.js",
-            "components/svg/networkDrawing.js"
-          ],
+          "requiredBy": ["docs/components/CometPlotRaw.js", "components/svg/networkDrawing.js"],
           "requires": [],
           "indirectDependedOnCount": 101,
           "transitiveRequiredBy": [
@@ -6762,11 +6725,7 @@
         "fileName": "CustomNodesRaw.js",
         "count": {
           "requiredBy": ["docs/components/CustomNodes.js"],
-          "requires": [
-            "node_modules/react",
-            "components/index.js",
-            "node_modules/dagre"
-          ],
+          "requires": ["node_modules/react", "components/index.js", "node_modules/dagre"],
           "indirectDependedOnCount": 4,
           "transitiveRequiredBy": [
             "docs/components/CustomNodes.js",
@@ -7664,10 +7623,7 @@
         "text": "Legend.js",
         "fileName": "Legend.js",
         "count": {
-          "requiredBy": [
-            "components/AnnotationLayer.js",
-            "components/index.js"
-          ],
+          "requiredBy": ["components/AnnotationLayer.js", "components/index.js"],
           "requires": ["node_modules/prop-types", "node_modules/react"],
           "indirectDependedOnCount": 112,
           "transitiveRequiredBy": [
@@ -7796,10 +7752,7 @@
         "text": "components/TimelineRaw.js",
         "fileName": "TimelineRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Timeline.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Timeline.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -8006,10 +7959,7 @@
         "text": "svg-path-bounding-box",
         "fileName": "svg-path-bounding-box",
         "count": {
-          "requiredBy": [
-            "components/NetworkFrame.js",
-            "components/svg/pieceLayouts.js"
-          ],
+          "requiredBy": ["components/NetworkFrame.js", "components/svg/pieceLayouts.js"],
           "requires": [],
           "indirectDependedOnCount": 104,
           "transitiveRequiredBy": [
@@ -8131,10 +8081,7 @@
         "text": "components/BulletChartRaw.js",
         "fileName": "BulletChartRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/BulletChart.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/BulletChart.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -8709,10 +8656,7 @@
           "requiredBy": ["./config/polyfills.js"],
           "requires": [],
           "indirectDependedOnCount": 1,
-          "transitiveRequiredBy": [
-            "./config/polyfills.js",
-            "multi ./config/polyfills.js index.js"
-          ]
+          "transitiveRequiredBy": ["./config/polyfills.js", "multi ./config/polyfills.js index.js"]
         }
       },
       {
@@ -8916,9 +8860,7 @@
         "text": "annotationLayerBehavior/d3labeler.js",
         "fileName": "d3labeler.js",
         "count": {
-          "requiredBy": [
-            "components/annotationLayerBehavior/annotationHandling.js"
-          ],
+          "requiredBy": ["components/annotationLayerBehavior/annotationHandling.js"],
           "requires": [],
           "indirectDependedOnCount": 113,
           "transitiveRequiredBy": [
@@ -9073,10 +9015,7 @@
         "text": "components/DotPlotRaw.js",
         "fileName": "DotPlotRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/DotPlot.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/DotPlot.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -9270,10 +9209,7 @@
         "text": "components/DendrogramRaw.js",
         "fileName": "DendrogramRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Dendrogram.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Dendrogram.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -9558,10 +9494,7 @@
         "text": "components/MarimekkoRaw.js",
         "fileName": "MarimekkoRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Marimekko.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Marimekko.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -9939,10 +9872,7 @@
         "text": "components/BarLineRaw.js",
         "fileName": "BarLineRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/BarLineDocs.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/BarLineDocs.js"],
           "requires": ["node_modules/react", "components/index.js"],
           "indirectDependedOnCount": 6,
           "transitiveRequiredBy": [
@@ -10122,10 +10052,7 @@
         "text": "components/SankeyRaw.js",
         "fileName": "SankeyRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Sankey.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Sankey.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -10714,11 +10641,7 @@
         "fileName": "CanvasInteractionRaw.js",
         "count": {
           "requiredBy": ["docs/components/CanvasInteraction.js"],
-          "requires": [
-            "node_modules/react",
-            "components/index.js",
-            "node_modules/d3-dsv"
-          ],
+          "requires": ["node_modules/react", "components/index.js", "node_modules/d3-dsv"],
           "indirectDependedOnCount": 4,
           "transitiveRequiredBy": [
             "docs/components/CanvasInteraction.js",
@@ -10897,10 +10820,7 @@
         "text": "components/ChordRaw.js",
         "fileName": "ChordRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Chord.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Chord.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -10928,10 +10848,7 @@
         "text": "MinimapXYFrame.js",
         "fileName": "MinimapXYFrame.js",
         "count": {
-          "requiredBy": [
-            "components/index.js",
-            "components/ResponsiveMinimapXYFrame.js"
-          ],
+          "requiredBy": ["components/index.js", "components/ResponsiveMinimapXYFrame.js"],
           "requires": [
             "node_modules/prop-types",
             "node_modules/react",
@@ -11051,10 +10968,7 @@
         "text": "components/ViolinRaw.js",
         "fileName": "ViolinRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Violin.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Violin.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -11642,10 +11556,7 @@
         "text": "Brush.js",
         "fileName": "Brush.js",
         "count": {
-          "requiredBy": [
-            "components/InteractionLayer.js",
-            "components/index.js"
-          ],
+          "requiredBy": ["components/InteractionLayer.js", "components/index.js"],
           "requires": [
             "node_modules/prop-types",
             "node_modules/react",
@@ -11897,10 +11808,7 @@
         "text": "components/JoyPlotRaw.js",
         "fileName": "JoyPlotRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/JoyPlot.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/JoyPlot.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -11930,10 +11838,7 @@
         "text": "components/BaseballMapRaw.js",
         "fileName": "BaseballMapRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/BaseballMap.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/BaseballMap.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -12000,10 +11905,7 @@
           "requiredBy": ["./config/polyfills.js"],
           "requires": [],
           "indirectDependedOnCount": 1,
-          "transitiveRequiredBy": [
-            "./config/polyfills.js",
-            "multi ./config/polyfills.js index.js"
-          ]
+          "transitiveRequiredBy": ["./config/polyfills.js", "multi ./config/polyfills.js index.js"]
         }
       },
       {
@@ -12015,10 +11917,7 @@
         "text": "components/HeatMapRaw.js",
         "fileName": "HeatMapRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/HeatMap.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/HeatMap.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -12053,11 +11952,7 @@
             "docs/components/OrdinalFrameDocs.js",
             "docs/components/ParallelCoordinates.js"
           ],
-          "requires": [
-            "node_modules/react",
-            "components/index.js",
-            "docs/sampledata/nyc_temp.js"
-          ],
+          "requires": ["node_modules/react", "components/index.js", "docs/sampledata/nyc_temp.js"],
           "indirectDependedOnCount": 8,
           "transitiveRequiredBy": [
             "docs/components/ViolinRaw.js",
@@ -12084,10 +11979,7 @@
         "text": "canvas/basicCanvasEffects.js",
         "fileName": "basicCanvasEffects.js",
         "count": {
-          "requiredBy": [
-            "components/VisualizationLayer.js",
-            "components/index.js"
-          ],
+          "requiredBy": ["components/VisualizationLayer.js", "components/index.js"],
           "requires": [],
           "indirectDependedOnCount": 112,
           "transitiveRequiredBy": [
@@ -12216,10 +12108,7 @@
         "text": "components/MinimapRaw.js",
         "fileName": "MinimapRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/Minimap.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/Minimap.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -12557,10 +12446,7 @@
             "docs/index.css"
           ],
           "indirectDependedOnCount": 1,
-          "transitiveRequiredBy": [
-            "index.js",
-            "multi ./config/polyfills.js index.js"
-          ]
+          "transitiveRequiredBy": ["index.js", "multi ./config/polyfills.js index.js"]
         }
       },
       {
@@ -12598,10 +12484,7 @@
         "text": "components/DonutChartRaw.js",
         "fileName": "DonutChartRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/DonutChart.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/DonutChart.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -12816,11 +12699,7 @@
             "components/MinimapNetworkFrame.js",
             "components/index.js"
           ],
-          "requires": [
-            "node_modules/prop-types",
-            "node_modules/react",
-            "components/XYFrame.js"
-          ],
+          "requires": ["node_modules/prop-types", "node_modules/react", "components/XYFrame.js"],
           "indirectDependedOnCount": 99,
           "transitiveRequiredBy": [
             "components/MinimapXYFrame.js",
@@ -12936,10 +12815,7 @@
         "text": "components/SwarmBrushRaw.js",
         "fileName": "SwarmBrushRaw.js",
         "count": {
-          "requiredBy": [
-            "docs/example_settings/example_list.js",
-            "docs/components/SwarmBrush.js"
-          ],
+          "requiredBy": ["docs/example_settings/example_list.js", "docs/components/SwarmBrush.js"],
           "requires": [
             "node_modules/react",
             "components/index.js",
@@ -13814,10 +13690,7 @@
         "text": "constants/coordinateNames.js",
         "fileName": "coordinateNames.js",
         "count": {
-          "requiredBy": [
-            "components/XYFrame.js",
-            "components/data/dataFunctions.js"
-          ],
+          "requiredBy": ["components/XYFrame.js", "components/data/dataFunctions.js"],
           "requires": [],
           "indirectDependedOnCount": 110,
           "transitiveRequiredBy": [
@@ -14093,11 +13966,7 @@
         "fileName": "index.js",
         "count": {
           "requiredBy": ["multi ./config/polyfills.js index.js"],
-          "requires": [
-            "node_modules/react",
-            "node_modules/react-dom",
-            "docs/index.js"
-          ],
+          "requires": ["node_modules/react", "node_modules/react-dom", "docs/index.js"],
           "indirectDependedOnCount": 0,
           "transitiveRequiredBy": ["multi ./config/polyfills.js index.js"]
         }
@@ -14120,10 +13989,7 @@
         "text": "data/unflowedFunctions.js",
         "fileName": "unflowedFunctions.js",
         "count": {
-          "requiredBy": [
-            "components/XYFrame.js",
-            "components/data/dataFunctions.js"
-          ],
+          "requiredBy": ["components/XYFrame.js", "components/data/dataFunctions.js"],
           "requires": [],
           "indirectDependedOnCount": 110,
           "transitiveRequiredBy": [
@@ -14252,10 +14118,7 @@
         "fileName": "SparkNetworkFrame.js",
         "count": {
           "requiredBy": ["components/index.js"],
-          "requires": [
-            "components/NetworkFrame.js",
-            "components/SparkFrame.js"
-          ],
+          "requires": ["components/NetworkFrame.js", "components/SparkFrame.js"],
           "indirectDependedOnCount": 97,
           "transitiveRequiredBy": [
             "components/index.js",
@@ -14369,10 +14232,7 @@
         "fileName": "SparkOrdinalFrame.js",
         "count": {
           "requiredBy": ["components/index.js"],
-          "requires": [
-            "components/OrdinalFrame.js",
-            "components/SparkFrame.js"
-          ],
+          "requires": ["components/OrdinalFrame.js", "components/SparkFrame.js"],
           "indirectDependedOnCount": 97,
           "transitiveRequiredBy": [
             "components/index.js",
@@ -14599,10 +14459,7 @@
         "text": "untyped_utilities/functions.js",
         "fileName": "functions.js",
         "count": {
-          "requiredBy": [
-            "components/NetworkFrame.js",
-            "components/OrdinalFrame.js"
-          ],
+          "requiredBy": ["components/NetworkFrame.js", "components/OrdinalFrame.js"],
           "requires": [],
           "indirectDependedOnCount": 103,
           "transitiveRequiredBy": [
@@ -14724,10 +14581,7 @@
         "fileName": "ResponsiveNetworkFrame.js",
         "count": {
           "requiredBy": ["components/index.js"],
-          "requires": [
-            "components/NetworkFrame.js",
-            "components/ResponsiveFrame.js"
-          ],
+          "requires": ["components/NetworkFrame.js", "components/ResponsiveFrame.js"],
           "indirectDependedOnCount": 97,
           "transitiveRequiredBy": [
             "components/index.js",
@@ -14841,10 +14695,7 @@
         "fileName": "ResponsiveMinimapXYFrame.js",
         "count": {
           "requiredBy": ["components/index.js"],
-          "requires": [
-            "components/ResponsiveFrame.js",
-            "components/MinimapXYFrame.js"
-          ],
+          "requires": ["components/ResponsiveFrame.js", "components/MinimapXYFrame.js"],
           "indirectDependedOnCount": 97,
           "transitiveRequiredBy": [
             "components/index.js",
@@ -14958,10 +14809,7 @@
         "fileName": "ResponsiveOrdinalFrame.js",
         "count": {
           "requiredBy": ["components/index.js"],
-          "requires": [
-            "components/ResponsiveFrame.js",
-            "components/OrdinalFrame.js"
-          ],
+          "requires": ["components/ResponsiveFrame.js", "components/OrdinalFrame.js"],
           "indirectDependedOnCount": 97,
           "transitiveRequiredBy": [
             "components/index.js",
@@ -15075,10 +14923,7 @@
         "fileName": "ResponsiveXYFrame.js",
         "count": {
           "requiredBy": ["components/index.js"],
-          "requires": [
-            "components/XYFrame.js",
-            "components/ResponsiveFrame.js"
-          ],
+          "requires": ["components/XYFrame.js", "components/ResponsiveFrame.js"],
           "indirectDependedOnCount": 97,
           "transitiveRequiredBy": [
             "components/index.js",
@@ -15370,7 +15215,7 @@
       }
     ],
     "edges": [
-      { "source": "node_modules/prop-types", "target": "components/Axis.js" },
+      {"source": "node_modules/prop-types", "target": "components/Axis.js"},
       {
         "source": "node_modules/prop-types",
         "target": "components/constants/frame_props.js"
@@ -15391,12 +15236,12 @@
         "source": "node_modules/prop-types",
         "target": "components/AnnotationLayer.js"
       },
-      { "source": "node_modules/prop-types", "target": "components/Legend.js" },
+      {"source": "node_modules/prop-types", "target": "components/Legend.js"},
       {
         "source": "node_modules/prop-types",
         "target": "components/InteractionLayer.js"
       },
-      { "source": "node_modules/prop-types", "target": "components/Brush.js" },
+      {"source": "node_modules/prop-types", "target": "components/Brush.js"},
       {
         "source": "node_modules/prop-types",
         "target": "components/MinimapXYFrame.js"
@@ -15417,13 +15262,13 @@
         "source": "node_modules/react",
         "target": "docs/components/ProcessViz.js"
       },
-      { "source": "node_modules/react", "target": "components/SpanOrDiv.js" },
-      { "source": "node_modules/react", "target": "components/Annotation.js" },
+      {"source": "node_modules/react", "target": "components/SpanOrDiv.js"},
+      {"source": "node_modules/react", "target": "components/Annotation.js"},
       {
         "source": "node_modules/react",
         "target": "components/annotationRules/baseRules.js"
       },
-      { "source": "node_modules/react", "target": "components/XYFrame.js" },
+      {"source": "node_modules/react", "target": "components/XYFrame.js"},
       {
         "source": "node_modules/react",
         "target": "components/svg/frameFunctions.js"
@@ -15432,7 +15277,7 @@
         "source": "node_modules/react",
         "target": "components/svg/areaDrawing.js"
       },
-      { "source": "node_modules/react", "target": "components/Axis.js" },
+      {"source": "node_modules/react", "target": "components/Axis.js"},
       {
         "source": "node_modules/react",
         "target": "components/svg/SvgHelper.js"
@@ -15465,13 +15310,13 @@
         "source": "node_modules/react",
         "target": "components/DownloadButton.js"
       },
-      { "source": "node_modules/react", "target": "components/Frame.js" },
+      {"source": "node_modules/react", "target": "components/Frame.js"},
       {
         "source": "node_modules/react",
         "target": "components/OrdinalFrame.js"
       },
-      { "source": "node_modules/react", "target": "components/MiniMap.js" },
-      { "source": "node_modules/react", "target": "components/SparkFrame.js" },
+      {"source": "node_modules/react", "target": "components/MiniMap.js"},
+      {"source": "node_modules/react", "target": "components/SparkFrame.js"},
       {
         "source": "node_modules/react",
         "target": "docs/example_settings/xyframe.js"
@@ -15488,12 +15333,12 @@
         "source": "node_modules/react",
         "target": "components/AnnotationLayer.js"
       },
-      { "source": "node_modules/react", "target": "components/Legend.js" },
+      {"source": "node_modules/react", "target": "components/Legend.js"},
       {
         "source": "node_modules/react",
         "target": "components/InteractionLayer.js"
       },
-      { "source": "node_modules/react", "target": "components/Brush.js" },
+      {"source": "node_modules/react", "target": "components/Brush.js"},
       {
         "source": "node_modules/react",
         "target": "components/VisualizationLayer.js"
@@ -15622,12 +15467,12 @@
         "source": "node_modules/react",
         "target": "docs/components/FacetControllerDocs.js"
       },
-      { "source": "node_modules/react", "target": "index.js" },
-      { "source": "node_modules/react", "target": "docs/index.js" },
-      { "source": "node_modules/react", "target": "docs/Home.js" },
-      { "source": "node_modules/react", "target": "docs/Documentation.js" },
-      { "source": "node_modules/react", "target": "docs/Introduction.js" },
-      { "source": "node_modules/react", "target": "components/DividedLine.js" },
+      {"source": "node_modules/react", "target": "index.js"},
+      {"source": "node_modules/react", "target": "docs/index.js"},
+      {"source": "node_modules/react", "target": "docs/Home.js"},
+      {"source": "node_modules/react", "target": "docs/Documentation.js"},
+      {"source": "node_modules/react", "target": "docs/Introduction.js"},
+      {"source": "node_modules/react", "target": "components/DividedLine.js"},
       {
         "source": "node_modules/react",
         "target": "components/constants/jsx.js"
@@ -15668,7 +15513,7 @@
         "source": "node_modules/react",
         "target": "docs/components/GenericChartsRaw.js"
       },
-      { "source": "node_modules/react", "target": "docs/Examples.js" },
+      {"source": "node_modules/react", "target": "docs/Examples.js"},
       {
         "source": "node_modules/react",
         "target": "docs/components/XYFrameDocs.js"
@@ -15697,7 +15542,7 @@
         "source": "node_modules/react",
         "target": "docs/components/RegionatedLineChartDocs.js"
       },
-      { "source": "node_modules/react", "target": "docs/components/Violin.js" },
+      {"source": "node_modules/react", "target": "docs/components/Violin.js"},
       {
         "source": "node_modules/react",
         "target": "docs/components/ParallelCoordinates.js"
@@ -15790,8 +15635,8 @@
         "source": "node_modules/react",
         "target": "docs/components/VerticalIsotype.js"
       },
-      { "source": "node_modules/react", "target": "docs/components/Sankey.js" },
-      { "source": "node_modules/react", "target": "docs/components/Chord.js" },
+      {"source": "node_modules/react", "target": "docs/components/Sankey.js"},
+      {"source": "node_modules/react", "target": "docs/components/Chord.js"},
       {
         "source": "node_modules/react",
         "target": "docs/components/Dendrogram.js"
@@ -15884,7 +15729,7 @@
         "source": "node_modules/react",
         "target": "docs/components/RealtimeXYFrame.js"
       },
-      { "source": "node_modules/react", "target": "docs/layout/Footer.js" },
+      {"source": "node_modules/react", "target": "docs/layout/Footer.js"},
       {
         "source": "components/index.js",
         "target": "docs/example_settings/orframe.js"
@@ -16505,7 +16350,7 @@
         "source": "node_modules/d3-array",
         "target": "docs/components/CreatingPieChart.js"
       },
-      { "source": "node_modules/d3-scale", "target": "components/XYFrame.js" },
+      {"source": "node_modules/d3-scale", "target": "components/XYFrame.js"},
       {
         "source": "node_modules/d3-scale",
         "target": "components/svg/frameFunctions.js"
@@ -17002,7 +16847,7 @@
         "source": "node_modules/material-ui",
         "target": "docs/components/Sparkline.js"
       },
-      { "source": "node_modules/react-dom", "target": "index.js" },
+      {"source": "node_modules/react-dom", "target": "index.js"},
       {
         "source": "node_modules/d3-interpolate",
         "target": "components/svg/SvgHelper.js"
@@ -17015,7 +16860,7 @@
         "source": "components/SpanOrDiv.js",
         "target": "components/XYFrame.js"
       },
-      { "source": "components/SpanOrDiv.js", "target": "components/Frame.js" },
+      {"source": "components/SpanOrDiv.js", "target": "components/Frame.js"},
       {
         "source": "components/SpanOrDiv.js",
         "target": "components/AnnotationLayer.js"
@@ -17068,8 +16913,8 @@
         "source": "node_modules/react-router-dom",
         "target": "docs/example_settings/example_list.js"
       },
-      { "source": "node_modules/react-router-dom", "target": "docs/index.js" },
-      { "source": "node_modules/react-router-dom", "target": "docs/Home.js" },
+      {"source": "node_modules/react-router-dom", "target": "docs/index.js"},
+      {"source": "node_modules/react-router-dom", "target": "docs/Home.js"},
       {
         "source": "node_modules/react-router-dom",
         "target": "docs/Documentation.js"
@@ -17082,7 +16927,7 @@
         "source": "node_modules/react-router-dom",
         "target": "docs/Examples.js"
       },
-      { "source": "components/Annotation.js", "target": "components/index.js" },
+      {"source": "components/Annotation.js", "target": "components/index.js"},
       {
         "source": "components/Annotation.js",
         "target": "components/annotationRules/baseRules.js"
@@ -17131,7 +16976,7 @@
         "source": "components/annotationRules/baseRules.js",
         "target": "components/annotationRules/networkframeRules.js"
       },
-      { "source": "node_modules/material-ui", "target": "docs/Home.js" },
+      {"source": "node_modules/material-ui", "target": "docs/Home.js"},
       {
         "source": "node_modules/material-ui",
         "target": "docs/components/XYFrameDocs.js"
@@ -17168,8 +17013,8 @@
         "source": "components/data/multiAccessorUtils.js",
         "target": "components/annotationRules/orframeRules.js"
       },
-      { "source": "components/XYFrame.js", "target": "components/index.js" },
-      { "source": "components/XYFrame.js", "target": "components/MiniMap.js" },
+      {"source": "components/XYFrame.js", "target": "components/index.js"},
+      {"source": "components/XYFrame.js", "target": "components/MiniMap.js"},
       {
         "source": "components/XYFrame.js",
         "target": "components/MinimapXYFrame.js"
@@ -17250,7 +17095,7 @@
         "source": "node_modules/react-prism",
         "target": "docs/components/ProcessViz.js"
       },
-      { "source": "node_modules/react-prism", "target": "docs/Home.js" },
+      {"source": "node_modules/react-prism", "target": "docs/Home.js"},
       {
         "source": "node_modules/react-prism",
         "target": "docs/components/NetworkFrameDocs.js"
@@ -17271,8 +17116,8 @@
         "source": "components/svg/lineDrawing.js",
         "target": "components/DividedLine.js"
       },
-      { "source": "components/Axis.js", "target": "components/index.js" },
-      { "source": "components/Axis.js", "target": "components/XYFrame.js" },
+      {"source": "components/Axis.js", "target": "components/index.js"},
+      {"source": "components/Axis.js", "target": "components/XYFrame.js"},
       {
         "source": "components/Axis.js",
         "target": "components/svg/frameFunctions.js"
@@ -17477,7 +17322,7 @@
         "source": "components/DownloadButton.js",
         "target": "components/OrdinalFrame.js"
       },
-      { "source": "components/Frame.js", "target": "components/XYFrame.js" },
+      {"source": "components/Frame.js", "target": "components/XYFrame.js"},
       {
         "source": "components/Frame.js",
         "target": "components/NetworkFrame.js"
@@ -17510,7 +17355,7 @@
         "source": "components/OrdinalFrame.js",
         "target": "components/SparkOrdinalFrame.js"
       },
-      { "source": "components/MiniMap.js", "target": "components/index.js" },
+      {"source": "components/MiniMap.js", "target": "components/index.js"},
       {
         "source": "components/MiniMap.js",
         "target": "components/MinimapXYFrame.js"
@@ -17607,7 +17452,7 @@
         "source": "components/AnnotationLayer.js",
         "target": "components/Frame.js"
       },
-      { "source": "components/Legend.js", "target": "components/index.js" },
+      {"source": "components/Legend.js", "target": "components/index.js"},
       {
         "source": "components/Legend.js",
         "target": "components/AnnotationLayer.js"
@@ -17628,7 +17473,7 @@
         "source": "components/InteractionLayer.js",
         "target": "components/Frame.js"
       },
-      { "source": "components/Brush.js", "target": "components/index.js" },
+      {"source": "components/Brush.js", "target": "components/index.js"},
       {
         "source": "components/Brush.js",
         "target": "components/InteractionLayer.js"
@@ -18005,7 +17850,7 @@
         "source": "node_modules/material-ui",
         "target": "docs/Documentation.js"
       },
-      { "source": "node_modules/material-ui", "target": "docs/index.js" },
+      {"source": "node_modules/material-ui", "target": "docs/index.js"},
       {
         "source": "node_modules/material-ui",
         "target": "docs/Documentation.js"
@@ -18014,8 +17859,8 @@
         "source": "./config/polyfills.js",
         "target": "multi ./config/polyfills.js index.js"
       },
-      { "source": "node_modules/promise", "target": "./config/polyfills.js" },
-      { "source": "node_modules/promise", "target": "./config/polyfills.js" },
+      {"source": "node_modules/promise", "target": "./config/polyfills.js"},
+      {"source": "node_modules/promise", "target": "./config/polyfills.js"},
       {
         "source": "node_modules/whatwg-fetch",
         "target": "./config/polyfills.js"
@@ -18024,10 +17869,10 @@
         "source": "index.js",
         "target": "multi ./config/polyfills.js index.js"
       },
-      { "source": "docs/index.js", "target": "index.js" },
-      { "source": "docs/Home.js", "target": "docs/index.js" },
-      { "source": "docs/Documentation.js", "target": "docs/index.js" },
-      { "source": "docs/Introduction.js", "target": "docs/Documentation.js" },
+      {"source": "docs/index.js", "target": "index.js"},
+      {"source": "docs/Home.js", "target": "docs/index.js"},
+      {"source": "docs/Documentation.js", "target": "docs/index.js"},
+      {"source": "docs/Introduction.js", "target": "docs/Documentation.js"},
       {
         "source": "components/annotationLayerBehavior/annotationHandling.js",
         "target": "components/AnnotationLayer.js"
@@ -18220,7 +18065,7 @@
         "source": "docs/components/GenericChartsRaw.js",
         "target": "docs/example_settings/example_list.js"
       },
-      { "source": "docs/Examples.js", "target": "docs/Documentation.js" },
+      {"source": "docs/Examples.js", "target": "docs/Documentation.js"},
       {
         "source": "docs/components/XYFrameDocs.js",
         "target": "docs/Documentation.js"
@@ -18485,7 +18330,7 @@
         "source": "docs/components/RealtimeXYFrame.js",
         "target": "docs/Documentation.js"
       },
-      { "source": "components/styles.css", "target": "docs/Documentation.js" },
+      {"source": "components/styles.css", "target": "docs/Documentation.js"},
       {
         "source": "node_modules/material-ui",
         "target": "docs/Documentation.js"
@@ -18506,11 +18351,11 @@
         "source": "node_modules/react-tap-event-plugin",
         "target": "docs/index.js"
       },
-      { "source": "docs/layout/Footer.js", "target": "docs/index.js" },
-      { "source": "docs/theme.js", "target": "docs/index.js" },
-      { "source": "docs/flexboxgrid.css", "target": "docs/index.js" },
-      { "source": "docs/prism.css", "target": "docs/index.js" },
-      { "source": "docs/index.css", "target": "docs/index.js" }
+      {"source": "docs/layout/Footer.js", "target": "docs/index.js"},
+      {"source": "docs/theme.js", "target": "docs/index.js"},
+      {"source": "docs/flexboxgrid.css", "target": "docs/index.js"},
+      {"source": "docs/prism.css", "target": "docs/index.js"},
+      {"source": "docs/index.css", "target": "docs/index.js"}
     ]
   }
 }
