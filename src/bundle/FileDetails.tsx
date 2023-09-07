@@ -51,6 +51,11 @@ function getColumns(
     );
   });
 
+  function isByteColumn(d: any): boolean {
+    const id = d.column.id;
+    return id === 'totalBytes' || id === 'transitiveRequiresSize';
+  }
+
   function getBar(
     // d: Column,
     d: any,
@@ -61,7 +66,7 @@ function getColumns(
       <div
         style={{
           // background: directoryColors[d.row.original.directory] || "black",
-          background: `var(--grey500)`,
+          background: isByteColumn(d) ? `var(--grey600)` : `var(--grey400)`,
           height: 8,
           width: d.value ? getCSSPercent(d.value / maxes[id]) : "0px",
           position: "relative",
