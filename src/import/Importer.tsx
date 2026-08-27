@@ -21,6 +21,11 @@ const IGNORE_FILES = [
   "webpack/bootstrap",
 ];
 
+// Runtime helpers that the bundler injects. They show up in the sourcemap but
+// never in the module graph, so without this they are dead weight in the
+// resolve step. rspack emits a handful of these on every build.
+const IGNORE_DIRECTORIES = ["webpack/runtime"];
+
 function removeWebpackMagicFiles(v: ProcessedBundle) {
   const ret: ProcessedBundle = {
     totalBytes: v.totalBytes,
@@ -30,6 +35,11 @@ function removeWebpackMagicFiles(v: ProcessedBundle) {
     let skip = false;
     for (const i of IGNORE_FILES) {
       if (k.endsWith(i)) {
+        skip = true;
+      }
+    }
+    for (const i of IGNORE_DIRECTORIES) {
+      if (k.includes(`${i}/`)) {
         skip = true;
       }
     }
@@ -168,7 +178,11 @@ class Import extends Component<ImportProps, ImportState> {
     const sourceMapContents = await readFilesAsText(this.state.sourceMapFiles);
 
     let processed;
-    if (importType === ImportTypes.WEBPACK || importType === ImportTypes.CRA) {
+    if (
+      importType === ImportTypes.WEBPACK ||
+      importType === ImportTypes.RSPACK ||
+      importType === ImportTypes.CRA
+    ) {
       processed = await processImports({
         sourceMapContents,
         graphEdges: graphContents,
@@ -280,6 +294,86 @@ JSON.stringify(stats.toJson()),
               onClick={() =>
                 toClipboard(
                   `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
+                )
+              }
+              className="copy-button"
+              aria-label="Copy stats.json programatic snippit to clipboard"
+            />
+          </code>
+        </div>
+      );
+    } else if (type === ImportTypes.RSPACK) {
+      sourcemaps = (
+        <div className="right-spacing">
+          <p>rspack.config.js</p>
+          <code>
+            <pre>
+              <span className="add-diff">devtool: "source-map"</span>
+            </pre>
+            <button
+              onClick={() => toClipboard("devtool: 'source-map'")}
+              className="copy-button"
+              aria-label="Copy sourcemap snippet to clipboard"
+            />
+          </code>
+        </div>
+      );
+
+      graph = (
+        <div className="right-spacing">
+          <p>
+            rspack.config.js &mdash; rspack omits modules from stats by default
+          </p>
+          <code>
+            <pre>
+              <span className="add-diff">
+                {`stats: { modules: true, reasons: true }`}
+              </span>
+            </pre>
+            <button
+              onClick={() =>
+                toClipboard("stats: { modules: true, reasons: true }")
+              }
+              className="copy-button"
+              aria-label="Copy stats config snippet to clipboard"
+            />
+          </code>
+          <p>via command line</p>
+          <code>
+            <pre>
+              <span className="add-diff">rspack build --json stats.json</span>
+            </pre>
+            <button
+              onClick={() => toClipboard("rspack build --json stats.json")}
+              className="copy-button"
+              aria-label="Copy stats.json CLI command to clipboard"
+            />
+          </code>
+          <p>via programatic compilation </p>
+          <code>
+            <pre>
+              {`const { rspack } = require("@rspack/core");
+rspack({
+// Configuration Object
+}, (err, stats) => {
+if (err) {
+console.error(err);
+return;
+}`}
+              <span className="add-diff">
+                {`
+fs.writeFileSync(
+path.join(__dirname, "stats.json"),
+JSON.stringify(stats.toJson({ modules: true, reasons: true })),
+'utf-8');
+});
+`}
+              </span>
+            </pre>
+            <button
+              onClick={() =>
+                toClipboard(
+                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson({ modules: true, reasons: true })), 'utf-8')`
                 )
               }
               className="copy-button"

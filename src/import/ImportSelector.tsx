@@ -54,6 +54,26 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
               </button>
             </Link>
             <Link
+              to="/rspack"
+              aria-label="rspack project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import rspack-import`}
+              >
+                <img
+                  width="35px"
+                  height="36px"
+                  className="rspack-logo"
+                  alt="rspack logo"
+                  src="/img/rspack_logo.png"
+                />
+                <span>Rspack</span>
+              </button>
+            </Link>
+            <Link
               to="/create-react-app"
               aria-label="create-react-app project import"
               className="no-link-underline "
@@ -143,6 +163,13 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                 tabIndex={-1}
                 className={`type-button project-import esbuild-import`}
               >
+                <img
+                  width="35px"
+                  height="36px"
+                  className="esbuild-logo"
+                  alt="esbuild logo"
+                  src="/img/esbuild_logo.png"
+                />
                 <span>ESBuild</span>
               </button>
             </Link>

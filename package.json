@@ -35,7 +35,7 @@
     "url": "https://github.com/samccone/bundle-buddy.git"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "GENERATE_SOURCEMAP=1 react-scripts build -- --stats && cat service_worker_postfix_shim.js >> build/service-worker.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

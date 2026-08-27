@@ -88,6 +88,18 @@ export default function Home(props: Props) {
                   }}
                 />
                 <Route
+                  path="/rspack"
+                  component={(h: { history: History }) => {
+                    return (
+                      <Importer
+                        graphFileName="stats.json"
+                        history={h.history as any}
+                        importType={ImportTypes.RSPACK}
+                      />
+                    );
+                  }}
+                />
+                <Route
                   path="/create-react-app"
                   component={(h: { history: History }) => {
                     return (

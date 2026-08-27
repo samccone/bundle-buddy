@@ -2,7 +2,8 @@ import { Edge, GraphEdges } from "../types";
 
 interface Module {
   name: string;
-  reasons: Array<{ moduleName: string }>;
+  // rspack omits moduleName on the reasons of a concatenated module.
+  reasons: Array<{ moduleName?: string }>;
   modules?: Array<Module>;
 }
 
@@ -10,8 +11,8 @@ function cleanWebpackMagicFiles(f: string): string {
   const matches = [
     {
       replace: "node_modules/webpack/buildin",
-      matcher: /\(webpack\)\/buildin/
-    }
+      matcher: /\(webpack\)\/buildin/,
+    },
   ];
 
   for (const m of matches) {
@@ -31,14 +32,27 @@ function cleanEdges(
 
   let pushedMore = false;
   for (const uncleanEdge of edges) {
-    const foundNestedDeps = plusMap.get(uncleanEdge.target);
-    if (foundNestedDeps) {
+    const foundNestedTargets = plusMap.get(uncleanEdge.target);
+    // Concatenated (scope hoisted) modules show up on both sides of an edge:
+    // rspack for instance names the reason of an import "./src/index.js + 1
+    // modules", so the source needs exploding just like the target does.
+    const foundNestedSources = plusMap.get(uncleanEdge.source);
+    if (foundNestedTargets || foundNestedSources) {
       pushedMore = true;
-      for (const toExplodeTarget of foundNestedDeps.values()) {
-        exploded.push({
-          target: toExplodeTarget,
-          source: uncleanEdge.source
-        });
+      const targets = foundNestedTargets
+        ? Array.from(foundNestedTargets.values())
+        : [uncleanEdge.target];
+      const sources = foundNestedSources
+        ? Array.from(foundNestedSources.values())
+        : [uncleanEdge.source];
+
+      for (const toExplodeSource of sources) {
+        for (const toExplodeTarget of targets) {
+          exploded.push({
+            target: toExplodeTarget,
+            source: toExplodeSource,
+          });
+        }
       }
     } else {
       exploded.push(uncleanEdge);
@@ -76,11 +90,15 @@ export function gatherEdges(
     } else {
       const moduleName = cleanWebpackMagicFiles(module.name);
       for (const reason of module.reasons || []) {
+        if (reason.moduleName == null) {
+          continue;
+        }
+
         const reasonModuleName = cleanWebpackMagicFiles(reason.moduleName);
         if (!lookupMap.has(`${moduleName}|${reasonModuleName}`)) {
           edges.push({
             source: reasonModuleName,
-            target: moduleName
+            target: moduleName,
           });
           lookupMap.add(`${moduleName}|${reasonModuleName}`);
         }

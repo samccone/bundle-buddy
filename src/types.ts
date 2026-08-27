@@ -29,6 +29,7 @@ export enum ImportTypes {
   PARCEL = "parcel",
   ROME = "rome",
   WEBPACK = "webpack",
+  RSPACK = "rspack",
   CRA = "create-react-app",
   ESBUILD = "esbuild",
 }
