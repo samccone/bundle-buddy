@@ -1,18 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 
 const rootEl = document.getElementById("root");
-
-ReactDOM.render(<App />, rootEl);
-if (module.hot) {
-  module.hot.accept("./App", () => {
-    const NextApp = require("./App").default;
-    ReactDOM.render(<NextApp />, rootEl);
-  });
+if (rootEl == null) {
+  throw new Error("missing #root element");
 }
+
+createRoot(rootEl).render(<App />);
 
 serviceWorker.register();

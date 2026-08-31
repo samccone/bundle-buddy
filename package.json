@@ -4,31 +4,36 @@
   "private": true,
   "dependencies": {
     "@rehooks/window-size": "^1.0.2",
-    "@sentry/browser": "^4.4.2",
-    "@storybook/preset-create-react-app": "^2.1.1",
-    "@types/d3-scale": "^2.2.0",
-    "@types/history": "^4.7.5",
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.18",
-    "@types/pako": "^1.0.1",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
-    "@types/react-table": "^7.0.18",
-    "d3-scale": "2.1.2",
-    "d3-voronoi-treemap": "^1.1.0",
-    "dagre": "0.8.2",
-    "pako": "^1.0.11",
-    "prettier": "^2.0.5",
-    "react": "^16.6.1",
-    "react-annotation": "2.1.6",
-    "react-dom": "^16.6.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^3.4.1",
-    "react-table": "^7.1.0",
-    "source-map": "^0.7.3",
-    "storybook": "^5.3.17",
-    "typescript": "^3.8.3",
+    "@sentry/browser": "^10.73.0",
+    "@storybook/preset-create-react-app": "^10.5.10",
+    "@types/d3-scale": "^4.0.9",
+    "@types/history": "^5.0.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.4.0",
+    "@types/pako": "^3.0.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@types/react-table": "^7.7.20",
+    "d3-scale": "4.0.2",
+    "d3-voronoi-treemap": "^1.1.2",
+    "dagre": "0.8.5",
+    "pako": "^3.0.1",
+    "prettier": "^3.9.6",
+    "react": "^19.2.8",
+    "react-annotation": "2.2.1",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.3",
+    "react-scripts": "^5.0.1",
+    "react-table": "^7.8.0",
+    "source-map": "^0.7.6",
+    "storybook": "^10.5.10",
+    "typescript": "^6",
+    "url": "^0.11.4",
     "webtreemap": "2.0.1"
+  },
+  "resolutions": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5"
   },
   "repository": {
     "type": "git",
@@ -40,11 +45,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
+  "jest": {
+    "moduleNameMapper": {
+      "^react-router/dom$": "react-router/dist/development/dom-export.js"
     }
   },
   "eslintConfig": {
@@ -57,17 +63,17 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@storybook/addon-actions": "^5.3.17",
-    "@storybook/addon-links": "^5.3.17",
-    "@storybook/addons": "^5.3.17",
-    "@storybook/react": "^5.3.17",
-    "@types/google-protobuf": "^3.2.7",
-    "@types/react-router-dom": "^4.3.1",
-    "d3-hierarchy": "1.1.9",
-    "google-protobuf": "^3.6.1",
-    "husky": "^4.2.3",
-    "pretty-quick": "^2.0.1",
-    "ts-protoc-gen": "^0.9.0"
+    "@babel/core": "^8.0.1",
+    "@storybook/addon-actions": "^9.0.8",
+    "@storybook/addon-links": "^10.5.10",
+    "@storybook/addons": "^7.6.17",
+    "@storybook/react": "^10.5.10",
+    "@types/google-protobuf": "^3.15.12",
+    "@types/react-router-dom": "^5.3.3",
+    "d3-hierarchy": "3.1.2",
+    "google-protobuf": "^4.0.2",
+    "husky": "^8.0.0",
+    "pretty-quick": "^4.2.2",
+    "ts-protoc-gen": "^0.15.0"
   }
 }

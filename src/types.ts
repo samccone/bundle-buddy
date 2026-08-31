@@ -1,4 +1,4 @@
-import { History } from "history";
+import { AppHistory } from "./routes/history";
 
 export interface FlattendGraph {
   [target: string]: {
@@ -69,8 +69,8 @@ export interface TreemapNode {
   totalBytes?: number;
 }
 
-export type ProcessedHistory = History<{ key: string }>;
-export type ImportHistory = History<{ key: string }>;
+export type ProcessedHistory = AppHistory<{ key: string }>;
+export type ImportHistory = AppHistory<{ key: string }>;
 
 export interface ImportProps {
   history: ImportHistory;

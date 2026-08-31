@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import * as Sentry from "@sentry/browser";
 import { ReportErrorUri } from "./report_error";
 
-class ErrorBoundry extends Component<{}, { error: Error | null }> {
-  constructor(props: {}) {
+interface Props {
+  children?: React.ReactNode;
+}
+
+class ErrorBoundry extends Component<Props, { error: Error | null }> {
+  constructor(props: Props) {
     super(props);
     if (process.env.NODE_ENV === "production") {
       Sentry.init({
-        dsn: "https://9e475abe454047779775876c0d1af187@sentry.io/1365297"
+        dsn: "https://9e475abe454047779775876c0d1af187@sentry.io/1365297",
       });
     }
     this.state = { error: null };
@@ -19,8 +23,8 @@ class ErrorBoundry extends Component<{}, { error: Error | null }> {
 
   componentDidCatch(error: Error, errorInfo: any) {
     if (process.env.NODE_ENV === "production") {
-      Sentry.withScope(scope => {
-        Object.keys(errorInfo).forEach(key => {
+      Sentry.withScope((scope) => {
+        Object.keys(errorInfo).forEach((key) => {
           scope.setExtra(key, errorInfo[key]);
         });
         Sentry.captureException(error);

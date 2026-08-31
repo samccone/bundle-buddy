@@ -15,7 +15,7 @@ export function getTotalSize(processedSourceMap: BundledFiles): number {
     (a, b) => {
       return { totalBytes: a.totalBytes + b.totalBytes };
     },
-    { totalBytes: 0 }
+    { totalBytes: 0 },
   ).totalBytes;
 }
 
@@ -24,13 +24,12 @@ export function getTotalSize(processedSourceMap: BundledFiles): number {
  * @param contents The string sourcemap contents.
  */
 export function calculateSourcemapFileContents(
-  contents: string
+  contents: string,
 ): Promise<ProcessedBundle> {
-  // TODO(samccone) fix typing when https://github.com/mozilla/source-map/pull/374 lands.
   function onMapping(
     cursor: { line: number; column: number },
     processed: ProcessedBundle,
-    m: sourceMap.MappingItem & { lastGeneratedColumn?: number }
+    m: sourceMap.MappingItem,
   ) {
     if (m.source == null) {
       return;
@@ -95,7 +94,7 @@ export function mergeProcessedBundles(processed: {
       (a, b) => {
         return { totalBytes: a.totalBytes + b.totalBytes };
       },
-      { totalBytes: 0 }
+      { totalBytes: 0 },
     ).totalBytes,
   };
 

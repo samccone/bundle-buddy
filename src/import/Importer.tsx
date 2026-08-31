@@ -53,9 +53,11 @@ function removeWebpackMagicFiles(v: ProcessedBundle) {
 
 // noopener noreferrer
 class Import extends Component<ImportProps, ImportState> {
-  sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
-  graphInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
-  generateGraphContents: React.RefObject<HTMLSpanElement>;
+  sourceMapInput?: React.RefObject<
+    (HTMLInputElement & { files: FileList }) | null
+  >;
+  graphInput?: React.RefObject<(HTMLInputElement & { files: FileList }) | null>;
+  generateGraphContents: React.RefObject<HTMLSpanElement | null>;
 
   constructor(props: ImportProps) {
     super(props);
@@ -82,12 +84,12 @@ class Import extends Component<ImportProps, ImportState> {
             this.canProcess(
               this.state.sourceMapFiles,
               this.state.graphFile,
-              this.props.importType
+              this.props.importType,
             )
           ) {
             this.processFiles(this.props.importType);
           }
-        }
+        },
       );
     } else {
       this.setState({
@@ -111,12 +113,12 @@ class Import extends Component<ImportProps, ImportState> {
             this.canProcess(
               this.state.sourceMapFiles,
               this.state.graphFile,
-              this.props.importType
+              this.props.importType,
             )
           ) {
             this.processFiles(this.props.importType);
           }
-        }
+        },
       );
     } else {
       this.setState({
@@ -139,7 +141,7 @@ class Import extends Component<ImportProps, ImportState> {
   canProcess(
     sourceMapFiles: File[] | undefined,
     graphFile: File | undefined,
-    importType: ImportTypes
+    importType: ImportTypes,
   ) {
     // ESBuild does not need sourcemap files.
     if (importType === ImportTypes.ESBUILD) {
@@ -153,19 +155,19 @@ class Import extends Component<ImportProps, ImportState> {
     console.log("IN PROCESS");
     if (importType === ImportTypes.ESBUILD && this.state.graphFile != null) {
       const graphContents = JSON.parse(
-        await readFileAsText(this.state.graphFile)
+        await readFileAsText(this.state.graphFile),
       ) as EsBuildMetadata;
 
       const state: ImportResolveState = {
         graphEdges: toEdges(graphContents),
         processedSourceMap: mergeProcessedBundles(
-          toProcessedBundles(graphContents)
+          toProcessedBundles(graphContents),
         ),
       };
 
       this.props.history.push(
         `/${this.props.importType}/resolve`,
-        storeResolveState(state)
+        storeResolveState(state),
       );
       return;
     }
@@ -191,7 +193,7 @@ class Import extends Component<ImportProps, ImportState> {
 
       if (processed.processedSourcemap != null) {
         processed.processedSourcemap = removeWebpackMagicFiles(
-          processed.processedSourcemap
+          processed.processedSourcemap,
         );
       }
     } else {
@@ -219,7 +221,7 @@ class Import extends Component<ImportProps, ImportState> {
 
       this.props.history.push(
         `/${this.props.importType}/resolve`,
-        storeResolveState(state)
+        storeResolveState(state),
       );
     }
   }
@@ -293,7 +295,7 @@ JSON.stringify(stats.toJson()),
             <button
               onClick={() =>
                 toClipboard(
-                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
+                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`,
                 )
               }
               className="copy-button"
@@ -373,7 +375,7 @@ JSON.stringify(stats.toJson({ modules: true, reasons: true })),
             <button
               onClick={() =>
                 toClipboard(
-                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson({ modules: true, reasons: true })), 'utf-8')`
+                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson({ modules: true, reasons: true })), 'utf-8')`,
                 )
               }
               className="copy-button"
@@ -453,7 +455,7 @@ buildEnd() {
             <button
               onClick={() =>
                 toClipboard(
-                  this.generateGraphContents.current!.textContent || ""
+                  this.generateGraphContents.current!.textContent || "",
                 )
               }
               className="copy-button"

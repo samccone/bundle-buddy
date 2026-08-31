@@ -17,7 +17,7 @@ function storeSelected(selected?: string | null) {
         ? `${window.location.origin}${
             window.location.pathname
           }?selected=${encodeURIComponent(selected)}`
-        : `${window.location.origin}${window.location.pathname}`
+        : `${window.location.origin}${window.location.pathname}`,
     );
   }
 }
@@ -26,7 +26,7 @@ function download(props: Props) {
   const deflate = new pako.Deflate({ level: 3 });
   deflate.push(new TextEncoder().encode(JSON.stringify(props)).buffer, true);
 
-  const blob = new Blob([deflate.result as Uint8Array], {
+  const blob = new Blob([deflate.result as BlobPart], {
     type: "application/json",
   });
   const objectURL = URL.createObjectURL(blob);
@@ -82,7 +82,7 @@ export default function Bundle(props: Props) {
 
   const { directories, directoryColors, svgDirectoryColors } = useMemo(
     () => getDirectories(rollups),
-    [rollups]
+    [rollups],
   );
 
   rollups.directories.forEach((d) => {
