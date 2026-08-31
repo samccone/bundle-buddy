@@ -9,3 +9,4 @@ build/*
 deploy/*
 samples/*
 yarn-error*
+storybook-static

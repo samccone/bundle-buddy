@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [bundle-explorer]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn test --watchAll=false
+
+      # CRA treats lint warnings as errors when CI is set, and the workflow
+      # runner always sets it.
+      - run: CI=false yarn build

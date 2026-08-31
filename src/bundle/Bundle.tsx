@@ -40,7 +40,7 @@ interface Props extends ProcessedImportState {
   selected: string | null;
 }
 
-function getDirectories(rollups: Props["rollups"]) {
+export function getDirectories(rollups: Props["rollups"]) {
   const directories = rollups.directories
     .sort((a, b) => b.totalBytes - a.totalBytes)
     .map((d) => d.name);

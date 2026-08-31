@@ -5,7 +5,6 @@
   "dependencies": {
     "@rehooks/window-size": "^1.0.2",
     "@sentry/browser": "^10.73.0",
-    "@storybook/preset-create-react-app": "^10.5.10",
     "@types/d3-scale": "^4.0.9",
     "@types/history": "^5.0.0",
     "@types/jest": "^30.0.0",
@@ -26,14 +25,14 @@
     "react-scripts": "^5.0.1",
     "react-table": "^7.8.0",
     "source-map": "^0.7.6",
-    "storybook": "^10.5.10",
     "typescript": "^6",
     "url": "^0.11.4",
     "webtreemap": "2.0.1"
   },
   "resolutions": {
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5"
+    "@types/react-dom": "^19.2.5",
+    "@rehooks/window-size/react": "^19.2.8"
   },
   "repository": {
     "type": "git",
@@ -44,8 +43,8 @@
     "build": "GENERATE_SOURCEMAP=1 react-scripts build -- --stats && cat service_worker_postfix_shim.js >> build/service-worker.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
+    "storybook": "storybook dev -p 9009",
+    "build-storybook": "storybook build",
     "prepare": "husky install"
   },
   "jest": {
@@ -63,17 +62,17 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "^8.0.1",
-    "@storybook/addon-actions": "^9.0.8",
     "@storybook/addon-links": "^10.5.10",
-    "@storybook/addons": "^7.6.17",
+    "@storybook/preset-create-react-app": "^10.5.10",
     "@storybook/react": "^10.5.10",
+    "@storybook/react-webpack5": "^10.5.10",
     "@types/google-protobuf": "^3.15.12",
     "@types/react-router-dom": "^5.3.3",
     "d3-hierarchy": "3.1.2",
     "google-protobuf": "^4.0.2",
     "husky": "^8.0.0",
     "pretty-quick": "^4.2.2",
+    "storybook": "^10.5.10",
     "ts-protoc-gen": "^0.15.0"
   }
 }
