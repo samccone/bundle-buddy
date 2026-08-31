@@ -1,13 +1,15 @@
 import * as pako from "pako";
 import React, { Component } from "react";
-import { readFileAsText, readFileAsBinary } from "./file_reader";
+import { readFileAsBinary } from "./file_reader";
 import { NavLink as Link } from "react-router-dom";
 import { ImportHistory } from "../types";
 import { storeProcessedState } from "../routes";
 // noopener noreferrer
 
 class ImportSelector extends Component<{ history: ImportHistory }> {
-  existingImportInput: React.RefObject<HTMLInputElement & { files: FileList }>;
+  existingImportInput: React.RefObject<
+    (HTMLInputElement & { files: FileList }) | null
+  >;
 
   constructor(props: { history: ImportHistory }) {
     super(props);
@@ -21,12 +23,11 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
     }
 
     const contents = await readFileAsBinary(file);
-    const inflated = pako.inflate(contents);
+    const bytes = Uint8Array.from(contents, (c) => c.charCodeAt(0));
+    const inflated = pako.inflate(bytes);
     const previousState = JSON.parse(new TextDecoder().decode(inflated));
     this.props.history.push("/bundle", storeProcessedState(previousState));
   }
-
-  state: never;
 
   render() {
     return (
@@ -51,6 +52,26 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                   src="/img/webpack_logo.png"
                 />
                 <span>Webpack</span>
+              </button>
+            </Link>
+            <Link
+              to="/rspack"
+              aria-label="rspack project import"
+              className="no-link-underline "
+            >
+              <button
+                aria-hidden
+                tabIndex={-1}
+                className={`type-button project-import rspack-import`}
+              >
+                <img
+                  width="35px"
+                  height="36px"
+                  className="rspack-logo"
+                  alt="rspack logo"
+                  src="/img/rspack_logo.png"
+                />
+                <span>Rspack</span>
               </button>
             </Link>
             <Link
@@ -143,6 +164,13 @@ class ImportSelector extends Component<{ history: ImportHistory }> {
                 tabIndex={-1}
                 className={`type-button project-import esbuild-import`}
               >
+                <img
+                  width="35px"
+                  height="36px"
+                  className="esbuild-logo"
+                  alt="esbuild logo"
+                  src="/img/esbuild_logo.png"
+                />
                 <span>ESBuild</span>
               </button>
             </Link>

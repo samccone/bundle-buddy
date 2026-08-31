@@ -28,7 +28,7 @@ function mapLocation(
   radiusScale: ScaleLinear<number, number>,
   inOrOut: InOut,
   files: TrimmedDataNode[],
-  rOffset = OFFSET
+  rOffset = OFFSET,
 ) {
   let translateX = 0,
     translateY = 50,
@@ -98,7 +98,7 @@ function mapLocation(
 function getPlaceCircles(
   changeSelected: Props["changeSelected"],
   updateHover: React.Dispatch<string | undefined>,
-  directoryColors: Props["directoryColors"]
+  directoryColors: Props["directoryColors"],
 ) {
   const getFill = (d: TrimmedDataNode) => {
     return directoryColors[d.directory];
@@ -137,20 +137,14 @@ function getPlaceCircles(
 }
 
 export default function RippleChart(props: Props) {
-  const {
-    edges,
-    nodes,
-    max,
-    selected,
-    directoryColors,
-    changeSelected,
-  } = props;
+  const { edges, nodes, max, selected, directoryColors, changeSelected } =
+    props;
 
   const [hover, updateHover] = useState<string>();
   const selectedNode = nodes.find((d) => d.id === selected);
   const { placeCircles, getFill } = useMemo(
     () => getPlaceCircles(changeSelected, updateHover, directoryColors),
-    [changeSelected, updateHover, directoryColors]
+    [changeSelected, updateHover, directoryColors],
   );
 
   if (!selectedNode || !max) return null;
@@ -179,12 +173,12 @@ export default function RippleChart(props: Props) {
   requires = mapLocation(
     radiusScale,
     "in",
-    nodes.filter((d) => selectedNode.requires.indexOf(d.id) !== -1)
+    nodes.filter((d) => selectedNode.requires.indexOf(d.id) !== -1),
   );
   requiredBy = mapLocation(
     radiusScale,
     "out",
-    nodes.filter((d) => selectedNode.requiredBy.indexOf(d.id) !== -1)
+    nodes.filter((d) => selectedNode.requiredBy.indexOf(d.id) !== -1),
   );
 
   nextLevelEdges = [
@@ -209,14 +203,14 @@ export default function RippleChart(props: Props) {
 
   const getNextLevel = (requiredByKeys: string[], level = 0) => {
     const edgeLevel = edges.filter(
-      (d) => requiredByKeys.indexOf(d.imported) !== -1
+      (d) => requiredByKeys.indexOf(d.imported) !== -1,
     );
     nextLevelEdges.push(...edgeLevel);
 
     const edgeLevelKeys = edgeLevel.map((d) => d.fileName);
 
     const matchingNodes = nodes.filter(
-      (d) => edgeLevelKeys.indexOf(d.id) !== -1 && !usedNodes[d.id]
+      (d) => edgeLevelKeys.indexOf(d.id) !== -1 && !usedNodes[d.id],
     );
 
     if (matchingNodes.length > 0) {
@@ -224,7 +218,7 @@ export default function RippleChart(props: Props) {
         radiusScale,
         "out",
         matchingNodes,
-        OFFSET * (level + 2)
+        OFFSET * (level + 2),
       );
 
       newNodes.nodesWithPosition.forEach((n) => {
@@ -238,7 +232,7 @@ export default function RippleChart(props: Props) {
 
       getNextLevel(
         newNodes.nodesWithPosition.map((d) => d.id),
-        level + 1
+        level + 1,
       );
     }
   };
@@ -262,10 +256,10 @@ export default function RippleChart(props: Props) {
   const primaryRadius = radiusScale(selectedNode.totalBytes);
 
   let showEdges: Imported[] = [];
-  let showNodes: { id: string; anchor: string }[] = [];
+  let showNodes: { id: string; anchor: "start" | "end" }[] = [];
   if (hover) {
     showEdges = nextLevelEdges.filter(
-      (d) => d.imported === hover || d.fileName === hover
+      (d) => d.imported === hover || d.fileName === hover,
     );
 
     showNodes = Object.values(
@@ -274,10 +268,10 @@ export default function RippleChart(props: Props) {
           p: {
             [key: string]: {
               id: string;
-              anchor: string;
+              anchor: "start" | "end";
             };
           },
-          c
+          c,
         ) => {
           p[c.imported] = {
             id: c.imported,
@@ -286,8 +280,8 @@ export default function RippleChart(props: Props) {
           p[c.fileName] = { id: c.fileName, anchor: "start" };
           return p;
         },
-        {}
-      )
+        {},
+      ),
     );
   }
 

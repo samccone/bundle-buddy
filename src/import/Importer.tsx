@@ -21,6 +21,11 @@ const IGNORE_FILES = [
   "webpack/bootstrap",
 ];
 
+// Runtime helpers that the bundler injects. They show up in the sourcemap but
+// never in the module graph, so without this they are dead weight in the
+// resolve step. rspack emits a handful of these on every build.
+const IGNORE_DIRECTORIES = ["webpack/runtime"];
+
 function removeWebpackMagicFiles(v: ProcessedBundle) {
   const ret: ProcessedBundle = {
     totalBytes: v.totalBytes,
@@ -30,6 +35,11 @@ function removeWebpackMagicFiles(v: ProcessedBundle) {
     let skip = false;
     for (const i of IGNORE_FILES) {
       if (k.endsWith(i)) {
+        skip = true;
+      }
+    }
+    for (const i of IGNORE_DIRECTORIES) {
+      if (k.includes(`${i}/`)) {
         skip = true;
       }
     }
@@ -43,9 +53,11 @@ function removeWebpackMagicFiles(v: ProcessedBundle) {
 
 // noopener noreferrer
 class Import extends Component<ImportProps, ImportState> {
-  sourceMapInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
-  graphInput?: React.RefObject<HTMLInputElement & { files: FileList }>;
-  generateGraphContents: React.RefObject<HTMLSpanElement>;
+  sourceMapInput?: React.RefObject<
+    (HTMLInputElement & { files: FileList }) | null
+  >;
+  graphInput?: React.RefObject<(HTMLInputElement & { files: FileList }) | null>;
+  generateGraphContents: React.RefObject<HTMLSpanElement | null>;
 
   constructor(props: ImportProps) {
     super(props);
@@ -72,12 +84,12 @@ class Import extends Component<ImportProps, ImportState> {
             this.canProcess(
               this.state.sourceMapFiles,
               this.state.graphFile,
-              this.props.importType
+              this.props.importType,
             )
           ) {
             this.processFiles(this.props.importType);
           }
-        }
+        },
       );
     } else {
       this.setState({
@@ -101,12 +113,12 @@ class Import extends Component<ImportProps, ImportState> {
             this.canProcess(
               this.state.sourceMapFiles,
               this.state.graphFile,
-              this.props.importType
+              this.props.importType,
             )
           ) {
             this.processFiles(this.props.importType);
           }
-        }
+        },
       );
     } else {
       this.setState({
@@ -129,7 +141,7 @@ class Import extends Component<ImportProps, ImportState> {
   canProcess(
     sourceMapFiles: File[] | undefined,
     graphFile: File | undefined,
-    importType: ImportTypes
+    importType: ImportTypes,
   ) {
     // ESBuild does not need sourcemap files.
     if (importType === ImportTypes.ESBUILD) {
@@ -143,19 +155,19 @@ class Import extends Component<ImportProps, ImportState> {
     console.log("IN PROCESS");
     if (importType === ImportTypes.ESBUILD && this.state.graphFile != null) {
       const graphContents = JSON.parse(
-        await readFileAsText(this.state.graphFile)
+        await readFileAsText(this.state.graphFile),
       ) as EsBuildMetadata;
 
       const state: ImportResolveState = {
         graphEdges: toEdges(graphContents),
         processedSourceMap: mergeProcessedBundles(
-          toProcessedBundles(graphContents)
+          toProcessedBundles(graphContents),
         ),
       };
 
       this.props.history.push(
         `/${this.props.importType}/resolve`,
-        storeResolveState(state)
+        storeResolveState(state),
       );
       return;
     }
@@ -168,7 +180,11 @@ class Import extends Component<ImportProps, ImportState> {
     const sourceMapContents = await readFilesAsText(this.state.sourceMapFiles);
 
     let processed;
-    if (importType === ImportTypes.WEBPACK || importType === ImportTypes.CRA) {
+    if (
+      importType === ImportTypes.WEBPACK ||
+      importType === ImportTypes.RSPACK ||
+      importType === ImportTypes.CRA
+    ) {
       processed = await processImports({
         sourceMapContents,
         graphEdges: graphContents,
@@ -177,7 +193,7 @@ class Import extends Component<ImportProps, ImportState> {
 
       if (processed.processedSourcemap != null) {
         processed.processedSourcemap = removeWebpackMagicFiles(
-          processed.processedSourcemap
+          processed.processedSourcemap,
         );
       }
     } else {
@@ -205,7 +221,7 @@ class Import extends Component<ImportProps, ImportState> {
 
       this.props.history.push(
         `/${this.props.importType}/resolve`,
-        storeResolveState(state)
+        storeResolveState(state),
       );
     }
   }
@@ -279,7 +295,87 @@ JSON.stringify(stats.toJson()),
             <button
               onClick={() =>
                 toClipboard(
-                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`
+                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson()), 'utf-8')`,
+                )
+              }
+              className="copy-button"
+              aria-label="Copy stats.json programatic snippit to clipboard"
+            />
+          </code>
+        </div>
+      );
+    } else if (type === ImportTypes.RSPACK) {
+      sourcemaps = (
+        <div className="right-spacing">
+          <p>rspack.config.js</p>
+          <code>
+            <pre>
+              <span className="add-diff">devtool: "source-map"</span>
+            </pre>
+            <button
+              onClick={() => toClipboard("devtool: 'source-map'")}
+              className="copy-button"
+              aria-label="Copy sourcemap snippet to clipboard"
+            />
+          </code>
+        </div>
+      );
+
+      graph = (
+        <div className="right-spacing">
+          <p>
+            rspack.config.js &mdash; rspack omits modules from stats by default
+          </p>
+          <code>
+            <pre>
+              <span className="add-diff">
+                {`stats: { modules: true, reasons: true }`}
+              </span>
+            </pre>
+            <button
+              onClick={() =>
+                toClipboard("stats: { modules: true, reasons: true }")
+              }
+              className="copy-button"
+              aria-label="Copy stats config snippet to clipboard"
+            />
+          </code>
+          <p>via command line</p>
+          <code>
+            <pre>
+              <span className="add-diff">rspack build --json stats.json</span>
+            </pre>
+            <button
+              onClick={() => toClipboard("rspack build --json stats.json")}
+              className="copy-button"
+              aria-label="Copy stats.json CLI command to clipboard"
+            />
+          </code>
+          <p>via programatic compilation </p>
+          <code>
+            <pre>
+              {`const { rspack } = require("@rspack/core");
+rspack({
+// Configuration Object
+}, (err, stats) => {
+if (err) {
+console.error(err);
+return;
+}`}
+              <span className="add-diff">
+                {`
+fs.writeFileSync(
+path.join(__dirname, "stats.json"),
+JSON.stringify(stats.toJson({ modules: true, reasons: true })),
+'utf-8');
+});
+`}
+              </span>
+            </pre>
+            <button
+              onClick={() =>
+                toClipboard(
+                  `fs.writeFileSync(path.join(__dirname, "stats.json"), JSON.stringify(stats.toJson({ modules: true, reasons: true })), 'utf-8')`,
                 )
               }
               className="copy-button"
@@ -359,7 +455,7 @@ buildEnd() {
             <button
               onClick={() =>
                 toClipboard(
-                  this.generateGraphContents.current!.textContent || ""
+                  this.generateGraphContents.current!.textContent || "",
                 )
               }
               className="copy-button"

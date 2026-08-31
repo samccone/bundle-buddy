@@ -8,11 +8,11 @@ type Props = {
   barHeight?: number;
   rExtent?: [number, number];
   oAccessor: (d: any) => string;
-  oLabel: (d: any, o: string, r: number) => string | JSX.Element;
+  oLabel: (d: any, o: string, r: number) => string | React.JSX.Element;
   rAccessor: (d: any) => number;
-  bar?: (d: any, width: number | string | undefined) => JSX.Element;
+  bar?: (d: any, width: number | string | undefined) => React.JSX.Element;
   oPadding?: number;
-  foregroundGraphics?: JSX.Element | JSX.Element[];
+  foregroundGraphics?: React.JSX.Element | React.JSX.Element[];
   data?: any[];
   onBarClick?: (id: string) => {} | React.Dispatch<string> | undefined | void;
 };
@@ -28,7 +28,7 @@ export default function BarChart(props: Props) {
     oPadding = 3,
     barHeight = 45,
     onBarClick,
-    rExtent
+    rExtent,
   } = props;
 
   const max = data.reduce((p, c) => {
@@ -44,7 +44,7 @@ export default function BarChart(props: Props) {
   return (
     <div className="bar-chart relative">
       <div style={{ paddingTop: margin.top }}>
-        {data.map(d => {
+        {data.map((d) => {
           const o = oAccessor(d);
           const r = rAccessor(d);
           return (
@@ -53,7 +53,7 @@ export default function BarChart(props: Props) {
               onClick={onBarClick && (() => onBarClick(d.id))}
               style={{
                 height: barHeight,
-                padding: oPadding
+                padding: oPadding,
               }}
               key={o}
             >

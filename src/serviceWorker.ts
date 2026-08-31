@@ -5,12 +5,12 @@ export interface ConfigOptions {
 
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === "[::1]" ||
-    // 127.0.0.1/8 is considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
+  // [::1] is the IPv6 localhost address.
+  window.location.hostname === "[::1]" ||
+  // 127.0.0.1/8 is considered localhost for IPv4.
+  window.location.hostname.match(
+    /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/,
+  ),
 );
 
 export function register(config?: ConfigOptions) {
@@ -50,7 +50,7 @@ export function showRefreshUI(registration: ServiceWorkerRegistration) {
   button.style.left = "24px";
   button.textContent = "This site has updated. Please click to see changes.";
 
-  button.addEventListener("click", function() {
+  button.addEventListener("click", function () {
     if (!registration.waiting) {
       console.info("Missing registration waiting");
       // Just to ensure registration.waiting is available before
@@ -67,7 +67,7 @@ export function showRefreshUI(registration: ServiceWorkerRegistration) {
 
 function onNewServiceWorker(
   registration: ServiceWorkerRegistration,
-  callback: () => void
+  callback: () => void,
 ) {
   if (registration.waiting) {
     // SW is waiting to activate. Can occur if multiple clients open and
@@ -77,7 +77,7 @@ function onNewServiceWorker(
 
   function listenInstalledStateChange() {
     if (registration.installing != null) {
-      registration.installing.addEventListener("statechange", event => {
+      registration.installing.addEventListener("statechange", (event) => {
         if (
           event.target != null &&
           (event.target as any).state === "installed"
@@ -101,7 +101,7 @@ function onNewServiceWorker(
 function registerValidSW(swUrl: string, config?: ConfigOptions) {
   navigator.serviceWorker
     .register(swUrl)
-    .then(registration => {
+    .then((registration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -112,16 +112,16 @@ function registerValidSW(swUrl: string, config?: ConfigOptions) {
             var preventDevToolsReloadLoop = false;
             navigator.serviceWorker.addEventListener(
               "controllerchange",
-              function(event) {
+              function (event) {
                 // Ensure refresh is only called once.
                 // This works around a bug in "force update on reload".
                 if (preventDevToolsReloadLoop) return;
                 preventDevToolsReloadLoop = true;
-                window.location.reload(true);
-              }
+                window.location.reload();
+              },
             );
 
-            onNewServiceWorker(registration, function() {
+            onNewServiceWorker(registration, function () {
               showRefreshUI(registration);
             });
           }
@@ -133,7 +133,7 @@ function registerValidSW(swUrl: string, config?: ConfigOptions) {
               // content until all client tabs are closed.
               console.log(
                 "New content is available and will be used when all " +
-                  "tabs for this page are closed. See http://bit.ly/CRA-PWA."
+                  "tabs for this page are closed. See http://bit.ly/CRA-PWA.",
               );
 
               // Execute callback
@@ -155,7 +155,7 @@ function registerValidSW(swUrl: string, config?: ConfigOptions) {
         };
       };
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error during service worker registration:", error);
     });
 }
@@ -163,7 +163,7 @@ function registerValidSW(swUrl: string, config?: ConfigOptions) {
 function checkValidServiceWorker(swUrl: string, config?: ConfigOptions) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
-    .then(response => {
+    .then((response) => {
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get("content-type");
       if (
@@ -171,7 +171,7 @@ function checkValidServiceWorker(swUrl: string, config?: ConfigOptions) {
         (contentType != null && contentType.indexOf("javascript") === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration => {
+        navigator.serviceWorker.ready.then((registration) => {
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -183,14 +183,14 @@ function checkValidServiceWorker(swUrl: string, config?: ConfigOptions) {
     })
     .catch(() => {
       console.log(
-        "No internet connection found. App is running in offline mode."
+        "No internet connection found. App is running in offline mode.",
       );
     });
 }
 
 export function unregister() {
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
+    navigator.serviceWorker.ready.then((registration) => {
       registration.unregister();
     });
   }

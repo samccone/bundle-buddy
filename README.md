@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/samccone/bundle-buddy.svg?branch=bundle-explorer)](https://travis-ci.org/samccone/bundle-buddy)
+[![CI](https://github.com/samccone/bundle-buddy/actions/workflows/ci.yml/badge.svg?branch=bundle-explorer)](https://github.com/samccone/bundle-buddy/actions/workflows/ci.yml)
 
 The design document for the project is here:
 https://docs.google.com/document/d/1ycGVBJmwIVs34yhC0oTqv_WH5f0fs2SAFmzyTiBK99k/edit

@@ -82,7 +82,7 @@ const directoryProps = {
 };
 
 type Props = {
-  download: JSX.Element;
+  download: React.JSX.Element;
   rollups?: ProcessedImportState["rollups"];
 };
 

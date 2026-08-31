@@ -1,20 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "allowJs": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "noEmit": true,
-    "jsx": "preserve",
-    "downlevelIteration": true,
-    "lib": ["es2015.collection", "dom", "es6"],
-    "isolatedModules": true
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "isolatedModules": true,
+    "types": ["node", "jest"]
   },
   "exclude": ["src/storage/import_pb.js"],
   "include": ["src"]

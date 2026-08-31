@@ -38,10 +38,12 @@ export async function processImports(opts: {
 
     try {
       processed[bundleName] = await calculateSourcemapFileContents(
-        opts.sourceMapContents[bundleName]
+        opts.sourceMapContents[bundleName],
       );
     } catch (e) {
-      ret.sourceMapProcessError = new Error(humanizeSourceMapImportError(e));
+      ret.sourceMapProcessError = new Error(
+        humanizeSourceMapImportError(e as Error),
+      );
     }
   }
 
@@ -66,7 +68,7 @@ export async function processImports(opts: {
       ret.processedGraph = opts.graphEdges;
     }
   } catch (e) {
-    ret.graphProcessError = new Error(humanizeGraphProcessError(e));
+    ret.graphProcessError = new Error(humanizeGraphProcessError(e as Error));
   }
 
   return ret;
@@ -74,7 +76,7 @@ export async function processImports(opts: {
 
 export function buildImportErrorReport(
   processed: ImportProcess,
-  files: { graphFile: { name: string }; sourceMapFiles: File[] }
+  files: { graphFile: { name: string }; sourceMapFiles: File[] },
 ) {
   let importError = null;
   const reportUri = new ReportErrorUri();
@@ -91,10 +93,10 @@ export function buildImportErrorReport(
 
     reportUri.addError(
       Object.keys(files.sourceMapFiles.map((f) => f.name)).join(","),
-      processed.sourceMapProcessError
+      processed.sourceMapProcessError,
     );
     importError += `${Object.keys(files.sourceMapFiles.map((f) => f.name)).join(
-      ","
+      ",",
     )}: ${processed.sourceMapProcessError}`;
   }
 

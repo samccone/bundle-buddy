@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import React from "react";
 import Resolve from "../resolve/Resolve";
 import { ImportResolveState, ImportHistory, ImportTypes } from "../types";
@@ -58,96 +58,97 @@ export default function Home(props: Props) {
       <section
         style={{ background: "var(--grey200)", color: "var(--grey900)" }}
       >
-        <Switch>
-          <Route path="/:importer">
-            <div className="left-panel">
-              <div
-                className="inner-border vertical-center"
-                style={{ borderRight: `3px solid var(--grey300)` }}
-              >
-                <h2>Step 2</h2>
+        <Routes>
+          <Route
+            path=":importer/*"
+            element={
+              <div className="left-panel">
+                <div
+                  className="inner-border vertical-center"
+                  style={{ borderRight: `3px solid var(--grey300)` }}
+                >
+                  <h2>Step 2</h2>
+                </div>
               </div>
-            </div>
-          </Route>
-        </Switch>
+            }
+          />
+        </Routes>
 
         <div className="col-container">
           <div className="right-col upload">
             <div className="padding">
-              <Switch>
+              <Routes>
                 <Route
-                  path="/webpack"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        graphFileName="stats.json"
-                        history={h.history as any}
-                        importType={ImportTypes.WEBPACK}
-                      />
-                    );
-                  }}
+                  path="webpack/*"
+                  element={
+                    <Importer
+                      graphFileName="stats.json"
+                      history={history}
+                      importType={ImportTypes.WEBPACK}
+                    />
+                  }
                 />
                 <Route
-                  path="/create-react-app"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        graphFileName="stats.json"
-                        history={h.history as any}
-                        importType={ImportTypes.CRA}
-                      />
-                    );
-                  }}
+                  path="rspack/*"
+                  element={
+                    <Importer
+                      graphFileName="stats.json"
+                      history={history}
+                      importType={ImportTypes.RSPACK}
+                    />
+                  }
                 />
                 <Route
-                  path="/rollup"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.ROLLUP}
-                        graphFileName="graph.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
+                  path="create-react-app/*"
+                  element={
+                    <Importer
+                      graphFileName="stats.json"
+                      history={history}
+                      importType={ImportTypes.CRA}
+                    />
+                  }
                 />
                 <Route
-                  path="/rome"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.ROME}
-                        graphFileName="bundlebuddy.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
+                  path="rollup/*"
+                  element={
+                    <Importer
+                      importType={ImportTypes.ROLLUP}
+                      graphFileName="graph.json"
+                      history={history}
+                    />
+                  }
                 />
                 <Route
-                  path="/parcel"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.PARCEL}
-                        graphFileName="bundle-buddy.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
+                  path="rome/*"
+                  element={
+                    <Importer
+                      importType={ImportTypes.ROME}
+                      graphFileName="bundlebuddy.json"
+                      history={history}
+                    />
+                  }
                 />
                 <Route
-                  path="/esbuild"
-                  component={(h: { history: History }) => {
-                    return (
-                      <Importer
-                        importType={ImportTypes.ESBUILD}
-                        graphFileName="esbuild.json"
-                        history={h.history as any}
-                      />
-                    );
-                  }}
+                  path="parcel/*"
+                  element={
+                    <Importer
+                      importType={ImportTypes.PARCEL}
+                      graphFileName="bundle-buddy.json"
+                      history={history}
+                    />
+                  }
                 />
-              </Switch>
+                <Route
+                  path="esbuild/*"
+                  element={
+                    <Importer
+                      importType={ImportTypes.ESBUILD}
+                      graphFileName="esbuild.json"
+                      history={history}
+                    />
+                  }
+                />
+              </Routes>
             </div>
           </div>
         </div>
@@ -164,7 +165,7 @@ export default function Home(props: Props) {
           </div>
           <div className="right-panel">
             <Resolve
-              history={history as any}
+              history={history}
               graphEdges={graphEdges}
               processedBundle={processedSourceMap}
               sourceMapFileTransform={sourceMapFileTransform}

@@ -31,7 +31,7 @@ function toFunctionRef(func: string) {
 function transformGraphNames(
   nodes: GraphEdges,
   graphTransform: (v: string) => string,
-  trims: string[]
+  trims: string[],
 ): GraphEdges {
   return nodes.map((n) => {
     n.source = graphTransform(trimClean(trims, n.source));
@@ -45,7 +45,7 @@ function transformGraphNames(
 function transformSourceMapNames(
   sourcemap: ProcessedBundle,
   sourcemapTransform: (v: string) => string,
-  trims: string[]
+  trims: string[],
 ): ProcessedBundle {
   const ret: ProcessedBundle = {
     files: {},
@@ -98,8 +98,8 @@ function autoclean(opts: {
 }
 
 class Resolve extends Component<ResolveProps, ResolveState> {
-  sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement>;
-  sourceGraphTransformRef?: React.RefObject<HTMLTextAreaElement>;
+  sourceMapTransformRef?: React.RefObject<HTMLTextAreaElement | null>;
+  sourceGraphTransformRef?: React.RefObject<HTMLTextAreaElement | null>;
 
   state: ResolveState;
   trims: string[];
@@ -140,7 +140,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
     a: Array<T>,
     b: Array<T>,
     aTransform: (v: T) => T,
-    bTransform: (v: T) => T
+    bTransform: (v: T) => T,
   ): { files: T[]; lastError: undefined | Error } {
     let lastError: Error | undefined = undefined;
     const setA = new Set(
@@ -148,20 +148,20 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         try {
           return aTransform(v);
         } catch (e) {
-          lastError = e;
+          lastError = e as Error;
           return v;
         }
-      })
+      }),
     );
     const setB = new Set(
       b.map((v) => {
         try {
           return bTransform(v);
         } catch (e) {
-          lastError = e;
+          lastError = e as Error;
           return v;
         }
-      })
+      }),
     );
 
     const ret: Array<T> = [];
@@ -183,7 +183,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       this.sourceMapTransformRef.current != null
     ) {
       const transformRef = toFunctionRef(
-        this.sourceMapTransformRef.current.value
+        this.sourceMapTransformRef.current.value,
       );
       if (transformRef == null) {
         return;
@@ -213,7 +213,7 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       this.sourceGraphTransformRef.current != null
     ) {
       const transformRef = toFunctionRef(
-        this.sourceGraphTransformRef.current.value
+        this.sourceGraphTransformRef.current.value,
       );
       if (transformRef == null) {
         return;
@@ -223,7 +223,8 @@ class Resolve extends Component<ResolveProps, ResolveState> {
         graphEdges: this.props.graphEdges,
         processedSourceMap: this.props.processedBundle,
         graphFileTransform: transformRef.toString(),
-        bundledFilesTransform: this.state.transforms.sourceMapFileTransform.toString(),
+        bundledFilesTransform:
+          this.state.transforms.sourceMapFileTransform.toString(),
       });
 
       this.props.history.replace(window.location.pathname, k);
@@ -246,14 +247,14 @@ class Resolve extends Component<ResolveProps, ResolveState> {
       transformGraphNames(
         this.props.graphEdges,
         this.state.transforms.graphFileTransform,
-        this.trims
+        this.trims,
       ),
       transformSourceMapNames(
         this.props.processedBundle,
         this.state.transforms.sourceMapFileTransform,
-        this.trims
+        this.trims,
       ),
-      this.state.sourceMapFiles
+      this.state.sourceMapFiles,
     );
 
     this.props.history.push("/bundle", storeProcessedState(processed));
@@ -271,14 +272,14 @@ ${e.stack}`;
       this.state.sourceMapFiles,
       this.state.graphFiles,
       this.state.transforms.sourceMapFileTransform,
-      this.state.transforms.graphFileTransform
+      this.state.transforms.graphFileTransform,
     );
 
     const graphTransformed = this.transformFiles(
       this.state.graphFiles,
       this.state.sourceMapFiles,
       this.state.transforms.graphFileTransform,
-      this.state.transforms.sourceMapFileTransform
+      this.state.transforms.sourceMapFileTransform,
     );
     return (
       <div className="resolve-conflicts">
